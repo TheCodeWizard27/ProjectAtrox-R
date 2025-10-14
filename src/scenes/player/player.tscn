@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbarat6swui5t"]
+[gd_scene load_steps=21 format=3 uid="uid://bbarat6swui5t"]
 
 [ext_resource type="Script" uid="uid://dx53dd12e6xpn" path="res://src/scenes/player/player.gd" id="1_swhsd"]
 [ext_resource type="PackedScene" uid="uid://dx884bplyrafp" path="res://src/assets/player/models/botter_animated.glb" id="2_w8ig4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://beslhmrt2csvp" path="res://src/scenes/player/states/grounded.gd" id="5_mc3vd"]
 [ext_resource type="Script" uid="uid://djht0otimhd2d" path="res://src/scenes/player/states/jumping.gd" id="6_7vxwc"]
 [ext_resource type="Script" uid="uid://b7cr2oeqg7elk" path="res://src/scenes/player/states/attacking.gd" id="7_8tvdu"]
+[ext_resource type="Script" uid="uid://b50bsgrv77m7m" path="res://src/core/camera_controller/camera_controller.gd" id="9_mc3vd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_swhsd"]
 
@@ -30,7 +31,7 @@ animation = &"dying"
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_l84wi"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lh6av"]
-graph_offset = Vector2(-202.37253, 77.533875)
+graph_offset = Vector2(-119.24658, 155.38351)
 nodes/output/position = Vector2(1180, 500)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_l84wi")
 nodes/running/position = Vector2(40, 180)
@@ -50,50 +51,61 @@ nodes/dying_animation/node = SubResource("AnimationNodeAnimation_mc3vd")
 nodes/dying_animation/position = Vector2(360, 900)
 node_connections = [&"output", 0, &"dying_blend", &"attack_one_shot", 0, &"running", &"attack_one_shot", 1, &"attack", &"falling", 0, &"attack_one_shot", &"falling", 1, &"Animation", &"dying_blend", 0, &"falling", &"dying_blend", 1, &"dying", &"dying", 0, &"dying_animation"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_mc3vd"]
+
 [node name="Player" type="Node3D"]
 script = ExtResource("1_swhsd")
 
 [node name="Body" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
 
 [node name="Collision" type="CollisionShape3D" parent="Body"]
 shape = SubResource("CapsuleShape3D_swhsd")
 
 [node name="botter_animated" parent="Body" instance=ExtResource("2_w8ig4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(1.1021544, 0.054773517, 0.05578781, -0.04930804, 1.0988437, -0.10472657, -0.060672354, 0.10197451, 1.0985337, -0.06279145, -0.089190215, -0.13242404)
+transform = Transform3D(0.5024282, 0.0041930517, 0.98407567, 0.05061129, 1.1033415, -0.03054125, -0.9827823, 0.058963455, 0.5015166, 0.028178845, 0.04301277, -0.021696331)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
-bones/0/rotation = Quaternion(0.1258198, 9.2921143e-10, 1.1784998e-10, 0.99205315)
-bones/1/rotation = Quaternion(-0.11726482, 0.012248279, 0.010018547, 0.9929746)
-bones/2/rotation = Quaternion(0.10479106, 0.022160452, 0.018207647, 0.9940806)
-bones/3/rotation = Quaternion(0.087864764, 0.022524863, 0.017754775, 0.9957195)
-bones/4/rotation = Quaternion(0.18571787, -0.0068947356, 0.0007101942, 0.9825787)
-bones/5/rotation = Quaternion(0.68258315, -0.0033070128, 0.006091324, 0.73077506)
-bones/6/rotation = Quaternion(-0.82439524, -0.0045319116, 0.00525807, 0.56597203)
-bones/8/rotation = Quaternion(-0.6228054, -0.29496726, -0.415035, 0.59401494)
-bones/9/rotation = Quaternion(-0.31587458, 0.7669555, -0.34918064, 0.43597656)
-bones/10/rotation = Quaternion(0.7887152, 0.16427879, 0.15148865, 0.57270604)
-bones/11/rotation = Quaternion(0.079552576, -0.1517953, 0.13711064, 0.9756179)
-bones/12/rotation = Quaternion(0.024057122, 0.044386286, -0.23754515, 0.9700636)
-bones/13/rotation = Quaternion(-0.6079663, 0.31717572, 0.44332528, 0.5772687)
-bones/14/rotation = Quaternion(-0.18075189, -0.72997606, 0.3992664, 0.52445227)
-bones/15/rotation = Quaternion(0.7028893, -0.13414939, -0.13721696, 0.68492484)
-bones/16/rotation = Quaternion(-0.024501078, 0.26680943, -0.08215043, 0.95992905)
-bones/17/rotation = Quaternion(-0.02199209, -0.03207529, 0.1179014, 0.9922635)
-bones/18/rotation = Quaternion(-2.915519e-07, 0.6969358, 0.7171336, -2.447238e-07)
-bones/20/rotation = Quaternion(-2.875258e-07, 0.6969358, 0.71713364, -2.3951242e-07)
-bones/26/rotation = Quaternion(0.88911664, -0.03546758, -0.04181275, 0.4543845)
-bones/27/rotation = Quaternion(0.79001874, -0.046437528, -0.119785435, 0.59947103)
-bones/28/rotation = Quaternion(-0.08990365, -0.6962454, 0.10542296, 0.7043052)
-bones/29/rotation = Quaternion(0.050748274, -0.71138626, 0.7009422, -0.00585407)
-bones/31/rotation = Quaternion(0.9536097, 0.045734882, 0.035364687, 0.29544222)
-bones/32/rotation = Quaternion(0.44288138, -0.009106998, 0.010214995, 0.89647585)
-bones/33/rotation = Quaternion(-0.105845094, 0.68610907, -0.17836455, 0.6973072)
-bones/34/rotation = Quaternion(-0.16833968, -0.6405137, 0.7492686, 0.0008359029)
+bones/0/rotation = Quaternion(0.11247922, -0.4208703, 0.030678272, 0.89959735)
+bones/1/rotation = Quaternion(-0.40761793, -0.066775784, 0.024186498, 0.91038656)
+bones/2/rotation = Quaternion(-0.06576902, -0.022515701, 0.0062865685, 0.99756104)
+bones/3/rotation = Quaternion(-0.082798526, -0.022287363, 0.0069233156, 0.99629307)
+bones/4/rotation = Quaternion(0.21591069, 0.035662886, -0.0029081698, 0.97575736)
+bones/5/rotation = Quaternion(0.7044433, 0.017737769, -0.031075811, 0.7088578)
+bones/6/rotation = Quaternion(-0.8059803, 0.023231559, -0.027192365, 0.5908609)
+bones/8/rotation = Quaternion(-0.5675767, -0.40791118, -0.34823772, 0.62465644)
+bones/9/rotation = Quaternion(0.4768968, 0.7596565, -0.09264537, 0.4323289)
+bones/10/rotation = Quaternion(-0.465497, 0.27641934, -0.203905, 0.8156762)
+bones/11/rotation = Quaternion(0.013101902, 0.18452375, -0.33987856, 0.92209655)
+bones/12/rotation = Quaternion(0.024057092, 0.04438632, -0.23754516, 0.9700636)
+bones/13/rotation = Quaternion(-0.63155395, 0.3040206, 0.35537872, 0.61839885)
+bones/14/rotation = Quaternion(0.3230913, -0.794349, 0.21739565, 0.46621963)
+bones/15/rotation = Quaternion(-0.21537577, -0.24064228, 0.041243903, 0.94551766)
+bones/16/rotation = Quaternion(0.047181413, 0.24657309, 0.1950631, 0.9481171)
+bones/17/rotation = Quaternion(-0.021992108, -0.03207527, 0.11790139, 0.9922635)
+bones/18/rotation = Quaternion(-4.2761198e-07, 0.6969361, 0.7171333, -3.6396483e-07)
+bones/20/rotation = Quaternion(-4.0713337e-07, 0.6969362, 0.7171332, -3.596471e-07)
+bones/26/rotation = Quaternion(0.9510183, -0.055214256, 0.20473558, -0.22494254)
+bones/27/rotation = Quaternion(-0.6543579, -0.037287973, 0.016249364, 0.7550903)
+bones/28/rotation = Quaternion(-0.11385136, -0.7321873, 0.12202139, 0.6603411)
+bones/29/rotation = Quaternion(0.019307273, -0.67113686, 0.7409373, -0.014648004)
+bones/31/rotation = Quaternion(0.87257695, -0.033925064, -0.09115539, -0.4786954)
+bones/32/rotation = Quaternion(-0.86373883, 0.061351884, -0.036188148, 0.49888036)
+bones/33/rotation = Quaternion(-0.06813333, 0.70808506, -0.05616396, 0.7005848)
+bones/34/rotation = Quaternion(-0.028742736, -0.67089564, 0.7406315, 0.02319455)
+
+[node name="CameraTracker" type="RemoteTransform3D" parent="Body"]
+remote_path = NodePath("../../CameraMount")
+update_rotation = false
+update_scale = false
 
 [node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_cx3ie")
+initial_state = NodePath("Grounded")
 metadata/_custom_type_script = "uid://brf10fbscg178"
 
 [node name="Airborne" type="Node" parent="StateMachine"]
@@ -113,7 +125,8 @@ script = ExtResource("7_8tvdu")
 metadata/_custom_type_script = "uid://gyo5hocvaebp"
 
 [node name="PlayerAnimator" type="AnimationTree" parent="."]
-root_node = NodePath("../Body/botter_animated")
+unique_name_in_owner = true
+root_node = NodePath("%Body/botter_animated")
 tree_root = SubResource("AnimationNodeBlendTree_lh6av")
 anim_player = NodePath("../Body/botter_animated/AnimationPlayer")
 parameters/running/blend_position = 0.017
@@ -125,5 +138,17 @@ parameters/falling/blend_amount = -1.0
 parameters/dying_blend/blend_amount = 0.0
 parameters/dying/seek_request = -1.0
 script = ExtResource("5_6gf5d")
+
+[node name="CameraMount" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_mc3vd")
+metadata/_custom_type_script = "uid://b50bsgrv77m7m"
+
+[node name="CameraArm" type="SpringArm3D" parent="CameraMount"]
+shape = SubResource("SphereShape3D_mc3vd")
+spring_length = 4.0
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount/CameraArm"]
 
 [editable path="Body/botter_animated"]
