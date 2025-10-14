@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbarat6swui5t"]
+
+[ext_resource type="Script" uid="uid://dx53dd12e6xpn" path="res://src/scenes/player/player.gd" id="1_swhsd"]
+[ext_resource type="PackedScene" uid="uid://c7r45wprpci2u" path="res://src/assets/player/models/guy.glb" id="2_qopur"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="3_cx3ie"]
+[ext_resource type="Script" uid="uid://gyo5hocvaebp" path="res://src/core/state_machine/state.gd" id="4_6gf5d"]
+[ext_resource type="Script" uid="uid://emnqaq0d8jsd" path="res://src/scenes/player/player_animator.gd" id="5_6gf5d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_swhsd"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lh6av"]
+graph_offset = Vector2(-154.55762, 114.62952)
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_swhsd")
+
+[node name="Body" type="CharacterBody3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+shape = SubResource("CapsuleShape3D_swhsd")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Body"]
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body"]
+
+[node name="guy" parent="Body" instance=ExtResource("2_qopur")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_cx3ie")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("4_6gf5d")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("4_6gf5d")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("4_6gf5d")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("4_6gf5d")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="PlayerAnimator" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_lh6av")
+script = ExtResource("5_6gf5d")
