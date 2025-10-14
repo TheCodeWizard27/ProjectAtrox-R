@@ -7,7 +7,7 @@
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_45uaa")
-initial_scene_path = "res://src/scenes/areas/testing_area/testing_area.tscn"
+initial_scene_path = "res://src/scenes/areas/sandbox_area/sandbox_area.tscn"
 
 [node name="CameraManager" type="Node" parent="."]
 script = ExtResource("2_vw57g")
@@ -15,4 +15,4 @@ metadata/_custom_type_script = "uid://csq8ghnc66rxk"
 
 [node name="LoadingScene" parent="." instance=ExtResource("1_4rfip")]
 
-[node name="PlaceholderNode" parent="." instance=ExtResource("2_45uaa")]
+[node name="SubScene" parent="." instance=ExtResource("2_45uaa")]

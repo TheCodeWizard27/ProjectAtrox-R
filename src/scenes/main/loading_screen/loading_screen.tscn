@@ -1,14 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqbyl2wsy3378"]
+[gd_scene load_steps=6 format=3 uid="uid://dqbyl2wsy3378"]
 
 [ext_resource type="Script" uid="uid://cbxhl3chdvgkk" path="res://src/scenes/main/loading_screen/loading_screen.gd" id="1_4x3u6"]
 
-[node name="Load" type="Node3D" node_paths=PackedStringArray("_camera")]
+[sub_resource type="BoxMesh" id="BoxMesh_00ali"]
+
+[sub_resource type="Animation" id="Animation_defsi"]
+resource_name = "load"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.35355335, -0.14644659, 0.35355335, 0.85355335, 4.6666665, 1, 0.35355332, 0.85355335, -0.35355335, 0.14644656, 10, 1, 0.35662517, -0.13899237, 0.35045454, 0.85479885)
+
+[sub_resource type="Animation" id="Animation_bmuie"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e1odd"]
+_data = {
+&"RESET": SubResource("Animation_bmuie"),
+&"load": SubResource("Animation_defsi")
+}
+
+[node name="Load" type="Node3D"]
 script = ExtResource("1_4x3u6")
-_camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0195307, 2.266912)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17333984, 0.746521, 0)
-size = Vector3(2.9291992, 2.493042, 1)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 1.0436449, 0)
+mesh = SubResource("BoxMesh_00ali")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e1odd")
+}

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxol2eaijorig"]
+
+[ext_resource type="Script" uid="uid://csw54elgaay2n" path="res://src/scenes/areas/sandbox_area/sandbox_area.gd" id="1_7stnd"]
+[ext_resource type="PackedScene" uid="uid://c4ik6ibj0vpla" path="res://src/scenes/main_menu/main_menu.tscn" id="1_nei07"]
+[ext_resource type="Texture2D" uid="uid://do4ka044nklue" path="res://icon.svg" id="3_5831v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_156fl"]
+
+[sub_resource type="Sky" id="Sky_nei07"]
+sky_material = SubResource("ProceduralSkyMaterial_156fl")
+
+[sub_resource type="Environment" id="Environment_7stnd"]
+background_mode = 2
+sky = SubResource("Sky_nei07")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5831v"]
+
+[node name="TestingArea" type="Node3D"]
+script = ExtResource("1_7stnd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5528681, 0.83326876, 0, -0.83326876, 0.5528681, 0, 1.4415299, 2.7162302)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7stnd")
+camera_attributes = SubResource("CameraAttributesPractical_5831v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31430054, -0.28881836, -0.36117554)
+use_collision = true
+size = Vector3(100, 0.422, 100)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.205246, 0.27239382, 0)
+use_collision = true
+
+[node name="MainMenu" parent="." instance=ExtResource("1_nei07")]
+transform = Transform3D(0.99308074, 0, -0.1174334, 0, 1, 0, 0.1174334, 0, 0.99308074, 0, 1.2724452, 0.7905979)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3602219, 1.9644237)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5020283, 2.0390315, 0)
+texture = ExtResource("3_5831v")

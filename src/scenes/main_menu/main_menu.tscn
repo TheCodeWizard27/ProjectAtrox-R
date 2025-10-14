@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4ik6ibj0vpla"]
+
+[ext_resource type="Script" uid="uid://c26sfmf5awqwy" path="res://src/scenes/main_menu/main_menu.gd" id="1_gxxi0"]
+[ext_resource type="PackedScene" uid="uid://dfcour3otamx3" path="res://src/scenes/main_menu/main_menu_actions.tscn" id="2_4gslo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0on4r"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvjhp"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_0on4r")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gxxi0"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_qvjhp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gslo"]
+size = Vector3(1, 1, 0.1)
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_gxxi0")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size_2d_override = Vector2i(512, 512)
+size_2d_override_stretch = true
+
+[node name="MainMenuActions" parent="SubViewport" instance=ExtResource("2_4gslo")]
+offset_right = -512.0
+offset_bottom = -512.0
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_gxxi0")
+
+[node name="Area3D" type="Area3D" parent="Screen"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Screen/Area3D"]
+shape = SubResource("BoxShape3D_4gslo")
