@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwnj4x46rqbbx"]
+
+[ext_resource type="PackedScene" uid="uid://dqbyl2wsy3378" path="res://src/scenes/main/loading_screen/loading_screen.tscn" id="1_4rfip"]
+[ext_resource type="Script" uid="uid://82odlqfby4ge" path="res://src/scenes/main/main.gd" id="1_45uaa"]
+[ext_resource type="PackedScene" uid="uid://by4mr1ewypcjr" path="res://src/core/placeholder_node/placeholder_node.tscn" id="2_45uaa"]
+[ext_resource type="Script" uid="uid://csq8ghnc66rxk" path="res://src/scenes/main/camera_manager.gd" id="2_vw57g"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_45uaa")
+initial_scene_path = "res://src/scenes/areas/testing_area/testing_area.tscn"
+
+[node name="CameraManager" type="Node" parent="."]
+script = ExtResource("2_vw57g")
+metadata/_custom_type_script = "uid://csq8ghnc66rxk"
+
+[node name="LoadingScene" parent="." instance=ExtResource("1_4rfip")]
+
+[node name="PlaceholderNode" parent="." instance=ExtResource("2_45uaa")]
