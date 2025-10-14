@@ -1,0 +1,129 @@
+[gd_scene load_steps=19 format=3 uid="uid://bbarat6swui5t"]
+
+[ext_resource type="Script" uid="uid://dx53dd12e6xpn" path="res://src/scenes/player/player.gd" id="1_swhsd"]
+[ext_resource type="PackedScene" uid="uid://dx884bplyrafp" path="res://src/assets/player/models/botter_animated.glb" id="2_w8ig4"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="3_cx3ie"]
+[ext_resource type="Script" uid="uid://cxe8w5r4nrryl" path="res://src/scenes/player/states/airborne.gd" id="4_w8ig4"]
+[ext_resource type="Script" uid="uid://emnqaq0d8jsd" path="res://src/scenes/player/player_animator.gd" id="5_6gf5d"]
+[ext_resource type="Script" uid="uid://beslhmrt2csvp" path="res://src/scenes/player/states/grounded.gd" id="5_mc3vd"]
+[ext_resource type="Script" uid="uid://djht0otimhd2d" path="res://src/scenes/player/states/jumping.gd" id="6_7vxwc"]
+[ext_resource type="Script" uid="uid://b7cr2oeqg7elk" path="res://src/scenes/player/states/attacking.gd" id="7_8tvdu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_swhsd"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gf5d"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_lh6av"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6ap8y"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_w8ig4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mc3vd"]
+animation = &"dying"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7vxwc"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8tvdu"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_l84wi"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lh6av"]
+graph_offset = Vector2(-202.37253, 77.533875)
+nodes/output/position = Vector2(1180, 500)
+nodes/running/node = SubResource("AnimationNodeBlendSpace1D_l84wi")
+nodes/running/position = Vector2(40, 180)
+nodes/attack_one_shot/node = SubResource("AnimationNodeOneShot_6ap8y")
+nodes/attack_one_shot/position = Vector2(340, 200)
+nodes/attack/node = SubResource("AnimationNodeBlendSpace1D_lh6av")
+nodes/attack/position = Vector2(43.02358, 436.58948)
+nodes/falling/node = SubResource("AnimationNodeBlend2_8tvdu")
+nodes/falling/position = Vector2(677.9106, 393.99747)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6gf5d")
+nodes/Animation/position = Vector2(366.4566, 576.3445)
+nodes/dying_blend/node = SubResource("AnimationNodeBlend2_7vxwc")
+nodes/dying_blend/position = Vector2(940, 580)
+nodes/dying/node = SubResource("AnimationNodeTimeSeek_w8ig4")
+nodes/dying/position = Vector2(635.3186, 831.8965)
+nodes/dying_animation/node = SubResource("AnimationNodeAnimation_mc3vd")
+nodes/dying_animation/position = Vector2(360, 900)
+node_connections = [&"output", 0, &"dying_blend", &"attack_one_shot", 0, &"running", &"attack_one_shot", 1, &"attack", &"falling", 0, &"attack_one_shot", &"falling", 1, &"Animation", &"dying_blend", 0, &"falling", &"dying_blend", 1, &"dying", &"dying", 0, &"dying_animation"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_swhsd")
+
+[node name="Body" type="CharacterBody3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+shape = SubResource("CapsuleShape3D_swhsd")
+
+[node name="botter_animated" parent="Body" instance=ExtResource("2_w8ig4")]
+
+[node name="rig" parent="Body/botter_animated" index="0"]
+transform = Transform3D(1.1021544, 0.054773517, 0.05578781, -0.04930804, 1.0988437, -0.10472657, -0.060672354, 0.10197451, 1.0985337, -0.06279145, -0.089190215, -0.13242404)
+
+[node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
+bones/0/rotation = Quaternion(0.1258198, 9.2921143e-10, 1.1784998e-10, 0.99205315)
+bones/1/rotation = Quaternion(-0.11726482, 0.012248279, 0.010018547, 0.9929746)
+bones/2/rotation = Quaternion(0.10479106, 0.022160452, 0.018207647, 0.9940806)
+bones/3/rotation = Quaternion(0.087864764, 0.022524863, 0.017754775, 0.9957195)
+bones/4/rotation = Quaternion(0.18571787, -0.0068947356, 0.0007101942, 0.9825787)
+bones/5/rotation = Quaternion(0.68258315, -0.0033070128, 0.006091324, 0.73077506)
+bones/6/rotation = Quaternion(-0.82439524, -0.0045319116, 0.00525807, 0.56597203)
+bones/8/rotation = Quaternion(-0.6228054, -0.29496726, -0.415035, 0.59401494)
+bones/9/rotation = Quaternion(-0.31587458, 0.7669555, -0.34918064, 0.43597656)
+bones/10/rotation = Quaternion(0.7887152, 0.16427879, 0.15148865, 0.57270604)
+bones/11/rotation = Quaternion(0.079552576, -0.1517953, 0.13711064, 0.9756179)
+bones/12/rotation = Quaternion(0.024057122, 0.044386286, -0.23754515, 0.9700636)
+bones/13/rotation = Quaternion(-0.6079663, 0.31717572, 0.44332528, 0.5772687)
+bones/14/rotation = Quaternion(-0.18075189, -0.72997606, 0.3992664, 0.52445227)
+bones/15/rotation = Quaternion(0.7028893, -0.13414939, -0.13721696, 0.68492484)
+bones/16/rotation = Quaternion(-0.024501078, 0.26680943, -0.08215043, 0.95992905)
+bones/17/rotation = Quaternion(-0.02199209, -0.03207529, 0.1179014, 0.9922635)
+bones/18/rotation = Quaternion(-2.915519e-07, 0.6969358, 0.7171336, -2.447238e-07)
+bones/20/rotation = Quaternion(-2.875258e-07, 0.6969358, 0.71713364, -2.3951242e-07)
+bones/26/rotation = Quaternion(0.88911664, -0.03546758, -0.04181275, 0.4543845)
+bones/27/rotation = Quaternion(0.79001874, -0.046437528, -0.119785435, 0.59947103)
+bones/28/rotation = Quaternion(-0.08990365, -0.6962454, 0.10542296, 0.7043052)
+bones/29/rotation = Quaternion(0.050748274, -0.71138626, 0.7009422, -0.00585407)
+bones/31/rotation = Quaternion(0.9536097, 0.045734882, 0.035364687, 0.29544222)
+bones/32/rotation = Quaternion(0.44288138, -0.009106998, 0.010214995, 0.89647585)
+bones/33/rotation = Quaternion(-0.105845094, 0.68610907, -0.17836455, 0.6973072)
+bones/34/rotation = Quaternion(-0.16833968, -0.6405137, 0.7492686, 0.0008359029)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_cx3ie")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("4_w8ig4")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("5_mc3vd")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("6_7vxwc")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("7_8tvdu")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="PlayerAnimator" type="AnimationTree" parent="."]
+root_node = NodePath("../Body/botter_animated")
+tree_root = SubResource("AnimationNodeBlendTree_lh6av")
+anim_player = NodePath("../Body/botter_animated/AnimationPlayer")
+parameters/running/blend_position = 0.017
+parameters/attack_one_shot/active = false
+parameters/attack_one_shot/internal_active = false
+parameters/attack_one_shot/request = 0
+parameters/attack/blend_position = 0.0
+parameters/falling/blend_amount = -1.0
+parameters/dying_blend/blend_amount = 0.0
+parameters/dying/seek_request = -1.0
+script = ExtResource("5_6gf5d")
+
+[editable path="Body/botter_animated"]
