@@ -7,3 +7,30 @@ const PLAYER_MIN_JUMP_HEIGHT: float = 10.0
 const PLAYER_MAX_JUMP_HEIGHT: float = 10.0
 const PLAYER_JUMP_TIME: float = 0.1
 const ENTITY_TURN_THRESHOLD: float = 0.2
+
+# WARRIOR CLASS ATTRIBUTES
+const WAR_ATTRIBUTE_HP: int = 160
+const WAR_ATTRIBUTE_STR: int = 50
+const WAR_ATTRIBUTE_DEX: int = 10
+const WAR_ATTRIBUTE_INT: int = 10
+const WAR_ATTRIBUTE_DEF: int = 40
+const WAR_ATTRIBUTE_CRIT: float = 0.1
+const WAR_ATTRIBUTE_SP: float = 1
+
+# RANGER CLASS ATTRIBUTES
+const RAN_ATTRIBUTE_HP: int = 130
+const RAN_ATTRIBUTE_STR: int = 10
+const RAN_ATTRIBUTE_DEX: int = 10
+const RAN_ATTRIBUTE_INT: int = 50
+const RAN_ATTRIBUTE_DEF: int = 30
+const RAN_ATTRIBUTE_CRIT: float = 0.15
+const RAN_ATTRIBUTE_SP: float = 1.25
+
+# MAGE CLASS ATTRIBUTES
+const MAG_ATTRIBUTE_HP: int = 100
+const MAG_ATTRIBUTE_STR: int = 10
+const MAG_ATTRIBUTE_DEX: int = 10
+const MAG_ATTRIBUTE_INT: int = 50
+const MAG_ATTRIBUTE_DEF: int = 20
+const MAG_ATTRIBUTE_CRIT: float = 0.05
+const MAG_ATTRIBUTE_SP: float = 0.75

@@ -1,9 +1,9 @@
 class_name PlayerState
 extends State
 
-@export var player: Player
-@export var body: CharacterBody3D
-@export var animator: PlayerAnimator
+@onready var player: Player = $"../.."
+@onready var body: CharacterBody3D = %Body
+@onready var animator: PlayerAnimator = %PlayerAnimator
 
 const AIRBORNE: NodePath = ^'Airborne'
 const GROUNDED: NodePath = ^'Grounded'
