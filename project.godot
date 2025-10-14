@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="ProjectAtrox+R"
+run/main_scene="uid://cwnj4x46rqbbx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://src/core/events/events.gd"

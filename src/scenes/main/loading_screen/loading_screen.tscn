@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqbyl2wsy3378"]
+
+[ext_resource type="Script" uid="uid://cbxhl3chdvgkk" path="res://src/scenes/main/loading_screen/loading_screen.gd" id="1_4x3u6"]
+
+[node name="Load" type="Node3D" node_paths=PackedStringArray("_camera")]
+script = ExtResource("1_4x3u6")
+_camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0195307, 2.266912)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17333984, 0.746521, 0)
+size = Vector3(2.9291992, 2.493042, 1)
