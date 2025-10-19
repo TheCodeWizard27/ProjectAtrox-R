@@ -14,10 +14,6 @@ class_name BaseEnemy
 @export var player_detector: Area3D
 
 var current_health: float = max_health
-
-func is_near_player(target: Player) -> bool:
-	var distance = body.global_position.distance_to(target.body.global_position)
-	return distance <= attack_distance
 	
 func _process(delta: float) -> void:
 	state.process(delta)
