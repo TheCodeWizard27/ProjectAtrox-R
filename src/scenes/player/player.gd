@@ -15,18 +15,17 @@ extends Node3D
 @export var jump_time: float = Globals.PLAYER_JUMP_TIME
 @export var turn_threshold: float = Globals.ENTITY_TURN_THRESHOLD
 
-@onready var _state: StateMachine = %State
-@onready var body: CharacterBody3D = %Body
+@onready var _state: StateMachine = %StateMachine
+@onready var _body: CharacterBody3D = %Body
 @onready var _animator: PlayerAnimator = %PlayerAnimator
 @onready var _camera_mount: CameraController = %CameraMount
-@onready var _weapon_placeholder: PlaceholderNode = %WeaponPlaceholder
 
-@export var health = 10
-
+var status: PlayerStatus
+var currency: int
 var is_dead: bool = false
 
 func _test_damage(damage: int) -> void:
-	health -= damage
+	status.current_health -= damage
 
 func _input(event: InputEvent):
 	if Input.is_action_just_pressed("damage_test"):
@@ -39,9 +38,9 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	move_dir = move_dir.rotated(Vector3.UP, _camera_mount.rotation.y).normalized()
 	
 	# Calculate velocity with separated y component.
-	var y_velocity = body.velocity.y
-	body.velocity = move_dir * max_speed * speed_modifier
-	body.velocity.y = y_velocity - Globals.GRAVITY * delta
+	var y_velocity = _body.velocity.y
+	_body.velocity = move_dir * max_speed * speed_modifier
+	_body.velocity.y = y_velocity - Globals.GRAVITY * delta
 	
 	if(speed_modifier <= 0):
 		return
@@ -49,9 +48,10 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	# Rotate Character body	
 	if(move_dir.length() > turn_threshold):
 		var target = Vector3.BACK.signed_angle_to(move_dir, Vector3.UP)
-		body.rotation.y = lerp_angle(body.rotation.y, target, 10 * delta)
-
+		_body.rotation.y = lerp_angle(_body.rotation.y, target, 10 * delta)
+	
 func _ready() -> void:
+	configure_player(PlayerStatus.new())
 	pass
 
 func _set_camera_active(value: bool) -> void:
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 	if(is_dead):
 		return
 	
-	if(health <= 0):
+	if(status.current_health <= 0):
 		is_dead = true
 		_animator.play_death()
 	
@@ -81,13 +81,16 @@ func _physics_process(delta: float) -> void:
 	_apply_movement(delta)
 
 func _apply_movement(delta: float) -> void:
-	body.move_and_slide()
+	_body.move_and_slide()
 	
-	var movement = Vector2(body.velocity.x, body.velocity.z)
+	var movement = Vector2(_body.velocity.x, _body.velocity.z)
 	
 	if(movement.length() > turn_threshold):
-		var target = Quaternion(Vector3.UP, Vector2(body.velocity.z, body.velocity.x).angle())
-		body.basis = body.basis.slerp(target, 0.2)
+		var target = Quaternion(Vector3.UP, Vector2(_body.velocity.z, _body.velocity.x).angle())
+		_body.basis = _body.basis.slerp(target, 0.2)
 		
 func get_hit(damage: float, source: Node3D) -> void:
-	health = max(health - damage, 0)
+	status.current_health = max(status.current_health - damage, 0)
+
+func configure_player(newStats: PlayerStatus) -> void:
+	status = newStats
