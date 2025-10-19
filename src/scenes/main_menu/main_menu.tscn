@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c26sfmf5awqwy" path="res://src/scenes/main_menu/main_menu.gd" id="1_gxxi0"]
 [ext_resource type="PackedScene" uid="uid://dfcour3otamx3" path="res://src/scenes/main_menu/main_menu_actions.tscn" id="2_4gslo"]
-[ext_resource type="PackedScene" uid="uid://cw7peufdacl2q" path="res://src/scenes/components/label_element/label_element.tscn" id="3_4gslo"]
+[ext_resource type="PackedScene" uid="uid://ch152aq45rym3" path="res://src/scenes/components/button_element/button_element.tscn" id="3_4gslo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0on4r"]
 viewport_path = NodePath("Test1/SubViewport")
@@ -45,9 +45,9 @@ shape = SubResource("BoxShape3D_4gslo")
 
 [node name="Test2" type="Node3D" parent="."]
 
-[node name="LabelElement" parent="Test2" instance=ExtResource("3_4gslo")]
-text = "Zurück"
+[node name="Save" parent="Test2" instance=ExtResource("3_4gslo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25765923, 0)
+text = "Save"
 
-[node name="LabelElement2" parent="Test2" instance=ExtResource("3_4gslo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26223898, 0)
-text = "Speichern"
+[node name="ButtonElement" parent="Test2" instance=ExtResource("3_4gslo")]
+text = "Back"

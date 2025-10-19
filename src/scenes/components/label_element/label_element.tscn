@@ -6,9 +6,11 @@
 
 [node name="LabelElement" type="Node3D"]
 script = ExtResource("1_sduyv")
-
-[node name="Element" parent="." instance=ExtResource("2_omwse")]
+text = "Text"
 size = Vector2(1, 0.2)
 
+[node name="Element" parent="." instance=ExtResource("2_omwse")]
+
 [node name="Text" parent="." instance=ExtResource("3_e1gbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0.08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0.02)
+text = "Text"
