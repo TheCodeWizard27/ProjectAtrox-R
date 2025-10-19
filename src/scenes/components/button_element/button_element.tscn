@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch152aq45rym3"]
+
+[ext_resource type="Script" uid="uid://bnlq7jiw0i3ee" path="res://src/scenes/components/button_element/button_element.gd" id="1_5w1cb"]
+[ext_resource type="PackedScene" uid="uid://cw7peufdacl2q" path="res://src/scenes/components/label_element/label_element.tscn" id="2_4ohmk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsrir"]
+size = Vector3(1, 0.2, 0.1)
+
+[node name="ButtonElement" type="Node3D"]
+script = ExtResource("1_5w1cb")
+text = "Text"
+size = Vector2(1, 0.2)
+
+[node name="LabelElement" parent="." instance=ExtResource("2_4ohmk")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5009396, 0, 0)
+shape = SubResource("BoxShape3D_fsrir")

@@ -2,8 +2,8 @@
 extends Node3D
 class_name TextElement
 
-@onready var text_Label: Label3D = $Text
-@onready var text_shadow_Label: Label3D = $TextShadow
+@onready var text_label: MeshInstance3D = $Text
+@onready var text_shadow_label: MeshInstance3D = $TextShadow
 
 var _text: String
 @export var text: String:
@@ -11,10 +11,19 @@ var _text: String
 		return _text
 	set(value):
 		_text = value
-		if text_Label and text_shadow_Label:
-			text_Label.text = value
-			text_shadow_Label.text = value
+		if text_label and text_shadow_label:
+			_set_mesh_text(text_label.mesh)
+			_set_mesh_text(text_shadow_label.mesh)
+
+func _set_mesh_text(mesh: Mesh) -> void:
+	if (mesh is not TextMesh):
+		return
+		
+	var plane = mesh as TextMesh
+	plane.text = _text
 
 func _ready() -> void:
-	text_Label.text = _text
-	text_shadow_Label.text = _text
+	text_label.mesh = text_label.mesh.duplicate()
+	text_shadow_label.mesh = text_shadow_label.mesh.duplicate()
+	_set_mesh_text(text_label.mesh)
+	_set_mesh_text(text_shadow_label.mesh)
