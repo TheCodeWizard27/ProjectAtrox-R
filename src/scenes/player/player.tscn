@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbarat6swui5t"]
+[gd_scene load_steps=24 format=3 uid="uid://bbarat6swui5t"]
 
 [ext_resource type="Script" uid="uid://dx53dd12e6xpn" path="res://src/scenes/player/player.gd" id="1_swhsd"]
 [ext_resource type="PackedScene" uid="uid://dx884bplyrafp" path="res://src/assets/player/models/botter_animated.glb" id="2_w8ig4"]
@@ -28,10 +28,27 @@ animation = &"dying"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8tvdu"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7vxwc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8tvdu"]
+animation = &"running"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l84wi"]
+animation = &"idle"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_l84wi"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_7vxwc")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_8tvdu")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_l84wi")
+blend_point_2/pos = 0.0
+min_space = 0.0
+sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lh6av"]
-graph_offset = Vector2(-119.24658, 155.38351)
+graph_offset = Vector2(-371.66754, 98.27698)
 nodes/output/position = Vector2(1180, 500)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_l84wi")
 nodes/running/position = Vector2(40, 180)
@@ -66,35 +83,35 @@ shape = SubResource("CapsuleShape3D_swhsd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(0.5024282, 0.0041930526, 0.98407567, 0.05061129, 1.1033417, -0.03054125, -0.9827823, 0.05896347, 0.5015166, 0.028178845, 0.04301277, -0.021696331)
+transform = Transform3D(0.54567665, -0.0075177355, 0.9607482, 0.06770072, 1.1024446, -0.029825505, -0.9583896, 0.07359642, 0.54491264, 0.04550786, 0.041617956, -0.016793452)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
 bones/0/rotation = Quaternion(0.11247922, -0.4208703, 0.030678272, 0.89959735)
-bones/1/rotation = Quaternion(-0.40761793, -0.066775784, 0.024186498, 0.91038656)
-bones/2/rotation = Quaternion(-0.06576902, -0.022515701, 0.0062865685, 0.99756104)
-bones/3/rotation = Quaternion(-0.082798526, -0.022287363, 0.0069233156, 0.99629307)
+bones/1/rotation = Quaternion(-0.40929195, -0.06579273, 0.023191268, 0.9097327)
+bones/2/rotation = Quaternion(-0.06962694, -0.021745052, 0.006442885, 0.99731535)
+bones/3/rotation = Quaternion(-0.08667427, -0.021532215, 0.0069638365, 0.99597967)
 bones/4/rotation = Quaternion(0.21591069, 0.035662886, -0.0029081698, 0.97575736)
 bones/5/rotation = Quaternion(0.7044433, 0.017737769, -0.031075811, 0.7088578)
 bones/6/rotation = Quaternion(-0.8059803, 0.023231559, -0.027192365, 0.5908609)
-bones/8/rotation = Quaternion(-0.5675767, -0.40791118, -0.34823772, 0.62465644)
-bones/9/rotation = Quaternion(0.4768968, 0.7596565, -0.09264537, 0.4323289)
-bones/10/rotation = Quaternion(-0.465497, 0.27641934, -0.203905, 0.8156762)
-bones/11/rotation = Quaternion(0.013101902, 0.18452375, -0.33987856, 0.92209655)
+bones/8/rotation = Quaternion(-0.61111706, -0.33807945, -0.3728007, 0.6109484)
+bones/9/rotation = Quaternion(0.37859774, 0.8290395, -0.09649023, 0.40005848)
+bones/10/rotation = Quaternion(-0.45216277, 0.27619275, -0.19984505, 0.82421374)
+bones/11/rotation = Quaternion(0.052556828, 0.1676347, -0.3342221, 0.9259762)
 bones/12/rotation = Quaternion(0.024057092, 0.04438632, -0.23754516, 0.9700636)
-bones/13/rotation = Quaternion(-0.63155395, 0.3040206, 0.35537872, 0.61839885)
-bones/14/rotation = Quaternion(0.3230913, -0.794349, 0.21739565, 0.46621963)
-bones/15/rotation = Quaternion(-0.21537577, -0.24064228, 0.041243903, 0.94551766)
-bones/16/rotation = Quaternion(0.047181413, 0.24657309, 0.1950631, 0.9481171)
+bones/13/rotation = Quaternion(-0.66312236, 0.25142995, 0.4006107, 0.5801405)
+bones/14/rotation = Quaternion(0.3436712, -0.82846177, 0.19834794, 0.39522064)
+bones/15/rotation = Quaternion(-0.26875973, -0.24068522, 0.05975259, 0.9307355)
+bones/16/rotation = Quaternion(0.18354161, 0.22288507, 0.2630961, 0.92055154)
 bones/17/rotation = Quaternion(-0.021992108, -0.03207527, 0.11790139, 0.9922635)
 bones/18/rotation = Quaternion(-4.2761198e-07, 0.6969361, 0.7171333, -3.6396483e-07)
 bones/20/rotation = Quaternion(-4.0713337e-07, 0.6969362, 0.7171332, -3.596471e-07)
-bones/26/rotation = Quaternion(0.9510183, -0.055214256, 0.20473558, -0.22494254)
-bones/27/rotation = Quaternion(-0.6543579, -0.037287973, 0.016249364, 0.7550903)
-bones/28/rotation = Quaternion(-0.11385136, -0.7321873, 0.12202139, 0.6603411)
-bones/29/rotation = Quaternion(0.019307273, -0.67113686, 0.7409373, -0.014648004)
-bones/31/rotation = Quaternion(0.87257695, -0.033925064, -0.09115539, -0.4786954)
-bones/32/rotation = Quaternion(-0.86373883, 0.061351884, -0.036188148, 0.49888036)
-bones/33/rotation = Quaternion(-0.06813333, 0.70808506, -0.05616396, 0.7005848)
+bones/26/rotation = Quaternion(0.94869053, -0.06204753, 0.20245144, -0.23484015)
+bones/27/rotation = Quaternion(-0.6625696, -0.034977887, 0.018741606, 0.7479485)
+bones/28/rotation = Quaternion(-0.11103384, -0.7347135, 0.1522731, 0.65167516)
+bones/29/rotation = Quaternion(0.020142449, -0.6711197, 0.74091524, -0.015404631)
+bones/31/rotation = Quaternion(0.86137223, -0.04028583, -0.090915926, -0.49814576)
+bones/32/rotation = Quaternion(-0.8715341, 0.053915683, -0.051227298, 0.48466203)
+bones/33/rotation = Quaternion(-0.09870019, 0.70425314, -0.058578692, 0.70061004)
 bones/34/rotation = Quaternion(-0.028742736, -0.67089564, 0.7406315, 0.02319455)
 
 [node name="CameraTracker" type="RemoteTransform3D" parent="Body"]
@@ -129,12 +146,12 @@ unique_name_in_owner = true
 root_node = NodePath("%Body/botter_animated")
 tree_root = SubResource("AnimationNodeBlendTree_lh6av")
 anim_player = NodePath("../Body/botter_animated/AnimationPlayer")
-parameters/running/blend_position = 0.017
+parameters/running/blend_position = 1.0
 parameters/attack_one_shot/active = false
 parameters/attack_one_shot/internal_active = false
 parameters/attack_one_shot/request = 0
 parameters/attack/blend_position = 0.0
-parameters/falling/blend_amount = -1.0
+parameters/falling/blend_amount = 0.0
 parameters/dying_blend/blend_amount = 0.0
 parameters/dying/seek_request = -1.0
 script = ExtResource("5_6gf5d")

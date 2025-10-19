@@ -12,9 +12,9 @@ func physics_update(delta: float) -> void:
 		transition_to(PlayerState.JUMPING)
 		return
 		
-	if(Input.is_action_just_pressed("attack")):
-		transition_to(PlayerState.ATTACKING)
-		return
+	#if(Input.is_action_just_pressed("attack")):
+		#transition_to(PlayerState.ATTACKING)
+		#return
 	
 	player.process_movement(delta)
 	
