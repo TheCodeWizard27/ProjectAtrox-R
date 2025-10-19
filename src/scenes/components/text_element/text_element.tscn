@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvnk5eljbevq8"]
+
+[ext_resource type="Script" uid="uid://b3fc17y4vw1rf" path="res://src/scenes/components/text_element/text_element.gd" id="1_2p401"]
+[ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="2_kcvlg"]
+
+[node name="Text" type="Node3D"]
+script = ExtResource("1_2p401")
+text = "Test"
+
+[node name="TextShadow" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+modulate = Color(0, 0, 0, 1)
+text = "Test"
+font = ExtResource("2_kcvlg")
+outline_size = 0
+horizontal_alignment = 0
+
+[node name="Text" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+text = "Test"
+font = ExtResource("2_kcvlg")
+outline_size = 0
+horizontal_alignment = 0

@@ -4,16 +4,17 @@ extends Node3D
 @export var initial_scene_path: String
 
 @onready var _loading_screen: LoadingScreen = $LoadingScene
-@onready var _sub_scene: PlaceholderNode = $PlaceholderNode
+@onready var _sub_scene: PlaceholderNode = $SubScene
 
 var _current_load_state: int # (ResourceLoader.ThreadLoadStatus)
 var _current_loading_path: String
 var _current_scene: Node
+var _scene_data: Dictionary
 
 func _ready() -> void:
 	Events.scene_change_requested.connect(_start_load)
 
-	_start_load(initial_scene_path)
+	_start_load(initial_scene_path, {})
 
 func _process(_delta: float) -> void:
 	if _current_load_state == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
@@ -21,7 +22,9 @@ func _process(_delta: float) -> void:
 
 	var progress = []
 	_current_load_state = ResourceLoader.load_threaded_get_status(_current_loading_path, progress)
-	print(progress)
+	print_debug('Loading', _current_loading_path, 'progress', progress)
+
+	_loading_screen.update_progress(progress[0])
 
 	assert(
 		_current_load_state != ResourceLoader.ThreadLoadStatus.THREAD_LOAD_INVALID_RESOURCE,
@@ -35,15 +38,24 @@ func _process(_delta: float) -> void:
 	if (_current_load_state == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED):
 		_end_load()
 
-func _start_load(scene_path: String) -> void:
+func _start_load(scene_path: String, data: Dictionary) -> void:
+	print_debug('Loading', scene_path)
+	
+	_scene_data = data
 	_current_loading_path = scene_path
+	_current_load_state = ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS
 	ResourceLoader.load_threaded_request(_current_loading_path)
-	_loading_screen.init()
+	_loading_screen.enable()
 	
 func _end_load() -> void:
+	print_debug('Finished loading', _current_loading_path)
+	
 	var resource = ResourceLoader.load_threaded_get(_current_loading_path)
 
 	assert(resource is PackedScene, "Loaded resource is not a Scene")
 
+	if (resource is LoadableScene):
+		resource.onLoad(_scene_data)
+
 	_current_scene = _sub_scene.load_in(resource)
-	_loading_screen.visible = false
+	_loading_screen.disable();

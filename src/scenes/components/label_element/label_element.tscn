@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw7peufdacl2q"]
+
+[ext_resource type="Script" uid="uid://cnvp2i2vvjyuj" path="res://src/scenes/components/label_element/label_element.gd" id="1_sduyv"]
+[ext_resource type="PackedScene" uid="uid://budy1wfuurahd" path="res://src/scenes/components/base_element/base_element.tscn" id="2_omwse"]
+[ext_resource type="PackedScene" uid="uid://dvnk5eljbevq8" path="res://src/scenes/components/text_element/text_element.tscn" id="3_e1gbd"]
+
+[node name="LabelElement" type="Node3D"]
+script = ExtResource("1_sduyv")
+
+[node name="Element" parent="." instance=ExtResource("2_omwse")]
+size = Vector2(1, 0.2)
+
+[node name="Text" parent="." instance=ExtResource("3_e1gbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, 0.08)
