@@ -1,0 +1,107 @@
+[gd_scene load_steps=17 format=3 uid="uid://bc73jj3rnddkq"]
+
+[ext_resource type="Script" uid="uid://ddg6j4kcyloc5" path="res://src/scenes/areas/environment/area_environment.gd" id="1_5ckfh"]
+[ext_resource type="Shader" uid="uid://c01uxduv4xeid" path="res://src/scenes/areas/environment/skybox.gdshader" id="2_e0wro"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u0yds"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ul3l"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_u0yds")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_b3but"]
+offsets = PackedFloat32Array(0.3137255, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ndw7p"]
+frequency = 0.0092
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_27l8n"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_ndw7p")
+color_ramp = SubResource("Gradient_b3but")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_04i78"]
+frequency = 0.0089
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u0yds"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_04i78")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_nm8b1"]
+offsets = PackedFloat32Array(0.9117647, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.9882353, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f8k3n"]
+frequency = 0.2561
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ogu8o"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_f8k3n")
+color_ramp = SubResource("Gradient_nm8b1")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0yds"]
+shader = ExtResource("2_e0wro")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(0.9999998, 0.9814516, 0.8868546, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_top_texture = SubResource("NoiseTexture2D_u0yds")
+shader_parameter/clouds_middle_texture = SubResource("NoiseTexture2D_27l8n")
+shader_parameter/clouds_bottom_texture = SubResource("NoiseTexture2D_2ul3l")
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 0.1999999955296
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_texture = SubResource("NoiseTexture2D_ogu8o")
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_nei07"]
+sky_material = SubResource("ShaderMaterial_u0yds")
+
+[sub_resource type="Environment" id="Environment_7stnd"]
+background_mode = 2
+sky = SubResource("Sky_nei07")
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5831v"]
+
+[node name="AreaEnvironment" type="Node3D"]
+script = ExtResource("1_5ckfh")
+time = 0.211
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7stnd")
+camera_attributes = SubResource("CameraAttributesPractical_5831v")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8549672, 0.13235578, 0.5015106, -0.09744568, 0.990665, -0.095326714, -0.50944626, 0.03263118, 0.85988355, 0, 0, 0)
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.9998356, 0.018133026, 0, -0.018133026, -0.9998356, 0, 0, 0)
