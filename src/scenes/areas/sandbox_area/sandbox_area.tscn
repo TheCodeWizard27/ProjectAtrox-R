@@ -1,20 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxol2eaijorig"]
+[gd_scene load_steps=9 format=3 uid="uid://bxol2eaijorig"]
 
 [ext_resource type="Script" uid="uid://csw54elgaay2n" path="res://src/scenes/areas/sandbox_area/sandbox_area.gd" id="1_7stnd"]
 [ext_resource type="PackedScene" uid="uid://c4ik6ibj0vpla" path="res://src/scenes/main_menu/main_menu.tscn" id="1_nei07"]
+[ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="2_f1wc5"]
+[ext_resource type="Material" uid="uid://ca8jalwpkb4kj" path="res://src/assets/materials/mossy_stone.material" id="3_04i78"]
 [ext_resource type="Texture2D" uid="uid://do4ka044nklue" path="res://icon.svg" id="3_5831v"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_156fl"]
-
-[sub_resource type="Sky" id="Sky_nei07"]
-sky_material = SubResource("ProceduralSkyMaterial_156fl")
-
-[sub_resource type="Environment" id="Environment_7stnd"]
-background_mode = 2
-sky = SubResource("Sky_nei07")
-glow_enabled = true
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5831v"]
+[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="6_04i78"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5831v"]
 albedo_texture = ExtResource("3_5831v")
@@ -25,25 +16,19 @@ material = SubResource("StandardMaterial3D_5831v")
 [node name="TestingArea" type="Node3D"]
 script = ExtResource("1_7stnd")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.38682362, 0.9221537, 0, -0.9221537, 0.38682362, -5.254814, 1.4415299, 2.7162302)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_7stnd")
-camera_attributes = SubResource("CameraAttributesPractical_5831v")
+[node name="AreaEnvironment" parent="." instance=ExtResource("6_04i78")]
+time = 0.67
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31430054, -0.28881836, -0.36117554)
 use_collision = true
 size = Vector3(100, 0.422, 100)
+material = ExtResource("2_f1wc5")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.205246, 0.27239382, 0)
+transform = Transform3D(0.7222915, 0.6915887, 0, -0.60959643, 0.63665926, -0.47228926, -0.3266299, 0.34113052, 0.8814436, -1.205246, 0.04544258, 0)
 use_collision = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4174826, 0.6855259, -1.2186573)
-use_collision = true
+material = ExtResource("3_04i78")
 
 [node name="MainMenu" parent="." instance=ExtResource("1_nei07")]
 transform = Transform3D(0.99899656, 0, 0.044787616, 0, 1, 0, -0.044787616, 0, 0.99899656, -0.05509156, 1.4041452, 0.86475074)
