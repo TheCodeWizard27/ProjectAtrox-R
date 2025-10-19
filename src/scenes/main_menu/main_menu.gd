@@ -15,6 +15,9 @@ var _last_event_time: float = -1.0
 @onready var area = $Screen/Area3D
 
 func _ready() -> void:
+	if(!area):
+		return
+	
 	area.mouse_entered.connect(_mouse_entered_area)
 	area.mouse_exited.connect(_mouse_exited_area)
 	area.input_event.connect(_mouse_input_event)

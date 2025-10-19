@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://budy1wfuurahd"]
+
+[ext_resource type="Script" uid="uid://cygsynih8vgqu" path="res://src/scenes/components/base_element/base_element.gd" id="1_2hx57"]
+[ext_resource type="Shader" uid="uid://b7w73hsx2ibn3" path="res://src/scenes/components/base_element/invert.gdshader" id="2_pl2d6"]
+[ext_resource type="Shader" uid="uid://ckl4tj4nwwl0x" path="res://src/scenes/components/base_element/scanline.gdshader" id="3_h5jw4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_felax"]
+render_priority = 0
+shader = ExtResource("2_pl2d6")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pl2d6"]
+material = SubResource("ShaderMaterial_felax")
+size = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3xdh"]
+render_priority = 0
+shader = ExtResource("3_h5jw4")
+shader_parameter/color = Color(0.24880499, 0.23531008, 0.20157269, 0.6)
+
+[sub_resource type="QuadMesh" id="QuadMesh_h5jw4"]
+material = SubResource("ShaderMaterial_e3xdh")
+size = Vector2(1, 0.2)
+center_offset = Vector3(0.5, 0, 0)
+
+[node name="Element" type="Node3D"]
+script = ExtResource("1_2hx57")
+size = Vector2(0.2, 1)
+
+[node name="Background" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_pl2d6")
+skeleton = NodePath("../Foreground")
+
+[node name="Foreground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.017392874)
+mesh = SubResource("QuadMesh_h5jw4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxol2eaijorig"]
+[gd_scene load_steps=10 format=3 uid="uid://bxol2eaijorig"]
 
 [ext_resource type="Script" uid="uid://csw54elgaay2n" path="res://src/scenes/areas/sandbox_area/sandbox_area.gd" id="1_7stnd"]
 [ext_resource type="PackedScene" uid="uid://c4ik6ibj0vpla" path="res://src/scenes/main_menu/main_menu.tscn" id="1_nei07"]
@@ -12,14 +12,21 @@ sky_material = SubResource("ProceduralSkyMaterial_156fl")
 [sub_resource type="Environment" id="Environment_7stnd"]
 background_mode = 2
 sky = SubResource("Sky_nei07")
+glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5831v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5831v"]
+albedo_texture = ExtResource("3_5831v")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8am3k"]
+material = SubResource("StandardMaterial3D_5831v")
 
 [node name="TestingArea" type="Node3D"]
 script = ExtResource("1_7stnd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5528681, 0.83326876, 0, -0.83326876, 0.5528681, 0, 1.4415299, 2.7162302)
+transform = Transform3D(1, 0, 0, 0, 0.38682362, 0.9221537, 0, -0.9221537, 0.38682362, -5.254814, 1.4415299, 2.7162302)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7stnd")
@@ -34,12 +41,16 @@ size = Vector3(100, 0.422, 100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.205246, 0.27239382, 0)
 use_collision = true
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4174826, 0.6855259, -1.2186573)
+use_collision = true
+
 [node name="MainMenu" parent="." instance=ExtResource("1_nei07")]
-transform = Transform3D(0.99308074, 0, -0.1174334, 0, 1, 0, 0.1174334, 0, 0.99308074, 0, 1.2724452, 0.7905979)
+transform = Transform3D(0.96878254, 0, 0.2479122, 0, 1, 0, -0.2479122, 0, 0.96878254, -0.05509156, 1.4041452, 0.86475074)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3602219, 1.9644237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2064986, 1.2988917, 1.9644237)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5020283, 2.0390315, 0)
-texture = ExtResource("3_5831v")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3793272, 0)
+mesh = SubResource("QuadMesh_8am3k")

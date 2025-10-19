@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4ik6ibj0vpla"]
+[gd_scene load_steps=8 format=3 uid="uid://c4ik6ibj0vpla"]
 
 [ext_resource type="Script" uid="uid://c26sfmf5awqwy" path="res://src/scenes/main_menu/main_menu.gd" id="1_gxxi0"]
 [ext_resource type="PackedScene" uid="uid://dfcour3otamx3" path="res://src/scenes/main_menu/main_menu_actions.tscn" id="2_4gslo"]
+[ext_resource type="PackedScene" uid="uid://cw7peufdacl2q" path="res://src/scenes/components/label_element/label_element.tscn" id="3_4gslo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0on4r"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("Test1/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvjhp"]
 resource_local_to_scene = true
@@ -21,19 +22,32 @@ size = Vector3(1, 1, 0.1)
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_gxxi0")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="Test1" type="Node3D" parent="."]
+visible = false
+
+[node name="SubViewport" type="SubViewport" parent="Test1"]
 transparent_bg = true
 size_2d_override = Vector2i(512, 512)
 size_2d_override_stretch = true
 
-[node name="MainMenuActions" parent="SubViewport" instance=ExtResource("2_4gslo")]
+[node name="MainMenuActions" parent="Test1/SubViewport" instance=ExtResource("2_4gslo")]
 offset_right = -512.0
 offset_bottom = -512.0
 
-[node name="Screen" type="MeshInstance3D" parent="."]
+[node name="Screen" type="MeshInstance3D" parent="Test1"]
 mesh = SubResource("QuadMesh_gxxi0")
+skeleton = NodePath("../..")
 
-[node name="Area3D" type="Area3D" parent="Screen"]
+[node name="Area3D" type="Area3D" parent="Test1/Screen"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Screen/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test1/Screen/Area3D"]
 shape = SubResource("BoxShape3D_4gslo")
+
+[node name="Test2" type="Node3D" parent="."]
+
+[node name="LabelElement" parent="Test2" instance=ExtResource("3_4gslo")]
+text = "Zurück"
+
+[node name="LabelElement2" parent="Test2" instance=ExtResource("3_4gslo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26223898, 0)
+text = "Speichern"
