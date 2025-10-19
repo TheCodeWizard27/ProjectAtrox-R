@@ -20,10 +20,12 @@ extends Node3D
 @onready var _animator: PlayerAnimator = %PlayerAnimator
 @onready var _camera_mount: CameraController = %CameraMount
 
-var stats = PlayerStats
+var status: PlayerStatus
+var currency: int
+var is_dead: bool = false
 
 func _test_damage(damage: int) -> void:
-	stats.health -= damage
+	status.health -= damage
 
 func _input(event: InputEvent):
 	if Input.is_action_just_pressed("damage_test"):
@@ -49,6 +51,7 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 		_body.rotation.y = lerp_angle(_body.rotation.y, target, 10 * delta)
 	
 func _ready() -> void:
+	configure_player(PlayerStatus.new())
 	pass
 
 func _set_camera_active(value: bool) -> void:
@@ -58,11 +61,11 @@ func _process(delta: float) -> void:
 	if(!active):
 		return
 		
-	if(stats._is_dead):
+	if(is_dead):
 		return
 	
-	if(stats.health <= 0):
-		stats.is_dead = true
+	if(status.health <= 0):
+		is_dead = true
 		_animator.play_death()
 	
 	_state.process(delta)
@@ -71,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	if(!active):
 		return
 		
-	if(stats.is_dead):
+	if(is_dead):
 		return
 	
 	_state.physics_process(delta)
@@ -87,7 +90,7 @@ func _apply_movement(delta: float) -> void:
 		_body.basis = _body.basis.slerp(target, 0.2)
 		
 func get_hit(damage: float, source: Node3D) -> void:
-	stats.health = max(stats.health - damage, 0)
+	status.health = max(status.health - damage, 0)
 
-func configure_player(newStats: PlayerStats) -> void:
-	stats = newStats
+func configure_player(newStats: PlayerStatus) -> void:
+	status = newStats

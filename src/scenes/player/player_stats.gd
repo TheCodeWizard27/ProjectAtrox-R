@@ -1,9 +1,9 @@
 class_name PlayerStats
 
-var health: int = 10
-var combatClass: Enums.CombatClasses = Enums.CombatClasses.Warrior
-var currency: int = 0
-var inventory: Array[int] = [1, 2, 3]
-var armorInventory: Array[int] = [1, 4, 7, 10]
-var equippedArmor: Array[int]= [1, 4, 7, 10]
-var is_dead: bool = false
+var max_health: int = 100
+var strength: int = 20
+var dexterity: int = 20
+var intelligence: int = 20
+var defense: int = 20
+var crit_chance: float = 0.1
+var speed: float = 1.0

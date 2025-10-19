@@ -66,7 +66,7 @@ shape = SubResource("CapsuleShape3D_swhsd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(0.5024282, 0.0041930517, 0.98407567, 0.05061129, 1.1033415, -0.03054125, -0.9827823, 0.058963455, 0.5015166, 0.028178845, 0.04301277, -0.021696331)
+transform = Transform3D(0.5024282, 0.004193052, 0.98407567, 0.05061129, 1.1033416, -0.03054125, -0.9827823, 0.058963463, 0.5015166, 0.028178845, 0.04301277, -0.021696331)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
 bones/0/rotation = Quaternion(0.11247922, -0.4208703, 0.030678272, 0.89959735)
