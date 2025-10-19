@@ -25,7 +25,7 @@ var currency: int
 var is_dead: bool = false
 
 func _test_damage(damage: int) -> void:
-	status.health -= damage
+	status.current_health -= damage
 
 func _input(event: InputEvent):
 	if Input.is_action_just_pressed("damage_test"):
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 	if(is_dead):
 		return
 	
-	if(status.health <= 0):
+	if(status.current_health <= 0):
 		is_dead = true
 		_animator.play_death()
 	
@@ -90,7 +90,7 @@ func _apply_movement(delta: float) -> void:
 		_body.basis = _body.basis.slerp(target, 0.2)
 		
 func get_hit(damage: float, source: Node3D) -> void:
-	status.health = max(status.health - damage, 0)
+	status.current_health = max(status.current_health - damage, 0)
 
 func configure_player(newStats: PlayerStatus) -> void:
 	status = newStats
