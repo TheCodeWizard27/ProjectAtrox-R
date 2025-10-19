@@ -19,9 +19,6 @@ func is_near_player(target: Player) -> bool:
 	var distance = body.global_position.distance_to(target.body.global_position)
 	return distance <= attack_distance
 	
-func attack() -> void:
-	pass
-	
 func _process(delta: float) -> void:
 	state.process(delta)
 	

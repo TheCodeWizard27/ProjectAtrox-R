@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://bji3kv2a6nil7"]
+
+[ext_resource type="Script" uid="uid://dfw5nfkhhu01t" path="res://src/scenes/enemies/brood/brood_enemy.gd" id="1_axasp"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_20tc3"]
+[ext_resource type="PackedScene" uid="uid://cnx0x3ny4q2re" path="res://src/assets/enemies/brood/brood_model.tscn" id="3_5i7ni"]
+[ext_resource type="Script" uid="uid://c0aoq61wcmgwj" path="res://src/scenes/enemies/brood/states/guard.gd" id="3_h87fn"]
+[ext_resource type="Script" uid="uid://cpk3sfa23fu1i" path="res://src/scenes/enemies/brood/states/chase.gd" id="4_m4bjc"]
+[ext_resource type="Script" uid="uid://4046l1684vcd" path="res://src/scenes/enemies/brood/states/attack.gd" id="5_g38ny"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ek4gk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5i7ni"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ek4gk"]
+
+[node name="BroodEnemy" type="Node3D" node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy"]]
+script = ExtResource("1_axasp")
+state = NodePath("StateMachine")
+body = NodePath("Body")
+player_detector = NodePath("Body/PlayerDetector")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_20tc3")
+initial_state = NodePath("Guard")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Guard" type="Node" parent="StateMachine"]
+script = ExtResource("3_h87fn")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("4_m4bjc")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_g38ny")
+
+[node name="Body" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="BroodModel" parent="Body" instance=ExtResource("3_5i7ni")]
+
+[node name="BroodHurtBox" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0.11332238)
+visible = false
+shape = SubResource("CapsuleShape3D_ek4gk")
+
+[node name="AttackBox" type="Area3D" parent="Body"]
+unique_name_in_owner = true
+
+[node name="BroodAttackHitBox" type="CollisionShape3D" parent="Body/AttackBox"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.5, 1.75)
+visible = false
+shape = SubResource("SphereShape3D_5i7ni")
+
+[node name="PlayerDetector" type="Area3D" parent="Body"]
+unique_name_in_owner = true
+
+[node name="PlayerDetectionBox" type="CollisionShape3D" parent="Body/PlayerDetector"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+shape = SubResource("SphereShape3D_ek4gk")
