@@ -34,7 +34,7 @@ func set_active() -> void:
 	
 func set_inactive() -> void:
 	var mat = foreground_mesh.mesh.surface_get_material(0)
-	mat.set("shader_parameter/scanlineThreshold", 0.0)
+	mat.set("shader_parameter/scanlineThreshold", 0.2)
 	mat.set("shader_parameter/color", foreground_color)
 
 func _ready() -> void:

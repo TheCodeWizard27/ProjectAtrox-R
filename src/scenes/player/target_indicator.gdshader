@@ -33,5 +33,4 @@ void fragment() {
 	}
 
 	ALBEDO.rgb = (1.0 - test.rgb) * color.rgb;
-	//EMISSION.rgb = (1.0 - test.rgb) * color.rgb;
 }
