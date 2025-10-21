@@ -13,6 +13,7 @@ extends Node3D
 @onready var _body: CharacterBody3D = %Body
 @onready var _animator: PlayerAnimator = %PlayerAnimator
 @onready var _camera_mount: CameraController = %CameraMount
+@onready var _lock_on_ray: RayCast3D = %LockOnRay
 
 @onready var camera: Camera3D = %Camera
 
@@ -20,10 +21,13 @@ var status: PlayerStatus
 var currency: int
 var is_dead: bool = false
 var active: bool = true
-var target: Node3D
+var lock_on_target: Node3D
 
-func _test_damage(damage: int) -> void:
-	status.current_health -= damage
+func get_hit(damage: float, source: Node3D) -> void:
+	status.current_health = max(status.current_health - damage, 0)
+
+func configure_player(newStats: PlayerStatus) -> void:
+	status = newStats
 
 func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
@@ -62,8 +66,7 @@ func _process(delta: float) -> void:
 		is_dead = true
 		_animator.play_death()
 	
-	_hud.update_target_indicator(target, delta)
-	_camera_mount.target = target
+	_process_lock_on(delta)
 	
 	_state.process(delta)
 
@@ -77,6 +80,39 @@ func _physics_process(delta: float) -> void:
 	_state.physics_process(delta)
 	_apply_movement(delta)
 
+func _process_lock_on(delta: float) -> void:
+	
+	_hud.update_target_indicator(lock_on_target, delta)
+	_camera_mount.lock_on_target = lock_on_target
+	
+	if (!Input.is_action_just_pressed("ui_focus_next")):
+		return
+	
+	if (lock_on_target):
+		lock_on_target = null
+		return
+	
+	# Get all collisions by sequentially adding them to the exception list
+	var ray_collisions = RayUtils.get_all_ray_intersections(_lock_on_ray)
+	
+	var closest_collider: Node3D
+	# Just some high initial value so any angle wins
+	var closest_angle = 1000
+	
+	# Get lock on target closest to ray.
+	for collider in ray_collisions:
+		if (collider is not Node3D):
+			continue
+			
+		var node = collider as Node3D
+		var angle = camera.global_position.angle_to(node.global_position)
+		
+		if (angle < closest_angle):
+			closest_collider = node
+			closest_angle = angle
+	
+	lock_on_target = closest_collider
+
 func _apply_movement(delta: float) -> void:
 	_body.move_and_slide()
 	
@@ -85,12 +121,6 @@ func _apply_movement(delta: float) -> void:
 	if(movement.length() > turn_threshold):
 		var target_angle = Quaternion(Vector3.UP, Vector2(_body.velocity.z, _body.velocity.x).angle())
 		_body.basis = _body.basis.slerp(target_angle, 0.2)
-		
-func get_hit(damage: float, source: Node3D) -> void:
-	status.current_health = max(status.current_health - damage, 0)
 
-func set_target(new_target: Node3D) -> void:
-	target = new_target
-
-func configure_player(newStats: PlayerStatus) -> void:
-	status = newStats
+func _test_damage(damage: int) -> void:
+	status.current_health -= damage

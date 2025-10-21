@@ -6,7 +6,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ngh"]
 render_priority = 0
 shader = ExtResource("1_wxajl")
-shader_parameter/color = Color(1.353256, 1.2747362, 0.84025884, 0.7411765)
+shader_parameter/color = Color(3.31922, 3.2280452, 2.92413, 0.7411765)
 
 [sub_resource type="QuadMesh" id="QuadMesh_p7fgc"]
 material = SubResource("ShaderMaterial_j8ngh")

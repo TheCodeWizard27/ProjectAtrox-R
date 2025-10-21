@@ -4,18 +4,18 @@ extends Node3D
 @export_range(0, 1) var mouse_sensitivity: float = 0.2
 @export var camera: Camera3D
 
-var target: Node3D
+var lock_on_target: Node3D
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta: float) -> void:
-	if (target):
+	if (lock_on_target):
 		_move_towards_target(delta)
 
 func _move_towards_target(delta: float) -> void:
 	var current_rotation = rotation
-	var direction_to_target = global_position.direction_to(target.global_position)
+	var direction_to_target = global_position.direction_to(lock_on_target.global_position)
 	var target_rotation = Basis.looking_at(direction_to_target)
 
 	basis = basis.slerp(target_rotation, delta * 2)

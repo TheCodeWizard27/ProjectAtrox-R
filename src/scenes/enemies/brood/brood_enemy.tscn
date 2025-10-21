@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bji3kv2a6nil7"]
+[gd_scene load_steps=11 format=3 uid="uid://bji3kv2a6nil7"]
 
 [ext_resource type="Script" uid="uid://dfw5nfkhhu01t" path="res://src/scenes/enemies/brood/brood_enemy.gd" id="1_axasp"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_20tc3"]
@@ -15,6 +15,9 @@ height = 1.3
 radius = 0.3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ek4gk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h87fn"]
+radius = 4.647
 
 [node name="BroodEnemy" type="Node3D" node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy"]]
 script = ExtResource("1_axasp")
@@ -61,3 +64,11 @@ unique_name_in_owner = true
 [node name="PlayerDetectionBox" type="CollisionShape3D" parent="Body/PlayerDetector"]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 shape = SubResource("SphereShape3D_ek4gk")
+
+[node name="LockOnTarget" type="Area3D" parent="Body"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/LockOnTarget"]
+shape = SubResource("SphereShape3D_h87fn")
+debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
