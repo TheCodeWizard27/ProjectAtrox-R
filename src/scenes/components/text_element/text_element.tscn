@@ -4,22 +4,26 @@
 [ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="2_kcvlg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2p401"]
+resource_local_to_scene = true
 shading_mode = 0
 albedo_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_2p401"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_2p401")
-text = "Back"
+text = "Test"
 font = ExtResource("2_kcvlg")
 horizontal_alignment = 0
 depth = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ebuc"]
+resource_local_to_scene = true
 shading_mode = 0
 
 [sub_resource type="TextMesh" id="TextMesh_2ebuc"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_2ebuc")
-text = "Back"
+text = "Test"
 font = ExtResource("2_kcvlg")
 horizontal_alignment = 0
 depth = 0.0

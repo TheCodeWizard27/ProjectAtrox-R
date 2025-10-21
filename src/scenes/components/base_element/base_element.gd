@@ -38,8 +38,8 @@ func set_inactive() -> void:
 	mat.set("shader_parameter/color", foreground_color)
 
 func _ready() -> void:
-	background_mesh.mesh = background_mesh.mesh.duplicate(true)
-	foreground_mesh.mesh = foreground_mesh.mesh.duplicate(true)
+	#background_mesh.mesh = background_mesh.mesh.duplicate(true)
+	#foreground_mesh.mesh = foreground_mesh.mesh.duplicate(true)
 	_set_plane_size(background_mesh.mesh)
 	_set_plane_size(foreground_mesh.mesh)
 	set_inactive()

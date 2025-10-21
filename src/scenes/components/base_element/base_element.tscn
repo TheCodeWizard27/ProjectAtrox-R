@@ -4,23 +4,28 @@
 [ext_resource type="Shader" uid="uid://b7w73hsx2ibn3" path="res://src/scenes/components/base_element/invert.gdshader" id="2_pl2d6"]
 [ext_resource type="Shader" uid="uid://ckl4tj4nwwl0x" path="res://src/scenes/components/base_element/scanline.gdshader" id="3_h5jw4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_felax"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pl2d6"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_pl2d6")
+shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
 
-[sub_resource type="QuadMesh" id="QuadMesh_pl2d6"]
-material = SubResource("ShaderMaterial_felax")
+[sub_resource type="QuadMesh" id="QuadMesh_h5jw4"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_pl2d6")
 size = Vector2(1, 0.2)
 center_offset = Vector3(0.5, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3xdh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k30k5"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_h5jw4")
-shader_parameter/scanlineThreshold = 0.1350000064125
-shader_parameter/color = Color(3.1229057, 1.6167893, 0, 0.7411765)
+shader_parameter/scanlineThreshold = 0.0
+shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
 
-[sub_resource type="QuadMesh" id="QuadMesh_h5jw4"]
-material = SubResource("ShaderMaterial_e3xdh")
+[sub_resource type="QuadMesh" id="QuadMesh_tx0w4"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_k30k5")
 size = Vector2(1, 0.2)
 center_offset = Vector3(0.5, 0, 0)
 
@@ -29,9 +34,9 @@ script = ExtResource("1_2hx57")
 size = Vector2(1, 0.2)
 
 [node name="Background" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_pl2d6")
+mesh = SubResource("QuadMesh_h5jw4")
 skeleton = NodePath("../Foreground")
 
 [node name="Foreground" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.005)
-mesh = SubResource("QuadMesh_h5jw4")
+mesh = SubResource("QuadMesh_tx0w4")

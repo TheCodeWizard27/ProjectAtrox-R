@@ -23,7 +23,7 @@ func _set_mesh_text(mesh: Mesh) -> void:
 	plane.text = _text
 
 func _ready() -> void:
-	text_label.mesh = text_label.mesh.duplicate()
-	text_shadow_label.mesh = text_shadow_label.mesh.duplicate()
+	#text_label.mesh = text_label.mesh.duplicate()
+	#text_shadow_label.mesh = text_shadow_label.mesh.duplicate()
 	_set_mesh_text(text_label.mesh)
 	_set_mesh_text(text_shadow_label.mesh)

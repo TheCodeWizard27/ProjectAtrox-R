@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bus5qf5q5p4tg"]
+
+[ext_resource type="Script" uid="uid://16hphrfn2xtv" path="res://src/scenes/player/hud/hud.gd" id="1_j8ngh"]
+[ext_resource type="Shader" uid="uid://b2dt152erxtjn" path="res://src/scenes/player/target_indicator.gdshader" id="1_wxajl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ngh"]
+render_priority = 0
+shader = ExtResource("1_wxajl")
+shader_parameter/color = Color(1.353256, 1.2747362, 0.84025884, 0.7411765)
+
+[sub_resource type="QuadMesh" id="QuadMesh_p7fgc"]
+material = SubResource("ShaderMaterial_j8ngh")
+size = Vector2(0.1, 0.1)
+
+[node name="Hud" type="Node3D"]
+script = ExtResource("1_j8ngh")
+
+[node name="TargetIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8055889)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_p7fgc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
