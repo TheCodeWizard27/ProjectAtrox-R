@@ -42,8 +42,11 @@ script = ExtResource("5_g38ny")
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="BroodHurtBox" type="CollisionShape3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.11332238)
+transform = Transform3D(0.9, 0, 0, 0, -3.934025e-08, -0.9, 0, 0.9, -3.934025e-08, 0, 0, 0.11332238)
 shape = SubResource("CapsuleShape3D_ek4gk")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Body"]
+debug_enabled = true
 
 [node name="AttackBox" type="Area3D" parent="Body"]
 unique_name_in_owner = true
