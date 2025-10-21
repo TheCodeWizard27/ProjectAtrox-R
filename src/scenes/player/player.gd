@@ -24,12 +24,10 @@ var status: PlayerStatus
 var currency: int
 var is_dead: bool = false
 
+var target: Node3D
+
 func _test_damage(damage: int) -> void:
 	status.current_health -= damage
-
-func _input(event: InputEvent):
-	if Input.is_action_just_pressed("damage_test"):
-		_test_damage(1)
 
 func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
@@ -68,6 +66,12 @@ func _process(delta: float) -> void:
 		is_dead = true
 		_animator.play_death()
 	
+	if (target):
+		var rotation = _camera_mount.rotation
+		_camera_mount.look_at_from_position(_camera_mount.position, target.position, Vector3.UP)
+		_camera_mount.rotation.x = rotation.x
+		_camera_mount.rotation.z = rotation.z
+	
 	_state.process(delta)
 
 func _physics_process(delta: float) -> void:
@@ -91,6 +95,9 @@ func _apply_movement(delta: float) -> void:
 		
 func get_hit(damage: float, source: Node3D) -> void:
 	status.current_health = max(status.current_health - damage, 0)
+
+func set_target(new_target: Node3D) -> void:
+	target = new_target
 
 func configure_player(newStats: PlayerStatus) -> void:
 	status = newStats
