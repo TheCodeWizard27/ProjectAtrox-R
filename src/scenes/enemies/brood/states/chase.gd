@@ -21,8 +21,13 @@ func physics_update(delta: float) -> void:
 		_attack_cooldown = enemy.attack_cooldown
 		transition_to(BroodState.ATTACK)
 		return
-	
-	enemy.move_towards_player(_detected_player)
+		
+	enemy.navigation_agent.set_target_position(_detected_player._body.global_position)
+	var destination = enemy.navigation_agent.get_next_path_position()
+	var local_destination = destination - enemy.body.global_position
+	var direction = local_destination.normalized()
+
+	enemy.body.velocity = direction * enemy.speed
 
 
 func _on_body_exit(body: Node3D) -> void:
