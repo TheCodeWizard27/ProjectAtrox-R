@@ -1,19 +1,29 @@
-[gd_scene load_steps=34 format=3 uid="uid://bus5qf5q5p4tg"]
+[gd_scene load_steps=40 format=3 uid="uid://bus5qf5q5p4tg"]
 
 [ext_resource type="Script" uid="uid://16hphrfn2xtv" path="res://src/scenes/player/hud/hud.gd" id="1_j8ngh"]
 [ext_resource type="Shader" uid="uid://b2dt152erxtjn" path="res://src/scenes/player/hud/target_indicator.gdshader" id="1_wxajl"]
 [ext_resource type="Shader" uid="uid://bcfphsle07kcs" path="res://src/scenes/player/hud/hud_bg.gdshader" id="3_p7fgc"]
+[ext_resource type="Shader" uid="uid://cdpcgt1a73snk" path="res://src/scenes/player/hud/target_indicator_foreground.gdshader" id="3_we0nm"]
 [ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="4_p04jj"]
 [ext_resource type="Shader" uid="uid://dmpd4j6t8k653" path="res://src/scenes/player/hud/hud_bar.gdshader" id="6_we0nm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ngh"]
 render_priority = 0
 shader = ExtResource("1_wxajl")
-shader_parameter/color = Color(3.31922, 3.2280452, 2.92413, 0.7411765)
+shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
 
 [sub_resource type="QuadMesh" id="QuadMesh_p7fgc"]
 material = SubResource("ShaderMaterial_j8ngh")
 size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vvra"]
+render_priority = 0
+shader = ExtResource("3_we0nm")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nj8rj"]
+material = SubResource("ShaderMaterial_0vvra")
+size = Vector2(0.09, 0.09)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6j5wj"]
 render_priority = 0
@@ -193,13 +203,83 @@ shader_parameter/size = 1.0
 material = SubResource("ShaderMaterial_cq1rk")
 size = Vector2(0.54, 0.05)
 
+[sub_resource type="Animation" id="Animation_we0nm"]
+resource_name = "SpinTargetIndicator"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIndicator/Cube:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.3333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIndicator/Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.265732)]
+}
+
+[sub_resource type="Animation" id="Animation_8a4cl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIndicator/Cube:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIndicator/Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t4k86"]
+_data = {
+&"RESET": SubResource("Animation_8a4cl"),
+&"SpinTargetIndicator": SubResource("Animation_we0nm")
+}
+
 [node name="Hud" type="Node3D"]
 script = ExtResource("1_j8ngh")
 
-[node name="TargetIndicator" type="MeshInstance3D" parent="."]
+[node name="TargetIndicator" type="Node3D" parent="."]
+
+[node name="Circle" type="MeshInstance3D" parent="TargetIndicator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8055889)
 sorting_offset = 1000.0
 mesh = SubResource("QuadMesh_p7fgc")
+skeleton = NodePath("../..")
+
+[node name="Cube" type="MeshInstance3D" parent="TargetIndicator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9961834)
+sorting_offset = 1001.0
+mesh = SubResource("QuadMesh_nj8rj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 editor_description = "This camera is just so you can see in the debugger what the hud will look like in game."
@@ -281,3 +361,9 @@ mesh = SubResource("QuadMesh_3eqng")
 transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
 sorting_offset = 10001.0
 mesh = SubResource("QuadMesh_xxr1e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t4k86")
+}
+autoplay = "SpinTargetIndicator"

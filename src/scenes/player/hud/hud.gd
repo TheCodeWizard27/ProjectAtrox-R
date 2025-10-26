@@ -1,7 +1,7 @@
 extends Node3D
 class_name Hud
 
-@onready var _target_indicator: MeshInstance3D = $TargetIndicator
+@onready var _target_indicator: Node3D = $TargetIndicator
 @onready var _health_bar: MeshInstance3D = $Health/Health
 
 func update_target_indicator(target: Node3D, delta: float) -> void:
