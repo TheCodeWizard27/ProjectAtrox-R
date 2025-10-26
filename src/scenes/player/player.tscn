@@ -1,15 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbarat6swui5t"]
+[gd_scene load_steps=21 format=3 uid="uid://bbarat6swui5t"]
 
 [ext_resource type="Script" uid="uid://dx53dd12e6xpn" path="res://src/scenes/player/player.gd" id="1_swhsd"]
 [ext_resource type="PackedScene" uid="uid://dx884bplyrafp" path="res://src/assets/player/models/botter_animated.glb" id="2_w8ig4"]
-[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="3_cx3ie"]
-[ext_resource type="Script" uid="uid://cxe8w5r4nrryl" path="res://src/scenes/player/states/airborne.gd" id="4_w8ig4"]
 [ext_resource type="Script" uid="uid://emnqaq0d8jsd" path="res://src/scenes/player/player_animator.gd" id="5_6gf5d"]
-[ext_resource type="Script" uid="uid://beslhmrt2csvp" path="res://src/scenes/player/states/grounded.gd" id="5_mc3vd"]
-[ext_resource type="Script" uid="uid://djht0otimhd2d" path="res://src/scenes/player/states/jumping.gd" id="6_7vxwc"]
-[ext_resource type="Script" uid="uid://b7cr2oeqg7elk" path="res://src/scenes/player/states/attacking.gd" id="7_8tvdu"]
 [ext_resource type="Script" uid="uid://b50bsgrv77m7m" path="res://src/core/camera_controller/camera_controller.gd" id="9_mc3vd"]
 [ext_resource type="PackedScene" uid="uid://bus5qf5q5p4tg" path="res://src/scenes/player/hud/hud.tscn" id="10_7vxwc"]
+[ext_resource type="Script" uid="uid://bwiqycu665e81" path="res://src/core/placeholder_node/placeholder_node.gd" id="11_8tvdu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_swhsd"]
 
@@ -84,63 +80,47 @@ shape = SubResource("CapsuleShape3D_swhsd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="rig" parent="Body/botter_animated" index="0"]
-transform = Transform3D(1.1021482, 0.06386854, 0.045251556, -0.058538012, 1.096606, -0.12200816, -0.051963426, 0.1193043, 1.097234, -0.075633064, -0.094411865, -0.13579053)
+transform = Transform3D(1.1013715, 0.067575425, 0.057199147, -0.061841052, 1.0980415, -0.10648102, -0.06335508, 0.102937356, 1.0982925, -0.07452233, -0.05364817, -0.11804286)
 
 [node name="Skeleton3D" parent="Body/botter_animated/rig" index="0"]
 bones/0/rotation = Quaternion(0.1258198, 9.2921143e-10, 1.1784998e-10, 0.99205315)
-bones/1/rotation = Quaternion(-0.11559864, -0.017536072, 0.019761093, 0.9929446)
-bones/2/rotation = Quaternion(0.106935814, -0.04156041, 0.031386588, 0.992901)
-bones/3/rotation = Quaternion(0.09002933, -0.040915847, 0.03222243, 0.9945765)
-bones/4/rotation = Quaternion(0.18185249, 0.0040366226, -0.007406835, 0.98328966)
-bones/5/rotation = Quaternion(0.67969877, -0.0038336504, -0.0075139627, 0.733443)
-bones/6/rotation = Quaternion(-0.82660276, -0.002445651, -0.008197164, 0.56272095)
-bones/8/rotation = Quaternion(-0.61429614, -0.3048993, -0.44180474, 0.578347)
-bones/9/rotation = Quaternion(-0.23884077, 0.7331447, -0.4051127, 0.49126124)
-bones/10/rotation = Quaternion(0.8403364, 0.085062414, 0.1660626, 0.50894254)
-bones/11/rotation = Quaternion(0.109731644, -0.18339899, 0.15835029, 0.9639756)
+bones/1/rotation = Quaternion(-0.11689894, -0.022001965, 0.010194856, 0.9928478)
+bones/2/rotation = Quaternion(0.10527408, -0.04750738, 0.009040994, 0.9932667)
+bones/3/rotation = Quaternion(0.08836155, -0.047314443, 0.010001941, 0.99491394)
+bones/4/rotation = Quaternion(0.1833895, 0.0027440726, 0.0016184043, 0.9830352)
+bones/5/rotation = Quaternion(0.68086004, 0.0028852248, -0.0013509326, 0.73240656)
+bones/6/rotation = Quaternion(-0.8257508, 0.0029699863, -0.0008624149, 0.5640267)
+bones/8/rotation = Quaternion(-0.6088661, -0.31247947, -0.4486666, 0.57474947)
+bones/9/rotation = Quaternion(-0.12138856, 0.6572367, -0.5072024, 0.5441053)
+bones/10/rotation = Quaternion(0.75545233, 0.1321694, 0.14561403, 0.62499565)
+bones/11/rotation = Quaternion(0.1165838, -0.21687771, 0.19162118, 0.9500808)
 bones/12/rotation = Quaternion(0.024057122, 0.044386286, -0.23754515, 0.9700636)
-bones/13/rotation = Quaternion(-0.6255388, 0.29682395, 0.4062022, 0.5963192)
-bones/14/rotation = Quaternion(-0.23832917, -0.78697354, 0.27794024, 0.49660972)
-bones/15/rotation = Quaternion(0.6968442, -0.17783304, -0.11326335, 0.6855327)
-bones/16/rotation = Quaternion(0.025530513, 0.26390386, -0.04586525, 0.9631196)
+bones/13/rotation = Quaternion(-0.61674726, 0.30937773, 0.41206893, 0.59506935)
+bones/14/rotation = Quaternion(-0.25957072, -0.7935012, 0.24822164, 0.491289)
+bones/15/rotation = Quaternion(0.6369966, -0.21471877, -0.059390172, 0.73797286)
+bones/16/rotation = Quaternion(0.11675542, 0.27932453, -0.109034464, 0.9468144)
 bones/17/rotation = Quaternion(-0.02199209, -0.03207529, 0.1179014, 0.9922635)
 bones/18/rotation = Quaternion(-2.915519e-07, 0.6969358, 0.7171336, -2.447238e-07)
 bones/20/rotation = Quaternion(-2.875258e-07, 0.6969358, 0.71713364, -2.3951242e-07)
-bones/26/rotation = Quaternion(0.97516805, -0.012106887, -0.06764309, 0.21053576)
-bones/27/rotation = Quaternion(0.7807967, -0.035653755, -0.12590759, 0.61092776)
-bones/28/rotation = Quaternion(-0.018782347, -0.6998767, 0.123007655, 0.70334125)
-bones/29/rotation = Quaternion(0.06836753, -0.70691013, 0.70395833, -0.006830002)
-bones/31/rotation = Quaternion(0.88479555, 0.035125177, 0.032447785, 0.4635194)
-bones/32/rotation = Quaternion(0.38981, 0.0029111663, -0.009914445, 0.92083734)
-bones/33/rotation = Quaternion(-0.029670961, 0.7036718, -0.069103986, 0.7065341)
-bones/34/rotation = Quaternion(-0.12635335, -0.6315166, 0.7645202, -0.027029723)
+bones/26/rotation = Quaternion(0.9967907, -0.004730774, -0.048714116, 0.063348584)
+bones/27/rotation = Quaternion(0.24793537, 0.04811561, -0.009471662, 0.9675346)
+bones/28/rotation = Quaternion(-0.05399648, -0.7019841, 0.10350944, 0.7025585)
+bones/29/rotation = Quaternion(0.119768925, -0.6439155, 0.75334704, -0.05913231)
+bones/31/rotation = Quaternion(0.844804, -0.0075806193, 0.029529003, 0.5342069)
+bones/32/rotation = Quaternion(0.679085, 0.035064287, -0.007657848, 0.7331817)
+bones/33/rotation = Quaternion(0.04354736, 0.70657915, -0.028065832, 0.705735)
+bones/34/rotation = Quaternion(-0.15907918, -0.6215178, 0.76619595, 0.03678604)
 
 [node name="CameraTracker" type="RemoteTransform3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1706463, 0)
 remote_path = NodePath("../../CameraMount")
 update_rotation = false
 update_scale = false
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="CombatClassContainer" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_cx3ie")
-initial_state = NodePath("Grounded")
-metadata/_custom_type_script = "uid://brf10fbscg178"
-
-[node name="Airborne" type="Node" parent="StateMachine"]
-script = ExtResource("4_w8ig4")
-metadata/_custom_type_script = "uid://gyo5hocvaebp"
-
-[node name="Grounded" type="Node" parent="StateMachine"]
-script = ExtResource("5_mc3vd")
-metadata/_custom_type_script = "uid://gyo5hocvaebp"
-
-[node name="Jumping" type="Node" parent="StateMachine"]
-script = ExtResource("6_7vxwc")
-metadata/_custom_type_script = "uid://gyo5hocvaebp"
-
-[node name="Attacking" type="Node" parent="StateMachine"]
-script = ExtResource("7_8tvdu")
-metadata/_custom_type_script = "uid://gyo5hocvaebp"
+script = ExtResource("11_8tvdu")
+metadata/_custom_type_script = "uid://bwiqycu665e81"
 
 [node name="PlayerAnimator" type="AnimationTree" parent="."]
 unique_name_in_owner = true
@@ -159,23 +139,26 @@ script = ExtResource("5_6gf5d")
 
 [node name="CameraMount" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1706463, 0)
 script = ExtResource("9_mc3vd")
 camera = NodePath("CameraArm/Camera")
 metadata/_custom_type_script = "uid://b50bsgrv77m7m"
 
 [node name="CameraArm" type="SpringArm3D" parent="CameraMount"]
 shape = SubResource("SphereShape3D_mc3vd")
-spring_length = 4.0
+spring_length = 3.0
 margin = 0.2
 
 [node name="Camera" type="Camera3D" parent="CameraMount/CameraArm"]
 unique_name_in_owner = true
+current = true
 
 [node name="LockOnRay" type="RayCast3D" parent="CameraMount/CameraArm/Camera"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57221377, 0)
+visible = false
 target_position = Vector3(0, 0, -100)
 collision_mask = 4
+hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 

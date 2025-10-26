@@ -7,6 +7,7 @@ const PLAYER_MIN_JUMP_HEIGHT: float = 10.0
 const PLAYER_MAX_JUMP_HEIGHT: float = 10.0
 const PLAYER_JUMP_TIME: float = 0.1
 const ENTITY_TURN_THRESHOLD: float = 0.2
+const ENTITY_TURN_SPEED: float = 20
 
 # WARRIOR CLASS ATTRIBUTES
 const WAR_ATTRIBUTE_HP: int = 160

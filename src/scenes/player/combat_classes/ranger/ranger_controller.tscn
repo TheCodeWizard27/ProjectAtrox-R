@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://btwp4ux27al52"]
+
+[ext_resource type="Script" uid="uid://cie00akpjcnpc" path="res://src/scenes/player/combat_classes/mage/mage_controller.gd" id="1_04cxq"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_mwsdr"]
+[ext_resource type="Script" uid="uid://cxe8w5r4nrryl" path="res://src/scenes/player/states/airborne.gd" id="3_56xfi"]
+[ext_resource type="Script" uid="uid://beslhmrt2csvp" path="res://src/scenes/player/states/grounded.gd" id="4_18q85"]
+[ext_resource type="Script" uid="uid://djht0otimhd2d" path="res://src/scenes/player/states/jumping.gd" id="5_ch0p8"]
+[ext_resource type="Script" uid="uid://b7cr2oeqg7elk" path="res://src/scenes/player/states/attacking.gd" id="6_ivo28"]
+
+[node name="RangerController" type="Node3D"]
+script = ExtResource("1_04cxq")
+
+[node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_mwsdr")
+initial_state = NodePath("Airborne")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("3_56xfi")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("4_18q85")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("5_ch0p8")
+min_jump_height = null
+max_jump_height = null
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("6_ivo28")
+startup_time = null
+cancel_time = null
+lag_time = null
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
