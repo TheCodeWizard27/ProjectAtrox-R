@@ -1,6 +1,6 @@
 class_name Globals
 
-const GRAVITY: float = 9.81
+const GRAVITY: float = 9.81 * 2 # Gravity x2 just feels better.
 const PLAYER_MAX_SPEED: float = 12.0
 const PLAYER_ACCELERATION: float = 40.0
 const PLAYER_MIN_JUMP_HEIGHT: float = 10.0

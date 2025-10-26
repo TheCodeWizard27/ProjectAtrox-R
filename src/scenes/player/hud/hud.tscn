@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bus5qf5q5p4tg"]
+[gd_scene load_steps=34 format=3 uid="uid://bus5qf5q5p4tg"]
 
 [ext_resource type="Script" uid="uid://16hphrfn2xtv" path="res://src/scenes/player/hud/hud.gd" id="1_j8ngh"]
-[ext_resource type="Shader" uid="uid://b2dt152erxtjn" path="res://src/scenes/player/target_indicator.gdshader" id="1_wxajl"]
+[ext_resource type="Shader" uid="uid://b2dt152erxtjn" path="res://src/scenes/player/hud/target_indicator.gdshader" id="1_wxajl"]
+[ext_resource type="Shader" uid="uid://bcfphsle07kcs" path="res://src/scenes/player/hud/hud_bg.gdshader" id="3_p7fgc"]
+[ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="4_p04jj"]
+[ext_resource type="Shader" uid="uid://dmpd4j6t8k653" path="res://src/scenes/player/hud/hud_bar.gdshader" id="6_we0nm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ngh"]
 render_priority = 0
@@ -12,6 +15,184 @@ shader_parameter/color = Color(3.31922, 3.2280452, 2.92413, 0.7411765)
 material = SubResource("ShaderMaterial_j8ngh")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6j5wj"]
+render_priority = 0
+shader = ExtResource("3_p7fgc")
+shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
+
+[sub_resource type="QuadMesh" id="QuadMesh_j8ngh"]
+material = SubResource("ShaderMaterial_6j5wj")
+size = Vector2(0.82, 0.1)
+center_offset = Vector3(0.38, 0, 0)
+
+[sub_resource type="Shader" id="Shader_p04jj"]
+code = "shader_type spatial;
+
+render_mode unshaded, blend_mix, depth_test_disabled, cull_disabled;
+
+uniform vec4 color : source_color = vec4(1,1,1,1);
+
+void vertex() {
+	if (PROJECTION_MATRIX[3][3] != 0.0) {
+		// Orthogonal matrix; try to do about the same with viewport size.
+		float h = abs(1.0 / (2.0 * PROJECTION_MATRIX[1][1]));
+		// Consistent with vertical FOV (Keep Height).
+		float sc = (h * 2.0);
+		MODELVIEW_MATRIX[0] *= sc;
+		MODELVIEW_MATRIX[1] *= sc;
+		MODELVIEW_MATRIX[2] *= sc;
+	} else {
+		// Scale by depth.
+		float sc = -(MODELVIEW_MATRIX)[3].z;
+		MODELVIEW_MATRIX[0] *= sc;
+		MODELVIEW_MATRIX[1] *= sc;
+		MODELVIEW_MATRIX[2] *= sc;
+	}
+}
+
+void fragment() {
+	ALBEDO.rgb = color.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4k86"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_6j5wj"]
+material = SubResource("ShaderMaterial_t4k86")
+text = "HP  ["
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_we0nm"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_8a4cl"]
+material = SubResource("ShaderMaterial_we0nm")
+text = "HP  ["
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_p04jj"]
+material = SubResource("ShaderMaterial_t4k86")
+text = "]"
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_we0nm"]
+material = SubResource("ShaderMaterial_we0nm")
+text = "]"
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8a4cl"]
+render_priority = 0
+shader = ExtResource("6_we0nm")
+shader_parameter/color = Color(0.36078432, 0.8784314, 0.6039216, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_p04jj"]
+material = SubResource("ShaderMaterial_8a4cl")
+size = Vector2(0.54, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p04jj"]
+render_priority = 0
+shader = ExtResource("6_we0nm")
+shader_parameter/color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_we0nm"]
+material = SubResource("ShaderMaterial_p04jj")
+size = Vector2(0.54, 0.05)
+
+[sub_resource type="QuadMesh" id="QuadMesh_8a4cl"]
+material = SubResource("ShaderMaterial_6j5wj")
+size = Vector2(0.72, 0.1)
+center_offset = Vector3(0.425, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5sm4"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_0vvra"]
+material = SubResource("ShaderMaterial_k5sm4")
+text = "["
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj8rj"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_d2vsc"]
+material = SubResource("ShaderMaterial_nj8rj")
+text = "["
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1uyp"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_bafg0"]
+material = SubResource("ShaderMaterial_o1uyp")
+text = "] Rage"
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3tkq"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_iw747"]
+material = SubResource("ShaderMaterial_o3tkq")
+text = "] Rage"
+font = ExtResource("4_p04jj")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_li14g"]
+render_priority = 0
+shader = ExtResource("6_we0nm")
+shader_parameter/color = Color(0.8784314, 0.40784314, 0.36078432, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3eqng"]
+material = SubResource("ShaderMaterial_li14g")
+size = Vector2(0.54, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cq1rk"]
+render_priority = 0
+shader = ExtResource("6_we0nm")
+shader_parameter/color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_xxr1e"]
+material = SubResource("ShaderMaterial_cq1rk")
+size = Vector2(0.54, 0.05)
+
 [node name="Hud" type="Node3D"]
 script = ExtResource("1_j8ngh")
 
@@ -21,3 +202,82 @@ sorting_offset = 1000.0
 mesh = SubResource("QuadMesh_p7fgc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+editor_description = "This camera is just so you can see in the debugger what the hud will look like in game."
+
+[node name="Health" type="Node3D" parent="."]
+transform = Transform3D(0.9698082, 0, 0.24386892, 0.03410858, 0.99017066, -0.13564165, -0.24147184, 0.1398644, 0.96027565, -0.97, 0.523, -0.78)
+
+[node name="HealthBackground" type="MeshInstance3D" parent="Health"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_j8ngh")
+skeleton = NodePath("../..")
+
+[node name="HealthStartText" type="MeshInstance3D" parent="Health"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_6j5wj")
+
+[node name="HealthStartTextShadow" type="MeshInstance3D" parent="Health/HealthStartText"]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_8a4cl")
+
+[node name="HealthEndText" type="MeshInstance3D" parent="Health"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.58, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_p04jj")
+
+[node name="HealthEndTextShadow" type="MeshInstance3D" parent="Health/HealthEndText"]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_we0nm")
+
+[node name="Health" type="MeshInstance3D" parent="Health"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.4703484e-08, -4.4703484e-08, 0, 1, 0.33, 0, 0)
+sorting_offset = 10002.0
+mesh = SubResource("QuadMesh_p04jj")
+
+[node name="HealthShadow" type="MeshInstance3D" parent="Health/Health"]
+transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
+sorting_offset = 10001.0
+mesh = SubResource("QuadMesh_we0nm")
+
+[node name="ClassExample" type="Node3D" parent="."]
+transform = Transform3D(0.9676929, -0.06710491, -0.24303778, 0.034576602, 0.9901445, -0.13571557, 0.24974965, 0.12292759, 0.9604759, 0.227, -0.425, -0.78)
+
+[node name="HealthBackground" type="MeshInstance3D" parent="ClassExample"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_8a4cl")
+skeleton = NodePath("../..")
+
+[node name="HealthStartText" type="MeshInstance3D" parent="ClassExample"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.07, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_0vvra")
+
+[node name="HealthStartTextShadow" type="MeshInstance3D" parent="ClassExample/HealthStartText"]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_d2vsc")
+
+[node name="HealthEndText" type="MeshInstance3D" parent="ClassExample"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.49, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_bafg0")
+
+[node name="HealthEndTextShadow" type="MeshInstance3D" parent="ClassExample/HealthEndText"]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_iw747")
+
+[node name="Rage" type="MeshInstance3D" parent="ClassExample"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.4703484e-08, -4.4703484e-08, 0, 1, 0.29, 0, 0)
+sorting_offset = 10002.0
+mesh = SubResource("QuadMesh_3eqng")
+
+[node name="RageShadow" type="MeshInstance3D" parent="ClassExample/Rage"]
+transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
+sorting_offset = 10001.0
+mesh = SubResource("QuadMesh_xxr1e")

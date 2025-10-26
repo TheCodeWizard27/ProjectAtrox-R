@@ -2,8 +2,8 @@ shader_type spatial;
 
 render_mode unshaded, blend_mix, depth_test_disabled, cull_disabled;
 
-uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
-uniform vec4 color : source_color = vec4(0.38, 0.37, 0.33, 0.74);
+uniform vec4 color : source_color = vec4(1,1,1,1);
+uniform float size = 1.0;
 
 void vertex() {
 	if (PROJECTION_MATRIX[3][3] != 0.0) {
@@ -24,13 +24,9 @@ void vertex() {
 }
 
 void fragment() {
-	float distanceFactor = length(UV - vec2(0.5));
-	distanceFactor = step(0.4, distanceFactor) - step(0.5, distanceFactor);
-	vec4 test = texture(screen_texture, SCREEN_UV, 0.0);
+	float cutoff = 1.0 - step(size, UV.x);
 
-	if (distanceFactor <= 0.0){
-		discard;
-	}
+	ALPHA = cutoff;
 
-	ALBEDO.rgb = (1.0 - test.rgb) * color.rgb;
+	ALBEDO.rgb = color.rgb * cutoff;
 }

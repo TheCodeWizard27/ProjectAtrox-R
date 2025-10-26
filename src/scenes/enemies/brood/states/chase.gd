@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 		transition_to(BroodState.ATTACK)
 		return
 		
-	enemy.navigation_agent.set_target_position(_detected_player._body.global_position)
+	enemy.navigation_agent.set_target_position(_detected_player.body.global_position)
 	var destination = enemy.navigation_agent.get_next_path_position()
 	var local_destination = destination - enemy.body.global_position
 	var direction = local_destination.normalized()
@@ -31,5 +31,5 @@ func physics_update(delta: float) -> void:
 
 
 func _on_body_exit(body: Node3D) -> void:
-	if(_detected_player == null || body == _detected_player._body):
+	if(_detected_player == null || body == _detected_player.body):
 		_detected_player = null

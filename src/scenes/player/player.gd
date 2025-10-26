@@ -14,7 +14,6 @@ const warrior_controller_path = "res://src/scenes/player/combat_classes/warrior/
 @export var turn_speed: float = Globals.ENTITY_TURN_SPEED
 
 @onready var hud: Hud = %Hud
-@onready var state_machine: StateMachine = %StateMachine
 @onready var body: CharacterBody3D = %Body
 @onready var animator: PlayerAnimator = %PlayerAnimator
 @onready var camera_mount: CameraController = %CameraMount
@@ -38,8 +37,8 @@ func configure_player(new_status: PlayerStatus) -> void:
 
 func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
-	move_dir.x = Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
-	move_dir.z = Input.get_action_strength('ui_down') - Input.get_action_strength('ui_up')
+	move_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	move_dir.z = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	move_dir = move_dir.rotated(Vector3.UP, camera_mount.rotation.y).normalized()
 	
 	# Calculate velocity with separated y component.
@@ -75,6 +74,7 @@ func _process(delta: float) -> void:
 		animator.play_death()
 	
 	_process_lock_on(delta)
+	hud.update_health(status.current_health as float / status.stats.max_health)
 	
 	combat_class_controller.process(delta)
 
@@ -94,7 +94,7 @@ func _process_lock_on(delta: float) -> void:
 	hud.update_target_indicator(lock_on_target, delta)
 	camera_mount.lock_on_target = lock_on_target
 	
-	if (!Input.is_action_just_pressed("ui_focus_next")):
+	if (!Input.is_action_just_pressed("toggle_lock_on")):
 		return
 	
 	if (lock_on_target):
