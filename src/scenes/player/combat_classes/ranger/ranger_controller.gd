@@ -1,7 +1,10 @@
 extends CombatClassController
 class_name RangerController
 
+const ranger_hud_path = "res://src/scenes/player/combat_classes/ranger/ranger_hud.tscn"
+
 @onready var state_machine: StateMachine = %StateMachine
+var hud: RangerHud = preload(ranger_hud_path).instantiate()
 
 func init(current_player: Player) -> void:
 	super.init(current_player)

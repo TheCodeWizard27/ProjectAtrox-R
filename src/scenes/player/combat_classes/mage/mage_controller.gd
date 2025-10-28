@@ -1,7 +1,10 @@
 extends CombatClassController
 class_name MageController
 
+const mage_hud_path = "res://src/scenes/player/combat_classes/mage/mage_hud.tscn"
+
 @onready var state_machine: StateMachine = %StateMachine
+var hud: MageHud = preload(mage_hud_path).instantiate()
 
 func init(current_player: Player) -> void:
 	super.init(current_player)

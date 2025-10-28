@@ -3,6 +3,10 @@ class_name Hud
 
 @onready var _target_indicator: Node3D = $TargetIndicator
 @onready var _health_bar: MeshInstance3D = $Health/Health
+@onready var _combat_class_hud: PlaceholderNode = $CombatClassHud
+
+func load_in_combat_class(scene: Node) -> void:
+	_combat_class_hud.replace_in(scene)
 
 func update_target_indicator(target: Node3D, delta: float) -> void:
 	if (!target):

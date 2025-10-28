@@ -1,7 +1,10 @@
 extends CombatClassController
 class_name WarriorController
 
+const warrior_hud_path = "res://src/scenes/player/combat_classes/warrior/warrior_hud.tscn"
+
 @onready var state_machine: StateMachine = %StateMachine
+var hud: WarriorHud = preload(warrior_hud_path).instantiate()
 
 func init(current_player: Player) -> void:
 	super.init(current_player)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4aa4q01yjgka"]
 
-[ext_resource type="Script" uid="uid://cie00akpjcnpc" path="res://src/scenes/player/combat_classes/mage/mage_controller.gd" id="1_selu7"]
+[ext_resource type="Script" uid="uid://b3kmxtcdasjgo" path="res://src/scenes/player/combat_classes/warrior/warrior_controller.gd" id="1_eayqu"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_b4iij"]
 [ext_resource type="Script" uid="uid://cxe8w5r4nrryl" path="res://src/scenes/player/states/airborne.gd" id="3_l4n8y"]
 [ext_resource type="Script" uid="uid://beslhmrt2csvp" path="res://src/scenes/player/states/grounded.gd" id="4_y42e7"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b7cr2oeqg7elk" path="res://src/scenes/player/states/attacking.gd" id="6_ah1g5"]
 
 [node name="WarriorController" type="Node3D"]
-script = ExtResource("1_selu7")
+script = ExtResource("1_eayqu")
 
 [node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true

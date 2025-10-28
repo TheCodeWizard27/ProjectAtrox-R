@@ -1,5 +1,5 @@
-class_name PlayerState
 extends State
+class_name PlayerState
 
 var player: Player
 var body: CharacterBody3D

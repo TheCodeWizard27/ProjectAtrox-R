@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bus5qf5q5p4tg"]
+[gd_scene load_steps=28 format=3 uid="uid://bus5qf5q5p4tg"]
 
 [ext_resource type="Script" uid="uid://16hphrfn2xtv" path="res://src/scenes/player/hud/hud.gd" id="1_j8ngh"]
 [ext_resource type="Shader" uid="uid://b2dt152erxtjn" path="res://src/scenes/player/hud/target_indicator.gdshader" id="1_wxajl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://cdpcgt1a73snk" path="res://src/scenes/player/hud/target_indicator_foreground.gdshader" id="3_we0nm"]
 [ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="4_p04jj"]
 [ext_resource type="Shader" uid="uid://dmpd4j6t8k653" path="res://src/scenes/player/hud/hud_bar.gdshader" id="6_we0nm"]
+[ext_resource type="Script" uid="uid://bwiqycu665e81" path="res://src/core/placeholder_node/placeholder_node.gd" id="7_8a4cl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ngh"]
 render_priority = 0
@@ -126,82 +127,32 @@ shader_parameter/size = 1.0
 material = SubResource("ShaderMaterial_p04jj")
 size = Vector2(0.54, 0.05)
 
-[sub_resource type="QuadMesh" id="QuadMesh_8a4cl"]
-material = SubResource("ShaderMaterial_6j5wj")
-size = Vector2(0.72, 0.1)
-center_offset = Vector3(0.425, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5sm4"]
-render_priority = 0
-shader = SubResource("Shader_p04jj")
-shader_parameter/color = Color(1, 1, 1, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_0vvra"]
-material = SubResource("ShaderMaterial_k5sm4")
-text = "["
-font = ExtResource("4_p04jj")
-font_size = 7
-horizontal_alignment = 0
-depth = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj8rj"]
-render_priority = 0
-shader = SubResource("Shader_p04jj")
-shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_d2vsc"]
-material = SubResource("ShaderMaterial_nj8rj")
-text = "["
-font = ExtResource("4_p04jj")
-font_size = 7
-horizontal_alignment = 0
-depth = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o1uyp"]
-render_priority = 0
-shader = SubResource("Shader_p04jj")
-shader_parameter/color = Color(1, 1, 1, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_bafg0"]
-material = SubResource("ShaderMaterial_o1uyp")
-text = "] Rage"
-font = ExtResource("4_p04jj")
-font_size = 7
-horizontal_alignment = 0
-depth = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3tkq"]
-render_priority = 0
-shader = SubResource("Shader_p04jj")
-shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_iw747"]
-material = SubResource("ShaderMaterial_o3tkq")
-text = "] Rage"
-font = ExtResource("4_p04jj")
-font_size = 7
-horizontal_alignment = 0
-depth = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_li14g"]
-render_priority = 0
-shader = ExtResource("6_we0nm")
-shader_parameter/color = Color(0.8784314, 0.40784314, 0.36078432, 1)
-shader_parameter/size = 1.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_3eqng"]
-material = SubResource("ShaderMaterial_li14g")
-size = Vector2(0.54, 0.05)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cq1rk"]
-render_priority = 0
-shader = ExtResource("6_we0nm")
-shader_parameter/color = Color(0.19076231, 0.19076234, 0.19076231, 1)
-shader_parameter/size = 1.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_xxr1e"]
-material = SubResource("ShaderMaterial_cq1rk")
-size = Vector2(0.54, 0.05)
+[sub_resource type="Animation" id="Animation_8a4cl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TargetIndicator/Cube:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TargetIndicator/Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_we0nm"]
 resource_name = "SpinTargetIndicator"
@@ -232,33 +183,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 6.265732)]
 }
 
-[sub_resource type="Animation" id="Animation_8a4cl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TargetIndicator/Cube:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TargetIndicator/Cube:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t4k86"]
 _data = {
 &"RESET": SubResource("Animation_8a4cl"),
@@ -267,6 +191,9 @@ _data = {
 
 [node name="Hud" type="Node3D"]
 script = ExtResource("1_j8ngh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+editor_description = "This camera is just so you can see in the debugger what the hud will look like in game."
 
 [node name="TargetIndicator" type="Node3D" parent="."]
 
@@ -280,9 +207,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9961834)
 sorting_offset = 1001.0
 mesh = SubResource("QuadMesh_nj8rj")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-editor_description = "This camera is just so you can see in the debugger what the hud will look like in game."
 
 [node name="Health" type="Node3D" parent="."]
 transform = Transform3D(0.9698082, 0, 0.24386892, 0.03410858, 0.99017066, -0.13564165, -0.24147184, 0.1398644, 0.96027565, -0.97, 0.523, -0.78)
@@ -323,47 +247,12 @@ transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.96
 sorting_offset = 10001.0
 mesh = SubResource("QuadMesh_we0nm")
 
-[node name="ClassExample" type="Node3D" parent="."]
-transform = Transform3D(0.9676929, -0.06710491, -0.24303778, 0.034576602, 0.9901445, -0.13571557, 0.24974965, 0.12292759, 0.9604759, 0.227, -0.425, -0.78)
-
-[node name="HealthBackground" type="MeshInstance3D" parent="ClassExample"]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
-sorting_offset = 1000.0
-mesh = SubResource("QuadMesh_8a4cl")
-skeleton = NodePath("../..")
-
-[node name="HealthStartText" type="MeshInstance3D" parent="ClassExample"]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.07, 0, 0)
-sorting_offset = 1002.0
-mesh = SubResource("TextMesh_0vvra")
-
-[node name="HealthStartTextShadow" type="MeshInstance3D" parent="ClassExample/HealthStartText"]
-transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
-sorting_offset = 1001.0
-mesh = SubResource("TextMesh_d2vsc")
-
-[node name="HealthEndText" type="MeshInstance3D" parent="ClassExample"]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.49, 0, 0)
-sorting_offset = 1002.0
-mesh = SubResource("TextMesh_bafg0")
-
-[node name="HealthEndTextShadow" type="MeshInstance3D" parent="ClassExample/HealthEndText"]
-transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
-sorting_offset = 1001.0
-mesh = SubResource("TextMesh_iw747")
-
-[node name="Rage" type="MeshInstance3D" parent="ClassExample"]
-transform = Transform3D(1, 0, 0, 0, 1, 4.4703484e-08, -4.4703484e-08, 0, 1, 0.29, 0, 0)
-sorting_offset = 10002.0
-mesh = SubResource("QuadMesh_3eqng")
-
-[node name="RageShadow" type="MeshInstance3D" parent="ClassExample/Rage"]
-transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
-sorting_offset = 10001.0
-mesh = SubResource("QuadMesh_xxr1e")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_t4k86")
 }
 autoplay = "SpinTargetIndicator"
+
+[node name="CombatClassHud" type="Node" parent="."]
+script = ExtResource("7_8a4cl")
+metadata/_custom_type_script = "uid://bwiqycu665e81"

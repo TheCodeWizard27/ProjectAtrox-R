@@ -134,10 +134,19 @@ func _apply_movement(delta: float) -> void:
 func _load_combat_class(combat_class: Enums.CombatClasses) -> void:
 	match (status.combat_class):
 		Enums.CombatClasses.Mage:
-			combat_class_controller = _combat_class_container.load_in(preload(mage_controller_path))
+			var mage_controller: MageController = preload(mage_controller_path).instantiate()
+			
+			hud.load_in_combat_class(mage_controller.hud)
+			combat_class_controller = _combat_class_container.replace_in(mage_controller)
 		Enums.CombatClasses.Ranger:
-			combat_class_controller = _combat_class_container.load_in(preload(ranger_controller_path))
+			var ranger_controller: RangerController = preload(ranger_controller_path).instantiate()
+			
+			hud.load_in_combat_class(ranger_controller.hud)
+			combat_class_controller = _combat_class_container.replace_in(ranger_controller)
 		Enums.CombatClasses.Warrior:
-			combat_class_controller = _combat_class_container.load_in(preload(warrior_controller_path))
+			var warrior_controller: WarriorController = preload(warrior_controller_path).instantiate()
+			
+			hud.load_in_combat_class(warrior_controller.hud)
+			combat_class_controller = _combat_class_container.replace_in(warrior_controller)
 
 	combat_class_controller.init(self)

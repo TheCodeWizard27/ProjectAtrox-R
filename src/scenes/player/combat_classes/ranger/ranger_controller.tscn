@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://btwp4ux27al52"]
 
-[ext_resource type="Script" uid="uid://cie00akpjcnpc" path="res://src/scenes/player/combat_classes/mage/mage_controller.gd" id="1_04cxq"]
+[ext_resource type="Script" uid="uid://dah8dpcl2hdu7" path="res://src/scenes/player/combat_classes/ranger/ranger_controller.gd" id="1_hr5jv"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_mwsdr"]
 [ext_resource type="Script" uid="uid://cxe8w5r4nrryl" path="res://src/scenes/player/states/airborne.gd" id="3_56xfi"]
 [ext_resource type="Script" uid="uid://beslhmrt2csvp" path="res://src/scenes/player/states/grounded.gd" id="4_18q85"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://b7cr2oeqg7elk" path="res://src/scenes/player/states/attacking.gd" id="6_ivo28"]
 
 [node name="RangerController" type="Node3D"]
-script = ExtResource("1_04cxq")
+script = ExtResource("1_hr5jv")
 
 [node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true
