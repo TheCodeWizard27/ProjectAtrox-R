@@ -1,5 +1,6 @@
-extends State
+
 class_name MageState
+extends State
 
 var player: Player
 var body: CharacterBody3D
@@ -9,7 +10,6 @@ var controller: MageController
 const AIRBORNE: NodePath = PlayerState.AIRBORNE
 const GROUNDED: NodePath = PlayerState.GROUNDED
 const JUMPING: NodePath = PlayerState.JUMPING
-const ATTACKING: NodePath = PlayerState.ATTACKING
 
 const MAGE_PRIMARY_ACTION: NodePath = ^'PrimaryAction'
 const MAGE_SECONDARY_ACTION: NodePath = ^'SecondaryAction'

@@ -9,8 +9,8 @@ var hud: WarriorHud = preload(warrior_hud_path).instantiate()
 func init(current_player: Player) -> void:
 	super.init(current_player)
 
-	for state: PlayerState in state_machine.get_children():
-		state.init(current_player)
+	for state: WarriorState in state_machine.get_children():
+		state.init(current_player, self)
 
 func process(delta: float) -> void: # Needs to be manually called!
 	state_machine.process(delta)

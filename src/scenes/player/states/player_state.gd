@@ -8,7 +8,6 @@ var animator: PlayerAnimator
 const AIRBORNE: NodePath = ^'Airborne'
 const GROUNDED: NodePath = ^'Grounded'
 const JUMPING: NodePath = ^'Jumping'
-const ATTACKING: NodePath = ^'Attacking'
 
 func init(current_player: Player) -> void:
 	player = current_player

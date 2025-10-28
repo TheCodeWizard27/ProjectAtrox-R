@@ -1,5 +1,6 @@
-extends State
+
 class_name RangerState
+extends State
 
 var player: Player
 var body: CharacterBody3D
@@ -9,7 +10,6 @@ var controller: RangerController
 const AIRBORNE: NodePath = PlayerState.AIRBORNE
 const GROUNDED: NodePath = PlayerState.GROUNDED
 const JUMPING: NodePath = PlayerState.JUMPING
-const ATTACKING: NodePath = PlayerState.ATTACKING
 
 const RANGER_PRIMARY_ACTION: NodePath = ^'PrimaryAction'
 const RANGER_SECONDARY_ACTION: NodePath = ^'SecondaryAction'

@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 	var cancel_active = _attack_time > startup_time && _attack_time < startup_time + cancel_time 
 	if(cancel_active && Input.is_action_just_pressed("attack")):
 		animator.play_particles()
-		transition_to(PlayerState.ATTACKING)
+		#transition_to(PlayerState.ATTACKING)
 		return
 	
 	if(_attack_animation_finished && _attack_time >= startup_time + lag_time):

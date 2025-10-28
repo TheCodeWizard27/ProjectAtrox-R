@@ -1,3 +1,4 @@
+class_name AirborneState
 extends PlayerState
 
 func physics_update(delta: float) -> void:
