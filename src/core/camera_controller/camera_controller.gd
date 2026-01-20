@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 func _move_towards_target(delta: float) -> void:
 	var current_rotation = rotation
 	var direction_to_target = global_position.direction_to(lock_on_target.global_position)
-	var target_rotation = Basis.looking_at(direction_to_target).get_rotation_quaternion()
+	var target_rotation = Basis.looking_at(direction_to_target).orthonormalized().get_rotation_quaternion()
 
 	basis = basis.slerp(target_rotation, delta * 2)
 	rotation.x = current_rotation.x

@@ -4,6 +4,6 @@ extends Node3D
 
 func _ready() -> void:
 	var status = PlayerStatus.new()
-	status.combat_class = Enums.CombatClasses.Mage
+	status.combat_class = Enums.CombatClasses.Warrior
 	player.configure_player(status)
 	Events.camera_change_requested.emit(player.camera)
