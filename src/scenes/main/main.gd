@@ -1,7 +1,7 @@
 extends Node3D
 
 # Define scene as path so the Game can start immediately.
-@export var initial_scene_path: String
+@export_file("*.tscn") var initial_scene_path: String
 
 @onready var _loading_screen: LoadingScreen = $LoadingScene
 @onready var _sub_scene: PlaceholderNode = $SubScene

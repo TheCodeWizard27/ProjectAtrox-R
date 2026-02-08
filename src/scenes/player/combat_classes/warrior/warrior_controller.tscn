@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4aa4q01yjgka"]
+
+[ext_resource type="Script" uid="uid://b3kmxtcdasjgo" path="res://src/scenes/player/combat_classes/warrior/warrior_controller.gd" id="1_eayqu"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_b4iij"]
+[ext_resource type="Script" uid="uid://dnxu4y5vdmc1u" path="res://src/scenes/player/combat_classes/warrior/states/airborne.gd" id="3_cwo0f"]
+[ext_resource type="Script" uid="uid://dwv338qprwxe8" path="res://src/scenes/player/combat_classes/warrior/states/grounded.gd" id="4_eayqu"]
+[ext_resource type="Script" uid="uid://cduu0ej4uw0d2" path="res://src/scenes/player/combat_classes/warrior/states/jumping.gd" id="5_q43an"]
+[ext_resource type="Script" uid="uid://caxm5yqsfu2ls" path="res://src/scenes/player/combat_classes/warrior/states/primary_action.gd" id="6_eayqu"]
+[ext_resource type="Script" uid="uid://6rs2mppjkv0i" path="res://src/scenes/player/combat_classes/warrior/states/secondary_action.gd" id="7_okv86"]
+[ext_resource type="Script" uid="uid://c5ayos8mqtcm2" path="res://src/scenes/player/combat_classes/warrior/states/special_action.gd" id="8_7a8tl"]
+[ext_resource type="Script" uid="uid://dbjwyuao77rkb" path="res://src/scenes/player/combat_classes/warrior/states/defensive_action.gd" id="9_t4bss"]
+
+[node name="WarriorController" type="Node3D"]
+script = ExtResource("1_eayqu")
+
+[node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_b4iij")
+initial_state = NodePath("Airborne")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("3_cwo0f")
+
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("4_eayqu")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("5_q43an")
+
+[node name="PrimaryAction" type="Node" parent="StateMachine"]
+script = ExtResource("6_eayqu")
+metadata/_custom_type_script = "uid://chbn275ou5nf1"
+
+[node name="SecondaryAction" type="Node" parent="StateMachine"]
+script = ExtResource("7_okv86")
+metadata/_custom_type_script = "uid://chbn275ou5nf1"
+
+[node name="SpecialAction" type="Node" parent="StateMachine"]
+script = ExtResource("8_7a8tl")
+metadata/_custom_type_script = "uid://chbn275ou5nf1"
+
+[node name="DefensiveAction" type="Node" parent="StateMachine"]
+script = ExtResource("9_t4bss")
+metadata/_custom_type_script = "uid://chbn275ou5nf1"

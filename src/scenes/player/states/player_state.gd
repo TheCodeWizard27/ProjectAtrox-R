@@ -1,11 +1,15 @@
-class_name PlayerState
 extends State
+class_name PlayerState
 
-@onready var player: Player = $"../.."
-@onready var body: CharacterBody3D = %Body
-@onready var animator: PlayerAnimator = %PlayerAnimator
+var player: Player
+var body: CharacterBody3D
+var animator: PlayerAnimator
 
 const AIRBORNE: NodePath = ^'Airborne'
 const GROUNDED: NodePath = ^'Grounded'
 const JUMPING: NodePath = ^'Jumping'
-const ATTACKING: NodePath = ^'Attacking'
+
+func init(current_player: Player) -> void:
+	player = current_player
+	animator = player.animator
+	body = player.body

@@ -22,8 +22,9 @@ func _ready():
 		state.connect("transitioned_to", _on_transitioned_to)
 		state.connect("transitioned_back", _on_transitioned_from)
 	
-	if(current_state):
-		current_state.enter()
+	assert(current_state, 'Please set an initial state.')
+	current_state.enter()
+		
 		
 func transition_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
 	print_debug("Transitioning to state ", target_state_path)

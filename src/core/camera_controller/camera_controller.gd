@@ -1,22 +1,29 @@
 class_name CameraController
 extends Node3D
 
-@export_range(0, 1) var mouse_sensitivity: float = 0.2
+@export_range(0, 1) var camera_speed: float = 0.2
 @export var camera: Camera3D
 
 var lock_on_target: Node3D
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta: float) -> void:
 	if (lock_on_target):
 		_move_towards_target(delta)
 
+	if (!camera or !camera.current):
+		return
+
+	var movement = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
+	process_camera_movement(movement * camera_speed * 2500 * delta)
+	
 func _move_towards_target(delta: float) -> void:
 	var current_rotation = rotation
 	var direction_to_target = global_position.direction_to(lock_on_target.global_position)
-	var target_rotation = Basis.looking_at(direction_to_target)
+	var target_rotation = Basis.looking_at(direction_to_target).orthonormalized().get_rotation_quaternion()
 
 	basis = basis.slerp(target_rotation, delta * 2)
 	rotation.x = current_rotation.x
@@ -36,8 +43,8 @@ func _input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	if (event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
-		rotation_degrees.x -= event.relative.y * mouse_sensitivity
-		rotation_degrees.x = lerpf(rotation_degrees.x, clamp(rotation_degrees.x, -90, 30), 1)
-		
-		rotation_degrees.y -= event.relative.x * mouse_sensitivity
-		rotation_degrees.y = lerpf(rotation_degrees.y, wrapf(rotation_degrees.y, 0, 360), 1)
+		process_camera_movement(event.relative * camera_speed)
+
+func process_camera_movement(movement: Vector2) -> void:
+	rotation_degrees.x = clamp(rotation_degrees.x - movement.y, -90, 30)
+	rotation_degrees.y = wrapf(rotation_degrees.y - movement.x, 0, 360)

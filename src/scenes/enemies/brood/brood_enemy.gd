@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	get_parent().remove_child(self)
 
 func is_near_player(target: Player) -> bool:
-	var distance = body.global_position.distance_to(target._body.global_position)
+	var distance = body.global_position.distance_to(target.body.global_position)
 	return distance <= attack_distance
 
 func attack() -> void:

@@ -4,7 +4,14 @@ class_name PlaceholderNode
 var _current_node: Node
 
 func load_in(new_scene: PackedScene) -> Node:
+	clear()
 	_current_node = new_scene.instantiate()
+	add_sibling(_current_node)
+	return _current_node
+	
+func replace_in(node: Node) -> Node:
+	clear()
+	_current_node = node
 	add_sibling(_current_node)
 	return _current_node
 
