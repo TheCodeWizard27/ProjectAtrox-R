@@ -1,9 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc1mldk1styhf"]
+[gd_scene load_steps=10 format=3 uid="uid://dc1mldk1styhf"]
 
 [ext_resource type="Script" uid="uid://nlxyv4kvqahi" path="res://src/scenes/player/sandbox/player_sandbox.gd" id="1_87pyo"]
 [ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="1_q5h00"]
 [ext_resource type="PackedScene" uid="uid://bbarat6swui5t" path="res://src/scenes/player/player.tscn" id="1_ujy5m"]
 [ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="3_87pyo"]
+[ext_resource type="Texture2D" uid="uid://b7xah8t8s18my" path="res://src/assets/textures/rocky_grass_test_256.png" id="5_op4lk"]
+[ext_resource type="Texture2D" uid="uid://dysnj1grqy8ub" path="res://src/assets/textures/rock_grass_256_normal.png" id="6_b0cyf"]
+[ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="7_op4lk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwhuu"]
+albedo_texture = ExtResource("5_op4lk")
+normal_enabled = true
+normal_texture = ExtResource("6_b0cyf")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+texture_filter = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_87pyo"]
 radius = 10.0
@@ -26,6 +36,7 @@ material = ExtResource("1_q5h00")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.226126)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Marker3D"]
+material = SubResource("StandardMaterial3D_hwhuu")
 
 [node name="LockOnTarget" type="Area3D" parent="Marker3D"]
 collision_layer = 4
@@ -35,3 +46,6 @@ collision_mask = 0
 shape = SubResource("SphereShape3D_87pyo")
 debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
 debug_fill = false
+
+[node name="CharacterModel" parent="." instance=ExtResource("7_op4lk")]
+transform = Transform3D(-0.78013563, 0, 0.6256104, 0, 1, 0, -0.6256104, 0, -0.78013563, -3.9462662, -1.1306789, 4.410146)

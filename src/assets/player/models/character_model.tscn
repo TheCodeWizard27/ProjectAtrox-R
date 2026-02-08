@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bge2pilfqtgnj"]
+
+[ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="1_vmnkp"]
+
+[node name="CharacterModel" instance=ExtResource("1_vmnkp")]
