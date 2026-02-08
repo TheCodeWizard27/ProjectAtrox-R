@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb8j82ssna7fh"]
+
+[ext_resource type="Script" uid="uid://cactynink7kqy" path="res://src/scenes/enemies/brood_mother/brood_mother_enemy.gd" id="1_qnsa3"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_fx7rg"]
+[ext_resource type="Script" uid="uid://dt3o6cyrv5wps" path="res://src/scenes/enemies/brood_mother/states/buff.gd" id="3_vvups"]
+[ext_resource type="Script" uid="uid://1fx7nbud8aiq" path="res://src/scenes/enemies/brood_mother/states/idle.gd" id="4_rlda7"]
+[ext_resource type="Script" uid="uid://cdks6t7elwdpu" path="res://src/scenes/enemies/brood_mother/states/spawn.gd" id="5_rlda7"]
+[ext_resource type="PackedScene" uid="uid://dm5vagvd2huy7" path="res://src/assets/enemies/brood_mother/brood_mother_model.glb" id="6_33018"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_33018"]
+radius = 1.8026218
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s7ftr"]
+radius = 10.096907
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s1ix4"]
+
+[node name="BroodMotherEnemy" type="Node3D"]
+script = ExtResource("1_qnsa3")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_fx7rg")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="BroodMotherBuffState" type="Node" parent="StateMachine"]
+script = ExtResource("3_vvups")
+metadata/_custom_type_script = "uid://dt3o6cyrv5wps"
+
+[node name="BroodMotherIdleState" type="Node" parent="StateMachine"]
+script = ExtResource("4_rlda7")
+metadata/_custom_type_script = "uid://1fx7nbud8aiq"
+
+[node name="BroodMotherSpawnState" type="Node" parent="StateMachine"]
+script = ExtResource("5_rlda7")
+metadata/_custom_type_script = "uid://cdks6t7elwdpu"
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[node name="brood_mother_model" parent="CharacterBody3D" instance=ExtResource("6_33018")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29205918, 0.55866385, 0.8454977)
+shape = SubResource("SphereShape3D_33018")
+
+[node name="BuffBox" type="Area3D" parent="CharacterBody3D"]
+
+[node name="BroodBuffBox" type="CollisionShape3D" parent="CharacterBody3D/BuffBox"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_s7ftr")
+
+[node name="PlayerDetector" type="Area3D" parent="CharacterBody3D"]
+
+[node name="PlayerDetectionBox" type="CollisionShape3D" parent="CharacterBody3D/PlayerDetector"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+shape = SubResource("SphereShape3D_s1ix4")
