@@ -63,6 +63,12 @@ func _set_camera_active(value: bool) -> void:
 func _process(delta: float) -> void:
 	assert(combat_class_controller, 'CombatClassController not set please call configure_player on _ready')
 
+	if (Input.is_key_pressed(KEY_1)):
+		animator.play_attack()
+		
+	if (Input.is_key_pressed(KEY_2)):
+		animator.play_interact()
+
 	if (!active):
 		return
 		
