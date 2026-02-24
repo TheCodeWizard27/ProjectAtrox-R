@@ -10,3 +10,6 @@ func init(current_player: Player, current_controller: WarriorController) -> void
 
 func physics_update(delta: float) -> void:
 	_grounded_state.physics_update(delta)
+	
+	if(Input.is_action_just_pressed('primary_action')):
+		transition_to(WarriorState.WARRIOR_PRIMARY_ACTION)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4aa4q01yjgka"]
+[gd_scene format=3 uid="uid://b4aa4q01yjgka"]
 
 [ext_resource type="Script" uid="uid://b3kmxtcdasjgo" path="res://src/scenes/player/combat_classes/warrior/warrior_controller.gd" id="1_eayqu"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_b4iij"]
@@ -9,37 +9,101 @@
 [ext_resource type="Script" uid="uid://6rs2mppjkv0i" path="res://src/scenes/player/combat_classes/warrior/states/secondary_action.gd" id="7_okv86"]
 [ext_resource type="Script" uid="uid://c5ayos8mqtcm2" path="res://src/scenes/player/combat_classes/warrior/states/special_action.gd" id="8_7a8tl"]
 [ext_resource type="Script" uid="uid://dbjwyuao77rkb" path="res://src/scenes/player/combat_classes/warrior/states/defensive_action.gd" id="9_t4bss"]
+[ext_resource type="Script" uid="uid://bth2b7l33p146" path="res://src/scenes/player/combat_classes/warrior/warrior_animator.gd" id="10_7a8tl"]
 
-[node name="WarriorController" type="Node3D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gf5d"]
+animation = &"Falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7vxwc"]
+animation = &"Warrior_Primary_Test"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ap8y"]
+animation = &"Interacting"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8tvdu"]
+filters = ["metarig/Skeleton3D:spine", "metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.006", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R", "metarig/Skeleton3D:weapon_grip.R"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8tvdu"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6ap8y"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4bss"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xds0"]
+animation = &"Running"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7vxwc"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_t4bss")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_0xds0")
+blend_point_1/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c4qsg"]
+graph_offset = Vector2(-197.82764, 349.28888)
+nodes/output/position = Vector2(1180, 500)
+nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
+nodes/running/position = Vector2(20, 80)
+nodes/interact_one_shot/node = SubResource("AnimationNodeOneShot_6ap8y")
+nodes/interact_one_shot/position = Vector2(260, 180)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6gf5d")
+nodes/Animation/position = Vector2(260, 520)
+nodes/falling/node = SubResource("AnimationNodeBlend2_8tvdu")
+nodes/falling/position = Vector2(580, 380)
+nodes/Interact/node = SubResource("AnimationNodeAnimation_6ap8y")
+nodes/Interact/position = Vector2(20, 440)
+nodes/attack_one_shot/node = SubResource("AnimationNodeOneShot_8tvdu")
+nodes/attack_one_shot/position = Vector2(820, 460)
+nodes/Attack/node = SubResource("AnimationNodeAnimation_7vxwc")
+nodes/Attack/position = Vector2(400, 740)
+node_connections = [&"output", 0, &"attack_one_shot", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"Interact", &"falling", 0, &"interact_one_shot", &"falling", 1, &"Animation", &"attack_one_shot", 0, &"falling", &"attack_one_shot", 1, &"Attack"]
+
+[node name="WarriorController" type="Node3D" unique_id=351354148]
 script = ExtResource("1_eayqu")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=585984925]
 unique_name_in_owner = true
 script = ExtResource("2_b4iij")
 initial_state = NodePath("Airborne")
 metadata/_custom_type_script = "uid://brf10fbscg178"
 
-[node name="Airborne" type="Node" parent="StateMachine"]
+[node name="Airborne" type="Node" parent="StateMachine" unique_id=2096714369]
 script = ExtResource("3_cwo0f")
 
-[node name="Grounded" type="Node" parent="StateMachine"]
+[node name="Grounded" type="Node" parent="StateMachine" unique_id=1633302737]
 script = ExtResource("4_eayqu")
 
-[node name="Jumping" type="Node" parent="StateMachine"]
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=1577016291]
 script = ExtResource("5_q43an")
 
-[node name="PrimaryAction" type="Node" parent="StateMachine"]
+[node name="PrimaryAction" type="Node" parent="StateMachine" unique_id=2025302068]
 script = ExtResource("6_eayqu")
 metadata/_custom_type_script = "uid://chbn275ou5nf1"
 
-[node name="SecondaryAction" type="Node" parent="StateMachine"]
+[node name="SecondaryAction" type="Node" parent="StateMachine" unique_id=998429084]
 script = ExtResource("7_okv86")
 metadata/_custom_type_script = "uid://chbn275ou5nf1"
 
-[node name="SpecialAction" type="Node" parent="StateMachine"]
+[node name="SpecialAction" type="Node" parent="StateMachine" unique_id=1442069278]
 script = ExtResource("8_7a8tl")
 metadata/_custom_type_script = "uid://chbn275ou5nf1"
 
-[node name="DefensiveAction" type="Node" parent="StateMachine"]
+[node name="DefensiveAction" type="Node" parent="StateMachine" unique_id=2079183564]
 script = ExtResource("9_t4bss")
 metadata/_custom_type_script = "uid://chbn275ou5nf1"
+
+[node name="PlayerAnimator" type="AnimationTree" parent="." unique_id=1623341725]
+unique_name_in_owner = true
+root_node = NodePath("%Body/CharacterModel")
+tree_root = SubResource("AnimationNodeBlendTree_c4qsg")
+anim_player = NodePath("../Body/CharacterModel/AnimationPlayer")
+parameters/running/blend_position = 1.085
+parameters/interact_one_shot/active = false
+parameters/interact_one_shot/internal_active = false
+parameters/interact_one_shot/request = 0
+parameters/falling/blend_amount = 0.0
+parameters/attack_one_shot/active = false
+parameters/attack_one_shot/internal_active = false
+parameters/attack_one_shot/request = 0
+script = ExtResource("10_7a8tl")
