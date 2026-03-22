@@ -1,5 +1,5 @@
 extends Player
-class_name PlainClass
+class_name WarriorClass
 
 @export var state_machine: StateMachine
 

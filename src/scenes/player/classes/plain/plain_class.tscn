@@ -4,7 +4,7 @@
 [ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="2_ogm6v"]
 [ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="3_kyl5b"]
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="4_jdqon"]
-[ext_resource type="PackedScene" uid="uid://bus5qf5q5p4tg" path="res://src/scenes/player_old/hud/hud.tscn" id="5_6btdb"]
+[ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/hud/hud.tscn" id="5_qyn71"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="6_gmvdh"]
 [ext_resource type="Script" uid="uid://dp2yuasdiqhpa" path="res://src/scenes/player/states/airborne_state.gd" id="7_53pud"]
 [ext_resource type="Script" uid="uid://bqb6e4b63l6u7" path="res://src/scenes/player/states/grounded_state.gd" id="8_qyn71"]
@@ -13,8 +13,9 @@
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bd3ovodbk2668" path="res://src/scenes/player/resources/player_animation_tree.tres" id="11_6ano4"]
 [ext_resource type="Script" uid="uid://cui5y850mvd0x" path="res://src/scenes/player/player_animator.gd" id="12_qyn71"]
 
-[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("body", "camera_controller", "camera", "animator", "lock_on_ray")]
+[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "animator", "lock_on_ray")]
 script = ExtResource("1_qyn71")
+state_machine = NodePath("StateMachine")
 body = NodePath("Body")
 camera_controller = NodePath("ThirdPersonCamera")
 camera = NodePath("ThirdPersonCamera/CameraArm/Camera")
@@ -54,11 +55,10 @@ visible = false
 
 [node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("4_jdqon")]
 
-[node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1223854998 node_paths=PackedStringArray("player") instance=ExtResource("5_6btdb")]
+[node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1491162933 node_paths=PackedStringArray("player") instance=ExtResource("5_qyn71")]
 player = NodePath("../../../..")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1362293267]
-unique_name_in_owner = true
 script = ExtResource("6_gmvdh")
 initial_state = NodePath("Airborne")
 metadata/_custom_type_script = "uid://brf10fbscg178"
