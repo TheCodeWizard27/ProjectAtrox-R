@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://sy3j71k0iqdv"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://bd3ovodbk2668"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gf5d"]
 animation = &"Falling"

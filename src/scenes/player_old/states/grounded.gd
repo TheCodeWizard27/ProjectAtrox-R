@@ -1,4 +1,4 @@
-class_name GroundedState
+class_name OldGroundedState
 extends PlayerState
 
 func physics_update(delta: float) -> void:

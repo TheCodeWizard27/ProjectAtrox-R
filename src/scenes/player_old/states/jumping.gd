@@ -1,4 +1,4 @@
-class_name JumpingState
+class_name OldJumpingState
 extends PlayerState
 
 @export var min_jump_height: float = 0.8

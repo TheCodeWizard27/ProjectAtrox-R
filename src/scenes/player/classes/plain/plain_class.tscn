@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cpr7ryvkfynj3"]
+
+[ext_resource type="Script" uid="uid://bglcxyrttarwp" path="res://src/scenes/player/classes/plain/plain_class.gd" id="1_qyn71"]
+[ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="2_ogm6v"]
+[ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="3_kyl5b"]
+[ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="4_jdqon"]
+[ext_resource type="PackedScene" uid="uid://bus5qf5q5p4tg" path="res://src/scenes/player_old/hud/hud.tscn" id="5_6btdb"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="6_gmvdh"]
+[ext_resource type="Script" uid="uid://dp2yuasdiqhpa" path="res://src/scenes/player/states/airborne_state.gd" id="7_53pud"]
+[ext_resource type="Script" uid="uid://bqb6e4b63l6u7" path="res://src/scenes/player/states/grounded_state.gd" id="8_qyn71"]
+[ext_resource type="Script" uid="uid://dvc4who4r0kls" path="res://src/scenes/player/states/jumping_state.gd" id="9_qyn71"]
+[ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="10_mhbxl"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bd3ovodbk2668" path="res://src/scenes/player/resources/player_animation_tree.tres" id="11_6ano4"]
+[ext_resource type="Script" uid="uid://cui5y850mvd0x" path="res://src/scenes/player/player_animator.gd" id="12_qyn71"]
+
+[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("body", "camera_controller", "camera", "animator", "lock_on_ray")]
+script = ExtResource("1_qyn71")
+body = NodePath("Body")
+camera_controller = NodePath("ThirdPersonCamera")
+camera = NodePath("ThirdPersonCamera/CameraArm/Camera")
+animator = NodePath("Animator")
+lock_on_ray = NodePath("ThirdPersonCamera/CameraArm/Camera/LockOnRay")
+
+[node name="Body" type="CharacterBody3D" parent="." unique_id=196412690]
+
+[node name="CameraTracker" type="RemoteTransform3D" parent="Body" unique_id=502569294]
+remote_path = NodePath("../../ThirdPersonCamera")
+update_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1245641980]
+shape = ExtResource("2_ogm6v")
+
+[node name="CharacterModel" parent="Body" unique_id=852105736 instance=ExtResource("3_kyl5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(852105736, 98106607) index="0" unique_id=2131159765]
+bones/0/position = Vector3(0, 1.0099, -0.05519999)
+bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
+bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
+bones/6/rotation = Quaternion(-0.09371196, 0, 0, 0.9955994)
+bones/8/rotation = Quaternion(-0.2563101, 0.57206917, -0.59321797, 0.5051085)
+bones/13/rotation = Quaternion(-0.21630374, -0.5849777, 0.572819, 0.53187615)
+bones/16/rotation = Quaternion(0.06127733, 0.111031, -0.02300871, 0.9916591)
+bones/21/position = Vector3(0.18157439, 0.033877574, 0.03546571)
+bones/21/rotation = Quaternion(0.98694795, 0.005768032, -0.0017413022, 0.16092743)
+bones/25/rotation = Quaternion(0.66654545, 0.7213118, 0.16561517, -0.08943218)
+bones/26/position = Vector3(-0.18157439, 0.033877574, 0.03546571)
+bones/26/rotation = Quaternion(0.98694795, -0.005768032, 0.0017413022, 0.16092743)
+bones/29/rotation = Quaternion(0.0048180884, 0.98211515, 0.18209876, -0.047610126)
+
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=1883472219]
+transform = Transform3D(-0.0050172517, 0.0775534, 0.35081393, 0.044051606, 0.05062923, -0.4412749, -0.08956696, 0.020556618, -0.23668316, -0.738985, 2.0861967, 0.1559247)
+visible = false
+
+[node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("4_jdqon")]
+
+[node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1223854998 node_paths=PackedStringArray("player") instance=ExtResource("5_6btdb")]
+player = NodePath("../../../..")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1362293267]
+unique_name_in_owner = true
+script = ExtResource("6_gmvdh")
+initial_state = NodePath("Airborne")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Airborne" type="Node" parent="StateMachine" unique_id=794295103]
+script = ExtResource("7_53pud")
+
+[node name="Grounded" type="Node" parent="StateMachine" unique_id=761052713]
+script = ExtResource("8_qyn71")
+
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=1044415898]
+script = ExtResource("9_qyn71")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1087310556]
+script = ExtResource("10_mhbxl")
+
+[node name="Animator" type="AnimationTree" parent="." unique_id=1605884108]
+root_node = NodePath("../Body/CharacterModel")
+tree_root = ExtResource("11_6ano4")
+anim_player = NodePath("../Body/CharacterModel/AnimationPlayer")
+parameters/running/blend_position = 0.0
+parameters/interact_one_shot/active = false
+parameters/interact_one_shot/internal_active = false
+parameters/interact_one_shot/request = 0
+parameters/falling/blend_amount = 0.0
+parameters/attack_one_shot/active = false
+parameters/attack_one_shot/internal_active = false
+parameters/attack_one_shot/request = 0
+script = ExtResource("12_qyn71")
+
+[editable path="Body/CharacterModel"]
+[editable path="ThirdPersonCamera"]

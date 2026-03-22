@@ -12,5 +12,5 @@ const DEAD: NodePath = ^'Dead'
 
 func init(current_player: Player) -> void:
 	player = current_player
-	animator = player.animator
 	body = player.body
+	animator = player.animator

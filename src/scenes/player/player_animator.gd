@@ -29,7 +29,6 @@ func play_interact() -> void:
 	set(_interact_request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func play_attack() -> void:
-	
 	set(_attack_request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func play_death() -> void:

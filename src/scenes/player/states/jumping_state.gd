@@ -11,6 +11,14 @@ var _max_jump_time: float
 var _jump_time: float
 var _min_gravity: float
 
+var movement_processor: PlayerMovementProcessor
+var lock_on_processor: PlayerLockOnProcessor
+
+func init(current_player: Player) -> void:
+	super.init(current_player)
+	lock_on_processor = PlayerLockOnProcessor.new(current_player)
+	movement_processor = PlayerMovementProcessor.new(current_player)
+
 func enter(msg: Dictionary = {}) -> void:
 	_jump_time = 0
 	
@@ -35,6 +43,7 @@ func physics_update(delta: float) -> void:
 	if(!still_jumping):
 		body.velocity.y -= abs(_min_gravity - Globals.GRAVITY) * delta
 	
-	player.process_movement(delta)
+	movement_processor.process_movement(delta)
+	lock_on_processor.process_lock_on()
 	
 	_jump_time += delta

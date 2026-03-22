@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bbarat6swui5t"]
 
 [ext_resource type="Script" uid="uid://dx53dd12e6xpn" path="res://src/scenes/player_old/player.gd" id="1_swhsd"]
-[ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/player_body_collision.tres" id="2_gy5x5"]
+[ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="2_gy5x5"]
 [ext_resource type="PackedScene" uid="uid://bge2pilfqtgnj" path="res://src/assets/player/models/character_model.tscn" id="3_6ap8y"]
 [ext_resource type="PackedScene" uid="uid://0i1l2nv7vq4u" path="res://assets/player/WeaponModel.blend" id="3_w8ig4"]
 [ext_resource type="Script" uid="uid://emnqaq0d8jsd" path="res://src/scenes/player_old/player_animator.gd" id="5_6gf5d"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://sy3j71k0iqdv" path="res://src/scenes/player/player_animation_tree.tres" id="6_q08gj"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bd3ovodbk2668" path="res://src/scenes/player/resources/player_animation_tree.tres" id="6_q08gj"]
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="7_q08gj"]
 [ext_resource type="Script" uid="uid://bwiqycu665e81" path="res://src/core/placeholder_node/placeholder_node.gd" id="11_8tvdu"]
 

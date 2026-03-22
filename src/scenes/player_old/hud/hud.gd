@@ -1,8 +1,14 @@
 extends Node3D
 class_name Hud
 
+@export var player: Player
+
 @onready var _target_indicator: Node3D = $TargetIndicator
 @onready var _health_bar: MeshInstance3D = $Health/Health
+
+func _process(delta: float) -> void:
+	update_target_indicator(player.lock_on_target, delta)
+	update_health(player.status.current_health if player.status != null else 0)
 
 func update_target_indicator(target: Node3D, _delta: float) -> void:
 	if (!target):

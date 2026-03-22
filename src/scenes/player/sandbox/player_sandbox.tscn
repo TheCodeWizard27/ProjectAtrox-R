@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://df563ei3ub1h1"]
+[gd_scene format=3 uid="uid://dc1mldk1styhf"]
 
 [ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="1_qvchl"]
 [ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="2_op4lk"]
 [ext_resource type="Texture2D" uid="uid://b7xah8t8s18my" path="res://src/assets/textures/rocky_grass_test_256.png" id="4_hwhuu"]
 [ext_resource type="Texture2D" uid="uid://dysnj1grqy8ub" path="res://src/assets/textures/rock_grass_256_normal.png" id="5_boyli"]
 [ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="6_2hsqe"]
-[ext_resource type="PackedScene" uid="uid://cpr7ryvkfynj3" path="res://src/scenes/player/classes/plain/plain.tscn" id="6_qvchl"]
+[ext_resource type="PackedScene" uid="uid://cpr7ryvkfynj3" path="res://src/scenes/player/classes/plain/plain_class.tscn" id="6_qvchl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvpd3"]
 albedo_texture = ExtResource("4_hwhuu")
@@ -46,4 +46,4 @@ debug_fill = false
 [node name="CharacterModel" parent="." unique_id=852105736 instance=ExtResource("6_2hsqe")]
 transform = Transform3D(-0.78013563, 0, 0.6256104, 0, 1, 0, -0.6256104, 0, -0.78013563, -3.9462662, -1.1306789, 4.410146)
 
-[node name="Plain" parent="." unique_id=977249241 instance=ExtResource("6_qvchl")]
+[node name="PlainClass" parent="." unique_id=977249241 instance=ExtResource("6_qvchl")]
