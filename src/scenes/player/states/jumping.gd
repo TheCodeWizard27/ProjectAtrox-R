@@ -12,7 +12,6 @@ var _jump_time: float
 var _min_gravity: float
 
 func enter(msg: Dictionary = {}) -> void:
-	
 	_jump_time = 0
 	
 	_min_velocity = sqrt(min_jump_height * 2 * Globals.GRAVITY)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0uyhb41xdens"]
 
-[ext_resource type="PackedScene" uid="uid://bbarat6swui5t" path="res://src/scenes/player/player.tscn" id="1_8dnmv"]
+[ext_resource type="PackedScene" uid="uid://bbarat6swui5t" path="res://src/scenes/player_old/player.tscn" id="1_8dnmv"]
 [ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="1_an3jj"]
 [ext_resource type="PackedScene" uid="uid://bji3kv2a6nil7" path="res://src/scenes/enemies/brood/brood_enemy.tscn" id="2_r8hxk"]
 [ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="3_r8hxk"]
