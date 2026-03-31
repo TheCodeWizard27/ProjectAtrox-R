@@ -9,12 +9,6 @@ var _attack_request = "parameters/attack_one_shot/request"
 var _dying_blend_amount = "parameters/dying_blend/blend_amount"
 var _dying_seek_request = "parameters/dying/seek_request"
 
-signal on_attack_finished()
-
-func play_particles() -> void:
-	%Particles.emitting = true
-	%Particles.restart()
-
 func advance_falling_to(target_value: float, delta: float) -> void:
 	var new_value = lerpf(get(_falling_blend_amount), target_value, delta * _falling_blend_speed)
 	set(_falling_blend_amount, new_value)

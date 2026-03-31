@@ -1,9 +1,11 @@
+
+class_name WarriorJumpingState
 extends WarriorState
 
 var _jumping_state: JumpingState = JumpingState.new()
 
-func init(current_player: Player, current_controller: WarriorController) -> void:
-	super.init(current_player, current_controller)
+func init(current_player: Player) -> void:
+	super.init(current_player)
 	_jumping_state.init(current_player)
 	_jumping_state.transitioned_to.connect(transition_to)
 	_jumping_state.transitioned_back.connect(transition_back)

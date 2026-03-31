@@ -6,12 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="3_b24kb"]
 [ext_resource type="PackedScene" uid="uid://bgpjfb0nodr34" path="res://src/scenes/player/classes/warrior/warrior_hud.tscn" id="4_ifccw"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_fssxm"]
-[ext_resource type="Script" uid="uid://dp2yuasdiqhpa" path="res://src/scenes/player/states/airborne_state.gd" id="6_y2pnb"]
-[ext_resource type="Script" uid="uid://bqb6e4b63l6u7" path="res://src/scenes/player/states/grounded_state.gd" id="7_4umgf"]
-[ext_resource type="Script" uid="uid://dvc4who4r0kls" path="res://src/scenes/player/states/jumping_state.gd" id="8_5yyo5"]
+[ext_resource type="Script" uid="uid://3thijxavsnjv" path="res://src/scenes/player/classes/warrior/states/warrior_airborne_state.gd" id="7_y2pnb"]
+[ext_resource type="Script" uid="uid://dmif3q0xh71gw" path="res://src/scenes/player/classes/warrior/states/warrior_grounded_state.gd" id="8_4umgf"]
+[ext_resource type="Script" uid="uid://bvnivrma7a70q" path="res://src/scenes/player/classes/warrior/states/warrior_jumping_state.gd" id="9_5yyo5"]
 [ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="9_stinp"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://bd3ovodbk2668" path="res://src/scenes/player/resources/player_animation_tree.tres" id="10_08tcn"]
-[ext_resource type="Script" uid="uid://cui5y850mvd0x" path="res://src/scenes/player/player_animator.gd" id="11_dyod8"]
+[ext_resource type="Script" uid="uid://okdrs1m60cwd" path="res://src/scenes/player/classes/warrior/states/warrior_defensive_action_state.gd" id="11_y2pnb"]
+[ext_resource type="Script" uid="uid://cg7y30i8lt0lm" path="res://src/scenes/player/classes/warrior/states/warrior_primary_action_state.gd" id="12_4umgf"]
+[ext_resource type="Script" uid="uid://c2oalqqye5xnc" path="res://src/scenes/player/classes/warrior/states/warrior_secondary_action_state.gd" id="13_5yyo5"]
+[ext_resource type="Script" uid="uid://dbmcjcr1k13w4" path="res://src/scenes/player/classes/warrior/states/warrior_special_action_state.gd" id="14_stinp"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://chhbufkv1xytj" path="res://src/scenes/player/classes/warrior/warrior_animation_tree.tres" id="15_y2pnb"]
+[ext_resource type="Script" uid="uid://p6bqxfl7mdb4" path="res://src/scenes/player/classes/warrior/warrior_animator.gd" id="16_y2pnb"]
 
 [node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "animator", "lock_on_ray")]
 script = ExtResource("1_0sr62")
@@ -34,7 +38,7 @@ shape = ExtResource("1_is7nx")
 [node name="CharacterModel" parent="Body" unique_id=1094857873 instance=ExtResource("2_0sr62")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 98106607) index="0" unique_id=2131159765]
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 1859744286) index="0" unique_id=355420670]
 bones/0/position = Vector3(0, 1.0099, -0.05519999)
 bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
@@ -49,7 +53,7 @@ bones/26/position = Vector3(-0.18157439, 0.033877574, 0.03546571)
 bones/26/rotation = Quaternion(0.98694795, -0.005768032, 0.0017413022, 0.16092743)
 bones/29/rotation = Quaternion(0.0048180884, 0.98211515, 0.18209876, -0.047610126)
 
-[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=1883472219]
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=1120226461]
 transform = Transform3D(-0.0050172517, 0.0775534, 0.35081393, 0.044051606, 0.05062923, -0.4412749, -0.08956696, 0.020556618, -0.23668316, -0.738985, 2.0861967, 0.1559247)
 visible = false
 
@@ -64,30 +68,43 @@ initial_state = NodePath("Airborne")
 metadata/_custom_type_script = "uid://brf10fbscg178"
 
 [node name="Airborne" type="Node" parent="StateMachine" unique_id=728122625]
-script = ExtResource("6_y2pnb")
+script = ExtResource("7_y2pnb")
 
 [node name="Grounded" type="Node" parent="StateMachine" unique_id=12650219]
-script = ExtResource("7_4umgf")
+script = ExtResource("8_4umgf")
 
 [node name="Jumping" type="Node" parent="StateMachine" unique_id=247805191]
-script = ExtResource("8_5yyo5")
+script = ExtResource("9_5yyo5")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1595731179]
 script = ExtResource("9_stinp")
 
+[node name="DefensiveAction" type="Node" parent="StateMachine" unique_id=1125482612]
+script = ExtResource("11_y2pnb")
+
+[node name="PrimaryAction" type="Node" parent="StateMachine" unique_id=899933541]
+script = ExtResource("12_4umgf")
+
+[node name="SecondaryAction" type="Node" parent="StateMachine" unique_id=283348515]
+script = ExtResource("13_5yyo5")
+
+[node name="SpecialAction" type="Node" parent="StateMachine" unique_id=810876236]
+script = ExtResource("14_stinp")
+
 [node name="Animator" type="AnimationTree" parent="." unique_id=91672609]
 root_node = NodePath("../Body/CharacterModel")
-tree_root = ExtResource("10_08tcn")
+tree_root = ExtResource("15_y2pnb")
 anim_player = NodePath("../Body/CharacterModel/AnimationPlayer")
 parameters/running/blend_position = 0.0
 parameters/interact_one_shot/active = false
 parameters/interact_one_shot/internal_active = false
 parameters/interact_one_shot/request = 0
 parameters/falling/blend_amount = 0.0
-parameters/attack_one_shot/active = false
-parameters/attack_one_shot/internal_active = false
-parameters/attack_one_shot/request = 0
-script = ExtResource("11_dyod8")
+parameters/primary_attack_one_shot/active = false
+parameters/primary_attack_one_shot/internal_active = false
+parameters/primary_attack_one_shot/request = 0
+parameters/primary_attack/blend_position = 0.0
+script = ExtResource("16_y2pnb")
 
 [editable path="Body/CharacterModel"]
 [editable path="ThirdPersonCamera"]
