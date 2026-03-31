@@ -30,6 +30,8 @@ min_space = 0.0
 max_space = 2.0
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_jcwrn"]
+filter_enabled = true
+filters = ["metarig/Skeleton3D:spine.001", "metarig/Skeleton3D:spine.002", "metarig/Skeleton3D:spine.006", "metarig/Skeleton3D:upper_arm.L", "metarig/Skeleton3D:upper_arm.R", "metarig/Skeleton3D:weapon_grip.R"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8ig4"]
 animation = &"Idle"
@@ -45,7 +47,7 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 
 [resource]
-graph_offset = Vector2(-216.51709, 450.1765)
+graph_offset = Vector2(-111.07684, 357.80164)
 nodes/output/position = Vector2(1140, 480)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
 nodes/running/position = Vector2(20, 80)

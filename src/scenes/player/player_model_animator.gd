@@ -1,4 +1,4 @@
-class_name PlayerAnimator
+class_name PlayerModelAnimator
 extends AnimationTree
 
 var _falling_blend_amount = "parameters/falling/blend_amount"

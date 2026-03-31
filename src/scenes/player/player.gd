@@ -8,7 +8,7 @@ class_name Player
 @export var body: CharacterBody3D
 @export var camera_controller: CameraController
 @export var camera: Camera3D
-@export var animator: PlayerAnimator
+@export var model_animator: PlayerModelAnimator
 @export var lock_on_ray: RayCast3D
 
 var status: PlayerStatus
@@ -20,7 +20,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 func _ready() -> void:
 	configure_player(PlayerStatus.new())
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:	

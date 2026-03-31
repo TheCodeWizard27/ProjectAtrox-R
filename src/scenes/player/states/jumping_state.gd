@@ -19,7 +19,7 @@ func init(current_player: Player) -> void:
 	lock_on_processor = PlayerLockOnProcessor.new(current_player)
 	movement_processor = PlayerMovementProcessor.new(current_player)
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	_jump_time = 0
 	
 	_min_velocity = sqrt(min_jump_height * 2 * Globals.GRAVITY)
@@ -33,7 +33,7 @@ func enter(msg: Dictionary = {}) -> void:
 
 func physics_update(delta: float) -> void:
 	
-	animator.advance_falling_to(1, delta)
+	model_animator.advance_falling_to(1, delta)
 	
 	var still_jumping = Input.is_action_pressed("jump")
 	if(_min_jump_time <= _jump_time && !still_jumping || still_jumping && _max_jump_time <= _jump_time):

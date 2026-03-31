@@ -4,7 +4,8 @@ extends State
 
 var player: WarriorClass
 var body: CharacterBody3D
-var animator: PlayerAnimator
+var model_animator: WarriorModelAnimator
+var event_animator: AnimationPlayer
 
 const AIRBORNE: NodePath = PlayerState.AIRBORNE
 const GROUNDED: NodePath = PlayerState.GROUNDED
@@ -19,7 +20,8 @@ const WARRIOR_SECONDARY_ACTION: NodePath = ^'SecondaryAction'
 const WARRIOR_SPECIAL_ACTION: NodePath = ^'SpecialAction'
 const WARRIOR_DEFENSIVE_ACTION: NodePath = ^'DefensiveAction'
 
-func init(current_player: Player) -> void:
+func init(current_player: WarriorClass) -> void:
 	player = current_player
-	animator = player.animator
+	model_animator = player.model_animator
+	event_animator = player.event_animator
 	body = player.body

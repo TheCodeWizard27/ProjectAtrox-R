@@ -2,6 +2,7 @@ extends Player
 class_name WarriorClass
 
 @export var state_machine: StateMachine
+@export var event_animator: AnimationPlayer
 
 func _ready() -> void:
 	super._ready()
@@ -9,7 +10,7 @@ func _ready() -> void:
 
 func _init_state_machine() -> void:
 	for state in state_machine.get_children():
-		if state is PlayerState:
+		if state is WarriorState:
 			state.init(self)
 
 func _process(delta: float) -> void:

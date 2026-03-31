@@ -1,6 +1,6 @@
 
-class_name WarriorAnimator
-extends PlayerAnimator
+class_name WarriorModelAnimator
+extends PlayerModelAnimator
 
 enum PrimaryAttackBlendPositions {
 	ATTACK1 = 0,

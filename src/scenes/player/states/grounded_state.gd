@@ -11,7 +11,7 @@ func init(current_player: Player) -> void:
 
 func physics_update(delta: float) -> void:
 	
-	animator.advance_falling_to(0, delta)
+	model_animator.advance_falling_to(0, delta)
 	
 	if(!body.is_on_floor()):
 		transition_to(PlayerState.AIRBORNE)
@@ -24,4 +24,4 @@ func physics_update(delta: float) -> void:
 	movement_processor.process_movement(delta)
 	lock_on_processor.process_lock_on()
 	
-	animator.set_running(Vector2(body.velocity.x, body.velocity.z).length())
+	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length())
