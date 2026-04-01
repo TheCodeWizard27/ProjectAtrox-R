@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="3_b24kb"]
 [ext_resource type="PackedScene" uid="uid://bgpjfb0nodr34" path="res://src/scenes/player/classes/warrior/warrior_hud.tscn" id="4_ifccw"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_fssxm"]
+[ext_resource type="Material" uid="uid://d1ugxo0ous3b7" path="res://src/scenes/player/classes/warrior/effects/swing_test_shader.tres" id="6_5yyo5"]
 [ext_resource type="Script" uid="uid://3thijxavsnjv" path="res://src/scenes/player/classes/warrior/states/warrior_airborne_state.gd" id="7_y2pnb"]
 [ext_resource type="Script" uid="uid://dmif3q0xh71gw" path="res://src/scenes/player/classes/warrior/states/warrior_grounded_state.gd" id="8_4umgf"]
 [ext_resource type="Script" uid="uid://bvnivrma7a70q" path="res://src/scenes/player/classes/warrior/states/warrior_jumping_state.gd" id="9_5yyo5"]
@@ -50,17 +51,78 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0ruc2")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_omrbx"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_2ono0"]
-material = SubResource("ShaderMaterial_omrbx")
+material = ExtResource("6_5yyo5")
+size = Vector2(3, 2)
 
 [sub_resource type="Animation" id="Animation_34in5"]
 resource_name = "Primary_Attack_Step_1"
+length = 0.36666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing1Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5yyo5"]
+resource_name = "Primary_Attack_Step_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing2Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.32, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_08tcn"]
+resource_name = "Primary_Attack_Step_3"
+
+[sub_resource type="Animation" id="Animation_stinp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing1Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Effects/Swing2Effect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8pjd2"]
 _data = {
-&"Primary_Attack_Step_1": SubResource("Animation_34in5")
+&"Primary_Attack_Step_1": SubResource("Animation_34in5"),
+&"Primary_Attack_Step_2": SubResource("Animation_5yyo5"),
+&"Primary_Attack_Step_3": SubResource("Animation_08tcn"),
+&"RESET": SubResource("Animation_stinp")
 }
 
 [node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "event_animator", "body", "camera_controller", "camera", "model_animator", "lock_on_ray")]
@@ -91,22 +153,23 @@ shape = ExtResource("1_is7nx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 98106607) index="0" unique_id=2131159765]
-bones/0/position = Vector3(0, 1.0099, -0.05519999)
-bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
-bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
-bones/6/rotation = Quaternion(-0.09371196, 0, 0, 0.9955994)
-bones/8/rotation = Quaternion(-0.2563101, 0.57206917, -0.59321797, 0.5051085)
-bones/13/rotation = Quaternion(-0.21630374, -0.5849777, 0.572819, 0.53187615)
-bones/16/rotation = Quaternion(0.06127733, 0.111031, -0.02300871, 0.9916591)
-bones/21/position = Vector3(0.18157439, 0.033877574, 0.03546571)
-bones/21/rotation = Quaternion(0.98694795, 0.005768032, -0.0017413022, 0.16092743)
+bones/0/position = Vector3(0, 1.0099, -0.0552)
+bones/0/rotation = Quaternion(0.16907603, 0, 0, 0.98560303)
+bones/1/rotation = Quaternion(0.048092164, 0.12536912, -0.017879555, 0.9907826)
+bones/2/rotation = Quaternion(-0.11698206, -0.25108603, 0.04605643, 0.9597656)
+bones/6/rotation = Quaternion(-0.09312516, 0.087016866, 0.013874188, 0.99174756)
+bones/8/rotation = Quaternion(-0.22273114, 0.73278564, -0.4286139, 0.47927684)
+bones/13/rotation = Quaternion(-0.1635326, -0.8331454, 0.1781149, 0.49739426)
+bones/16/rotation = Quaternion(0.061277345, 0.11103099, -0.023008697, 0.9916591)
+bones/21/position = Vector3(0.1815744, 0.033877462, 0.035465706)
+bones/21/rotation = Quaternion(0.9983145, -0.019923953, 0.0062229275, 0.054153197)
 bones/25/rotation = Quaternion(0.66654545, 0.7213118, 0.16561517, -0.08943218)
-bones/26/position = Vector3(-0.18157439, 0.033877574, 0.03546571)
-bones/26/rotation = Quaternion(0.98694795, -0.005768032, 0.0017413022, 0.16092743)
-bones/29/rotation = Quaternion(0.0048180884, 0.98211515, 0.18209876, -0.047610126)
+bones/26/position = Vector3(-0.1815744, 0.033877462, 0.035465706)
+bones/26/rotation = Quaternion(0.95023644, 0.018745149, 0.0069251047, 0.3108883)
+bones/29/rotation = Quaternion(0.0048180856, 0.98211515, 0.18209876, -0.047610123)
 
 [node name="RightHandAttachment" type="BoneAttachment3D" parent="Body/CharacterModel/metarig/Skeleton3D" index="9" unique_id=1764670545]
-transform = Transform3D(-0.95069414, -0.2910756, 0.1070368, 0.30860043, -0.9221275, 0.23333895, 0.030782267, 0.2548655, 0.96648604, -0.5183782, 0.85081184, 0.099192664)
+transform = Transform3D(-0.80046934, -0.47669855, -0.36332962, 0.5743956, -0.4369294, -0.6922153, 0.17122844, -0.76279217, 0.62356144, -0.61753285, 1.3070339, -0.6235647)
 bone_name = "weapon_grip.R"
 bone_idx = 16
 
@@ -115,7 +178,7 @@ remote_path = NodePath("../../../../../../RightHand")
 update_scale = false
 
 [node name="LeftHandAttachment" type="BoneAttachment3D" parent="Body/CharacterModel/metarig/Skeleton3D" index="10" unique_id=1164519082]
-transform = Transform3D(-0.97836035, 0.19025648, -0.08133148, -0.20460884, -0.948075, 0.24349383, -0.030782029, 0.25486568, 0.966486, 0.43659684, 0.82593405, 0.09919278)
+transform = Transform3D(-0.8232934, 0.47296098, -0.31384224, -0.33637196, -0.85189396, -0.40141043, -0.4572118, -0.22491091, 0.8604487, 0.66531926, 0.9397872, -0.07458607)
 bone_name = "weapon_grip.L"
 bone_idx = 11
 
@@ -129,18 +192,25 @@ mesh = SubResource("ArrayMesh_y2pnb")
 
 [node name="Effects" type="Node3D" parent="Body" unique_id=78326708]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Effects" unique_id=667567759]
-transform = Transform3D(0.6867958, 0, -0.72685045, 0, 1, 0, 0.72685045, 0, 0.6867958, 0, 0, 0.9894986)
+[node name="Swing1Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=667567759]
+transform = Transform3D(0.49488807, 0.6933766, -0.5237505, -0.47620815, 0.72057533, 0.5039811, 0.72685045, -4.1812292e-08, 0.6867958, 0.0062264204, 0.35963196, 0.4962433)
+visible = false
 mesh = SubResource("PlaneMesh_2ono0")
 
+[node name="Swing2Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=906931547]
+transform = Transform3D(0.26635796, -0.7417889, -0.615469, 0.22133799, 0.66854537, -0.70996946, 0.9381168, 0.0528792, 0.34225866, 0.01312536, 0.35611898, 0.7895774)
+visible = false
+mesh = SubResource("PlaneMesh_2ono0")
+skeleton = NodePath("../Swing1Effect")
+
 [node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
-transform = Transform3D(-0.9506884, -0.2910739, 0.10703655, 0.30859855, -0.922122, 0.23333843, 0.03078208, 0.254864, 0.96648383, -0.5069494, -0.16794616, 0.09700575)
+transform = Transform3D(-0.8004591, -0.4766895, -0.36332816, 0.5743882, -0.43692106, -0.6922125, 0.17122623, -0.7627777, 0.62355894, -0.603918, 0.27821755, -0.6098169)
 
 [node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
 
 [node name="LeftHand" type="Node3D" parent="." unique_id=657774092]
-transform = Transform3D(-0.95679027, 0.18606186, -0.079538345, -0.2000978, -0.92717266, 0.23812547, -0.030103372, 0.24924661, 0.94517773, 0.4269711, -0.19227546, 0.09700587)
+transform = Transform3D(-0.8051421, 0.46253353, -0.3069229, -0.32895592, -0.8331121, -0.39256048, -0.44713157, -0.21995227, 0.8414783, 0.65065086, -0.08093244, -0.07294166)
 
 [node name="StateMachine" type="Node" parent="." unique_id=453382211]
 script = ExtResource("5_fssxm")
