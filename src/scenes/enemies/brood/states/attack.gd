@@ -2,7 +2,7 @@ extends BroodState
 
 var _stuck_time: float
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	_stuck_time = enemy.attack_time
 	enemy.attack()
 

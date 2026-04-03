@@ -12,14 +12,6 @@ operator = 2
 default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 0)]
 op_type = 0
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fcpuv"]
-parameter_name = "Multiplier"
-default_value_enabled = true
-default_value = 1.0
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2fkct"]
-operator = 2
-
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bnkpf"]
 parameter_name = "Mask"
 texture_filter = 3
@@ -45,7 +37,7 @@ operator = 2
 modes/cull = 2
 flags/unshaded = true
 nodes/vertex/0/position = Vector2(720, 100)
-nodes/fragment/0/position = Vector2(960, -40)
+nodes/fragment/0/position = Vector2(660, 120)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_bnkpf")
 nodes/fragment/4/position = Vector2(-500, -140)
 nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_tgkdr")
@@ -64,11 +56,7 @@ nodes/fragment/12/node = SubResource("VisualShaderNodeVectorOp_2fkct")
 nodes/fragment/12/position = Vector2(-340, 680)
 nodes/fragment/13/node = SubResource("VisualShaderNodeVectorOp_blx50")
 nodes/fragment/13/position = Vector2(-100, 220)
-nodes/fragment/15/node = SubResource("VisualShaderNodeFloatParameter_fcpuv")
-nodes/fragment/15/position = Vector2(340, -220)
-nodes/fragment/16/node = SubResource("VisualShaderNodeFloatOp_2fkct")
-nodes/fragment/16/position = Vector2(680, -60)
-nodes/fragment/connections = PackedInt32Array(4, 0, 5, 2, 7, 0, 5, 0, 6, 0, 8, 2, 5, 0, 9, 0, 10, 0, 12, 0, 7, 0, 13, 0, 12, 0, 13, 1, 13, 0, 8, 0, 15, 0, 16, 0, 9, 0, 16, 1, 16, 0, 0, 1)
+nodes/fragment/connections = PackedInt32Array(4, 0, 5, 2, 7, 0, 5, 0, 6, 0, 8, 2, 5, 0, 9, 0, 9, 0, 0, 1, 10, 0, 12, 0, 7, 0, 13, 0, 12, 0, 13, 1, 13, 0, 8, 0)
 
 [sub_resource type="Gradient" id="Gradient_fcpuv"]
 offsets = PackedFloat32Array(0, 0.3875598)
@@ -81,5 +69,4 @@ fill_to = Vector2(1, 1)
 [resource]
 render_priority = 0
 shader = SubResource("VisualShader_mes60")
-shader_parameter/Multiplier = 1.0
 shader_parameter/Mask = SubResource("GradientTexture2D_2fkct")

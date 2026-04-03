@@ -42,6 +42,7 @@ metadata/_custom_type_script = "uid://cdks6t7elwdpu"
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=57466989]
 disable_mode = 1
+collision_layer = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
 platform_on_leave = 2
@@ -54,13 +55,16 @@ shape = SubResource("BoxShape3D_s7ftr")
 
 [node name="BuffBox" type="Area3D" parent="CharacterBody3D" unique_id=852696667]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 64
 
 [node name="BroodBuffBox" type="CollisionShape3D" parent="CharacterBody3D/BuffBox" unique_id=1602038313]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_s7ftr")
 
-[node name="PlayerDetector" type="Area3D" parent="CharacterBody3D" unique_id=749085221 groups=["enemy"]]
+[node name="PlayerDetector" type="Area3D" parent="CharacterBody3D" unique_id=749085221]
 unique_name_in_owner = true
+collision_layer = 0
 collision_mask = 8
 
 [node name="PlayerDetectionBox" type="CollisionShape3D" parent="CharacterBody3D/PlayerDetector" unique_id=1594378233]

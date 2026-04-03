@@ -7,6 +7,9 @@ class_name Hud
 @onready var _health_bar: MeshInstance3D = $Health/Health
 
 func _process(delta: float) -> void:
+	if (not is_instance_valid(player.lock_on_target)):
+		player.lock_on_target = null
+		
 	update_target_indicator(player.lock_on_target, delta)
 	update_health(player.status.current_health if player.status != null else 0)
 
