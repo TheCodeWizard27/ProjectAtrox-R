@@ -16,8 +16,12 @@ func replace_in(node: Node) -> Node:
 	return _current_node
 
 func clear() -> void:
+	print_debug('TestSpawn: Entering clear', _current_node)
 	if (_current_node == null): return
 
 	get_parent().remove_child(_current_node)
+	print_debug('TestSpawn: removed child', _current_node)
 	_current_node.queue_free()
+	print_debug('TestSpawn: queue freed', _current_node)
+	print_debug('test')
 	_current_node = null

@@ -3,7 +3,7 @@ extends BaseEnemy
 
 @onready var attack_box: Area3D = %AttackBox	
 @onready var navigation_agent = $Body/NavigationAgent3D
-	
+
 func _ready() -> void:
 	attack_box.body_entered.connect(_on_body_entered)
 	current_health = max_health
@@ -24,6 +24,7 @@ func is_near_player(target: Player) -> bool:
 	return distance <= attack_distance
 
 func attack() -> void:
+	
 	pass
 
 func _on_body_entered(body: Node3D) -> void:

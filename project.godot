@@ -27,6 +27,7 @@ Events="*res://src/core/events/events.gd"
 
 enemy="Hostile Enemies"
 player="player group used for checks with enemies"
+brood=""
 
 [input]
 

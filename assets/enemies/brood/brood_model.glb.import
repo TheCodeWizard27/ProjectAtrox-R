@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dm5vagvd2huy7"
-path="res://.godot/imported/brood_mother_model.glb-3a916fef692eb7d6baa59ed5ed00d084.scn"
+uid="uid://cqyud2x4l6eu2"
+path="res://.godot/imported/brood_model.glb-347c600d093e6d6d29d2316d7022e6f3.scn"
 
 [deps]
 
-source_file="res://src/assets/enemies/brood_mother/brood_mother_model.glb"
-dest_files=["res://.godot/imported/brood_mother_model.glb-3a916fef692eb7d6baa59ed5ed00d084.scn"]
+source_file="res://assets/enemies/brood/brood_model.glb"
+dest_files=["res://.godot/imported/brood_model.glb-347c600d093e6d6d29d2316d7022e6f3.scn"]
 
 [params]
 

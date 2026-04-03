@@ -49,3 +49,5 @@ debug_fill = false
 
 [node name="CharacterModel" parent="." unique_id=729880815 instance=ExtResource("7_op4lk")]
 transform = Transform3D(-0.78013563, 0, 0.6256104, 0, 1, 0, -0.6256104, 0, -0.78013563, -3.9462662, -1.1306789, 4.410146)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1293643378]
