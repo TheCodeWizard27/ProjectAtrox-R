@@ -65,6 +65,7 @@ script = ExtResource("1_swhsd")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=127344006]
 unique_name_in_owner = true
+collision_layer = 9
 
 [node name="Collision" type="CollisionShape3D" parent="Body" unique_id=1076632591]
 shape = SubResource("CapsuleShape3D_swhsd")

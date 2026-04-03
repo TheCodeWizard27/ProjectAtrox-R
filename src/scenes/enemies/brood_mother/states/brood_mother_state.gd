@@ -3,6 +3,6 @@ extends State
 
 @onready var enemy: BroodMotherEnemy = $"../.."
 
-const GUARD: NodePath = ^"Buff"
-const CHASE: NodePath = ^"Idle"
-const ATTACK: NodePath = ^"Spawn"
+const BUFF: NodePath = ^"Buff"
+const IDLE: NodePath = ^"Idle"
+const SPAWN: NodePath = ^"Spawn"

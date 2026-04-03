@@ -1,55 +1,68 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb8j82ssna7fh"]
+[gd_scene format=3 uid="uid://bb8j82ssna7fh"]
 
 [ext_resource type="Script" uid="uid://cactynink7kqy" path="res://src/scenes/enemies/brood_mother/brood_mother_enemy.gd" id="1_qnsa3"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_fx7rg"]
 [ext_resource type="Script" uid="uid://dt3o6cyrv5wps" path="res://src/scenes/enemies/brood_mother/states/buff.gd" id="3_vvups"]
 [ext_resource type="Script" uid="uid://1fx7nbud8aiq" path="res://src/scenes/enemies/brood_mother/states/idle.gd" id="4_rlda7"]
 [ext_resource type="Script" uid="uid://cdks6t7elwdpu" path="res://src/scenes/enemies/brood_mother/states/spawn.gd" id="5_rlda7"]
-[ext_resource type="PackedScene" uid="uid://dm5vagvd2huy7" path="res://src/assets/enemies/brood_mother/brood_mother_model.glb" id="6_33018"]
+[ext_resource type="PackedScene" uid="uid://chnp87y0a3qu" path="res://assets/enemies/brood_mother/brood_mother_model.blend" id="6_33018"]
+[ext_resource type="PackedScene" uid="uid://bji3kv2a6nil7" path="res://src/scenes/enemies/brood/brood_enemy.tscn" id="6_s7ftr"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_33018"]
-radius = 1.8026218
+[sub_resource type="BoxShape3D" id="BoxShape3D_s7ftr"]
+size = Vector3(2.0796509, 2.237915, 1.5991211)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s7ftr"]
 radius = 10.096907
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s1ix4"]
 
-[node name="BroodMotherEnemy" type="Node3D"]
+[node name="BroodMotherEnemy" type="Node3D" unique_id=1155623027 node_paths=PackedStringArray("state", "body", "player_detector")]
 script = ExtResource("1_qnsa3")
+state = NodePath("StateMachine")
+body = NodePath("CharacterBody3D")
+player_detector = NodePath("CharacterBody3D/PlayerDetector")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=467709397]
 script = ExtResource("2_fx7rg")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://brf10fbscg178"
 
-[node name="BroodMotherBuffState" type="Node" parent="StateMachine"]
+[node name="Buff" type="Node" parent="StateMachine" unique_id=2072060348]
 script = ExtResource("3_vvups")
 metadata/_custom_type_script = "uid://dt3o6cyrv5wps"
 
-[node name="BroodMotherIdleState" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=465664041]
 script = ExtResource("4_rlda7")
 metadata/_custom_type_script = "uid://1fx7nbud8aiq"
 
-[node name="BroodMotherSpawnState" type="Node" parent="StateMachine"]
+[node name="Spawn" type="Node" parent="StateMachine" unique_id=891585378]
 script = ExtResource("5_rlda7")
+spawn_scene = ExtResource("6_s7ftr")
 metadata/_custom_type_script = "uid://cdks6t7elwdpu"
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=57466989]
+disable_mode = 1
+motion_mode = 1
+wall_min_slide_angle = 0.0
+platform_on_leave = 2
 
-[node name="brood_mother_model" parent="CharacterBody3D" instance=ExtResource("6_33018")]
+[node name="BroodMotherModel" parent="CharacterBody3D" unique_id=1972363658 instance=ExtResource("6_33018")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29205918, 0.55866385, 0.8454977)
-shape = SubResource("SphereShape3D_33018")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1284111887]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.16682565, 1.0629187, 0.60481095)
+shape = SubResource("BoxShape3D_s7ftr")
 
-[node name="BuffBox" type="Area3D" parent="CharacterBody3D"]
+[node name="BuffBox" type="Area3D" parent="CharacterBody3D" unique_id=852696667]
+unique_name_in_owner = true
 
-[node name="BroodBuffBox" type="CollisionShape3D" parent="CharacterBody3D/BuffBox"]
+[node name="BroodBuffBox" type="CollisionShape3D" parent="CharacterBody3D/BuffBox" unique_id=1602038313]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_s7ftr")
 
-[node name="PlayerDetector" type="Area3D" parent="CharacterBody3D"]
+[node name="PlayerDetector" type="Area3D" parent="CharacterBody3D" unique_id=749085221 groups=["enemy"]]
+unique_name_in_owner = true
+collision_mask = 8
 
-[node name="PlayerDetectionBox" type="CollisionShape3D" parent="CharacterBody3D/PlayerDetector"]
+[node name="PlayerDetectionBox" type="CollisionShape3D" parent="CharacterBody3D/PlayerDetector" unique_id=1594378233]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 shape = SubResource("SphereShape3D_s1ix4")
