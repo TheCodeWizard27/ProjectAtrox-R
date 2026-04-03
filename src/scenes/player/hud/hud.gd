@@ -1,14 +1,19 @@
 extends Node3D
 class_name Hud
 
+@export var player: Player
+
 @onready var _target_indicator: Node3D = $TargetIndicator
 @onready var _health_bar: MeshInstance3D = $Health/Health
-@onready var _combat_class_hud: PlaceholderNode = $CombatClassHud
 
-func load_in_combat_class(scene: Node) -> void:
-	_combat_class_hud.replace_in(scene)
+func _process(delta: float) -> void:
+	if (not is_instance_valid(player.lock_on_target)):
+		player.lock_on_target = null
+		
+	update_target_indicator(player.lock_on_target, delta)
+	update_health(player.status.current_health if player.status != null else 0)
 
-func update_target_indicator(target: Node3D, delta: float) -> void:
+func update_target_indicator(target: Node3D, _delta: float) -> void:
 	if (!target):
 		_target_indicator.hide()
 		return

@@ -10,13 +10,13 @@ func transition_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
 func transition_back(msg: Dictionary = {}) -> void: 
 	transitioned_back.emit(msg)
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	pass
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	pass
 
 func exit() -> void:

@@ -187,3 +187,4 @@ camera_down={
 3d_physics/layer_4="PlayerDetection Layer"
 3d_physics/layer_5="PlayerHurtbox Layer"
 3d_physics/layer_6="EnemyHurtboxLayer"
+3d_physics/layer_7="EnemyDetection Layer"

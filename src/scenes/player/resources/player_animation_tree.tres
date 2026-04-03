@@ -1,0 +1,39 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://bd3ovodbk2668"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gf5d"]
+animation = &"Falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ap8y"]
+animation = &"Interacting"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8tvdu"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6ap8y"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8ig4"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mc3vd"]
+animation = &"Running"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7vxwc"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_w8ig4")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_mc3vd")
+blend_point_1/pos = 1.0
+min_space = 0.0
+
+[resource]
+graph_offset = Vector2(-433.32233, 287.99667)
+nodes/output/position = Vector2(800, 460)
+nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
+nodes/running/position = Vector2(20, 80)
+nodes/interact_one_shot/node = SubResource("AnimationNodeOneShot_6ap8y")
+nodes/interact_one_shot/position = Vector2(260, 180)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6gf5d")
+nodes/Animation/position = Vector2(260, 520)
+nodes/falling/node = SubResource("AnimationNodeBlend2_8tvdu")
+nodes/falling/position = Vector2(580, 380)
+nodes/Interact/node = SubResource("AnimationNodeAnimation_6ap8y")
+nodes/Interact/position = Vector2(20, 440)
+node_connections = [&"output", 0, &"falling", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"Interact", &"falling", 0, &"interact_one_shot", &"falling", 1, &"Animation"]

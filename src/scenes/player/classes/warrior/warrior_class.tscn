@@ -1,0 +1,492 @@
+[gd_scene format=4 uid="uid://le3yy5umvrvy"]
+
+[ext_resource type="Script" uid="uid://cy2n1mm1m2j0m" path="res://src/scenes/player/classes/warrior/warrior_class.gd" id="1_0sr62"]
+[ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="1_is7nx"]
+[ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="2_0sr62"]
+[ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="3_b24kb"]
+[ext_resource type="PackedScene" uid="uid://bgpjfb0nodr34" path="res://src/scenes/player/classes/warrior/warrior_hud.tscn" id="4_ifccw"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_fssxm"]
+[ext_resource type="Material" uid="uid://d1ugxo0ous3b7" path="res://src/scenes/player/classes/warrior/effects/swing_test_shader.tres" id="6_5yyo5"]
+[ext_resource type="Script" uid="uid://3thijxavsnjv" path="res://src/scenes/player/classes/warrior/states/warrior_airborne_state.gd" id="7_y2pnb"]
+[ext_resource type="Script" uid="uid://dmif3q0xh71gw" path="res://src/scenes/player/classes/warrior/states/warrior_grounded_state.gd" id="8_4umgf"]
+[ext_resource type="Script" uid="uid://bvnivrma7a70q" path="res://src/scenes/player/classes/warrior/states/warrior_jumping_state.gd" id="9_5yyo5"]
+[ext_resource type="Script" path="res://src/scenes/player/states/dead_state.gd" id="9_stinp"]
+[ext_resource type="Script" uid="uid://okdrs1m60cwd" path="res://src/scenes/player/classes/warrior/states/warrior_defensive_action_state.gd" id="11_y2pnb"]
+[ext_resource type="Script" uid="uid://cg7y30i8lt0lm" path="res://src/scenes/player/classes/warrior/states/warrior_primary_action_state.gd" id="12_4umgf"]
+[ext_resource type="Script" uid="uid://c2oalqqye5xnc" path="res://src/scenes/player/classes/warrior/states/warrior_secondary_action_state.gd" id="13_5yyo5"]
+[ext_resource type="Script" uid="uid://dbmcjcr1k13w4" path="res://src/scenes/player/classes/warrior/states/warrior_special_action_state.gd" id="14_stinp"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://chhbufkv1xytj" path="res://src/scenes/player/classes/warrior/warrior_animation_tree.tres" id="15_y2pnb"]
+[ext_resource type="Script" uid="uid://p6bqxfl7mdb4" path="res://src/scenes/player/classes/warrior/warrior_animator.gd" id="16_y2pnb"]
+[ext_resource type="PackedScene" uid="uid://0i1l2nv7vq4u" path="res://assets/player/WeaponModel.blend" id="17_4umgf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt1od"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0ruc2"]
+_surfaces = [{
+"aabb": AABB(-0.3646519, -3.743784, -0.68274665, 0.7129808, 20.214735, 1.3572215),
+"format": 34359742465,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAAAAAIAAAAFAAEABgACAAMABwAAAAQABAACAAgABgAIAAIAAwABAAkACgAEAAgAAwALAAYAAwAMAAsACQAMAAMABgALAA0ADQALAAwADgANAAwACQAOAAwADwANAA4ADwAOAAkABgANAA8ABgAQAAgADwAQAAYACgAIABAACQARAA8ADwARABAACQABABIACQASABEABQASAAEAEwAQABEAEwAKABAAFAARABIAFAATABEABQAUABIAFQAKABMAFgATABQAFQATABYAFgAUABcAFwAUAAUAFwAFABgAGAAFAAAAFwAZABYAGAAZABcAFgAZABoAFgAaABUAGAAbABkAGAAAAAcAGwAcABkAGQAcABoAGAAdABsAHQAcABsABwAdABgAGgAcAB4AFQAaAB4AHwAcAB0ABwAfAB0AHAAfAB4AHgAfACAABwAgAB8AFQAeACAAIAAHACEAFQAgACEABwAEACEAIQAKABUAIQAEAAoA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 34,
+"vertex_data": PackedByteArray("35eivnywhz8+9U27p7O6vskJ/j98yC6/35eivnzgwz8+C267nx9ivng1wT8+n2y7n8ouvmN5iD9D9Q0+n8ouvpfnhj/vZBS+r7cFvE2K6T8wWIE+E5wgvtTcTj++2A27p7O6vnzGAkBiqiw/r7cFvDuz5j+nXYW+qRMePmN5iD9D9Q0+r7cFvBA5cUFiyMw9GVeavYLEg0H4MJ28W9JxPYLEg0H4MJ28r7cFvFsPcUFftAq+qWhRPng1wT8+n2y7K1iyPnzGAkBiqiw/YzyaPnzgwz8+C267K1iyPskJ/j98yC6/YzyaPnywhz8+9U27qRMePpfnhj/vZBS+Tye/PXBUTz8E/iM9PVgMPtTcTj++2A27Tye/PT5lTj8cuTW9/a7nvT5lTj8cuTW9Tye/PQB/H8AcqCe9Z5sDPeCdH8CF8KY6/a7nvQB/H8AcqCe9r7cFvCiab8CFrPM6W3VQvfLwIMCFxKk6Tye/PTJDH8AUDzI9r9PmvcJ7H8CEXzE9/a7nvTJDH8AUDzI9/a7nvXBUTz8E/iM9")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y2pnb"]
+resource_name = "CharacterModel_Cube_004"
+_surfaces = [{
+"aabb": AABB(-0.3646519, -3.743784, -0.68274665, 0.7129808, 20.214735, 1.3572215),
+"attribute_data": PackedByteArray("AADAPgAAYD8AACA/AABAPwAAID8AAGA/AADAPgAAQD8AAMA+AABAPwAAID8AAAA/AAAgPwAAQD8AAMA+AAAAPwAAwD4AAMA+AAAgPwAAgD4AACA/AADAPgAAwD4AAIA+AADAPgAAgD4AACA/AAAAAAAAID8AAIA+AADAPgAAAABJcT0+zkTXPl1HoT7ORNc+XUehPs5E1z5JcT0+zkTXPhiaMD9Q7oo+KiIqP/gKvj4qIio/+Aq+PhiaMD9Q7oo+1t1VPwj1wT7qZU8/UO6KPuplTz9Q7oo+1t1VPwj1wT5bR6E+MLuoPklxPT4wu6g+SXE9PjC7qD5bR6E+MLuoPgAAwD4AAAA/AAAgPwAAwD4AACA/AAAAPwAAwD4AAMA+AADAPgAAgD8AACA/AABgPwAAID8AAIA/AADAPgAAYD/W3VU/CPXBPgAAYD8AAAA/6mVPP7AR9T4AAGA/AADAPhiaMD+wEfU+AABgPwAAAD8AACA/AAAAPyoiKj/4Cr4+AAAgPwAAgD4YmjA/UO6KPgAAID8AAMA+6mVPP1Duij4AACA/AACAPgAAYD8AAIA+6mVPP1Duij4AAGA/AADAPtbdVT8I9cE+AABgPwAAgD4YmjA/sBH1PgAAID8AAMA+KiIqP/gKvj4AACA/AAAAPyoiKj/4Cr4+GJowP1Duij7W3VU/CPXBPuplTz+wEfU+KiIqP/gKvj7W3VU/CPXBPuplTz+wEfU+1t1VPwj1wT7W3VU/CPXBPuplTz+wEfU+KiIqP/gKvj4YmjA/sBH1PhiaMD+wEfU+KiIqP/gKvj4ovzU+AADAPgAAAD4AAIA+SXE9PjC7qD4AAAA+AADAPl1HoT7ORNc+AAAAPgAAAD9JcT0+zkTXPgAAwD4AAAA/bCClPgAAwD4AAMA+AAAAP11HoT7ORNc+AADAPgAAwD5JcT0+MLuoPgAAwD4AAIA+W0ehPjC7qD4AAAA+AACAPklxPT7ORNc+AAAAPgAAwD4ovzU+AADAPgAAAD4AAAA/W0ehPjC7qD4AAMA+AADAPmwgpT4AAMA+AADAPgAAgD5sIKU+AADAPlkDPj5U06g+W0ehPjC7qD5JcT0+MLuoPklxPT7ORNc+KL81PgAAwD5dR6E+zkTXPii/NT4AAMA+KL81PgAAwD5JcT0+zkTXPklxPT7ORNc+XUehPs5E1z5dR6E+zkTXPmwgpT4AAMA+bCClPgAAwD5JcT0+MLuoPii/NT4AAMA+SXE9PjC7qD5NaT0+VNOoPii/NT4AAMA+bCClPgAAwD5sIKU+AADAPltHoT4wu6g+W0ehPjC7qD5sIKU+AADAPmwgpT4AAMA+W0ehPjC7qD5dR6E+zkTXPmwgpT4AAMA+bCClPgAAwD4ovzU+AADAPii/NT4AAMA+SXE9Ps5E1z5NaT0+VNOoPii/NT4AAMA+KL81PgAAwD4="),
+"format": 34359742487,
+"index_count": 192,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALwAwADEALwAyADAAMwA0ADUANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAQQBCAEMARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZgBlAGcAaABpAGoAawBsAG0AbQBsAG4AbwBwAHEAcQBwAHIAcwB0AHUAdABzAHYAdAB2AHcAeAB5AHoAegB5AHsAfAB9AH4AfwCAAIEAggCDAIQAhQCGAIcA"),
+"material": SubResource("StandardMaterial3D_lt1od"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 136,
+"vertex_data": PackedByteArray("35eivnywhz8+9U27p7O6vskJ/j98yC6/35eivnzgwz8+C267n8ouvpfnhj/vZBS+n8ouvpfnhj/vZBS+K1iyPskJ/j98yC6/p7O6vskJ/j98yC6/qRMePpfnhj/vZBS+YzyaPnywhz8+9U27K1iyPnzGAkBiqiw/YzyaPnzgwz8+C267qRMePmN5iD9D9Q0+qRMePmN5iD9D9Q0+p7O6vnzGAkBiqiw/K1iyPnzGAkBiqiw/n8ouvmN5iD9D9Q0+/a7nvT5lTj8cuTW9Tye/PQB/H8AcqCe9Tye/PT5lTj8cuTW9/a7nvQB/H8AcqCe9r7cFvE2K6T8wWIE+W9JxPYLEg0H4MJ28qWhRPng1wT8+n2y7r7cFvBA5cUFiyMw9nx9ivng1wT8+n2y7r7cFvBA5cUFiyMw9r7cFvE2K6T8wWIE+GVeavYLEg0H4MJ28Tye/PXBUTz8E/iM9/a7nvTJDH8AUDzI9/a7nvXBUTz8E/iM9Tye/PTJDH8AUDzI9qRMePpfnhj/vZBS+YzyaPnzgwz8+C267K1iyPskJ/j98yC6/YzyaPnywhz8+9U27n8ouvmN5iD9D9Q0+35eivnzgwz8+C267p7O6vnzGAkBiqiw/35eivnywhz8+9U27nx9ivng1wT8+n2y7p7O6vskJ/j98yC6/r7cFvDuz5j+nXYW+35eivnzgwz8+C267r7cFvDuz5j+nXYW+p7O6vskJ/j98yC6/K1iyPskJ/j98yC6/qWhRPng1wT8+n2y7K1iyPnzGAkBiqiw/r7cFvE2K6T8wWIE+YzyaPnzgwz8+C267r7cFvE2K6T8wWIE+K1iyPnzGAkBiqiw/p7O6vnzGAkBiqiw/r7cFvE2K6T8wWIE+35eivnzgwz8+C267nx9ivng1wT8+n2y7p7O6vnzGAkBiqiw/r7cFvDuz5j+nXYW+YzyaPnzgwz8+C267qWhRPng1wT8+n2y7K1iyPskJ/j98yC6/W9JxPYLEg0H4MJ28r7cFvBA5cUFiyMw9GVeavYLEg0H4MJ28r7cFvFsPcUFftAq+W9JxPYLEg0H4MJ28GVeavYLEg0H4MJ28r7cFvDuz5j+nXYW+GVeavYLEg0H4MJ28nx9ivng1wT8+n2y7r7cFvFsPcUFftAq+qWhRPng1wT8+n2y7r7cFvFsPcUFftAq+r7cFvDuz5j+nXYW+W9JxPYLEg0H4MJ28E5wgvtTcTj++2A27n8ouvmN5iD9D9Q0+/a7nvXBUTz8E/iM935eivnywhz8+9U27Tye/PT5lTj8cuTW9n8ouvpfnhj/vZBS+/a7nvT5lTj8cuTW9qRMePpfnhj/vZBS+PVgMPtTcTj++2A27qRMePpfnhj/vZBS+Tye/PT5lTj8cuTW9YzyaPnywhz8+9U27/a7nvXBUTz8E/iM9qRMePmN5iD9D9Q0+Tye/PXBUTz8E/iM9n8ouvmN5iD9D9Q0+/a7nvT5lTj8cuTW935eivnywhz8+9U27E5wgvtTcTj++2A27n8ouvpfnhj/vZBS+Tye/PXBUTz8E/iM9YzyaPnywhz8+9U27PVgMPtTcTj++2A27qRMePmN5iD9D9Q0+r7cFvCiab8CFrPM6r9PmvcJ7H8CEXzE9Tye/PTJDH8AUDzI9/a7nvTJDH8AUDzI9/a7nvQB/H8AcqCe9r7cFvCiab8CFrPM6Tye/PQB/H8AcqCe9E5wgvtTcTj++2A27W3VQvfLwIMCFxKk6/a7nvT5lTj8cuTW9/a7nvQB/H8AcqCe9Tye/PT5lTj8cuTW9Tye/PQB/H8AcqCe9PVgMPtTcTj++2A27Z5sDPeCdH8CF8KY6/a7nvTJDH8AUDzI9E5wgvtTcTj++2A27/a7nvXBUTz8E/iM9r9PmvcJ7H8CEXzE9W3VQvfLwIMCFxKk6PVgMPtTcTj++2A27Z5sDPeCdH8CF8KY6Tye/PXBUTz8E/iM9Tye/PTJDH8AUDzI9Z5sDPeCdH8CF8KY6r7cFvCiab8CFrPM6Tye/PTJDH8AUDzI9Tye/PQB/H8AcqCe9r7cFvCiab8CFrPM6Z5sDPeCdH8CF8KY6W3VQvfLwIMCFxKk6r7cFvCiab8CFrPM6/a7nvQB/H8AcqCe9r9PmvcJ7H8CEXzE9r7cFvCiab8CFrPM6W3VQvfLwIMCFxKk6NhRCVgtV3Pk2FEJWpVxo9zYUQlZHZPL0NhRCViJOFvwe0QAAyLGz/R7RAAASSzj7HtEAAKhHh/ge0QAAVriH+CDVGGwXjAzrINUYbOeQie4g1Rhs45Un8iDVGGyth9nn/3+qUjl7yef/f6pSd4lF5v9/qlKKjqLk/3+qUnRxouTe/wAA////v97/AAD///+/3v8AAP///7/e/wAA////v8bHsoD///8/xseygP///z/Gx7KA////P8bHsoD///8/ODiygP///z84OLKA////Pzg4soD///8/ODiygP///z//fyCA////P/9/IID///8//38ggP///z//fyCA////P8jrQlb4pUH4yOtCVtquHvvI60JW3LEW/MjrQla3m/L03ioYbGtwlO3eKhhsXHZF6d4qGGxReNnn3ioYbBtqJ/LRb8O/4QxU29Fvw796ExLh0W/Dv64V/uLRb8O/HAdO1v9/ZdkAAP+//39l2QAA/7//f2XZAAD/v+nCePD3D7uj6cJ48NAW+Z3pwnjwChkanOnCePBLCn+ot6v//wAA/7+3q///AAD/v7er//8AAP+/FT148PRCFMsVPXjwpiVcwhU9ePB0G0G4FT148PxGR8wtkMO//UCXti2Qw7/AJLO+LZDDvyMcY8gtkMO/LUVjtf9/FIoVOj6l/38UihU6PqX/fxSKFTo+pTX2//87OuPaNfb//zs649o19v//Ozrj2pQALrj///+/lAAuuP///7+UAC64////v5QALrj///+/av8uuP///79q/y64////v2r/Lrj///+/av8uuP///7+JUOxhdbFLlolQ7GGcsV2YiVDsYVmx1JSJUOxhubEDmQrbAAD///+/CtsAAP///78K2wAA////vwrbAAD///+/fuARMKayael+4BEwq7Jl537gETCjssrqfuARMKyyzub/f3Bc////v/9/cFz///+//39wXP///7//f3Bc////v/8eTTCIsAKZ/x5NMDyvAZn/Hk0wubEDmf8eTTDQrgGZNa9vYWqx3eY1r29hC7Dj5jWvb2Gsss/mNa9vYZ6v5eb1f+J7+/59v/V/4nt+/8G/9X/ie/7+f7/1f+J79P//v8L7AAD///+/wvsAAP///7/C+wAA////vwkYXH7///8/CRhcfv///z8JGFx+////PwkYXH7///8/q+hafv///z+r6Fp+////P6voWn7///8/q+hafv///z+wAf1n4H0+AbAB/WcAAACAsAH9Z////7+wAf1n4H0+AbAB/Wf///+/Tv7BaP///79O/sFo////v07+wWj///+/Tv7BaP///79M/qIz////v0z+ojP///+/TP6iM////7+as19+////P5qzX37///8/mrNffv///z+VTD5+////P5VMPn7///8/lUw+fv///z/SAXMz////v9IBczP///+/0gFzM////78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0ruc2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2ono0"]
+material = ExtResource("6_5yyo5")
+size = Vector2(3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stinp"]
+size = Vector3(1.2287292, 1.2212524, 1.387022)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_08tcn"]
+size = Vector3(1.2287292, 1.2212524, 1.387022)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yyo5"]
+size = Vector3(0.9412155, 1.2212524, 2.2106009)
+
+[sub_resource type="Animation" id="Animation_34in5"]
+resource_name = "Primary_Attack_Step_1"
+length = 0.36666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing1Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Effects/Swing1Effect:mesh:material:shader_parameter/Multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Hurtboxes/PrimaryStep1:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5yyo5"]
+resource_name = "Primary_Attack_Step_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing2Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.32, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Effects/Swing2Effect:mesh:material:shader_parameter/Multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.32, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Hurtboxes/PrimaryStep2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.32, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_08tcn"]
+resource_name = "Primary_Attack_Step_3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing3Effects:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.28, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.28, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Hurtboxes/PrimaryStep3:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.28, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_stinp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Effects/Swing1Effect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Effects/Swing2Effect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Effects/Swing1Effect:mesh:material:shader_parameter/Multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Effects/Swing2Effect:mesh:material:shader_parameter/Multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Effects/Swing3Effects:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Hurtboxes/PrimaryStep1:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Hurtboxes/PrimaryStep2:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/Hurtboxes/PrimaryStep3:monitoring")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8pjd2"]
+_data = {
+&"Primary_Attack_Step_1": SubResource("Animation_34in5"),
+&"Primary_Attack_Step_2": SubResource("Animation_5yyo5"),
+&"Primary_Attack_Step_3": SubResource("Animation_08tcn"),
+&"RESET": SubResource("Animation_stinp")
+}
+
+[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "event_animator", "body", "camera_controller", "camera", "model_animator", "lock_on_ray") groups=["player"]]
+script = ExtResource("1_0sr62")
+state_machine = NodePath("StateMachine")
+event_animator = NodePath("EventAnimator")
+body = NodePath("Body")
+camera_controller = NodePath("ThirdPersonCamera")
+camera = NodePath("ThirdPersonCamera/CameraArm/Camera")
+model_animator = NodePath("ModelAnimator")
+lock_on_ray = NodePath("ThirdPersonCamera/CameraArm/Camera/LockOnRay")
+
+[node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("3_b24kb")]
+
+[node name="WarriorHud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1864093527 node_paths=PackedStringArray("player") instance=ExtResource("4_ifccw")]
+player = NodePath("../../../..")
+
+[node name="Body" type="CharacterBody3D" parent="." unique_id=1479056175]
+collision_layer = 41
+
+[node name="CameraTracker" type="RemoteTransform3D" parent="Body" unique_id=321823901]
+remote_path = NodePath("../../ThirdPersonCamera")
+update_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=799407228]
+shape = ExtResource("1_is7nx")
+
+[node name="CharacterModel" parent="Body" unique_id=1094857873 instance=ExtResource("2_0sr62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 577986657) index="0" unique_id=1398493887]
+bones/0/position = Vector3(0, 1.0099, -0.05519999)
+bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
+bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
+bones/6/rotation = Quaternion(-0.09371196, 0, 0, 0.9955994)
+bones/8/rotation = Quaternion(-0.2563101, 0.57206917, -0.59321797, 0.5051085)
+bones/13/rotation = Quaternion(-0.21630374, -0.5849777, 0.572819, 0.53187615)
+bones/16/rotation = Quaternion(0.06127733, 0.111031, -0.02300871, 0.9916591)
+bones/21/position = Vector3(0.18157439, 0.033877574, 0.03546571)
+bones/21/rotation = Quaternion(0.98694795, 0.005768032, -0.0017413022, 0.16092743)
+bones/25/rotation = Quaternion(0.66654545, 0.7213118, 0.16561517, -0.08943218)
+bones/26/position = Vector3(-0.18157439, 0.033877574, 0.03546571)
+bones/26/rotation = Quaternion(0.98694795, -0.005768032, 0.0017413022, 0.16092743)
+bones/29/rotation = Quaternion(0.0048180884, 0.98211515, 0.18209876, -0.047610126)
+
+[node name="RightHandAttachment" type="BoneAttachment3D" parent="Body/CharacterModel/metarig/Skeleton3D" index="9" unique_id=1764670545]
+transform = Transform3D(-0.95069414, -0.2910756, 0.1070368, 0.30860043, -0.9221275, 0.23333895, 0.030782267, 0.2548655, 0.96648604, -0.5183782, 0.85081184, 0.099192664)
+bone_name = "weapon_grip.R"
+bone_idx = 16
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/CharacterModel/metarig/Skeleton3D/RightHandAttachment" unique_id=356607908]
+remote_path = NodePath("../../../../../../RightHand")
+update_scale = false
+
+[node name="LeftHandAttachment" type="BoneAttachment3D" parent="Body/CharacterModel/metarig/Skeleton3D" index="10" unique_id=1164519082]
+transform = Transform3D(-0.97836035, 0.19025648, -0.08133148, -0.20460884, -0.948075, 0.24349383, -0.030782029, 0.25486568, 0.966486, 0.43659684, 0.82593405, 0.09919278)
+bone_name = "weapon_grip.L"
+bone_idx = 11
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/CharacterModel/metarig/Skeleton3D/LeftHandAttachment" unique_id=79270609]
+remote_path = NodePath("../../../../../../LeftHand")
+
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=987980837]
+transform = Transform3D(-0.005017258, 0.07755357, 0.35081345, 0.044051666, 0.05062934, -0.44127432, -0.08956708, 0.020556662, -0.23668285, -0.738985, 2.0861967, 0.1559247)
+visible = false
+mesh = SubResource("ArrayMesh_y2pnb")
+
+[node name="Effects" type="Node3D" parent="Body" unique_id=78326708]
+
+[node name="Swing1Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=667567759]
+transform = Transform3D(0.49488807, 0.6933766, -0.5237505, -0.47620815, 0.72057533, 0.5039811, 0.72685045, -4.1812292e-08, 0.6867958, 0.0062264204, 0.35963196, 0.4962433)
+visible = false
+mesh = SubResource("PlaneMesh_2ono0")
+
+[node name="Swing2Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=906931547]
+transform = Transform3D(0.26635796, -0.7417889, -0.615469, 0.22133799, 0.66854537, -0.70996946, 0.9381168, 0.0528792, 0.34225866, 0.01312536, 0.35611898, 0.7895774)
+visible = false
+mesh = SubResource("PlaneMesh_2ono0")
+skeleton = NodePath("../Swing1Effect")
+
+[node name="Swing3Effects" type="Node3D" parent="Body/Effects" unique_id=1436080752]
+visible = false
+
+[node name="Swing3Effect" type="MeshInstance3D" parent="Body/Effects/Swing3Effects" unique_id=197931547]
+transform = Transform3D(0.1327898, -0.5951043, -0.7926017, 0.2276884, 0.79661286, -0.5599695, 0.9646371, -0.10610798, 0.24128029, 0.24289185, -0.08937228, 1.4116583)
+visible = false
+mesh = SubResource("PlaneMesh_2ono0")
+skeleton = NodePath("../../Swing1Effect")
+
+[node name="Swing3Effect2" type="MeshInstance3D" parent="Body/Effects/Swing3Effects" unique_id=98787383]
+transform = Transform3D(0.024226218, -0.57082385, 0.82071507, -0.0057132775, -0.82102203, -0.570868, 0.99969006, 0.009140998, -0.023151636, -0.20692629, 0.07280433, 1.8369563)
+mesh = SubResource("PlaneMesh_2ono0")
+skeleton = NodePath("../../Swing1Effect")
+
+[node name="Hurtboxes" type="Node3D" parent="Body" unique_id=1384386096]
+
+[node name="PrimaryStep1" type="Area3D" parent="Body/Hurtboxes" unique_id=1720886733]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtboxes/PrimaryStep1" unique_id=675544589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 1.186)
+visible = false
+shape = SubResource("BoxShape3D_stinp")
+debug_color = Color(0.99215686, 0.011764706, 0.2627451, 0.41960785)
+
+[node name="PrimaryStep2" type="Area3D" parent="Body/Hurtboxes" unique_id=165282724]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtboxes/PrimaryStep2" unique_id=871309776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 1.186)
+visible = false
+shape = SubResource("BoxShape3D_08tcn")
+debug_color = Color(0.99215686, 0.011764706, 0.2627451, 0.41960785)
+
+[node name="PrimaryStep3" type="Area3D" parent="Body/Hurtboxes" unique_id=1579828706]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtboxes/PrimaryStep3" unique_id=939546562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149, 1.599)
+visible = false
+shape = SubResource("BoxShape3D_5yyo5")
+debug_color = Color(0.99117035, 0.010396242, 0.26147646, 0.41960785)
+
+[node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
+transform = Transform3D(-0.95067793, -0.29106903, 0.10703635, 0.30859515, -0.9221066, 0.23333798, 0.03078174, 0.25485975, 0.966482, -0.5069494, -0.16794616, 0.09700575)
+
+[node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
+
+[node name="LeftHand" type="Node3D" parent="." unique_id=657774092]
+transform = Transform3D(-0.95679027, 0.18606186, -0.079538345, -0.2000978, -0.92717266, 0.23812547, -0.030103372, 0.24924661, 0.94517773, 0.4269711, -0.19227546, 0.09700587)
+
+[node name="StateMachine" type="Node" parent="." unique_id=453382211]
+script = ExtResource("5_fssxm")
+initial_state = NodePath("Airborne")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="Airborne" type="Node" parent="StateMachine" unique_id=728122625]
+script = ExtResource("7_y2pnb")
+
+[node name="Grounded" type="Node" parent="StateMachine" unique_id=12650219]
+script = ExtResource("8_4umgf")
+
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=247805191]
+script = ExtResource("9_5yyo5")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1595731179]
+script = ExtResource("9_stinp")
+
+[node name="DefensiveAction" type="Node" parent="StateMachine" unique_id=1125482612]
+script = ExtResource("11_y2pnb")
+
+[node name="PrimaryAction" type="Node" parent="StateMachine" unique_id=899933541]
+script = ExtResource("12_4umgf")
+
+[node name="SecondaryAction" type="Node" parent="StateMachine" unique_id=283348515]
+script = ExtResource("13_5yyo5")
+
+[node name="SpecialAction" type="Node" parent="StateMachine" unique_id=810876236]
+script = ExtResource("14_stinp")
+
+[node name="ModelAnimator" type="AnimationTree" parent="." unique_id=91672609]
+root_node = NodePath("../Body/CharacterModel")
+tree_root = ExtResource("15_y2pnb")
+anim_player = NodePath("../Body/CharacterModel/AnimationPlayer")
+parameters/running/blend_position = 0.0
+parameters/interact_one_shot/active = false
+parameters/interact_one_shot/internal_active = false
+parameters/interact_one_shot/request = 0
+parameters/falling/blend_amount = 0.0
+parameters/primary_attack_one_shot/active = false
+parameters/primary_attack_one_shot/internal_active = false
+parameters/primary_attack_one_shot/request = 0
+parameters/primary_attack/blend_position = 0.0
+script = ExtResource("16_y2pnb")
+
+[node name="EventAnimator" type="AnimationPlayer" parent="." unique_id=1816026543]
+libraries/ = SubResource("AnimationLibrary_8pjd2")
+
+[editable path="ThirdPersonCamera"]
+[editable path="Body/CharacterModel"]
