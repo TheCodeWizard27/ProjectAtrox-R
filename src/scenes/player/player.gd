@@ -9,6 +9,7 @@ class_name Player
 @export var camera_controller: CameraController
 @export var camera: Camera3D
 @export var model_animator: PlayerModelAnimator
+@export var effect_animator: PlayerEffectAnimator
 @export var lock_on_ray: RayCast3D
 
 var status: PlayerStatus
@@ -16,7 +17,11 @@ var lock_on_target: Node3D
 
 func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
-	
+
+func get_hit() -> void:
+	# TODO way more
+	effect_animator.play_getting_hit()
+
 func _ready() -> void:
 	configure_player(PlayerStatus.new())
 

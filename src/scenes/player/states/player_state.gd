@@ -4,6 +4,7 @@ class_name PlayerState
 var player: Player
 var body: CharacterBody3D
 var model_animator: PlayerModelAnimator
+var effect_animator: PlayerEffectAnimator
 
 const AIRBORNE: NodePath = ^'Airborne'
 const GROUNDED: NodePath = ^'Grounded'
@@ -14,3 +15,4 @@ func init(current_player: Player) -> void:
 	player = current_player
 	body = player.body
 	model_animator = player.model_animator
+	effect_animator = player.effect_animator

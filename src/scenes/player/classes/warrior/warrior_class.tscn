@@ -6,18 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="3_b24kb"]
 [ext_resource type="PackedScene" uid="uid://bgpjfb0nodr34" path="res://src/scenes/player/classes/warrior/warrior_hud.tscn" id="4_ifccw"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_fssxm"]
-[ext_resource type="Material" uid="uid://d1ugxo0ous3b7" path="res://src/scenes/player/classes/warrior/effects/swing_test_shader.tres" id="6_5yyo5"]
+[ext_resource type="Shader" uid="uid://da4qw7mca3opu" path="res://src/shaders/basic_blood_splatter.gdshader" id="7_08tcn"]
+[ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="7_stinp"]
 [ext_resource type="Script" uid="uid://3thijxavsnjv" path="res://src/scenes/player/classes/warrior/states/warrior_airborne_state.gd" id="7_y2pnb"]
 [ext_resource type="Script" uid="uid://dmif3q0xh71gw" path="res://src/scenes/player/classes/warrior/states/warrior_grounded_state.gd" id="8_4umgf"]
+[ext_resource type="Texture2D" uid="uid://dwikb4el40t0u" path="res://src/shaders/basic_blood_splatter_noise.tres" id="8_dyod8"]
 [ext_resource type="Script" uid="uid://bvnivrma7a70q" path="res://src/scenes/player/classes/warrior/states/warrior_jumping_state.gd" id="9_5yyo5"]
-[ext_resource type="Script" path="res://src/scenes/player/states/dead_state.gd" id="9_stinp"]
+[ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="9_stinp"]
 [ext_resource type="Script" uid="uid://okdrs1m60cwd" path="res://src/scenes/player/classes/warrior/states/warrior_defensive_action_state.gd" id="11_y2pnb"]
 [ext_resource type="Script" uid="uid://cg7y30i8lt0lm" path="res://src/scenes/player/classes/warrior/states/warrior_primary_action_state.gd" id="12_4umgf"]
 [ext_resource type="Script" uid="uid://c2oalqqye5xnc" path="res://src/scenes/player/classes/warrior/states/warrior_secondary_action_state.gd" id="13_5yyo5"]
 [ext_resource type="Script" uid="uid://dbmcjcr1k13w4" path="res://src/scenes/player/classes/warrior/states/warrior_special_action_state.gd" id="14_stinp"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://chhbufkv1xytj" path="res://src/scenes/player/classes/warrior/warrior_animation_tree.tres" id="15_y2pnb"]
-[ext_resource type="Script" uid="uid://p6bqxfl7mdb4" path="res://src/scenes/player/classes/warrior/warrior_animator.gd" id="16_y2pnb"]
+[ext_resource type="Script" uid="uid://p6bqxfl7mdb4" path="res://src/scenes/player/classes/warrior/warrior_model_animator.gd" id="16_y2pnb"]
 [ext_resource type="PackedScene" uid="uid://0i1l2nv7vq4u" path="res://assets/player/WeaponModel.blend" id="17_4umgf"]
+[ext_resource type="AnimationLibrary" uid="uid://t18ubnot7ixg" path="res://src/scenes/player/animations/player_animations.res" id="22_0dlhd"]
+[ext_resource type="Script" uid="uid://cdvxr7nj78h7r" path="res://src/scenes/player/classes/warrior/warrior_effect_animator.gd" id="22_omrbx"]
+[ext_resource type="AnimationLibrary" uid="uid://52sacydvja88" path="res://src/scenes/player/classes/warrior/animations/warrior_animations.res" id="23_omrbx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt1od"]
 
@@ -51,9 +56,100 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0ruc2")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_2ono0"]
-material = ExtResource("6_5yyo5")
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fcpuv"]
+parameter_name = "Fade"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bnkpf"]
+parameter_name = "Mask"
+texture_filter = 3
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tgkdr"]
+source = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2mhj8"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ci3t7"]
+default_input_values = [0, 0.0, 1, 1.0]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_mes60"]
+modes/cull = 2
+flags/unshaded = true
+nodes/vertex/0/position = Vector2(720, 100)
+nodes/fragment/0/position = Vector2(660, 120)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_bnkpf")
+nodes/fragment/4/position = Vector2(-500, -140)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_tgkdr")
+nodes/fragment/5/position = Vector2(40, -100)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_2mhj8")
+nodes/fragment/7/position = Vector2(-480, 200)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatOp_ci3t7")
+nodes/fragment/9/position = Vector2(380, 160)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_fcpuv")
+nodes/fragment/10/position = Vector2(-440, 320)
+nodes/fragment/connections = PackedInt32Array(4, 0, 5, 2, 7, 0, 5, 0, 5, 0, 9, 0, 9, 0, 0, 1, 10, 0, 9, 1)
+
+[sub_resource type="Gradient" id="Gradient_fcpuv"]
+offsets = PackedFloat32Array(0, 0.3875598)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2fkct"]
+gradient = SubResource("Gradient_fcpuv")
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52e47"]
+render_priority = 0
+shader = SubResource("VisualShader_mes60")
+shader_parameter/Mask = SubResource("GradientTexture2D_2fkct")
+shader_parameter/Fade = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0dlhd"]
+material = SubResource("ShaderMaterial_52e47")
 size = Vector2(3, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dlhd"]
+render_priority = 0
+shader = SubResource("VisualShader_mes60")
+shader_parameter/Mask = SubResource("GradientTexture2D_2fkct")
+shader_parameter/Fade = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_omrbx"]
+material = SubResource("ShaderMaterial_0dlhd")
+size = Vector2(3, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_omrbx"]
+render_priority = 0
+shader = SubResource("VisualShader_mes60")
+shader_parameter/Mask = SubResource("GradientTexture2D_2fkct")
+shader_parameter/Fade = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_34in5"]
+material = SubResource("ShaderMaterial_omrbx")
+size = Vector2(3, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ono0"]
+render_priority = 0
+shader = SubResource("VisualShader_mes60")
+shader_parameter/Mask = SubResource("GradientTexture2D_2fkct")
+shader_parameter/Fade = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2ono0"]
+material = SubResource("ShaderMaterial_2ono0")
+size = Vector2(3, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyod8"]
+render_priority = 0
+shader = ExtResource("7_08tcn")
+shader_parameter/Fade = 0.0
+shader_parameter/Color = Color(0, 0, 0, 1)
+shader_parameter/Noise = ExtResource("8_dyod8")
+
+[sub_resource type="QuadMesh" id="QuadMesh_skg13"]
+material = SubResource("ShaderMaterial_dyod8")
+size = Vector2(0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stinp"]
 size = Vector3(1.2287292, 1.2212524, 1.387022)
@@ -64,143 +160,74 @@ size = Vector3(1.2287292, 1.2212524, 1.387022)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yyo5"]
 size = Vector3(0.9412155, 1.2212524, 2.2106009)
 
-[sub_resource type="Animation" id="Animation_34in5"]
-resource_name = "Primary_Attack_Step_1"
-length = 0.36666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Effects/Swing1Effect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.32),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Effects/Swing1Effect:mesh:material:shader_parameter/Multiplier")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.32),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Hurtboxes/PrimaryStep1:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 0.32),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_omrbx"]
+animation = &"player_animations/empty"
 
-[sub_resource type="Animation" id="Animation_5yyo5"]
-resource_name = "Primary_Attack_Step_2"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Effects/Swing2Effect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.32, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Effects/Swing2Effect:mesh:material:shader_parameter/Multiplier")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.32, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Hurtboxes/PrimaryStep2:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.32, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0dlhd"]
+animation = &"player_animations/hit"
 
-[sub_resource type="Animation" id="Animation_08tcn"]
-resource_name = "Primary_Attack_Step_3"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Effects/Swing3Effects:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.28, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Multiplier")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.28, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Hurtboxes/PrimaryStep3:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.28, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oa2sl"]
+filters = ["../Body/Effects/BloodSplatterEffect:mesh:material:shader_parameter/Color", "../Body/Effects/BloodSplatterEffect:mesh:material:shader_parameter/Fade", "../Body/Effects/BloodSplatterEffect:mesh:size"]
 
-[sub_resource type="Animation" id="Animation_stinp"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ono0"]
+animation = &"warrior_animations/primary_attack_step_1"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_gfbub"]
+filters = ["../Body/Effects/Swing1Effect:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing1Effect:visible", "../Body/Hurtboxes/PrimaryStep1:monitoring"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_34in5"]
+animation = &"warrior_animations/primary_attack_step_2"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7ylew"]
+filters = ["../Body/Effects/Swing2Effect:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing2Effect:visible", "../Body/Hurtboxes/PrimaryStep2:monitoring"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pjd2"]
+animation = &"warrior_animations/primary_attack_step_3"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_rr4kf"]
+filters = ["../Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing3Effects/Swing3Effect:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing3Effects:visible", "../Body/Hurtboxes/PrimaryStep3:monitoring"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_34in5"]
+graph_offset = Vector2(-649.4066, 273.97003)
+nodes/output/position = Vector2(1120, 940)
+nodes/hit_one_shot/node = SubResource("AnimationNodeOneShot_oa2sl")
+nodes/hit_one_shot/position = Vector2(-60, 280)
+nodes/empty/node = SubResource("AnimationNodeAnimation_omrbx")
+nodes/empty/position = Vector2(-400, 160)
+nodes/primary_attack_step_3/node = SubResource("AnimationNodeAnimation_8pjd2")
+nodes/primary_attack_step_3/position = Vector2(60, 1120)
+nodes/primary_attack_step_1_one_shot/node = SubResource("AnimationNodeOneShot_gfbub")
+nodes/primary_attack_step_1_one_shot/position = Vector2(140, 540)
+nodes/primary_attack_step_1/node = SubResource("AnimationNodeAnimation_2ono0")
+nodes/primary_attack_step_1/position = Vector2(-340, 600)
+nodes/hit/node = SubResource("AnimationNodeAnimation_0dlhd")
+nodes/hit/position = Vector2(-360, 360)
+nodes/primary_attack_step_2_one_shot/node = SubResource("AnimationNodeOneShot_7ylew")
+nodes/primary_attack_step_2_one_shot/position = Vector2(440, 760)
+nodes/primary_attack_step_2/node = SubResource("AnimationNodeAnimation_34in5")
+nodes/primary_attack_step_2/position = Vector2(-20, 860)
+nodes/primary_attack_step_3_one_shot/node = SubResource("AnimationNodeOneShot_rr4kf")
+nodes/primary_attack_step_3_one_shot/position = Vector2(760, 940)
+node_connections = [&"output", 0, &"primary_attack_step_3_one_shot", &"hit_one_shot", 0, &"empty", &"hit_one_shot", 1, &"hit", &"primary_attack_step_1_one_shot", 0, &"hit_one_shot", &"primary_attack_step_1_one_shot", 1, &"primary_attack_step_1", &"primary_attack_step_2_one_shot", 0, &"primary_attack_step_1_one_shot", &"primary_attack_step_2_one_shot", 1, &"primary_attack_step_2", &"primary_attack_step_3_one_shot", 0, &"primary_attack_step_2_one_shot", &"primary_attack_step_3_one_shot", 1, &"primary_attack_step_3"]
+
+[sub_resource type="Animation" id="Animation_52e47"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Effects/Swing1Effect:visible")
+tracks/0/path = NodePath("Body/Effects/Swing1Effect:mesh:material:shader_parameter/Fade")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Effects/Swing2Effect:visible")
+tracks/1/path = NodePath("Body/Hurtboxes/PrimaryStep1:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -212,55 +239,55 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Effects/Swing1Effect:mesh:material:shader_parameter/Multiplier")
+tracks/2/path = NodePath("Body/Effects/Swing2Effect:mesh:material:shader_parameter/Fade")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Effects/Swing2Effect:mesh:material:shader_parameter/Multiplier")
+tracks/3/path = NodePath("Body/Hurtboxes/PrimaryStep2:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/Effects/Swing3Effects:visible")
+tracks/4/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect:mesh:material:shader_parameter/Fade")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Multiplier")
+tracks/5/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Fade")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Body/Hurtboxes/PrimaryStep1:monitoring")
+tracks/6/path = NodePath("Body/Hurtboxes/PrimaryStep3:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -269,47 +296,20 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Body/Hurtboxes/PrimaryStep2:monitoring")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Body/Hurtboxes/PrimaryStep3:monitoring")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8pjd2"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_omrbx"]
 _data = {
-&"Primary_Attack_Step_1": SubResource("Animation_34in5"),
-&"Primary_Attack_Step_2": SubResource("Animation_5yyo5"),
-&"Primary_Attack_Step_3": SubResource("Animation_08tcn"),
-&"RESET": SubResource("Animation_stinp")
+&"RESET": SubResource("Animation_52e47")
 }
 
-[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "event_animator", "body", "camera_controller", "camera", "model_animator", "lock_on_ray") groups=["player"]]
+[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "effect_animator", "lock_on_ray") groups=["player"]]
 script = ExtResource("1_0sr62")
 state_machine = NodePath("StateMachine")
-event_animator = NodePath("EventAnimator")
 body = NodePath("Body")
 camera_controller = NodePath("ThirdPersonCamera")
 camera = NodePath("ThirdPersonCamera/CameraArm/Camera")
 model_animator = NodePath("ModelAnimator")
+effect_animator = NodePath("EffectAnimator")
 lock_on_ray = NodePath("ThirdPersonCamera/CameraArm/Camera/LockOnRay")
 
 [node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("3_b24kb")]
@@ -371,28 +371,29 @@ mesh = SubResource("ArrayMesh_y2pnb")
 
 [node name="Swing1Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=667567759]
 transform = Transform3D(0.49488807, 0.6933766, -0.5237505, -0.47620815, 0.72057533, 0.5039811, 0.72685045, -4.1812292e-08, 0.6867958, 0.0062264204, 0.35963196, 0.4962433)
-visible = false
-mesh = SubResource("PlaneMesh_2ono0")
+mesh = SubResource("PlaneMesh_0dlhd")
 
 [node name="Swing2Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=906931547]
 transform = Transform3D(0.26635796, -0.7417889, -0.615469, 0.22133799, 0.66854537, -0.70996946, 0.9381168, 0.0528792, 0.34225866, 0.01312536, 0.35611898, 0.7895774)
-visible = false
-mesh = SubResource("PlaneMesh_2ono0")
+mesh = SubResource("PlaneMesh_omrbx")
 skeleton = NodePath("../Swing1Effect")
 
 [node name="Swing3Effects" type="Node3D" parent="Body/Effects" unique_id=1436080752]
-visible = false
 
 [node name="Swing3Effect" type="MeshInstance3D" parent="Body/Effects/Swing3Effects" unique_id=197931547]
 transform = Transform3D(0.1327898, -0.5951043, -0.7926017, 0.2276884, 0.79661286, -0.5599695, 0.9646371, -0.10610798, 0.24128029, 0.24289185, -0.08937228, 1.4116583)
-visible = false
-mesh = SubResource("PlaneMesh_2ono0")
+mesh = SubResource("PlaneMesh_34in5")
 skeleton = NodePath("../../Swing1Effect")
 
 [node name="Swing3Effect2" type="MeshInstance3D" parent="Body/Effects/Swing3Effects" unique_id=98787383]
 transform = Transform3D(0.024226218, -0.57082385, 0.82071507, -0.0057132775, -0.82102203, -0.570868, 0.99969006, 0.009140998, -0.023151636, -0.20692629, 0.07280433, 1.8369563)
 mesh = SubResource("PlaneMesh_2ono0")
 skeleton = NodePath("../../Swing1Effect")
+
+[node name="BloodSplatterEffect" type="MeshInstance3D" parent="Body/Effects" unique_id=1359604100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330925, 0.15635276, 0)
+mesh = SubResource("QuadMesh_skg13")
+skeleton = NodePath("../..")
 
 [node name="Hurtboxes" type="Node3D" parent="Body" unique_id=1384386096]
 
@@ -432,8 +433,19 @@ visible = false
 shape = SubResource("BoxShape3D_5yyo5")
 debug_color = Color(0.99117035, 0.010396242, 0.26147646, 0.41960785)
 
+[node name="Hitbox" type="Area3D" parent="Body" unique_id=1627284786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1062957, 0)
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hitbox" unique_id=989523918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02557373, -1.1417542, 0.0028076172)
+shape = ExtResource("7_stinp")
+debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
+
 [node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
-transform = Transform3D(-0.95067793, -0.29106903, 0.10703635, 0.30859515, -0.9221066, 0.23333798, 0.03078174, 0.25485975, 0.966482, -0.5069494, -0.16794616, 0.09700575)
+transform = Transform3D(-0.9506781, -0.29106766, 0.10703636, 0.3085952, -0.92210233, 0.233338, 0.030781746, 0.25485855, 0.96648204, -0.5069494, -0.16794616, 0.09700575)
 
 [node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
@@ -485,8 +497,28 @@ parameters/primary_attack_one_shot/request = 0
 parameters/primary_attack/blend_position = 0.0
 script = ExtResource("16_y2pnb")
 
-[node name="EventAnimator" type="AnimationPlayer" parent="." unique_id=1816026543]
-libraries/ = SubResource("AnimationLibrary_8pjd2")
+[node name="EffectAnimator" type="AnimationTree" parent="." unique_id=319316404]
+tree_root = SubResource("AnimationNodeBlendTree_34in5")
+anim_player = NodePath("../EffectAnimationPlayer")
+parameters/hit_one_shot/active = false
+parameters/hit_one_shot/internal_active = false
+parameters/hit_one_shot/request = 0
+parameters/primary_attack_step_1_one_shot/active = false
+parameters/primary_attack_step_1_one_shot/internal_active = false
+parameters/primary_attack_step_1_one_shot/request = 0
+parameters/primary_attack_step_2_one_shot/active = false
+parameters/primary_attack_step_2_one_shot/internal_active = false
+parameters/primary_attack_step_2_one_shot/request = 0
+parameters/primary_attack_step_3_one_shot/active = false
+parameters/primary_attack_step_3_one_shot/internal_active = false
+parameters/primary_attack_step_3_one_shot/request = 0
+script = ExtResource("22_omrbx")
+
+[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=47462644]
+deterministic = true
+libraries/ = SubResource("AnimationLibrary_omrbx")
+libraries/player_animations = ExtResource("22_0dlhd")
+libraries/warrior_animations = ExtResource("23_omrbx")
 
 [editable path="ThirdPersonCamera"]
 [editable path="Body/CharacterModel"]

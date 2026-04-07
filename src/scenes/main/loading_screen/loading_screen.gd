@@ -7,7 +7,7 @@ class_name LoadingScreen
 func _ready() -> void:
 	animation_player.play('load')
 
-func update_progress(progress: float) -> void:
+func update_progress(_progress: float) -> void:
 	pass
 
 func enable() -> void:

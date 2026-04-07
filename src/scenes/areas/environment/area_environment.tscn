@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bc73jj3rnddkq"]
+[gd_scene format=3 uid="uid://bc73jj3rnddkq"]
 
 [ext_resource type="Script" uid="uid://ddg6j4kcyloc5" path="res://src/scenes/areas/environment/area_environment.gd" id="1_5ckfh"]
 [ext_resource type="Shader" uid="uid://c01uxduv4xeid" path="res://src/scenes/areas/environment/skybox.gdshader" id="2_e0wro"]
@@ -92,16 +92,18 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5831v"]
 
-[node name="AreaEnvironment" type="Node3D"]
+[node name="AreaEnvironment" type="Node3D" unique_id=1183075330]
 script = ExtResource("1_5ckfh")
 time = 0.211
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=473234793]
 environment = SubResource("Environment_7stnd")
 camera_attributes = SubResource("CameraAttributesPractical_5831v")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.8549672, 0.13235578, 0.5015106, -0.09744568, 0.990665, -0.095326714, -0.50944626, 0.03263118, 0.85988355, 0, 0, 0)
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=697688009]
+transform = Transform3D(0.8118236, 0.5709676, 0.12222268, -0.023748394, 0.24143401, -0.9701265, -0.58341956, 0.7846692, 0.20956136, 0, 0, 0)
+shadow_enabled = true
 
-[node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.9998356, 0.018133026, 0, -0.018133026, -0.9998356, 0, 0, 0)
+[node name="Moon" type="DirectionalLight3D" parent="." unique_id=427706088]
+transform = Transform3D(1, 0, 0, 0, -0.24259928, 0.97012657, 0, -0.97012657, -0.24259928, 0, 0, 0)
+shadow_enabled = true

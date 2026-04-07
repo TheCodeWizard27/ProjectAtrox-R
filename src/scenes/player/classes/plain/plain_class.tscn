@@ -4,14 +4,49 @@
 [ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="2_ogm6v"]
 [ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="3_kyl5b"]
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="4_jdqon"]
+[ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="4_ogm6v"]
+[ext_resource type="Shader" uid="uid://da4qw7mca3opu" path="res://src/shaders/basic_blood_splatter.gdshader" id="5_gmvdh"]
 [ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/hud/hud.tscn" id="5_qyn71"]
+[ext_resource type="Texture2D" uid="uid://dwikb4el40t0u" path="res://src/shaders/basic_blood_splatter_noise.tres" id="6_53pud"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="6_gmvdh"]
-[ext_resource type="Script" path="res://src/scenes/player/states/airborne_state.gd" id="7_53pud"]
-[ext_resource type="Script" path="res://src/scenes/player/states/grounded_state.gd" id="8_qyn71"]
-[ext_resource type="Script" path="res://src/scenes/player/states/jumping_state.gd" id="9_qyn71"]
-[ext_resource type="Script" path="res://src/scenes/player/states/dead_state.gd" id="10_mhbxl"]
+[ext_resource type="Script" uid="uid://dp2yuasdiqhpa" path="res://src/scenes/player/states/airborne_state.gd" id="7_53pud"]
+[ext_resource type="Script" uid="uid://bqb6e4b63l6u7" path="res://src/scenes/player/states/grounded_state.gd" id="8_qyn71"]
+[ext_resource type="Script" uid="uid://dvc4who4r0kls" path="res://src/scenes/player/states/jumping_state.gd" id="9_qyn71"]
+[ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="10_mhbxl"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bd3ovodbk2668" path="res://src/scenes/player/resources/player_animation_tree.tres" id="11_6ano4"]
-[ext_resource type="Script" path="res://src/scenes/player/player_model_animator.gd" id="12_qyn71"]
+[ext_resource type="Script" uid="uid://cui5y850mvd0x" path="res://src/scenes/player/player_model_animator.gd" id="12_qyn71"]
+[ext_resource type="Script" uid="uid://cdvxr7nj78h7r" path="res://src/scenes/player/classes/warrior/warrior_effect_animator.gd" id="14_6btdb"]
+[ext_resource type="AnimationLibrary" uid="uid://t18ubnot7ixg" path="res://src/scenes/player/animations/player_animations.res" id="15_gmvdh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyod8"]
+render_priority = 0
+shader = ExtResource("5_gmvdh")
+shader_parameter/Fade = 0.0
+shader_parameter/Color = Color(0, 0, 0, 1)
+shader_parameter/Noise = ExtResource("6_53pud")
+
+[sub_resource type="QuadMesh" id="QuadMesh_36q61"]
+material = SubResource("ShaderMaterial_dyod8")
+size = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmvdh"]
+animation = &"player_animations/empty"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v663u"]
+animation = &"player_animations/hit"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oa2sl"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_36q61"]
+graph_offset = Vector2(-393.45978, 18.178833)
+nodes/output/position = Vector2(480, 220)
+nodes/hit_one_shot/node = SubResource("AnimationNodeOneShot_oa2sl")
+nodes/hit_one_shot/position = Vector2(280, 200)
+nodes/hit/node = SubResource("AnimationNodeAnimation_v663u")
+nodes/hit/position = Vector2(-80, 360)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_gmvdh")
+nodes/Animation/position = Vector2(-20, 120)
+node_connections = [&"output", 0, &"hit_one_shot", &"hit_one_shot", 0, &"Animation", &"hit_one_shot", 1, &"hit"]
 
 [node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "lock_on_ray") groups=["player"]]
 script = ExtResource("1_qyn71")
@@ -54,6 +89,24 @@ bones/29/rotation = Quaternion(0.0048180884, 0.98211515, 0.18209876, -0.04761012
 transform = Transform3D(-0.0050172517, 0.0775534, 0.35081393, 0.044051606, 0.05062923, -0.4412749, -0.08956696, 0.020556618, -0.23668316, -0.738985, 2.0861967, 0.1559247)
 visible = false
 
+[node name="Hitbox" type="Area3D" parent="Body" unique_id=618545669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1062957, 0)
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hitbox" unique_id=1130883192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02557373, -1.1417542, 0.0028076172)
+shape = ExtResource("4_ogm6v")
+debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
+
+[node name="Effects" type="Node3D" parent="Body" unique_id=572091294]
+
+[node name="BloodSplatterEffect" type="MeshInstance3D" parent="Body/Effects" unique_id=1178107355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330925, 0.15635276, 0)
+mesh = SubResource("QuadMesh_36q61")
+skeleton = NodePath("../..")
+
 [node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("4_jdqon")]
 
 [node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1491162933 node_paths=PackedStringArray("player") instance=ExtResource("5_qyn71")]
@@ -86,6 +139,17 @@ parameters/interact_one_shot/internal_active = false
 parameters/interact_one_shot/request = 0
 parameters/falling/blend_amount = 0.0
 script = ExtResource("12_qyn71")
+
+[node name="EffectAnimator" type="AnimationTree" parent="." unique_id=2123333169]
+tree_root = SubResource("AnimationNodeBlendTree_36q61")
+anim_player = NodePath("../EffectAnimationPlayer")
+parameters/hit_one_shot/active = false
+parameters/hit_one_shot/internal_active = false
+parameters/hit_one_shot/request = 0
+script = ExtResource("14_6btdb")
+
+[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=699824734]
+libraries/player_animations = ExtResource("15_gmvdh")
 
 [editable path="Body/CharacterModel"]
 [editable path="ThirdPersonCamera"]
