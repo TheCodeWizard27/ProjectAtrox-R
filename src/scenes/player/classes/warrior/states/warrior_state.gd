@@ -5,7 +5,7 @@ extends State
 var player: WarriorClass
 var body: CharacterBody3D
 var model_animator: WarriorModelAnimator
-var effect_animator: WarriorEffectAnimator
+var event_player: WarriorEventPlayer
 
 const AIRBORNE: NodePath = PlayerState.AIRBORNE
 const GROUNDED: NodePath = PlayerState.GROUNDED
@@ -23,5 +23,5 @@ const WARRIOR_DEFENSIVE_ACTION: NodePath = ^'DefensiveAction'
 func init(current_player: WarriorClass) -> void:
 	player = current_player
 	model_animator = player.model_animator
-	effect_animator = player.effect_animator
+	event_player = player.event_player
 	body = player.body

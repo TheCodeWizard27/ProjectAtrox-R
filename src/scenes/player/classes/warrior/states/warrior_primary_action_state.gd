@@ -4,12 +4,12 @@ extends WarriorState
 
 class PrimaryAttackData:
 	var blend_position: WarriorModelAnimator.PrimaryAttackBlendPositions
-	var effect_step_type: WarriorEffectAnimator.PrimaryAttackSteps
+	var effect_step_type: WarriorEventPlayer.PrimaryAttackSteps
 	var cancel_window_start: float
 	var max_duration: float
 	
 	func _init(
-		p_effect_step_type: WarriorEffectAnimator.PrimaryAttackSteps,
+		p_effect_step_type: WarriorEventPlayer.PrimaryAttackSteps,
 		p_blend_position: WarriorModelAnimator.PrimaryAttackBlendPositions, 
 		p_cancel_window_start: float, 
 		p_max_duration: float
@@ -23,19 +23,19 @@ static var attack_step_parameter = "attack_step"
 
 var attack_steps: Array[PrimaryAttackData] = [
 	PrimaryAttackData.new(
-		WarriorEffectAnimator.PrimaryAttackSteps.STEP_1,
+		WarriorEventPlayer.PrimaryAttackSteps.STEP_1,
 		WarriorModelAnimator.PrimaryAttackBlendPositions.ATTACK_1,
 		0.2,
 		0.45
 	),
 	PrimaryAttackData.new(
-		WarriorEffectAnimator.PrimaryAttackSteps.STEP_2,
+		WarriorEventPlayer.PrimaryAttackSteps.STEP_2,
 		WarriorModelAnimator.PrimaryAttackBlendPositions.ATTACK_2,
 		0.2,
 		0.41
 	),
 	PrimaryAttackData.new(
-		WarriorEffectAnimator.PrimaryAttackSteps.STEP_3,
+		WarriorEventPlayer.PrimaryAttackSteps.STEP_3,
 		WarriorModelAnimator.PrimaryAttackBlendPositions.ATTACK_3,
 		0.2,
 		0.625
@@ -95,4 +95,4 @@ func _init_attack_step(step: int) -> void:
 	current_step_index = step
 	current_step = attack_steps[step]
 	model_animator.play_primary_attack(current_step.blend_position)
-	effect_animator.play_primary_effect(current_step.effect_step_type)
+	event_player.play_primary_effect(current_step.effect_step_type)

@@ -1,5 +1,5 @@
 class_name PlayerEffectAnimator
-extends AnimationTree
+extends Node
 
 var _hit_request = "parameters/hit_one_shot/request"
 

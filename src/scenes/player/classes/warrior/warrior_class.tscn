@@ -6,23 +6,29 @@
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="3_b24kb"]
 [ext_resource type="PackedScene" uid="uid://bgpjfb0nodr34" path="res://src/scenes/player/classes/warrior/warrior_hud.tscn" id="4_ifccw"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_fssxm"]
+[ext_resource type="Animation" uid="uid://1u4ng2boa8w5" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_2.res" id="6_0dlhd"]
+[ext_resource type="Animation" uid="uid://bi28u1nt7dvs8" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_1_reset.res" id="6_2ono0"]
+[ext_resource type="Animation" uid="uid://cle5mv8w1vett" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_3.res" id="6_52e47"]
+[ext_resource type="Animation" uid="uid://c7gkadfevuift" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_1.res" id="6_omrbx"]
 [ext_resource type="Shader" uid="uid://da4qw7mca3opu" path="res://src/shaders/basic_blood_splatter.gdshader" id="7_08tcn"]
 [ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="7_stinp"]
 [ext_resource type="Script" uid="uid://3thijxavsnjv" path="res://src/scenes/player/classes/warrior/states/warrior_airborne_state.gd" id="7_y2pnb"]
 [ext_resource type="Script" uid="uid://dmif3q0xh71gw" path="res://src/scenes/player/classes/warrior/states/warrior_grounded_state.gd" id="8_4umgf"]
+[ext_resource type="Animation" uid="uid://dqqcl6wh36un8" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_2_reset.res" id="8_8pjd2"]
 [ext_resource type="Texture2D" uid="uid://dwikb4el40t0u" path="res://src/shaders/basic_blood_splatter_noise.tres" id="8_dyod8"]
 [ext_resource type="Script" uid="uid://bvnivrma7a70q" path="res://src/scenes/player/classes/warrior/states/warrior_jumping_state.gd" id="9_5yyo5"]
 [ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="9_stinp"]
+[ext_resource type="Animation" uid="uid://b2ktwhj82irpy" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_3_reset.res" id="10_v663u"]
 [ext_resource type="Script" uid="uid://okdrs1m60cwd" path="res://src/scenes/player/classes/warrior/states/warrior_defensive_action_state.gd" id="11_y2pnb"]
 [ext_resource type="Script" uid="uid://cg7y30i8lt0lm" path="res://src/scenes/player/classes/warrior/states/warrior_primary_action_state.gd" id="12_4umgf"]
+[ext_resource type="Animation" uid="uid://y6llq321dqs7" path="res://src/scenes/player/animations/hit.res" id="12_34in5"]
 [ext_resource type="Script" uid="uid://c2oalqqye5xnc" path="res://src/scenes/player/classes/warrior/states/warrior_secondary_action_state.gd" id="13_5yyo5"]
+[ext_resource type="Animation" uid="uid://cjdurt52xssm6" path="res://src/scenes/player/animations/hit_reset.res" id="13_v663u"]
 [ext_resource type="Script" uid="uid://dbmcjcr1k13w4" path="res://src/scenes/player/classes/warrior/states/warrior_special_action_state.gd" id="14_stinp"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://chhbufkv1xytj" path="res://src/scenes/player/classes/warrior/warrior_animation_tree.tres" id="15_y2pnb"]
 [ext_resource type="Script" uid="uid://p6bqxfl7mdb4" path="res://src/scenes/player/classes/warrior/warrior_model_animator.gd" id="16_y2pnb"]
 [ext_resource type="PackedScene" uid="uid://0i1l2nv7vq4u" path="res://assets/player/WeaponModel.blend" id="17_4umgf"]
-[ext_resource type="AnimationLibrary" uid="uid://t18ubnot7ixg" path="res://src/scenes/player/animations/player_animations.res" id="22_0dlhd"]
-[ext_resource type="Script" uid="uid://cdvxr7nj78h7r" path="res://src/scenes/player/classes/warrior/warrior_effect_animator.gd" id="22_omrbx"]
-[ext_resource type="AnimationLibrary" uid="uid://52sacydvja88" path="res://src/scenes/player/classes/warrior/animations/warrior_animations.res" id="23_omrbx"]
+[ext_resource type="Script" uid="uid://cog4d4aoclon" path="res://src/scenes/player/classes/warrior/warrior_event_player.gd" id="20_skg13"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt1od"]
 
@@ -55,6 +61,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0ruc2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stinp"]
+size = Vector3(1.2287292, 1.2212524, 1.387022)
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fcpuv"]
 parameter_name = "Fade"
@@ -110,6 +119,15 @@ shader_parameter/Fade = 0.0
 material = SubResource("ShaderMaterial_52e47")
 size = Vector2(3, 1)
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ono0"]
+_data = {
+&"RESET": ExtResource("6_2ono0"),
+&"primary_attack_step_1": ExtResource("6_omrbx")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_08tcn"]
+size = Vector3(1.2287292, 1.2212524, 1.387022)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dlhd"]
 render_priority = 0
 shader = SubResource("VisualShader_mes60")
@@ -119,6 +137,15 @@ shader_parameter/Fade = 0.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_omrbx"]
 material = SubResource("ShaderMaterial_0dlhd")
 size = Vector2(3, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_omrbx"]
+_data = {
+&"RESET": ExtResource("8_8pjd2"),
+&"primary_attack_step_2": ExtResource("6_0dlhd")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yyo5"]
+size = Vector3(0.9412155, 1.2212524, 2.2106009)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_omrbx"]
 render_priority = 0
@@ -140,176 +167,37 @@ shader_parameter/Fade = 0.0
 material = SubResource("ShaderMaterial_2ono0")
 size = Vector2(3, 1)
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dlhd"]
+_data = {
+&"RESET": ExtResource("10_v663u"),
+&"primary_attack_step_3": ExtResource("6_52e47")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dyod8"]
 render_priority = 0
 shader = ExtResource("7_08tcn")
 shader_parameter/Fade = 0.0
-shader_parameter/Color = Color(0, 0, 0, 1)
+shader_parameter/Color = Color(0.764706, 0.031373, 0.113725, 1)
 shader_parameter/Noise = ExtResource("8_dyod8")
 
-[sub_resource type="QuadMesh" id="QuadMesh_skg13"]
+[sub_resource type="QuadMesh" id="QuadMesh_52e47"]
 material = SubResource("ShaderMaterial_dyod8")
-size = Vector2(0, 0)
+size = Vector2(1.3, 1.6)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_stinp"]
-size = Vector3(1.2287292, 1.2212524, 1.387022)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_08tcn"]
-size = Vector3(1.2287292, 1.2212524, 1.387022)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5yyo5"]
-size = Vector3(0.9412155, 1.2212524, 2.2106009)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_omrbx"]
-animation = &"player_animations/empty"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0dlhd"]
-animation = &"player_animations/hit"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_oa2sl"]
-filters = ["../Body/Effects/BloodSplatterEffect:mesh:material:shader_parameter/Color", "../Body/Effects/BloodSplatterEffect:mesh:material:shader_parameter/Fade", "../Body/Effects/BloodSplatterEffect:mesh:size"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ono0"]
-animation = &"warrior_animations/primary_attack_step_1"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_gfbub"]
-filters = ["../Body/Effects/Swing1Effect:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing1Effect:visible", "../Body/Hurtboxes/PrimaryStep1:monitoring"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_34in5"]
-animation = &"warrior_animations/primary_attack_step_2"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_7ylew"]
-filters = ["../Body/Effects/Swing2Effect:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing2Effect:visible", "../Body/Hurtboxes/PrimaryStep2:monitoring"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pjd2"]
-animation = &"warrior_animations/primary_attack_step_3"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_rr4kf"]
-filters = ["../Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing3Effects/Swing3Effect:mesh:material:shader_parameter/Fade", "../Body/Effects/Swing3Effects:visible", "../Body/Hurtboxes/PrimaryStep3:monitoring"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_34in5"]
-graph_offset = Vector2(-649.4066, 273.97003)
-nodes/output/position = Vector2(1120, 940)
-nodes/hit_one_shot/node = SubResource("AnimationNodeOneShot_oa2sl")
-nodes/hit_one_shot/position = Vector2(-60, 280)
-nodes/empty/node = SubResource("AnimationNodeAnimation_omrbx")
-nodes/empty/position = Vector2(-400, 160)
-nodes/primary_attack_step_3/node = SubResource("AnimationNodeAnimation_8pjd2")
-nodes/primary_attack_step_3/position = Vector2(60, 1120)
-nodes/primary_attack_step_1_one_shot/node = SubResource("AnimationNodeOneShot_gfbub")
-nodes/primary_attack_step_1_one_shot/position = Vector2(140, 540)
-nodes/primary_attack_step_1/node = SubResource("AnimationNodeAnimation_2ono0")
-nodes/primary_attack_step_1/position = Vector2(-340, 600)
-nodes/hit/node = SubResource("AnimationNodeAnimation_0dlhd")
-nodes/hit/position = Vector2(-360, 360)
-nodes/primary_attack_step_2_one_shot/node = SubResource("AnimationNodeOneShot_7ylew")
-nodes/primary_attack_step_2_one_shot/position = Vector2(440, 760)
-nodes/primary_attack_step_2/node = SubResource("AnimationNodeAnimation_34in5")
-nodes/primary_attack_step_2/position = Vector2(-20, 860)
-nodes/primary_attack_step_3_one_shot/node = SubResource("AnimationNodeOneShot_rr4kf")
-nodes/primary_attack_step_3_one_shot/position = Vector2(760, 940)
-node_connections = [&"output", 0, &"primary_attack_step_3_one_shot", &"hit_one_shot", 0, &"empty", &"hit_one_shot", 1, &"hit", &"primary_attack_step_1_one_shot", 0, &"hit_one_shot", &"primary_attack_step_1_one_shot", 1, &"primary_attack_step_1", &"primary_attack_step_2_one_shot", 0, &"primary_attack_step_1_one_shot", &"primary_attack_step_2_one_shot", 1, &"primary_attack_step_2", &"primary_attack_step_3_one_shot", 0, &"primary_attack_step_2_one_shot", &"primary_attack_step_3_one_shot", 1, &"primary_attack_step_3"]
-
-[sub_resource type="Animation" id="Animation_52e47"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Effects/Swing1Effect:mesh:material:shader_parameter/Fade")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body/Hurtboxes/PrimaryStep1:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Body/Effects/Swing2Effect:mesh:material:shader_parameter/Fade")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Body/Hurtboxes/PrimaryStep2:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect:mesh:material:shader_parameter/Fade")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Body/Effects/Swing3Effects/Swing3Effect2:mesh:material:shader_parameter/Fade")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Body/Hurtboxes/PrimaryStep3:monitoring")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_omrbx"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v663u"]
 _data = {
-&"RESET": SubResource("Animation_52e47")
+&"RESET": ExtResource("13_v663u"),
+&"hit": ExtResource("12_34in5")
 }
 
-[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "effect_animator", "lock_on_ray") groups=["player"]]
+[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "lock_on_ray") groups=["player"]]
 script = ExtResource("1_0sr62")
 state_machine = NodePath("StateMachine")
 body = NodePath("Body")
 camera_controller = NodePath("ThirdPersonCamera")
 camera = NodePath("ThirdPersonCamera/CameraArm/Camera")
 model_animator = NodePath("ModelAnimator")
-effect_animator = NodePath("EffectAnimator")
+event_player = NodePath("EventPlayer")
 lock_on_ray = NodePath("ThirdPersonCamera/CameraArm/Camera/LockOnRay")
 
 [node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("3_b24kb")]
@@ -330,7 +218,7 @@ shape = ExtResource("1_is7nx")
 [node name="CharacterModel" parent="Body" unique_id=1094857873 instance=ExtResource("2_0sr62")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 577986657) index="0" unique_id=1398493887]
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 1859744286) index="0" unique_id=355420670]
 bones/0/position = Vector3(0, 1.0099, -0.05519999)
 bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
@@ -362,76 +250,100 @@ bone_idx = 11
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/CharacterModel/metarig/Skeleton3D/LeftHandAttachment" unique_id=79270609]
 remote_path = NodePath("../../../../../../LeftHand")
 
-[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=987980837]
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=1120226461]
 transform = Transform3D(-0.005017258, 0.07755357, 0.35081345, 0.044051666, 0.05062934, -0.44127432, -0.08956708, 0.020556662, -0.23668285, -0.738985, 2.0861967, 0.1559247)
 visible = false
 mesh = SubResource("ArrayMesh_y2pnb")
 
 [node name="Effects" type="Node3D" parent="Body" unique_id=78326708]
 
-[node name="Swing1Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=667567759]
-transform = Transform3D(0.49488807, 0.6933766, -0.5237505, -0.47620815, 0.72057533, 0.5039811, 0.72685045, -4.1812292e-08, 0.6867958, 0.0062264204, 0.35963196, 0.4962433)
-mesh = SubResource("PlaneMesh_0dlhd")
+[node name="PrimaryAttackStep1" type="Node3D" parent="Body/Effects" unique_id=942444270]
 
-[node name="Swing2Effect" type="MeshInstance3D" parent="Body/Effects" unique_id=906931547]
-transform = Transform3D(0.26635796, -0.7417889, -0.615469, 0.22133799, 0.66854537, -0.70996946, 0.9381168, 0.0528792, 0.34225866, 0.01312536, 0.35611898, 0.7895774)
-mesh = SubResource("PlaneMesh_omrbx")
-skeleton = NodePath("../Swing1Effect")
-
-[node name="Swing3Effects" type="Node3D" parent="Body/Effects" unique_id=1436080752]
-
-[node name="Swing3Effect" type="MeshInstance3D" parent="Body/Effects/Swing3Effects" unique_id=197931547]
-transform = Transform3D(0.1327898, -0.5951043, -0.7926017, 0.2276884, 0.79661286, -0.5599695, 0.9646371, -0.10610798, 0.24128029, 0.24289185, -0.08937228, 1.4116583)
-mesh = SubResource("PlaneMesh_34in5")
-skeleton = NodePath("../../Swing1Effect")
-
-[node name="Swing3Effect2" type="MeshInstance3D" parent="Body/Effects/Swing3Effects" unique_id=98787383]
-transform = Transform3D(0.024226218, -0.57082385, 0.82071507, -0.0057132775, -0.82102203, -0.570868, 0.99969006, 0.009140998, -0.023151636, -0.20692629, 0.07280433, 1.8369563)
-mesh = SubResource("PlaneMesh_2ono0")
-skeleton = NodePath("../../Swing1Effect")
-
-[node name="BloodSplatterEffect" type="MeshInstance3D" parent="Body/Effects" unique_id=1359604100]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330925, 0.15635276, 0)
-mesh = SubResource("QuadMesh_skg13")
-skeleton = NodePath("../..")
-
-[node name="Hurtboxes" type="Node3D" parent="Body" unique_id=1384386096]
-
-[node name="PrimaryStep1" type="Area3D" parent="Body/Hurtboxes" unique_id=1720886733]
+[node name="Hurtbox" type="Area3D" parent="Body/Effects/PrimaryAttackStep1" unique_id=1720886733]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtboxes/PrimaryStep1" unique_id=675544589]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Effects/PrimaryAttackStep1/Hurtbox" unique_id=675544589]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 1.186)
 visible = false
 shape = SubResource("BoxShape3D_stinp")
 debug_color = Color(0.99215686, 0.011764706, 0.2627451, 0.41960785)
 
-[node name="PrimaryStep2" type="Area3D" parent="Body/Hurtboxes" unique_id=165282724]
+[node name="SwingEffect" type="MeshInstance3D" parent="Body/Effects/PrimaryAttackStep1" unique_id=667567759]
+transform = Transform3D(0.49488807, 0.6933766, -0.5237505, -0.47620815, 0.72057533, 0.5039811, 0.72685045, -4.1812292e-08, 0.6867958, 0.0062264204, 0.35963196, 0.4962433)
+visible = false
+mesh = SubResource("PlaneMesh_0dlhd")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/PrimaryAttackStep1" unique_id=991721652]
+libraries/ = SubResource("AnimationLibrary_2ono0")
+
+[node name="PrimaryAttackStep2" type="Node3D" parent="Body/Effects" unique_id=1562108736]
+
+[node name="Hurtbox" type="Area3D" parent="Body/Effects/PrimaryAttackStep2" unique_id=165282724]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtboxes/PrimaryStep2" unique_id=871309776]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Effects/PrimaryAttackStep2/Hurtbox" unique_id=871309776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 1.186)
 visible = false
 shape = SubResource("BoxShape3D_08tcn")
 debug_color = Color(0.99215686, 0.011764706, 0.2627451, 0.41960785)
 
-[node name="PrimaryStep3" type="Area3D" parent="Body/Hurtboxes" unique_id=1579828706]
+[node name="SwingEffect" type="MeshInstance3D" parent="Body/Effects/PrimaryAttackStep2" unique_id=906931547]
+transform = Transform3D(0.26635796, -0.7417889, -0.615469, 0.22133799, 0.66854537, -0.70996946, 0.9381168, 0.0528792, 0.34225866, 0.01312536, 0.35611898, 0.7895774)
+visible = false
+mesh = SubResource("PlaneMesh_omrbx")
+skeleton = NodePath("../../PrimaryAttackStep1/SwingEffect")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/PrimaryAttackStep2" unique_id=119028845]
+libraries/ = SubResource("AnimationLibrary_omrbx")
+
+[node name="PrimaryAttackStep3" type="Node3D" parent="Body/Effects" unique_id=1236664885]
+
+[node name="Hurtbox" type="Area3D" parent="Body/Effects/PrimaryAttackStep3" unique_id=1579828706]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtboxes/PrimaryStep3" unique_id=939546562]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Effects/PrimaryAttackStep3/Hurtbox" unique_id=939546562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149, 1.599)
 visible = false
 shape = SubResource("BoxShape3D_5yyo5")
 debug_color = Color(0.99117035, 0.010396242, 0.26147646, 0.41960785)
+
+[node name="SwingEffects" type="Node3D" parent="Body/Effects/PrimaryAttackStep3" unique_id=1436080752]
+visible = false
+
+[node name="SwingEffect" type="MeshInstance3D" parent="Body/Effects/PrimaryAttackStep3/SwingEffects" unique_id=197931547]
+transform = Transform3D(0.1327898, -0.5951043, -0.7926017, 0.2276884, 0.79661286, -0.5599695, 0.9646371, -0.10610798, 0.24128029, 0.24289185, -0.08937228, 1.4116583)
+mesh = SubResource("PlaneMesh_34in5")
+skeleton = NodePath("../../../PrimaryAttackStep1/SwingEffect")
+
+[node name="SwingEffect2" type="MeshInstance3D" parent="Body/Effects/PrimaryAttackStep3/SwingEffects" unique_id=98787383]
+transform = Transform3D(0.024226218, -0.57082385, 0.82071507, -0.0057132775, -0.82102203, -0.570868, 0.99969006, 0.009140998, -0.023151636, -0.20692629, 0.07280433, 1.8369563)
+mesh = SubResource("PlaneMesh_2ono0")
+skeleton = NodePath("../../../PrimaryAttackStep1/SwingEffect")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/PrimaryAttackStep3" unique_id=467456858]
+libraries/ = SubResource("AnimationLibrary_0dlhd")
+
+[node name="HitSplatter" type="Node3D" parent="Body/Effects" unique_id=272812143]
+
+[node name="BloodSplatterEffect" type="MeshInstance3D" parent="Body/Effects/HitSplatter" unique_id=1847114899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330925, 0.15635276, 0)
+mesh = SubResource("QuadMesh_52e47")
+skeleton = NodePath("../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/HitSplatter" unique_id=2022877331]
+libraries/ = SubResource("AnimationLibrary_v663u")
+
+[node name="Hurtboxes" type="Node3D" parent="Body" unique_id=1384386096]
 
 [node name="Hitbox" type="Area3D" parent="Body" unique_id=1627284786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1062957, 0)
@@ -445,7 +357,7 @@ shape = ExtResource("7_stinp")
 debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
 
 [node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
-transform = Transform3D(-0.9506781, -0.29106766, 0.10703636, 0.3085952, -0.92210233, 0.233338, 0.030781746, 0.25485855, 0.96648204, -0.5069494, -0.16794616, 0.09700575)
+transform = Transform3D(-0.9506781, -0.29106757, 0.10703636, 0.3085952, -0.9221021, 0.233338, 0.030781746, 0.2548585, 0.96648204, -0.5069494, -0.16794616, 0.09700575)
 
 [node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
@@ -482,6 +394,13 @@ script = ExtResource("13_5yyo5")
 [node name="SpecialAction" type="Node" parent="StateMachine" unique_id=810876236]
 script = ExtResource("14_stinp")
 
+[node name="EventPlayer" type="Node" parent="." unique_id=157513702 node_paths=PackedStringArray("primary_attack_step_1_animator", "primary_attack_step_2_animator", "primary_attack_step_3_animator", "hit_animator")]
+script = ExtResource("20_skg13")
+primary_attack_step_1_animator = NodePath("../Body/Effects/PrimaryAttackStep1/AnimationPlayer")
+primary_attack_step_2_animator = NodePath("../Body/Effects/PrimaryAttackStep2/AnimationPlayer")
+primary_attack_step_3_animator = NodePath("../Body/Effects/PrimaryAttackStep3/AnimationPlayer")
+hit_animator = NodePath("../Body/Effects/HitSplatter/AnimationPlayer")
+
 [node name="ModelAnimator" type="AnimationTree" parent="." unique_id=91672609]
 root_node = NodePath("../Body/CharacterModel")
 tree_root = ExtResource("15_y2pnb")
@@ -496,29 +415,6 @@ parameters/primary_attack_one_shot/internal_active = false
 parameters/primary_attack_one_shot/request = 0
 parameters/primary_attack/blend_position = 0.0
 script = ExtResource("16_y2pnb")
-
-[node name="EffectAnimator" type="AnimationTree" parent="." unique_id=319316404]
-tree_root = SubResource("AnimationNodeBlendTree_34in5")
-anim_player = NodePath("../EffectAnimationPlayer")
-parameters/hit_one_shot/active = false
-parameters/hit_one_shot/internal_active = false
-parameters/hit_one_shot/request = 0
-parameters/primary_attack_step_1_one_shot/active = false
-parameters/primary_attack_step_1_one_shot/internal_active = false
-parameters/primary_attack_step_1_one_shot/request = 0
-parameters/primary_attack_step_2_one_shot/active = false
-parameters/primary_attack_step_2_one_shot/internal_active = false
-parameters/primary_attack_step_2_one_shot/request = 0
-parameters/primary_attack_step_3_one_shot/active = false
-parameters/primary_attack_step_3_one_shot/internal_active = false
-parameters/primary_attack_step_3_one_shot/request = 0
-script = ExtResource("22_omrbx")
-
-[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=47462644]
-deterministic = true
-libraries/ = SubResource("AnimationLibrary_omrbx")
-libraries/player_animations = ExtResource("22_0dlhd")
-libraries/warrior_animations = ExtResource("23_omrbx")
 
 [editable path="ThirdPersonCamera"]
 [editable path="Body/CharacterModel"]
