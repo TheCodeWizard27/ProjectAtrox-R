@@ -207,6 +207,7 @@ player = NodePath("../../../..")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1479056175]
 collision_layer = 41
+floor_snap_length = 0.2
 
 [node name="CameraTracker" type="RemoteTransform3D" parent="Body" unique_id=321823901]
 remote_path = NodePath("../../ThirdPersonCamera")
@@ -337,6 +338,7 @@ libraries/ = SubResource("AnimationLibrary_0dlhd")
 
 [node name="BloodSplatterEffect" type="MeshInstance3D" parent="Body/Effects/HitSplatter" unique_id=1847114899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330925, 0.15635276, 0)
+visible = false
 mesh = SubResource("QuadMesh_52e47")
 skeleton = NodePath("../../..")
 

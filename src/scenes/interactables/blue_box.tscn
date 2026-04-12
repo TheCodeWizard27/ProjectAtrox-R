@@ -3,14 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bsj80wh52g5x0" path="res://assets/interactables/box_blue.blend" id="1_x4gvb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x4gvb"]
-size = Vector3(2.0845032, 2.1280403, 2.1093254)
 
 [node name="BlueBox" type="Node3D" unique_id=883319482]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1578311725]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1466626033]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031417847, -0.00042152405, -0.0040721893)
 shape = SubResource("BoxShape3D_x4gvb")
 
 [node name="box_blue" parent="StaticBody3D" unique_id=743151721 instance=ExtResource("1_x4gvb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
