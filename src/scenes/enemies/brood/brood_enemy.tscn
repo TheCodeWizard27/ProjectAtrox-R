@@ -21,7 +21,7 @@ radius = 0.3
 [sub_resource type="SphereShape3D" id="SphereShape3D_h87fn"]
 radius = 4.647
 
-[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy"]]
+[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy", "entity"]]
 script = ExtResource("1_axasp")
 state = NodePath("StateMachine")
 body = NodePath("Body")

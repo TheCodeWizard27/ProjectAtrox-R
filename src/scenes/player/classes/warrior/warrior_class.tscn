@@ -190,7 +190,7 @@ _data = {
 &"hit": ExtResource("12_34in5")
 }
 
-[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "lock_on_ray") groups=["player"]]
+[node name="WarriorClass" type="Node3D" unique_id=1431314943 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "lock_on_ray") groups=["entity", "player"]]
 script = ExtResource("1_0sr62")
 state_machine = NodePath("StateMachine")
 body = NodePath("Body")
@@ -261,8 +261,8 @@ mesh = SubResource("ArrayMesh_y2pnb")
 [node name="PrimaryAttackStep1" type="Node3D" parent="Body/Effects" unique_id=942444270]
 
 [node name="Hurtbox" type="Area3D" parent="Body/Effects/PrimaryAttackStep1" unique_id=1720886733]
-collision_layer = 16
-collision_mask = 0
+collision_layer = 0
+collision_mask = 16
 monitoring = false
 monitorable = false
 
@@ -284,8 +284,8 @@ libraries/ = SubResource("AnimationLibrary_2ono0")
 [node name="PrimaryAttackStep2" type="Node3D" parent="Body/Effects" unique_id=1562108736]
 
 [node name="Hurtbox" type="Area3D" parent="Body/Effects/PrimaryAttackStep2" unique_id=165282724]
-collision_layer = 16
-collision_mask = 0
+collision_layer = 0
+collision_mask = 16
 monitoring = false
 monitorable = false
 
@@ -307,8 +307,8 @@ libraries/ = SubResource("AnimationLibrary_omrbx")
 [node name="PrimaryAttackStep3" type="Node3D" parent="Body/Effects" unique_id=1236664885]
 
 [node name="Hurtbox" type="Area3D" parent="Body/Effects/PrimaryAttackStep3" unique_id=1579828706]
-collision_layer = 16
-collision_mask = 0
+collision_layer = 0
+collision_mask = 16
 monitoring = false
 monitorable = false
 
@@ -359,7 +359,7 @@ shape = ExtResource("7_stinp")
 debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
 
 [node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
-transform = Transform3D(-0.9506781, -0.29106757, 0.10703636, 0.3085952, -0.9221021, 0.233338, 0.030781746, 0.2548585, 0.96648204, -0.5069494, -0.16794616, 0.09700575)
+transform = Transform3D(-0.95066315, -0.29106492, 0.10703633, 0.30859035, -0.92209363, 0.23333794, 0.030781262, 0.25485614, 0.9664818, -0.5069494, -0.16794616, 0.09700575)
 
 [node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
@@ -417,6 +417,10 @@ parameters/primary_attack_one_shot/internal_active = false
 parameters/primary_attack_one_shot/request = 0
 parameters/primary_attack/blend_position = 0.0
 script = ExtResource("16_y2pnb")
+
+[connection signal="area_entered" from="Body/Effects/PrimaryAttackStep1/Hurtbox" to="StateMachine/PrimaryAction" method="_on_step_1_hurtbox_area_entered"]
+[connection signal="area_entered" from="Body/Effects/PrimaryAttackStep2/Hurtbox" to="StateMachine/PrimaryAction" method="_on_step_2_hurtbox_area_entered"]
+[connection signal="area_entered" from="Body/Effects/PrimaryAttackStep3/Hurtbox" to="StateMachine/PrimaryAction" method="_on_step_3_hurtbox_area_entered"]
 
 [editable path="ThirdPersonCamera"]
 [editable path="Body/CharacterModel"]

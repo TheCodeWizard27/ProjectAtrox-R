@@ -1,5 +1,5 @@
-class_name BroodEnemy
 extends BaseEnemy
+class_name BroodEnemy
 
 @onready var attack_box: Area3D = %AttackBox	
 @onready var navigation_agent = $Body/NavigationAgent3D
@@ -27,8 +27,7 @@ func attack() -> void:
 	pass
 
 func _on_body_entered(p_body: Node3D) -> void:
-	var parent = p_body.get_parent_node_3d()
+	var entity = EntityResolveUtil.resolve_entity(p_body)
 	
-	if("player" in parent.get_groups() and parent is Player):
-		(parent as Player).get_hit()
-		#(parent as Player).get_hit(attack_damage, self.body)
+	if (entity != null):
+		entity.get_hit()

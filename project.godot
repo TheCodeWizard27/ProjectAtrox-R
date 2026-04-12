@@ -25,9 +25,10 @@ Events="*res://src/core/events/events.gd"
 
 [global_group]
 
-enemy="Hostile Enemies"
-player="player group used for checks with enemies"
+enemy="Enemy Entities"
+player="Player Entities"
 brood=""
+entity="Used for all Entities"
 
 [input]
 

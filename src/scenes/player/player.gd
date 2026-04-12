@@ -1,4 +1,4 @@
-extends Node3D
+extends BaseEntity
 class_name Player
 
 @export var max_speed: float = Globals.PLAYER_MAX_SPEED
@@ -19,7 +19,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
 
 func get_hit() -> void:
-	# TODO way more
+	super.get_hit()
 	event_player.play_getting_hit()
 
 func _ready() -> void:

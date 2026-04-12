@@ -102,3 +102,9 @@ material = ExtResource("3_87pyo")
 
 [node name="BlueBox" parent="Boxes" unique_id=883319482 instance=ExtResource("5_nwau3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.858232, -0.6254443, 0)
+
+[node name="BlueBox3" parent="Boxes" unique_id=1486897276 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.858232, 5.4562917, 3.3001616)
+
+[node name="BlueBox2" parent="Boxes" unique_id=1196112904 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.858232, -0.6254443, -1.913718)

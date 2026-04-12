@@ -42,7 +42,7 @@ var attack_steps: Array[PrimaryAttackData] = [
 	)
 ]
 
-var input_buffer_delay: float = 0.1
+var input_buffer_delay: float = 0.2
 var movement_speed_modifier: float = 0.2
 
 var current_step_index: int = 0
@@ -96,3 +96,18 @@ func _init_attack_step(step: int) -> void:
 	current_step = attack_steps[step]
 	model_animator.play_primary_attack(current_step.blend_position)
 	event_player.play_primary_effect(current_step.effect_step_type)
+
+func _resolve_hit(area: Area3D) -> void:
+	var entity = EntityResolveUtil.resolve_entity(area)
+	
+	if (entity != null):
+		entity.get_hit()
+
+func _on_step_1_hurtbox_area_entered(area: Area3D) -> void:
+	_resolve_hit(area)
+
+func _on_step_2_hurtbox_area_entered(area: Area3D) -> void:
+	_resolve_hit(area)
+
+func _on_step_3_hurtbox_area_entered(area: Area3D) -> void:
+	_resolve_hit(area)

@@ -36,7 +36,7 @@ _data = {
 &"hit_reset": ExtResource("8_ghfs1")
 }
 
-[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "lock_on_ray") groups=["player"]]
+[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "lock_on_ray") groups=["entity", "player"]]
 script = ExtResource("1_qyn71")
 state_machine = NodePath("StateMachine")
 body = NodePath("Body")
