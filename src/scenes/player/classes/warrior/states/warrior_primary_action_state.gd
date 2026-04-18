@@ -44,6 +44,7 @@ var attack_steps: Array[PrimaryAttackData] = [
 
 var input_buffer_delay: float = 0.2
 var movement_speed_modifier: float = 0.2
+var forward_momentum: float = 1
 
 var current_step_index: int = 0
 var current_step: PrimaryAttackData = null
@@ -71,6 +72,8 @@ func enter(_msg: Dictionary = {}) -> void:
 func physics_update(delta: float) -> void:
 	process_attack(delta)
 	movement_processor.process_movement(delta, movement_speed_modifier)
+	player.body.velocity += (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, player.camera_controller.rotation.y)
+	
 	lock_on_processor.process_lock_on()
 	
 	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length() * movement_speed_modifier)

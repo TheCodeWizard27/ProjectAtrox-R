@@ -23,6 +23,11 @@ config/icon="res://icon.svg"
 
 Events="*res://src/core/events/events.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
+
 [global_group]
 
 enemy="Enemy Entities"

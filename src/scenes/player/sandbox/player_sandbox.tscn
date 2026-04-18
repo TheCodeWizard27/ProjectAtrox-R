@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="1_qvchl"]
 [ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="2_op4lk"]
 [ext_resource type="Material" uid="uid://ca8jalwpkb4kj" path="res://src/assets/materials/mossy_stone.material" id="3_87pyo"]
-[ext_resource type="PackedScene" uid="uid://dvwv4k8qy3dms" path="res://src/scenes/interactables/blue_box.tscn" id="5_nwau3"]
+[ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="5_nwau3"]
+[ext_resource type="PackedScene" uid="uid://dy2qi3i2pj1t1" path="res://src/scenes/interactables/box/red_box/red_box.tscn" id="5_op4lk"]
+[ext_resource type="PackedScene" uid="uid://2wafwamh0mvq" path="res://src/scenes/interactables/box/green_box/green_box.tscn" id="6_b0cyf"]
 [ext_resource type="PackedScene" uid="uid://le3yy5umvrvy" path="res://src/scenes/player/classes/warrior/warrior_class.tscn" id="6_qvchl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fmgqw"]
@@ -99,12 +101,76 @@ size = Vector3(1, 5.00473, 1)
 material = ExtResource("3_87pyo")
 
 [node name="Boxes" type="Node3D" parent="." unique_id=496256008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.057682, -0.6254443, 0)
 
-[node name="BlueBox" parent="Boxes" unique_id=883319482 instance=ExtResource("5_nwau3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.858232, -0.6254443, 0)
+[node name="RedBox" parent="Boxes" unique_id=883319482 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.97791755)
 
-[node name="BlueBox3" parent="Boxes" unique_id=1486897276 instance=ExtResource("5_nwau3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.858232, 5.4562917, 3.3001616)
+[node name="GreenBox" parent="Boxes" unique_id=2050498107 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3394773)
 
-[node name="BlueBox2" parent="Boxes" unique_id=1196112904 instance=ExtResource("5_nwau3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.858232, -0.6254443, -1.913718)
+[node name="BlueBox" parent="Boxes" unique_id=2085411782 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6092813)
+
+[node name="RedBox2" parent="Boxes" unique_id=915551594 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -0.97791755)
+
+[node name="GreenBox2" parent="Boxes" unique_id=1969821524 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, 0.3394773)
+
+[node name="BlueBox2" parent="Boxes" unique_id=974842049 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, 1.6092813)
+
+[node name="RedBox3" parent="Boxes" unique_id=812826201 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -0.97791755)
+
+[node name="GreenBox3" parent="Boxes" unique_id=1696608822 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, 0.3394773)
+
+[node name="BlueBox3" parent="Boxes" unique_id=12061367 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, 1.6092813)
+
+[node name="RedBox4" parent="Boxes" unique_id=1677523678 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -0.97791755)
+
+[node name="GreenBox4" parent="Boxes" unique_id=886382032 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, 0.3394773)
+
+[node name="BlueBox4" parent="Boxes" unique_id=1660098936 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, 1.6092813)
+
+[node name="RedBox5" parent="Boxes" unique_id=922017840 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9462113)
+
+[node name="GreenBox5" parent="Boxes" unique_id=1935052783 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6288164)
+
+[node name="BlueBox5" parent="Boxes" unique_id=1182175098 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3590124)
+
+[node name="RedBox6" parent="Boxes" unique_id=1684771885 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -4.9462113)
+
+[node name="GreenBox6" parent="Boxes" unique_id=113495559 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -3.6288164)
+
+[node name="BlueBox6" parent="Boxes" unique_id=1560277506 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -2.3590124)
+
+[node name="RedBox7" parent="Boxes" unique_id=903139683 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -4.9462113)
+
+[node name="GreenBox7" parent="Boxes" unique_id=512028998 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -3.6288164)
+
+[node name="BlueBox7" parent="Boxes" unique_id=1566465016 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -2.3590124)
+
+[node name="RedBox8" parent="Boxes" unique_id=954679119 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -4.9462113)
+
+[node name="GreenBox8" parent="Boxes" unique_id=252509304 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -3.6288164)
+
+[node name="BlueBox8" parent="Boxes" unique_id=1513169203 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -2.3590124)
