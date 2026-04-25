@@ -45,6 +45,28 @@ radius = 45.0
 height = 12.0
 material = ExtResource("3_faxgi")
 
+[node name="Tower2" type="CSGCylinder3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=1627996307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4869771, 0)
+radius = 82.0
+height = 5.0
+material = ExtResource("3_faxgi")
+
+[node name="Tower3" type="CSGCylinder3D" parent="AreaEnvironment/CSGCombiner3D/Tower2" unique_id=2108433518]
+operation = 2
+radius = 60.0
+height = 5.0
+material = ExtResource("3_faxgi")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D/Tower2" unique_id=732687826]
+transform = Transform3D(0.9271838, 0, 0.37460655, 0, 1, 0, -0.37460655, 0, 0.9271838, 1.0504093, 0, 0.42464447)
+size = Vector3(16, 5, 118.077)
+material = ExtResource("3_faxgi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D/Tower2" unique_id=713126989]
+transform = Transform3D(0.3746066, 0, -0.92718375, 0, 1, 0, 0.92718375, 0, 0.3746066, 1.0504093, 0, 0.42464447)
+size = Vector3(16, 5, 118.077)
+material = ExtResource("3_faxgi")
+
 [node name="Thing" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=872162024]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -94.73033, 13.018305, -96.509315)
 size = Vector3(80, 60, 181.16357)
