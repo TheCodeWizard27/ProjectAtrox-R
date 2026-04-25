@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="1_qvchl"]
 [ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="2_op4lk"]
 [ext_resource type="Material" uid="uid://ca8jalwpkb4kj" path="res://src/assets/materials/mossy_stone.material" id="3_87pyo"]
-[ext_resource type="Script" uid="uid://dvny88al2x2nk" path="res://src/scenes/player/target_detector/action_target.gd" id="4_b0cyf"]
+[ext_resource type="Script" uid="uid://dvny88al2x2nk" path="res://src/scenes/player/action_target.gd" id="4_b0cyf"]
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="5_nwau3"]
 [ext_resource type="PackedScene" uid="uid://dy2qi3i2pj1t1" path="res://src/scenes/interactables/box/red_box/red_box.tscn" id="5_op4lk"]
 [ext_resource type="PackedScene" uid="uid://2wafwamh0mvq" path="res://src/scenes/interactables/box/green_box/green_box.tscn" id="6_b0cyf"]
@@ -11,25 +11,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fmgqw"]
 radius = 10.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0cyf"]
-shading_mode = 0
-billboard_mode = 1
-
-[sub_resource type="TextMesh" id="TextMesh_hwhuu"]
-material = SubResource("StandardMaterial3D_b0cyf")
-text = "Cubert 1"
-depth = 0.0
-
-[sub_resource type="TextMesh" id="TextMesh_b0cyf"]
-material = SubResource("StandardMaterial3D_b0cyf")
-text = "Cubert 2"
-depth = 0.0
-
-[sub_resource type="TextMesh" id="TextMesh_boyli"]
-material = SubResource("StandardMaterial3D_b0cyf")
-text = "Cubert 3"
-depth = 0.0
 
 [node name="PlayerSandbox" type="Node3D" unique_id=1868723593]
 
@@ -43,7 +24,7 @@ size = Vector3(100, 1, 100)
 material = ExtResource("2_op4lk")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=495445616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8097403, 0, 5.226126)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.226126)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Marker3D" unique_id=1118821051]
 material = ExtResource("3_87pyo")
@@ -52,58 +33,12 @@ material = ExtResource("3_87pyo")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_b0cyf")
-visible_name = "Cubert 1"
+visible_name = "Cubert"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D/LockOnTarget" unique_id=2010486082]
 shape = SubResource("SphereShape3D_fmgqw")
 debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
 debug_fill = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D" unique_id=1905284600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8501967, 0)
-mesh = SubResource("TextMesh_hwhuu")
-
-[node name="Marker3D2" type="Marker3D" parent="." unique_id=1200840553]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.706677, 0, 5.226126)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Marker3D2" unique_id=188732376]
-material = ExtResource("3_87pyo")
-
-[node name="LockOnTarget" type="Area3D" parent="Marker3D2" unique_id=266914410]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("4_b0cyf")
-visible_name = "Cubert 2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D2/LockOnTarget" unique_id=510751805]
-shape = SubResource("SphereShape3D_fmgqw")
-debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
-debug_fill = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D2" unique_id=1073734316]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8501967, 0)
-mesh = SubResource("TextMesh_b0cyf")
-
-[node name="Marker3D3" type="Marker3D" parent="." unique_id=480626714]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8501127, 0, -5.7489457)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Marker3D3" unique_id=1113544841]
-material = ExtResource("3_87pyo")
-
-[node name="LockOnTarget" type="Area3D" parent="Marker3D3" unique_id=954103222]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("4_b0cyf")
-visible_name = "Cubert 3"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D3/LockOnTarget" unique_id=1301696810]
-shape = SubResource("SphereShape3D_fmgqw")
-debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
-debug_fill = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D3" unique_id=1075918316]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8501967, 0)
-mesh = SubResource("TextMesh_boyli")
 
 [node name="WarriorClass" parent="." unique_id=1431314943 instance=ExtResource("6_qvchl")]
 

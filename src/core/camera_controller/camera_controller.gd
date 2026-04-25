@@ -4,6 +4,7 @@ extends Node3D
 @export_range(0, 1) var camera_speed: float = 0.2
 @export var camera: Camera3D
 
+var is_moving: bool = false
 var lock_on_target: Node3D
 
 func _ready():
@@ -46,5 +47,7 @@ func _input(event: InputEvent) -> void:
 		process_camera_movement(event.relative * camera_speed)
 
 func process_camera_movement(movement: Vector2) -> void:
+	is_moving = movement.length() > 0
+	
 	rotation_degrees.x = clamp(rotation_degrees.x - movement.y, -90, 30)
 	rotation_degrees.y = wrapf(rotation_degrees.y - movement.x, 0, 360)

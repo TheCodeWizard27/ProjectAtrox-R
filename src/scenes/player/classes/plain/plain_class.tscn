@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dp2yuasdiqhpa" path="res://src/scenes/player/states/airborne_state.gd" id="7_53pud"]
 [ext_resource type="Animation" uid="uid://cjdurt52xssm6" path="res://src/scenes/player/animations/hit_reset.res" id="8_ghfs1"]
 [ext_resource type="Script" uid="uid://bqb6e4b63l6u7" path="res://src/scenes/player/states/grounded_state.gd" id="8_qyn71"]
+[ext_resource type="PackedScene" uid="uid://dytnbxafjovke" path="res://src/scenes/player/target_detector/target_detector.tscn" id="9_36q61"]
 [ext_resource type="Script" uid="uid://dvc4who4r0kls" path="res://src/scenes/player/states/jumping_state.gd" id="9_qyn71"]
 [ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="10_mhbxl"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://bd3ovodbk2668" path="res://src/scenes/player/resources/player_animation_tree.tres" id="11_6ano4"]
@@ -36,7 +37,7 @@ _data = {
 &"hit_reset": ExtResource("8_ghfs1")
 }
 
-[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "lock_on_ray") groups=["entity", "player"]]
+[node name="PlainClass" type="Node3D" unique_id=977249241 node_paths=PackedStringArray("state_machine", "body", "camera_controller", "camera", "model_animator", "event_player", "target_detector") groups=["entity", "player"]]
 script = ExtResource("1_qyn71")
 state_machine = NodePath("StateMachine")
 body = NodePath("Body")
@@ -44,7 +45,15 @@ camera_controller = NodePath("ThirdPersonCamera")
 camera = NodePath("ThirdPersonCamera/CameraArm/Camera")
 model_animator = NodePath("ModelAnimator")
 event_player = NodePath("EventPlayer")
-lock_on_ray = NodePath("ThirdPersonCamera/CameraArm/Camera/LockOnRay")
+target_detector = NodePath("Body/ActionTargetDetector")
+
+[node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("4_jdqon")]
+
+[node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="0" unique_id=1491162933 node_paths=PackedStringArray("player") instance=ExtResource("5_qyn71")]
+player = NodePath("../../../..")
+
+[node name="LockOnRayTransform" type="RemoteTransform3D" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1840681497]
+remote_path = NodePath("../../../../Body/ActionTargetDetector/LockOnRay")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=196412690]
 collision_layer = 41
@@ -101,10 +110,11 @@ skeleton = NodePath("../../..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/HitSplatter" unique_id=1119796766]
 libraries/ = SubResource("AnimationLibrary_mhbxl")
 
-[node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("4_jdqon")]
+[node name="ActionTargetDetector" parent="Body" unique_id=2108185296 instance=ExtResource("9_36q61")]
+visible = false
 
-[node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1491162933 node_paths=PackedStringArray("player") instance=ExtResource("5_qyn71")]
-player = NodePath("../../../..")
+[node name="LockOnRay" parent="Body/ActionTargetDetector" index="1" unique_id=530182822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1362293267]
 script = ExtResource("6_gmvdh")
@@ -138,5 +148,6 @@ parameters/interact_one_shot/request = 0
 parameters/falling/blend_amount = 0.0
 script = ExtResource("12_qyn71")
 
-[editable path="Body/CharacterModel"]
 [editable path="ThirdPersonCamera"]
+[editable path="Body/CharacterModel"]
+[editable path="Body/ActionTargetDetector"]

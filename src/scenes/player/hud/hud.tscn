@@ -92,9 +92,9 @@ render_priority = 0
 shader = ExtResource("4_8a4cl")
 shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
 
-[sub_resource type="QuadMesh" id="QuadMesh_j8ngh"]
+[sub_resource type="QuadMesh" id="QuadMesh_8a4cl"]
 material = SubResource("ShaderMaterial_6j5wj")
-size = Vector2(0.82, 0.1)
+size = Vector2(0.02, 0.4)
 center_offset = Vector3(0.38, 0, 0)
 
 [sub_resource type="Shader" id="Shader_p04jj"]
@@ -131,9 +131,11 @@ render_priority = 0
 shader = SubResource("Shader_p04jj")
 shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="TextMesh" id="TextMesh_6j5wj"]
+[sub_resource type="TextMesh" id="TextMesh_t4k86"]
 material = SubResource("ShaderMaterial_t4k86")
-text = "HP  ["
+text = ">	Test
+	Test
+	Test"
 font = ExtResource("5_0vvra")
 font_size = 7
 horizontal_alignment = 0
@@ -144,9 +146,32 @@ render_priority = 0
 shader = SubResource("Shader_p04jj")
 shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
 
+[sub_resource type="TextMesh" id="TextMesh_k5sm4"]
+material = SubResource("ShaderMaterial_we0nm")
+text = ">	Test
+	Test
+	Test"
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_j8ngh"]
+material = SubResource("ShaderMaterial_6j5wj")
+size = Vector2(0.82, 0.1)
+center_offset = Vector3(0.38, 0, 0)
+
+[sub_resource type="TextMesh" id="TextMesh_6j5wj"]
+material = SubResource("ShaderMaterial_t4k86")
+text = "HP: ["
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
 [sub_resource type="TextMesh" id="TextMesh_8a4cl"]
 material = SubResource("ShaderMaterial_we0nm")
-text = "HP  ["
+text = "HP ["
 font = ExtResource("5_0vvra")
 font_size = 7
 horizontal_alignment = 0
@@ -212,31 +237,50 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_t4k86")
 autoplay = &"SpinTargetIndicator"
 
+[node name="TargetStack" type="Node3D" parent="." unique_id=717629084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.409086, 0, -1.4947582)
+
+[node name="Background" type="MeshInstance3D" parent="TargetStack" unique_id=554191035]
+transform = Transform3D(0.9694453, 0, 0.24530742, 0, 1, 0, -0.24530737, 0, 0.96944547, 0, 0, 0)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_8a4cl")
+skeleton = NodePath("../..")
+
+[node name="Text" type="MeshInstance3D" parent="TargetStack" unique_id=69497471]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.71399033, 0.1422134, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_t4k86")
+
+[node name="TextShadow" type="MeshInstance3D" parent="TargetStack/Text" unique_id=213495041]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_k5sm4")
+
 [node name="Health" type="Node3D" parent="." unique_id=370532410]
 transform = Transform3D(0.9698082, 0, 0.24386892, 0.03410858, 0.99017066, -0.13564165, -0.24147184, 0.1398644, 0.96027565, -0.97, 0.523, -0.78)
 
-[node name="HealthBackground" type="MeshInstance3D" parent="Health" unique_id=310791243]
+[node name="Background" type="MeshInstance3D" parent="Health" unique_id=310791243]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 sorting_offset = 1000.0
 mesh = SubResource("QuadMesh_j8ngh")
 skeleton = NodePath("../..")
 
-[node name="HealthStartText" type="MeshInstance3D" parent="Health" unique_id=234810085]
+[node name="StartText" type="MeshInstance3D" parent="Health" unique_id=234810085]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
 sorting_offset = 1002.0
 mesh = SubResource("TextMesh_6j5wj")
 
-[node name="HealthStartTextShadow" type="MeshInstance3D" parent="Health/HealthStartText" unique_id=1325621824]
+[node name="TextShadow" type="MeshInstance3D" parent="Health/StartText" unique_id=1325621824]
 transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
 sorting_offset = 1001.0
 mesh = SubResource("TextMesh_8a4cl")
 
-[node name="HealthEndText" type="MeshInstance3D" parent="Health" unique_id=730326204]
+[node name="EndText" type="MeshInstance3D" parent="Health" unique_id=730326204]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.58, 0, 0)
 sorting_offset = 1002.0
 mesh = SubResource("TextMesh_p04jj")
 
-[node name="HealthEndTextShadow" type="MeshInstance3D" parent="Health/HealthEndText" unique_id=772407131]
+[node name="TextShadow" type="MeshInstance3D" parent="Health/EndText" unique_id=772407131]
 transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
 sorting_offset = 1001.0
 mesh = SubResource("TextMesh_we0nm")

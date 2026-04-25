@@ -10,7 +10,7 @@ class_name Player
 @export var camera: Camera3D
 @export var model_animator: PlayerModelAnimator
 @export var event_player: PlayerEventPlayer
-@export var lock_on_ray: RayCast3D
+@export var target_detector: TargetDetector
 
 var status: PlayerStatus
 var lock_on_target: Node3D
