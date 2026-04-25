@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://d0bbmswgyukml"]
+
+[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="1_cv82u"]
+[ext_resource type="Script" uid="uid://cnjtalb5xipaj" path="res://src/scenes/areas/hub/hub.gd" id="1_faxgi"]
+[ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="3_faxgi"]
+
+[node name="Hub" type="Node3D" unique_id=417783601]
+script = ExtResource("1_faxgi")
+
+[node name="AreaEnvironment" parent="." unique_id=1183075330 instance=ExtResource("1_cv82u")]
+time = 0.708
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="AreaEnvironment" unique_id=2082160906]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=1027693031]
+transform = Transform3D(3.2388513, 0, 0, 0, 3.2388513, 0, 0, 0, 3.2388513, 0.013630701, -18.60112, 4.1232843)
+size = Vector3(100, 1, 100)
+material = ExtResource("3_faxgi")
+
+[node name="Tower" type="CSGCylinder3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=739771165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.018303, 0)
+radius = 42.0
+height = 100.0
+material = ExtResource("3_faxgi")
+
+[node name="Sector" type="CSGCylinder3D" parent="AreaEnvironment/CSGCombiner3D/Tower" unique_id=1199908875]
+transform = Transform3D(0.9238795, 0, -0.38268346, 0, 1, 0, 0.38268346, 0, 0.9238795, 0, -23.018303, 0)
+operation = 2
+radius = 45.0
+height = 12.0
+material = ExtResource("3_faxgi")
+
+[node name="Sector2" type="CSGCylinder3D" parent="AreaEnvironment/CSGCombiner3D/Tower" unique_id=2023324708]
+transform = Transform3D(0.9238795, 0, -0.38268346, 0, 1, 0, 0.38268346, 0, 0.9238795, 0, 0.123680115, 0)
+operation = 2
+radius = 45.0
+height = 12.0
+material = ExtResource("3_faxgi")
+
+[node name="Sector3" type="CSGCylinder3D" parent="AreaEnvironment/CSGCombiner3D/Tower" unique_id=592242198]
+transform = Transform3D(0.9238795, 0, -0.38268346, 0, 1, 0, 0.38268346, 0, 0.9238795, 0, 24.910053, 0)
+operation = 2
+radius = 45.0
+height = 12.0
+material = ExtResource("3_faxgi")
+
+[node name="Thing" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=872162024]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -94.73033, 13.018305, -96.509315)
+size = Vector3(80, 60, 181.16357)
+material = ExtResource("3_faxgi")
+
+[node name="Thing2" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=1163065174]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -62.49234, 10.518305, 110.27378)
+size = Vector3(80, 55, 140.18457)
+material = ExtResource("3_faxgi")
+
+[node name="Thing3" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=167408498]
+transform = Transform3D(-0.5000001, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, -0.5000001, 82.86178, 20.018303, -83.265396)
+size = Vector3(80, 74, 200)
+material = ExtResource("3_faxgi")
+
+[node name="Thing4" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D" unique_id=1360330586]
+transform = Transform3D(-0.8660255, 0, 0.5000001, 0, 1, 0, -0.5000001, 0, -0.8660255, 104.95758, 27.988585, 93.08713)
+size = Vector3(80, 89.94055, 200)
+material = ExtResource("3_faxgi")
+
+[node name="Thing5" type="CSGBox3D" parent="AreaEnvironment/CSGCombiner3D/Thing4" unique_id=1063003024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.649651, 0, 30.363888)
+size = Vector3(105.29932, 89.94055, 139.27222)
+material = ExtResource("3_faxgi")
+
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=1709350444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="Entities" type="Node3D" parent="." unique_id=201285081]

@@ -14,7 +14,8 @@ func process_lock_on() -> void:
 	if (Input.is_action_just_pressed("toggle_lock_on")):
 		_toggle_lock_on()
 	elif (player.lock_on_target and camera_controller.is_moving):
-		player.lock_on_target = target_detector.find_lock_on_target()
+		var new_target = target_detector.find_lock_on_target()
+		player.lock_on_target = new_target if new_target != null else player.lock_on_target
 	
 	camera_controller.lock_on_target = player.lock_on_target
 
