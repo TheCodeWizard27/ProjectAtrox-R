@@ -52,13 +52,13 @@ shader = ExtResource("2_e0wro")
 shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
 shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
 shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5553236, 0.31991357, 1)
 shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
 shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
 shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
 shader_parameter/horizon_blur = 0.05
 shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_sunset_color = Color(8.493439, 3.1720688, 0, 1)
 shader_parameter/sun_size = 0.2
 shader_parameter/sun_blur = 10.0
 shader_parameter/moon_color = Color(0.9999998, 0.9814516, 0.8868546, 1)
@@ -94,16 +94,16 @@ glow_enabled = true
 
 [node name="AreaEnvironment" type="Node3D" unique_id=1183075330]
 script = ExtResource("1_5ckfh")
-time = 0.211
+time = 0.806
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=473234793]
 environment = SubResource("Environment_7stnd")
 camera_attributes = SubResource("CameraAttributesPractical_5831v")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=697688009]
-transform = Transform3D(0.8118236, 0.5709676, 0.12222268, -0.023748394, 0.24143401, -0.9701265, -0.58341956, 0.7846692, 0.20956136, 0, 0, 0)
+transform = Transform3D(0.9059652, -0.3861071, 0.17363271, -0.033737585, 0.34298745, 0.9387338, -0.4220056, -0.8563185, 0.29770833, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Moon" type="DirectionalLight3D" parent="." unique_id=427706088]
-transform = Transform3D(1, 0, 0, 0, -0.24259928, 0.97012657, 0, -0.97012657, -0.24259928, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.34464294, -0.93873376, 0, 0.93873376, -0.34464294, 0, 0, 0)
 shadow_enabled = true
