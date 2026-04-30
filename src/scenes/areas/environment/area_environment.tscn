@@ -101,9 +101,9 @@ environment = SubResource("Environment_7stnd")
 camera_attributes = SubResource("CameraAttributesPractical_5831v")
 
 [node name="Sun" type="DirectionalLight3D" parent="." unique_id=697688009]
-transform = Transform3D(0.9059652, -0.3861071, 0.17363271, -0.033737585, 0.34298745, 0.9387338, -0.4220056, -0.8563185, 0.29770833, 0, 0, 0)
+transform = Transform3D(0.9059652, -0.3861071, 0.17363271, -0.03373759, 0.34298745, 0.9387338, -0.4220056, -0.8563185, 0.29770833, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Moon" type="DirectionalLight3D" parent="." unique_id=427706088]
-transform = Transform3D(1, 0, 0, 0, -0.34464294, -0.93873376, 0, 0.93873376, -0.34464294, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.34464294, -0.9387337, 0, 0.9387337, -0.34464294, 0, 0, 0)
 shadow_enabled = true
