@@ -1,4 +1,4 @@
-extends Node3D
+extends BaseEntity
 class_name BaseEnemy
 
 @export var turn_threshold: float = Globals.ENTITY_TURN_THRESHOLD

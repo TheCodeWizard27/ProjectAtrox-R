@@ -11,6 +11,8 @@
 radius = 0.4
 height = 1.3
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_h87fn"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_5i7ni"]
 radius = 0.3
 
@@ -19,7 +21,7 @@ radius = 0.3
 [sub_resource type="SphereShape3D" id="SphereShape3D_h87fn"]
 radius = 4.647
 
-[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy"]]
+[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy", "entity"]]
 script = ExtResource("1_axasp")
 state = NodePath("StateMachine")
 body = NodePath("Body")
@@ -51,6 +53,15 @@ shape = SubResource("CapsuleShape3D_ek4gk")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Body" unique_id=1478386828]
 debug_enabled = true
 
+[node name="Hitbox" type="Area3D" parent="Body" unique_id=889366050]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hitbox" unique_id=1197709207]
+shape = SubResource("BoxShape3D_h87fn")
+debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
+
 [node name="AttackBox" type="Area3D" parent="Body" unique_id=1797728821 groups=["brood", "enemy"]]
 unique_name_in_owner = true
 
@@ -68,6 +79,7 @@ shape = SubResource("SphereShape3D_ek4gk")
 [node name="LockOnTarget" type="Area3D" parent="Body" unique_id=1916873490]
 collision_layer = 4
 collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/LockOnTarget" unique_id=1833650257]
 shape = SubResource("SphereShape3D_h87fn")

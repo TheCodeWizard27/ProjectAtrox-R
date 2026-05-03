@@ -48,7 +48,6 @@ func _on_brood_exit(body: Node3D) -> void:
 	
 	if("brood" in parent.get_groups()):
 		current_brood_size -= 1
-		
 
 func _on_player_exit(body: Node3D) -> void:
 	print_debug('TestSpawn: entering player exit', body)

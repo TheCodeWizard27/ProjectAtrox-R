@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bc73jj3rnddkq"]
+[gd_scene format=3 uid="uid://bc73jj3rnddkq"]
 
 [ext_resource type="Script" uid="uid://ddg6j4kcyloc5" path="res://src/scenes/areas/environment/area_environment.gd" id="1_5ckfh"]
 [ext_resource type="Shader" uid="uid://c01uxduv4xeid" path="res://src/scenes/areas/environment/skybox.gdshader" id="2_e0wro"]
@@ -52,13 +52,13 @@ shader = ExtResource("2_e0wro")
 shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
 shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
 shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5553236, 0.31991357, 1)
 shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
 shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
 shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
 shader_parameter/horizon_blur = 0.05
 shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_sunset_color = Color(8.493439, 3.1720688, 0, 1)
 shader_parameter/sun_size = 0.2
 shader_parameter/sun_blur = 10.0
 shader_parameter/moon_color = Color(0.9999998, 0.9814516, 0.8868546, 1)
@@ -92,16 +92,18 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5831v"]
 
-[node name="AreaEnvironment" type="Node3D"]
+[node name="AreaEnvironment" type="Node3D" unique_id=1183075330]
 script = ExtResource("1_5ckfh")
-time = 0.211
+time = 0.806
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=473234793]
 environment = SubResource("Environment_7stnd")
 camera_attributes = SubResource("CameraAttributesPractical_5831v")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.8549672, 0.13235578, 0.5015106, -0.09744568, 0.990665, -0.095326714, -0.50944626, 0.03263118, 0.85988355, 0, 0, 0)
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=697688009]
+transform = Transform3D(0.9059652, -0.3861071, 0.17363271, -0.03373759, 0.34298745, 0.9387338, -0.4220056, -0.8563185, 0.29770833, 0, 0, 0)
+shadow_enabled = true
 
-[node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.9998356, 0.018133026, 0, -0.018133026, -0.9998356, 0, 0, 0)
+[node name="Moon" type="DirectionalLight3D" parent="." unique_id=427706088]
+transform = Transform3D(1, 0, 0, 0, -0.34464294, -0.9387337, 0, 0.9387337, -0.34464294, 0, 0, 0)
+shadow_enabled = true

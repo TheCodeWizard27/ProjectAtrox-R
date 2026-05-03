@@ -1,0 +1,16 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://dwikb4el40t0u"]
+
+[sub_resource type="Gradient" id="Gradient_08tcn"]
+offsets = PackedFloat32Array(0.42081448, 0.95022625)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dyod8"]
+frequency = 0.0092
+fractal_lacunarity = 2.68
+fractal_gain = 0.745
+
+[resource]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_dyod8")
+color_ramp = SubResource("Gradient_08tcn")
+seamless = true

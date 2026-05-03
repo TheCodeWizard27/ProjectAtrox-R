@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bs46epok0bxjq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6wt7h"]
+load_path = "res://.godot/imported/texture_08.png-3cc11d0d6ceb5d6ad1a5acd922dc5f02.s3tc.ctex"
+
+[resource]
+albedo_color = Color(0.5145986, 0.48827004, 0.4706387, 1)
+albedo_texture = SubResource("CompressedTexture2D_6wt7h")
+metallic_specular = 0.0
+uv1_triplanar = true
+texture_filter = 2

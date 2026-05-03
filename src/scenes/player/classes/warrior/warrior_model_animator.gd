@@ -3,9 +3,9 @@ class_name WarriorModelAnimator
 extends PlayerModelAnimator
 
 enum PrimaryAttackBlendPositions {
-	ATTACK1 = 0,
-	ATTACK2 = 1,
-	ATTACK3 = 2,
+	ATTACK_1 = 0,
+	ATTACK_2 = 1,
+	ATTACK_3 = 2,
 }
 
 var _primary_attack_blend_position = "parameters/primary_attack/blend_position"

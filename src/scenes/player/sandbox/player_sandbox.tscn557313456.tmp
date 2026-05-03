@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://dc1mldk1styhf"]
+
+[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="1_qvchl"]
+[ext_resource type="Material" uid="uid://n02be3wh3pcc" path="res://src/assets/materials/grass.material" id="2_op4lk"]
+[ext_resource type="Material" uid="uid://ca8jalwpkb4kj" path="res://src/assets/materials/mossy_stone.material" id="3_87pyo"]
+[ext_resource type="Script" uid="uid://dvny88al2x2nk" path="res://src/scenes/player/action_target.gd" id="4_b0cyf"]
+[ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="5_nwau3"]
+[ext_resource type="PackedScene" uid="uid://dy2qi3i2pj1t1" path="res://src/scenes/interactables/box/red_box/red_box.tscn" id="5_op4lk"]
+[ext_resource type="PackedScene" uid="uid://2wafwamh0mvq" path="res://src/scenes/interactables/box/green_box/green_box.tscn" id="6_b0cyf"]
+[ext_resource type="PackedScene" uid="uid://le3yy5umvrvy" path="res://src/scenes/player/classes/warrior/warrior_class.tscn" id="6_qvchl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fmgqw"]
+radius = 10.0
+
+[node name="PlayerSandbox" type="Node3D" unique_id=1868723593]
+
+[node name="AreaEnvironment" parent="." unique_id=1055116019 instance=ExtResource("1_qvchl")]
+time = 0.706
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=128759082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0171814, -1.7092499, -2.6601563)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = ExtResource("2_op4lk")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=495445616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.226126)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Marker3D" unique_id=1118821051]
+material = ExtResource("3_87pyo")
+
+[node name="LockOnTarget" type="Area3D" parent="Marker3D" unique_id=265354150]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_b0cyf")
+visible_name = "Cubert"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Marker3D/LockOnTarget" unique_id=2010486082]
+shape = SubResource("SphereShape3D_fmgqw")
+debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
+debug_fill = false
+
+[node name="WarriorClass" parent="." unique_id=1431314943 instance=ExtResource("6_qvchl")]
+
+[node name="TestObstacles" type="Node3D" parent="." unique_id=588474252]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.12544417, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="TestObstacles" unique_id=608645753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1, 0.13861084)
+use_collision = true
+size = Vector3(10, 1, 10.277222)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="TestObstacles" unique_id=2010483694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 4)
+use_collision = true
+size = Vector3(8, 5, 1)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="TestObstacles" unique_id=399826440]
+transform = Transform3D(0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0, 1, -9.772268, 1.6432446, 4.7926335)
+use_collision = true
+size = Vector3(7.0620117, 1, 1)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="TestObstacles" unique_id=630720126]
+transform = Transform3D(0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0, 1, -7.6290236, -0.5, 3.251895)
+use_collision = true
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="TestObstacles" unique_id=1229150539]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -8.855, -0.5, 0)
+use_collision = true
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="TestObstacles" unique_id=465786990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.671292, 1.3978882, -3.748796)
+use_collision = true
+size = Vector3(1, 3.7957764, 1)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="TestObstacles" unique_id=322823919]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -13.008898, 4, 4.7892323)
+use_collision = true
+size = Vector3(2.1505127, 1, 1)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="TestObstacles" unique_id=2007427484]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -15.514819, 2.2289176, -1.6855569)
+use_collision = true
+size = Vector3(0.62390137, 4.2334747, 5.172241)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="TestObstacles" unique_id=1817556372]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -13.474742, 2.2289176, 2.312307)
+use_collision = true
+size = Vector3(0.62390137, 8.313629, 2.8276367)
+material = ExtResource("3_87pyo")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="TestObstacles" unique_id=1483201567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.671292, 2.002365, 3.2261252)
+use_collision = true
+size = Vector3(1, 5.00473, 1)
+material = ExtResource("3_87pyo")
+
+[node name="Boxes" type="Node3D" parent="." unique_id=496256008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.057682, -0.6254443, 0)
+
+[node name="RedBox" parent="Boxes" unique_id=883319482 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.97791755)
+
+[node name="GreenBox" parent="Boxes" unique_id=2050498107 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3394773)
+
+[node name="BlueBox" parent="Boxes" unique_id=2085411782 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6092813)
+
+[node name="RedBox2" parent="Boxes" unique_id=915551594 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -0.97791755)
+
+[node name="GreenBox2" parent="Boxes" unique_id=1969821524 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, 0.3394773)
+
+[node name="BlueBox2" parent="Boxes" unique_id=974842049 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, 1.6092813)
+
+[node name="RedBox3" parent="Boxes" unique_id=812826201 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -0.97791755)
+
+[node name="GreenBox3" parent="Boxes" unique_id=1696608822 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, 0.3394773)
+
+[node name="BlueBox3" parent="Boxes" unique_id=12061367 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, 1.6092813)
+
+[node name="RedBox4" parent="Boxes" unique_id=1677523678 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -0.97791755)
+
+[node name="GreenBox4" parent="Boxes" unique_id=886382032 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, 0.3394773)
+
+[node name="BlueBox4" parent="Boxes" unique_id=1660098936 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, 1.6092813)
+
+[node name="RedBox5" parent="Boxes" unique_id=922017840 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.9462113)
+
+[node name="GreenBox5" parent="Boxes" unique_id=1935052783 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6288164)
+
+[node name="BlueBox5" parent="Boxes" unique_id=1182175098 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3590124)
+
+[node name="RedBox6" parent="Boxes" unique_id=1684771885 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -4.9462113)
+
+[node name="GreenBox6" parent="Boxes" unique_id=113495559 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -3.6288164)
+
+[node name="BlueBox6" parent="Boxes" unique_id=1560277506 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1921768, 0, -2.3590124)
+
+[node name="RedBox7" parent="Boxes" unique_id=903139683 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -4.9462113)
+
+[node name="GreenBox7" parent="Boxes" unique_id=512028998 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -3.6288164)
+
+[node name="BlueBox7" parent="Boxes" unique_id=1566465016 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.363018, 0, -2.3590124)
+
+[node name="RedBox8" parent="Boxes" unique_id=954679119 instance=ExtResource("5_op4lk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -4.9462113)
+
+[node name="GreenBox8" parent="Boxes" unique_id=252509304 instance=ExtResource("6_b0cyf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -3.6288164)
+
+[node name="BlueBox8" parent="Boxes" unique_id=1513169203 instance=ExtResource("5_nwau3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5551949, 0, -2.3590124)
