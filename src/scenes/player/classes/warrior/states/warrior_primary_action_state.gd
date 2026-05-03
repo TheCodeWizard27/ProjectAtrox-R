@@ -62,9 +62,7 @@ func init(current_player: WarriorClass) -> void:
 
 func enter(_msg: Dictionary = {}) -> void:
 	if (player.lock_on_target != null):
-		var previous_rotation = player.body.rotation
-		player.body.look_at(player.lock_on_target.global_position, Vector3.UP, true)
-		player.body.rotation = Vector3(previous_rotation.x, player.body.rotation.y, previous_rotation.z)
+		movement_processor.look_at(player.lock_on_target.global_position)
 	
 	var attack_step = _msg.get(attack_step_parameter)
 	_init_attack_step(attack_step if attack_step is float else 0)
@@ -72,7 +70,11 @@ func enter(_msg: Dictionary = {}) -> void:
 func physics_update(delta: float) -> void:
 	process_attack(delta)
 	movement_processor.process_movement(delta, movement_speed_modifier)
-	player.body.velocity += (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, player.camera_controller.rotation.y)
+	
+	# Lead towards look direction
+	var forward = (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, player.camera_controller.rotation.y)
+	player.body.velocity += forward
+	movement_processor.look_at(player.body.position - forward)
 	
 	lock_on_processor.process_lock_on()
 	

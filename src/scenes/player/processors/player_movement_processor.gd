@@ -9,6 +9,11 @@ func _init(current_player: Player):
 	self.camera_controller = current_player.camera_controller
 	self.body = current_player.body
 
+func look_at(vector: Vector3) -> void:
+	var previous_rotation = player.body.rotation
+	player.body.look_at(vector)
+	player.body.rotation = Vector3(previous_rotation.x, player.body.rotation.y, previous_rotation.z)
+
 func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
 	move_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -26,4 +31,4 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	# Rotate Character body	
 	if (move_dir.length() > player.turn_threshold):
 		var target_angle = Vector3.BACK.signed_angle_to(move_dir, Vector3.UP)
-		body.rotation.y = lerp_angle(body.rotation.y, target_angle, delta)
+		body.rotation.y = lerp_angle(body.rotation.y, target_angle, delta * 10)
