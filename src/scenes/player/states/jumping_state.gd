@@ -1,8 +1,8 @@
 class_name JumpingState
 extends PlayerState
 
-@export var min_jump_height: float = 0.8
-@export var max_jump_height: float = 1.2
+@export var min_jump_height: float = 0.1
+@export var max_jump_height: float = 1
 
 var _min_velocity: float
 var _max_velocity: float
