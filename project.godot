@@ -187,10 +187,11 @@ camera_down={
 
 [layer_names]
 
-3d_physics/layer_1="BasePhysics Layer"
-3d_physics/layer_2="PlayerInteraction Layer"
-3d_physics/layer_3="PlayerLockOn Layer"
-3d_physics/layer_4="PlayerDetection Layer"
-3d_physics/layer_5="PlayerHurtbox Layer"
+3d_physics/layer_1="BasePhysicsLayer"
+3d_physics/layer_2="PlayerInteractionLayer"
+3d_physics/layer_3="PlayerLockOnLayer"
+3d_physics/layer_4="PlayerDetectionLayer"
+3d_physics/layer_5="PlayerHurtboxLayer"
 3d_physics/layer_6="EnemyHurtboxLayer"
-3d_physics/layer_7="EnemyDetection Layer"
+3d_physics/layer_7="EnemyDetectionLayer"
+3d_physics/layer_8="InteractableLayer"

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bk6f702cdqdko"]
+
+[ext_resource type="Script" uid="uid://bx0mca3m1rws6" path="res://src/scenes/interactables/door/door.gd" id="1_8yt8c"]
+[ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="1_kpvnb"]
+
+[sub_resource type="Animation" id="Animation_hqnd6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCombiner3D/CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGCombiner3D/CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2qppl"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGCombiner3D/CSGBox3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 1, 0), Vector3(-2.5, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CSGCombiner3D/CSGBox3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, 1, 0), Vector3(2.5, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wa4ib"]
+_data = {
+&"RESET": SubResource("Animation_hqnd6"),
+&"open": SubResource("Animation_2qppl")
+}
+
+[node name="Door" type="Node3D" unique_id=1441993751]
+script = ExtResource("1_8yt8c")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1290785421]
+material_override = ExtResource("1_kpvnb")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=216449904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+size = Vector3(2, 3, 0.6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=344399576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+size = Vector3(2, 3, 0.6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=676925688]
+libraries/ = SubResource("AnimationLibrary_wa4ib")
