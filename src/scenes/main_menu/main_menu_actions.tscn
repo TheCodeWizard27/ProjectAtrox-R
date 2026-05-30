@@ -1,25 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfcour3otamx3"]
+[gd_scene format=3 uid="uid://dfcour3otamx3"]
 
-[sub_resource type="Shader" id="Shader_k2wo4"]
-code = "shader_type canvas_item;
+[ext_resource type="Theme" uid="uid://bxxdjk1orq1xu" path="res://src/assets/ui_theme.theme" id="1_f6yin"]
 
-uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
-
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-
-void fragment() {
-	vec4 test = texture(screen_texture, SCREEN_UV, 0.0);
-	
-	COLOR.rgb = mix(vec3(1), 1.0 - test.rgb, step(1.0, TEXTURE_PIXEL_SIZE.x));
-	// Called for every pixel the material is visible on.
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6yin"]
-shader = SubResource("Shader_k2wo4")
-
-[node name="MainMenuActions" type="Control"]
+[node name="MainMenuActions" type="Control" unique_id=1596919736]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,8 +11,9 @@ offset_right = -640.0
 offset_bottom = -136.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_f6yin")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=282578950]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,16 +22,15 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.8, 1.8)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=252714074]
 layout_mode = 0
 offset_right = 245.0
 offset_bottom = 40.0
 
-[node name="LineEdit" type="LineEdit" parent="Control/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Control/HBoxContainer" unique_id=2128771914]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Control/HBoxContainer"]
-material = SubResource("ShaderMaterial_f6yin")
+[node name="Button" type="Button" parent="Control/HBoxContainer" unique_id=1547548217]
 layout_mode = 2
 text = "Test"
