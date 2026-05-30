@@ -12,9 +12,16 @@ func exit() -> void:
 	enemy.player_detector.body_exited.disconnect(_on_body_exit)
 	
 func physics_update(delta: float) -> void:
+	if(enemy.got_hit):
+		enemy.got_hit = false
+		enemy_got_hit_processor.process_hit()
+	
+	##if(enemy.current_health <= 0): 
+	##	return transition_to(BroodState.Dead) 
+		
+	
 	if(_detected_player == null):
-		transition_to(BroodState.GUARD)
-		return
+		return transition_to(BroodState.GUARD) 
 	
 	_attack_cooldown -= delta
 	if(_attack_cooldown <= 0 && enemy.is_near_player(_detected_player)):

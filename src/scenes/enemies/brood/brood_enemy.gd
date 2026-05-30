@@ -3,6 +3,7 @@ class_name BroodEnemy
 
 @onready var attack_box: Area3D = %AttackBox	
 @onready var navigation_agent = $Body/NavigationAgent3D
+var got_hit = false
 
 func _ready() -> void:
 	attack_box.body_entered.connect(_on_body_entered)
@@ -25,6 +26,11 @@ func is_near_player(target: Player) -> bool:
 func attack() -> void:
 	
 	pass
+
+func get_hit() -> void:
+	got_hit = true
+
+	
 
 func _on_body_entered(p_body: Node3D) -> void:
 	var entity = EntityResolveUtil.resolve_entity(p_body)

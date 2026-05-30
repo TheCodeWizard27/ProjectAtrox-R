@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://c0aoq61wcmgwj" path="res://src/scenes/enemies/brood/states/guard.gd" id="3_h87fn"]
 [ext_resource type="Script" uid="uid://cpk3sfa23fu1i" path="res://src/scenes/enemies/brood/states/chase.gd" id="4_m4bjc"]
 [ext_resource type="Script" uid="uid://4046l1684vcd" path="res://src/scenes/enemies/brood/states/attack.gd" id="5_g38ny"]
+[ext_resource type="Script" uid="uid://cxfgsos2m8i7a" path="res://src/scenes/enemies/brood/states/hit.gd" id="6_m4bjc"]
+[ext_resource type="Script" uid="uid://b1dn7f04wllwh" path="res://src/scenes/enemies/brood/states/death.gd" id="7_g38ny"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ek4gk"]
 radius = 0.4
@@ -40,6 +42,14 @@ script = ExtResource("4_m4bjc")
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=255020441]
 script = ExtResource("5_g38ny")
+
+[node name="Hit" type="Node" parent="StateMachine" unique_id=1717025177]
+script = ExtResource("6_m4bjc")
+metadata/_custom_type_script = "uid://dctjvk30irj1l"
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=1622119463]
+script = ExtResource("7_g38ny")
+metadata/_custom_type_script = "uid://dctjvk30irj1l"
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1945307658]
 
