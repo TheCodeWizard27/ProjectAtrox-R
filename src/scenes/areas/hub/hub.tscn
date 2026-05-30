@@ -537,7 +537,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8501127, 5.16691, -14.20576
 material = ExtResource("7_27g8u")
 
 [node name="LockOnTarget" type="Area3D" parent="Entities/Marker3D3" unique_id=743016339]
-collision_layer = 4
+collision_layer = 132
 collision_mask = 0
 script = ExtResource("8_bcxkr")
 visible_name = "Cubert 3"

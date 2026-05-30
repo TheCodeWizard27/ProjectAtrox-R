@@ -13,6 +13,9 @@ func init(current_player: Player) -> void:
 func physics_update(delta: float) -> void:
 	_grounded_state.physics_update(delta)
 	
+	if(player.target_detector.interaction_target != null and Input.is_action_just_pressed("interact")):
+		player.target_detector.interaction_target.interact()
+	
 	if(Input.is_action_just_pressed('primary_action')):
 		transition_to(WarriorState.WARRIOR_PRIMARY_ACTION)
 		

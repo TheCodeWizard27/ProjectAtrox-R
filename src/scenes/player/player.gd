@@ -20,6 +20,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 
 func get_hit() -> void:
 	super.get_hit()
+	status.current_health -= 1 # TODO
 	event_player.play_getting_hit()
 
 func _ready() -> void:

@@ -4,18 +4,37 @@ class_name Hud
 @export var player: Player
 
 @onready var _target_indicator: Node3D = $TargetIndicator
+
 @onready var _target_stack: Node3D = $TargetStack
 @onready var _target_stack_text: MeshInstance3D = $TargetStack/Text
 @onready var _target_stack_text_shadow: MeshInstance3D = $TargetStack/Text/TextShadow
+
+@onready var _interaction_label: Node3D = $InteractionLabel
+@onready var _interaction_label_text: MeshInstance3D = $InteractionLabel/Text
+@onready var _interaction_label_shadow: MeshInstance3D = $InteractionLabel/Text/TextShadow
+
 @onready var _health_bar: MeshInstance3D = $Health/Health
 
-func update_target_stack(list: Array) -> void:
-	_target_stack.visible = list.size() > 0
+func update_interaction(interaction_target: InteractionTarget) -> void:
+	var has_interaction_target = interaction_target != null
+	_interaction_label.visible = has_interaction_target
 	
-	var target_list = '\n'.join(list)
+	if (!has_interaction_target):
+		return
 	
-	_target_stack_text.mesh.set('text', target_list)
-	_target_stack_text_shadow.mesh.set('text', target_list)
+	_interaction_label_text.mesh.set('text', interaction_target.interactable_text)
+	_interaction_label_shadow.mesh.set('text', interaction_target.interactable_text)
+
+func update_target_stack(_list: Array) -> void:
+	_target_stack.visible = false # TODO properly implement until then hide for now.
+	return
+	
+	#_target_stack.visible = list.size() > 0
+	#
+	#var target_list = '\n'.join(list)
+	#
+	#_target_stack_text.mesh.set('text', target_list)
+	#_target_stack_text_shadow.mesh.set('text', target_list)
 
 func update_target_indicator(target: Node3D, _delta: float) -> void:
 	if (!target):
@@ -30,12 +49,15 @@ func update_health(new_value: float) -> void:
 	mat.set("shader_parameter/size", new_value)
 
 func _process(delta: float) -> void:
+	if (not is_instance_valid(player.target_detector.interaction_target)):
+		player.target_detector.interaction_target = null
 	if (not is_instance_valid(player.lock_on_target)):
 		player.lock_on_target = null
-		
+	
+	update_interaction(player.target_detector.interaction_target)
 	update_target_indicator(player.lock_on_target, delta)
 	update_target_stack(player.target_detector.targets.map(_get_target_name))
-	update_health(player.status.current_health if player.status != null else 0)
+	update_health((player.status.current_health as float / player.status.max_health as float) if player.status != null else 0)
 	
 func _get_target_name(target: ActionTarget) -> String:
 	return target.visible_name

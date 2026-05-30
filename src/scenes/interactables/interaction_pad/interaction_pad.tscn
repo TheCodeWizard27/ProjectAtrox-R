@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bii02jkbwgsya"]
+
+[ext_resource type="Script" uid="uid://ysooqxed6eod" path="res://src/scenes/interactables/interaction_pad/interaction_pad.gd" id="1_dhiw4"]
+[ext_resource type="Script" uid="uid://26mpx04biwl5" path="res://src/scenes/player/target_detector/interaction_target.gd" id="2_k2blk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_72d6r"]
+top_radius = 0.2
+bottom_radius = 0.4
+height = 1.0
+radial_segments = 4
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_72d6r"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hqnd6"]
+size = Vector3(0.8099365, 2, 0.80773926)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_72d6r"]
+radius = 0.6427008
+
+[node name="InteractionPad" type="Node3D" unique_id=1915419466]
+script = ExtResource("1_dhiw4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1040641322]
+mesh = SubResource("CylinderMesh_72d6r")
+skeleton = NodePath("../StaticBody3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=270041363]
+transform = Transform3D(0.8535533, -0.14644662, 0.49999997, 0.49999997, 0.49999997, -0.70710677, -0.14644662, 0.8535533, 0.49999997, 0, 0.78418136, 0)
+mesh = SubResource("BoxMesh_72d6r")
+skeleton = NodePath("../StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=270980706]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1720865287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0049438477, 0.5, 0.005432129)
+shape = SubResource("BoxShape3D_hqnd6")
+
+[node name="InteractableArea" type="Area3D" parent="." unique_id=2078953483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6169193, 0)
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_k2blk")
+interactable_text = "Press button"
+visible_name = "Button"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea" unique_id=756406576]
+shape = SubResource("SphereShape3D_72d6r")
+
+[connection signal="interacted" from="InteractableArea" to="." method="_on_interacted"]

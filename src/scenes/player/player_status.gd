@@ -2,7 +2,8 @@ class_name PlayerStatus
 
 var name: String = "Default"
 var play_time: float = 0
-var current_health: int = 10
+var current_health: float = 10
+var max_health: int = 10
 var combat_class: Enums.CombatClasses = Enums.CombatClasses.Warrior
 var stats: PlayerStats = PlayerStats.new()
 var currency: int = 0

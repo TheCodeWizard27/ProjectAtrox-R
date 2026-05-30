@@ -3,6 +3,7 @@ extends Node
 
 @export var lock_on_ray: RayCast3D
 
+var interaction_target: InteractionTarget = null
 var targets: Array[ActionTarget] = []
 var current_target: ActionTarget = null
 
@@ -34,7 +35,13 @@ func find_lock_on_target() -> Node3D:
 func _on_area_entered(node: Node3D) -> void:
 	if (node is ActionTarget):
 		targets.append(node)
+		
+	if (node is InteractionTarget):
+		interaction_target = node
 	
 func _on_area_exited(node: Node3D) -> void:
 	if (node is ActionTarget):
 		targets.erase(node)
+		
+	if (node is InteractionTarget):
+		interaction_target = null

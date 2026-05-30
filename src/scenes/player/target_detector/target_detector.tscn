@@ -5,7 +5,7 @@
 
 [node name="ActionTargetDetector" type="Area3D" unique_id=2108185296 node_paths=PackedStringArray("lock_on_ray")]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 128
 monitorable = false
 script = ExtResource("1_mypif")
 lock_on_ray = NodePath("LockOnRay")
