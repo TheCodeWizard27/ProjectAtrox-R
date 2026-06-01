@@ -59,4 +59,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.699911, -2.8299732, 7.929
 [node name="WarriorClass" parent="." unique_id=1431314943 instance=ExtResource("5_mecyn")]
 
 [node name="BlueBox" parent="." unique_id=883319482 instance=ExtResource("4_nnb3u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6793675, -0.74091744, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.537188, -3.3295286, 0)

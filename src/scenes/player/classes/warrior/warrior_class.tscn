@@ -212,7 +212,7 @@ remote_path = NodePath("../../../../Body/TargetDetector/LockOnRay")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1479056175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0882272, 0)
-collision_layer = 41
+collision_layer = 9
 floor_snap_length = 0.2
 
 [node name="CameraTracker" type="RemoteTransform3D" parent="Body" unique_id=321823901]
@@ -369,7 +369,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
-transform = Transform3D(-0.95065856, -0.29106492, 0.1070365, 0.30858886, -0.9220937, 0.23333831, 0.030781113, 0.25485617, 0.9664833, -0.5069494, 0.920281, 0.09700575)
+transform = Transform3D(-0.95065856, -0.29106486, 0.10703651, 0.30858886, -0.92209345, 0.23333833, 0.030781113, 0.2548561, 0.96648335, -0.5069494, 0.920281, 0.09700575)
 
 [node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)

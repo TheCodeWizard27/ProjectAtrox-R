@@ -2,11 +2,12 @@ class_name BroodHitState
 extends BroodState
 
 func enter(msg: Dictionary = {}) -> void:
-	
-	## play animation
-	## take damage
-	## check if death
-	pass
+	enemy.hit_player.play('hit')
+	enemy.current_health = enemy.current_health - 5
+	if(enemy.current_health <= 0):
+		return transition_to(BroodState.DEAD)
+		
+	return transition_to(BroodState.GUARD)
 
 func exit() -> void:
 	pass

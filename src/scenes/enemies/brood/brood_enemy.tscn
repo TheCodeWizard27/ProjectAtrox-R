@@ -38,14 +38,83 @@ shader_parameter/Noise = ExtResource("10_pxlev")
 material = SubResource("ShaderMaterial_dyod8")
 size = Vector2(1.3, 1.6)
 
+[sub_resource type="Animation" id="Animation_4vvo1"]
+resource_name = "death"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodSplatterEffect:mesh:material:shader_parameter/Fade")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodSplatterEffect:mesh:material:shader_parameter/Color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.764706, 0.031373, 0.113725, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodSplatterEffect:mesh:size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.6), Vector2(2.1, 2.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BloodSplatterEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../StateMachine/Dead")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n5o6k"]
 _data = {
 &"RESET": ExtResource("11_u4sdo"),
+&"death": SubResource("Animation_4vvo1"),
 &"hit": ExtResource("12_mdc5p")
 }
 
-[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy", "entity"]]
+[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("hit_player", "state", "body", "player_detector") groups=["brood", "enemy", "entity"]]
 script = ExtResource("1_axasp")
+hit_player = NodePath("Body/Effects/HitSplatter/AnimationPlayer")
+max_health = 20
 state = NodePath("StateMachine")
 body = NodePath("Body")
 player_detector = NodePath("Body/PlayerDetector")
@@ -93,12 +162,16 @@ monitoring = false
 shape = SubResource("BoxShape3D_h87fn")
 debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
 
-[node name="AttackBox" type="Area3D" parent="Body" unique_id=1797728821 groups=["brood", "enemy"]]
+[node name="AttackBox" type="Area3D" parent="Body" unique_id=1797728821 groups=["brood", "enemy", "entity"]]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 32
+monitorable = false
 
-[node name="BroodAttackHitBox" type="CollisionShape3D" parent="Body/AttackBox" unique_id=1584484420]
+[node name="BroodAttackHitBox" type="CollisionShape3D" parent="Body/AttackBox" unique_id=1584484420 groups=["brood"]]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.15336633, 0.61263716)
 shape = SubResource("SphereShape3D_5i7ni")
+debug_color = Color(0.9999998, 0, 0.10749292, 0.41960785)
 
 [node name="PlayerDetector" type="Area3D" parent="Body" unique_id=1142086749]
 unique_name_in_owner = true

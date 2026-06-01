@@ -53,6 +53,4 @@ func _on_player_exit(body: Node3D) -> void:
 	print_debug('TestSpawn: entering player exit', body)
 	if(enemy.detected_player == null || body == enemy.detected_player.body):
 		enemy.detected_player = null
-		print_debug('TestSpawn: going for a clear', body)
-		enemy.spawns[current_brood_size -1].clear()
-		current_brood_size =- 1
+		
