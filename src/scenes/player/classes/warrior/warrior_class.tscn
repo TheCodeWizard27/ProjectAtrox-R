@@ -4,6 +4,7 @@
 [ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="1_is7nx"]
 [ext_resource type="PackedScene" uid="uid://xr5xpu3k40m3" path="res://assets/player/CharacterModel.blend" id="2_0sr62"]
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/third_person_camera.tscn" id="3_b24kb"]
+[ext_resource type="PackedScene" uid="uid://cwhwlrph0500b" path="res://src/scenes/player/pause_menu/pause_menu.tscn" id="4_7ylew"]
 [ext_resource type="PackedScene" uid="uid://bgpjfb0nodr34" path="res://src/scenes/player/classes/warrior/warrior_hud.tscn" id="4_ifccw"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_fssxm"]
 [ext_resource type="Animation" uid="uid://1u4ng2boa8w5" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_2.res" id="6_0dlhd"]
@@ -207,7 +208,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0882272, 0)
 [node name="WarriorHud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="0" unique_id=1864093527 node_paths=PackedStringArray("player") instance=ExtResource("4_ifccw")]
 player = NodePath("../../../..")
 
-[node name="LockOnRayTransform" type="RemoteTransform3D" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=974285895]
+[node name="PauseMenu" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1893579191 instance=ExtResource("4_7ylew")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42123634)
+
+[node name="LockOnRayTransform" type="RemoteTransform3D" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="2" unique_id=974285895]
 remote_path = NodePath("../../../../Body/TargetDetector/LockOnRay")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1479056175]

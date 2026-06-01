@@ -12,8 +12,7 @@ func _init_state_machine() -> void:
 		if state is WarriorState:
 			state.init(self)
 
-func _process(delta: float) -> void:
-	super._process(delta)
+func _process_state(delta: float) -> void:
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:

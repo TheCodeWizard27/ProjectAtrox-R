@@ -8,7 +8,6 @@ var is_moving: bool = false
 var lock_on_target: Node3D
 
 func _ready():
-	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta: float) -> void:

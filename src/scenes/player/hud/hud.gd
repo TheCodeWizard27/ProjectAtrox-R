@@ -6,8 +6,8 @@ class_name Hud
 @onready var _target_indicator: Node3D = $TargetIndicator
 
 @onready var _target_stack: Node3D = $TargetStack
-@onready var _target_stack_text: MeshInstance3D = $TargetStack/Text
-@onready var _target_stack_text_shadow: MeshInstance3D = $TargetStack/Text/TextShadow
+#@onready var _target_stack_text: MeshInstance3D = $TargetStack/Text
+#@onready var _target_stack_text_shadow: MeshInstance3D = $TargetStack/Text/TextShadow
 
 @onready var _interaction_label: Node3D = $InteractionLabel
 @onready var _interaction_label_text: MeshInstance3D = $InteractionLabel/Text
@@ -57,7 +57,10 @@ func _process(delta: float) -> void:
 	update_interaction(player.target_detector.interaction_target)
 	update_target_indicator(player.lock_on_target, delta)
 	update_target_stack(player.target_detector.targets.map(_get_target_name))
-	update_health((player.status.current_health as float / player.status.max_health as float) if player.status != null else 0)
+	update_health(
+		(player.status.current_health as float / player.status.max_health as float) if player.status != null 
+		else (0 as float)
+		)
 	
 func _get_target_name(target: ActionTarget) -> String:
 	return target.visible_name

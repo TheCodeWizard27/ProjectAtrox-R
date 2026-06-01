@@ -12,6 +12,7 @@ class_name Player
 @export var event_player: PlayerEventPlayer
 @export var target_detector: TargetDetector
 
+var input_buffer: InputBuffer
 var status: PlayerStatus
 var lock_on_target: Node3D
 
@@ -26,17 +27,18 @@ func get_hit() -> void:
 func _ready() -> void:
 	configure_player(PlayerStatus.new())
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_process_state(delta)
+	input_buffer.clear()
+	
+func _process_state(_delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:	
 	_apply_movement(delta)
 
-func _apply_movement(delta: float) -> void:
+func _apply_movement(_delta: float) -> void:
 	body.move_and_slide()
-	
-	#var movement = Vector2(body.velocity.x, body.velocity.z)
-	
-	#if (movement.length() > turn_threshold):
-		#var target_angle = Quaternion(Vector3.UP, Vector2(body.velocity.z, body.velocity.x).angle())
-		#body.basis = body.basis.slerp(target_angle, turn_speed * delta)
+
+func _input(event: InputEvent) -> void:
+	input_buffer.push_event(event)

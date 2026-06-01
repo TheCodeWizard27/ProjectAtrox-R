@@ -9,5 +9,5 @@ func _ready() -> void:
 func spawn_player() -> void:
 	var player_scene = preload('res://src/scenes/player/classes/warrior/warrior_class.tscn')
 	var player = player_scene.instantiate() as Player
-	player.global_position = start_position.global_position
 	entities.add_child(player)
+	player.global_position = start_position.global_position
