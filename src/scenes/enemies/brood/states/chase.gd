@@ -13,11 +13,7 @@ func exit() -> void:
 	
 func physics_update(delta: float) -> void:
 	if(enemy.got_hit):
-		enemy.got_hit = false
-		enemy_got_hit_processor.process_hit()
-	
-	##if(enemy.current_health <= 0): 
-	##	return transition_to(BroodState.Dead) 
+		process_damage_taken()
 		
 	
 	if(_detected_player == null):

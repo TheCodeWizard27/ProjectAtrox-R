@@ -28,9 +28,7 @@ func attack() -> void:
 	pass
 
 func get_hit() -> void:
-	got_hit = true
-
-	
+	got_hit = true	
 
 func _on_body_entered(p_body: Node3D) -> void:
 	var entity = EntityResolveUtil.resolve_entity(p_body)

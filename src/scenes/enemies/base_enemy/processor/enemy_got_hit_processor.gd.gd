@@ -1,9 +1,6 @@
 class_name EnemyGotHitProcessor
 
-var enemy: BroodEnemy
-
-func _init(broodEnemy: BroodEnemy) -> void:
-	self.enemy	= broodEnemy
 	
-func process_hit() -> void:
-	print("got hit")
+func process_hit(enemy: BaseEnemy) -> void:
+	enemy.current_health = enemy.current_health -5
+	print("got hit, health remaining: ", enemy.current_health)

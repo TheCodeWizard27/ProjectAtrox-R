@@ -1,4 +1,4 @@
-class_name  BroodDeathState
+class_name  BroodDeadState
 extends BroodState
 
 func enter(msg: Dictionary = {}) -> void:
