@@ -6,13 +6,12 @@ class_name Player
 @export var turn_speed: float = Globals.ENTITY_TURN_SPEED
 
 @export var body: CharacterBody3D
-@export var camera_controller: CameraController
-@export var camera: Camera3D
-@export var model_animator: PlayerModelAnimator
-@export var event_player: PlayerEventPlayer
 @export var target_detector: TargetDetector
+@export var event_player: PlayerEventPlayer
+@export var model_animator: PlayerModelAnimator
+@export var state_machine: StateMachine
 
-var input_buffer: InputBuffer
+var input_buffer: InputBuffer = InputBuffer.new()
 var status: PlayerStatus
 var lock_on_target: Node3D
 
@@ -24,21 +23,22 @@ func get_hit() -> void:
 	status.current_health -= 1 # TODO
 	event_player.play_getting_hit()
 
+func push_event(event: InputEvent) -> void:
+	input_buffer.push_event(event)
+
 func _ready() -> void:
+	_init_state_machine()
 	configure_player(PlayerStatus.new())
 
+func _init_state_machine() -> void:
+	for state in state_machine.registered_states:
+		if state is PlayerState:
+			state.init(self)
+
 func _process(delta: float) -> void:
-	_process_state(delta)
+	state_machine.process(delta)
 	input_buffer.clear()
-	
-func _process_state(_delta: float) -> void:
-	pass
 
 func _physics_process(delta: float) -> void:	
-	_apply_movement(delta)
-
-func _apply_movement(_delta: float) -> void:
 	body.move_and_slide()
-
-func _input(event: InputEvent) -> void:
-	input_buffer.push_event(event)
+	state_machine.physics_process(delta)

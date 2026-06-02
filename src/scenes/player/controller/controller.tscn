@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dlw5nuwcfielu"]
+
+[ext_resource type="Script" uid="uid://bhdkhb5dsqe8h" path="res://src/scenes/player/controller/controller.gd" id="1_gpw4x"]
+[ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/controller/third_person_camera.tscn" id="1_uy2up"]
+[ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/hud/hud.tscn" id="2_gpw4x"]
+[ext_resource type="PackedScene" uid="uid://cwhwlrph0500b" path="res://src/scenes/player/pause_menu/pause_menu.tscn" id="3_7gyjb"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_6l8r0"]
+[ext_resource type="Script" uid="uid://cgvwkuwrp1r10" path="res://src/scenes/player/controller/states/in_game.gd" id="6_kk6cj"]
+[ext_resource type="Script" uid="uid://dp5k83oi8fmhn" path="res://src/scenes/player/controller/states/in_pause_menu.gd" id="7_1ystb"]
+
+[node name="Controller" type="Node3D" unique_id=230425080]
+script = ExtResource("1_gpw4x")
+
+[node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("1_uy2up")]
+
+[node name="Hud" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="0" unique_id=1491162933 instance=ExtResource("2_gpw4x")]
+
+[node name="PauseMenu" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1893579191 instance=ExtResource("3_7gyjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42004704)
+
+[node name="StateMachine" type="Node" parent="." unique_id=1831985044]
+script = ExtResource("5_6l8r0")
+initial_state = NodePath("InGame")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="InGame" type="Node" parent="StateMachine" unique_id=896608896]
+script = ExtResource("6_kk6cj")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[node name="InPauseMenu" type="Node" parent="StateMachine" unique_id=1773424708]
+script = ExtResource("7_1ystb")
+metadata/_custom_type_script = "uid://gyo5hocvaebp"
+
+[editable path="ThirdPersonCamera"]

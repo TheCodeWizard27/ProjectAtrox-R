@@ -232,6 +232,117 @@ shader_parameter/size = 1.0
 material = SubResource("ShaderMaterial_p04jj")
 size = Vector2(0.54, 0.05)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_80pkg"]
+render_priority = 0
+shader = ExtResource("4_8a4cl")
+shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
+
+[sub_resource type="QuadMesh" id="QuadMesh_k5sm4"]
+material = SubResource("ShaderMaterial_80pkg")
+size = Vector2(0.72, 0.1)
+center_offset = Vector3(0.425, 0, 0)
+
+[sub_resource type="Shader" id="Shader_0vvra"]
+code = "shader_type spatial;
+
+render_mode unshaded, blend_mix, depth_test_disabled, cull_disabled;
+
+uniform vec4 color : source_color = vec4(1,1,1,1);
+
+void vertex() {
+	if (PROJECTION_MATRIX[3][3] != 0.0) {
+		// Orthogonal matrix; try to do about the same with viewport size.
+		float h = abs(1.0 / (2.0 * PROJECTION_MATRIX[1][1]));
+		// Consistent with vertical FOV (Keep Height).
+		float sc = (h * 2.0);
+		MODELVIEW_MATRIX[0] *= sc;
+		MODELVIEW_MATRIX[1] *= sc;
+		MODELVIEW_MATRIX[2] *= sc;
+	} else {
+		// Scale by depth.
+		float sc = -(MODELVIEW_MATRIX)[3].z;
+		MODELVIEW_MATRIX[0] *= sc;
+		MODELVIEW_MATRIX[1] *= sc;
+		MODELVIEW_MATRIX[2] *= sc;
+	}
+}
+
+void fragment() {
+	ALBEDO.rgb = color.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyk8m"]
+render_priority = 0
+shader = SubResource("Shader_0vvra")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_d2vsc"]
+material = SubResource("ShaderMaterial_hyk8m")
+text = "["
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrog1"]
+render_priority = 0
+shader = SubResource("Shader_0vvra")
+shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_o1uyp"]
+material = SubResource("ShaderMaterial_rrog1")
+text = "["
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_at8ls"]
+render_priority = 0
+shader = SubResource("Shader_0vvra")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_bafg0"]
+material = SubResource("ShaderMaterial_at8ls")
+text = "] Rage"
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4177"]
+render_priority = 0
+shader = SubResource("Shader_0vvra")
+shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_o3tkq"]
+material = SubResource("ShaderMaterial_i4177")
+text = "] Rage"
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6ox7"]
+render_priority = 0
+shader = ExtResource("6_we0nm")
+shader_parameter/color = Color(0.8784314, 0.40784314, 0.36078432, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_iw747"]
+material = SubResource("ShaderMaterial_h6ox7")
+size = Vector2(0.54, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdr2q"]
+render_priority = 0
+shader = ExtResource("6_we0nm")
+shader_parameter/color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_li14g"]
+material = SubResource("ShaderMaterial_hdr2q")
+size = Vector2(0.54, 0.05)
+
 [node name="Hud" type="Node3D" unique_id=1491162933]
 script = ExtResource("1_j8ngh")
 
@@ -333,3 +444,44 @@ mesh = SubResource("QuadMesh_p04jj")
 transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
 sorting_offset = 10001.0
 mesh = SubResource("QuadMesh_we0nm")
+
+[node name="WarriorComponents" type="Node3D" parent="." unique_id=788961335]
+
+[node name="RageMeter" type="Node3D" parent="WarriorComponents" unique_id=1649932421]
+transform = Transform3D(0.9676929, -0.06710491, -0.24303778, 0.034576602, 0.9901445, -0.13571556, 0.24974965, 0.12292758, 0.9604759, 0.227, -0.425, -0.78)
+
+[node name="RageBackground" type="MeshInstance3D" parent="WarriorComponents/RageMeter" unique_id=746445526]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_k5sm4")
+skeleton = NodePath("../..")
+
+[node name="RageStartText" type="MeshInstance3D" parent="WarriorComponents/RageMeter" unique_id=33561]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.07, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_d2vsc")
+
+[node name="RageStartTextShadow" type="MeshInstance3D" parent="WarriorComponents/RageMeter/RageStartText" unique_id=490375002]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_o1uyp")
+
+[node name="RageEndText" type="MeshInstance3D" parent="WarriorComponents/RageMeter" unique_id=451531775]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.49, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_bafg0")
+
+[node name="RageEndTextShadow" type="MeshInstance3D" parent="WarriorComponents/RageMeter/RageEndText" unique_id=937623971]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_o3tkq")
+
+[node name="Rage" type="MeshInstance3D" parent="WarriorComponents/RageMeter" unique_id=928374708]
+transform = Transform3D(1, 0, 0, 0, 1, 4.4703484e-08, -4.4703484e-08, 0, 1, 0.29, 0, 0)
+sorting_offset = 10002.0
+mesh = SubResource("QuadMesh_iw747")
+
+[node name="RageShadow" type="MeshInstance3D" parent="WarriorComponents/RageMeter/Rage" unique_id=1939607787]
+transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
+sorting_offset = 10001.0
+mesh = SubResource("QuadMesh_li14g")

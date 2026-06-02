@@ -1,10 +1,56 @@
-[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://bd3ovodbk2668"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dkxp8vns7eycu"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gf5d"]
 animation = &"Falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ap8y"]
 animation = &"Interacting"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0bsxv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0bsxv"]
+animation = &"Warrior_Primary"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hnwdi"]
+animation = &"Warrior_Primary_3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5boi2"]
+animation = &"Warrior_Primary_3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ggia7"]
+animation = &"Warrior_Primary_2"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ggia7"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0bsxv")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_hnwdi")
+blend_point_1/pos = 2.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_5boi2")
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_ggia7")
+blend_point_3/pos = 1.0
+min_space = 0.0
+max_space = 2.0
+snap = 1.0
+value_label = "action"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wse62"]
+animation = &"Interacting"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ie1vs"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wse62")
+blend_point_0/pos = 0.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_wse62"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_ggia7")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeBlendSpace1D_ie1vs")
+blend_point_1/pos = 1.0
+min_space = 0.0
+max_space = 2.0
+snap = 1.0
+value_label = "class"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8tvdu"]
 
@@ -24,15 +70,20 @@ blend_point_1/pos = 1.0
 min_space = 0.0
 
 [resource]
-nodes/output/position = Vector2(800, 460)
+graph_offset = Vector2(-258.4989, 124.680664)
+nodes/output/position = Vector2(1280, 520)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
 nodes/running/position = Vector2(20, 80)
 nodes/interact_one_shot/node = SubResource("AnimationNodeOneShot_6ap8y")
 nodes/interact_one_shot/position = Vector2(260, 180)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6gf5d")
-nodes/Animation/position = Vector2(260, 520)
+nodes/Animation/position = Vector2(720, 720)
 nodes/falling/node = SubResource("AnimationNodeBlend2_8tvdu")
-nodes/falling/position = Vector2(580, 380)
+nodes/falling/position = Vector2(1080, 480)
 nodes/Interact/node = SubResource("AnimationNodeAnimation_6ap8y")
-nodes/Interact/position = Vector2(20, 440)
-node_connections = [&"output", 0, &"falling", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"Interact", &"falling", 0, &"interact_one_shot", &"falling", 1, &"Animation"]
+nodes/Interact/position = Vector2(40, 360)
+nodes/class_action_one_shot/node = SubResource("AnimationNodeOneShot_0bsxv")
+nodes/class_action_one_shot/position = Vector2(640, 240)
+nodes/class_action_space/node = SubResource("AnimationNodeBlendSpace1D_wse62")
+nodes/class_action_space/position = Vector2(320, 560)
+node_connections = [&"output", 0, &"falling", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"Interact", &"falling", 0, &"class_action_one_shot", &"falling", 1, &"Animation", &"class_action_one_shot", 0, &"interact_one_shot", &"class_action_one_shot", 1, &"class_action_space"]

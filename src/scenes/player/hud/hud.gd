@@ -1,8 +1,6 @@
 extends Node3D
 class_name Hud
 
-@export var player: Player
-
 @onready var _target_indicator: Node3D = $TargetIndicator
 
 @onready var _target_stack: Node3D = $TargetStack
@@ -14,6 +12,20 @@ class_name Hud
 @onready var _interaction_label_shadow: MeshInstance3D = $InteractionLabel/Text/TextShadow
 
 @onready var _health_bar: MeshInstance3D = $Health/Health
+
+func update(player: Player, delta: float) -> void:
+	if (not is_instance_valid(player.target_detector.interaction_target)):
+		player.target_detector.interaction_target = null
+	if (not is_instance_valid(player.lock_on_target)):
+		player.lock_on_target = null
+	
+	update_interaction(player.target_detector.interaction_target)
+	update_target_indicator(player.lock_on_target, delta)
+	update_target_stack(player.target_detector.targets.map(_get_target_name))
+	update_health(
+		(player.status.current_health as float / player.status.max_health as float) if player.status != null 
+		else (0 as float)
+		)
 
 func update_interaction(interaction_target: InteractionTarget) -> void:
 	var has_interaction_target = interaction_target != null
@@ -47,20 +59,6 @@ func update_target_indicator(target: Node3D, _delta: float) -> void:
 func update_health(new_value: float) -> void:
 	var mat = _health_bar.mesh.surface_get_material(0)
 	mat.set("shader_parameter/size", new_value)
-
-func _process(delta: float) -> void:
-	if (not is_instance_valid(player.target_detector.interaction_target)):
-		player.target_detector.interaction_target = null
-	if (not is_instance_valid(player.lock_on_target)):
-		player.lock_on_target = null
-	
-	update_interaction(player.target_detector.interaction_target)
-	update_target_indicator(player.lock_on_target, delta)
-	update_target_stack(player.target_detector.targets.map(_get_target_name))
-	update_health(
-		(player.status.current_health as float / player.status.max_health as float) if player.status != null 
-		else (0 as float)
-		)
 	
 func _get_target_name(target: ActionTarget) -> String:
 	return target.visible_name

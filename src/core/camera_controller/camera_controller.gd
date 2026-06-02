@@ -4,18 +4,24 @@ extends Node3D
 @export_range(0, 1) var camera_speed: float = 0.2
 @export var camera: Camera3D
 
+var disable_camera_movement: bool
+
 var is_moving: bool = false
 var lock_on_target: Node3D
+var input_buffer: InputBuffer = InputBuffer.new()
+
+func push_event(event: InputEvent) -> void:
+	input_buffer.push_event(event)
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta: float) -> void:
+	if (!camera or !camera.current or disable_camera_movement):
+		return
+
 	if (lock_on_target):
 		_move_towards_target(delta)
-
-	if (!camera or !camera.current):
-		return
 
 	var movement = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	process_camera_movement(movement * camera_speed * 2500 * delta)

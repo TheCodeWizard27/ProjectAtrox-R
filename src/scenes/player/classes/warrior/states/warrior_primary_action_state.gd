@@ -3,14 +3,14 @@ class_name WarriorPrimaryActionState
 extends WarriorState
 
 class PrimaryAttackData:
-	var blend_position: WarriorModelAnimator.PrimaryAttackBlendPositions
+	var blend_position: WarriorModelAnimator.WarriorActionBlendPosition
 	var effect_step_type: WarriorEventPlayer.PrimaryAttackSteps
 	var cancel_window_start: float
 	var max_duration: float
 	
 	func _init(
 		p_effect_step_type: WarriorEventPlayer.PrimaryAttackSteps,
-		p_blend_position: WarriorModelAnimator.PrimaryAttackBlendPositions, 
+		p_blend_position: WarriorModelAnimator.WarriorActionBlendPosition, 
 		p_cancel_window_start: float, 
 		p_max_duration: float
 		):
@@ -24,19 +24,19 @@ static var attack_step_parameter = "attack_step"
 var attack_steps: Array[PrimaryAttackData] = [
 	PrimaryAttackData.new(
 		WarriorEventPlayer.PrimaryAttackSteps.STEP_1,
-		WarriorModelAnimator.PrimaryAttackBlendPositions.ATTACK_1,
+		WarriorModelAnimator.WarriorActionBlendPosition.PRIMARY_ATTACK_1,
 		0.2,
 		0.45
 	),
 	PrimaryAttackData.new(
 		WarriorEventPlayer.PrimaryAttackSteps.STEP_2,
-		WarriorModelAnimator.PrimaryAttackBlendPositions.ATTACK_2,
+		WarriorModelAnimator.WarriorActionBlendPosition.PRIMARY_ATTACK_2,
 		0.2,
 		0.41
 	),
 	PrimaryAttackData.new(
 		WarriorEventPlayer.PrimaryAttackSteps.STEP_3,
-		WarriorModelAnimator.PrimaryAttackBlendPositions.ATTACK_3,
+		WarriorModelAnimator.WarriorActionBlendPosition.PRIMARY_ATTACK_3,
 		0.2,
 		0.625
 	)
@@ -54,7 +54,7 @@ var primary_attack_buffered: bool = false
 var movement_processor: PlayerMovementProcessor
 var lock_on_processor: PlayerLockOnProcessor
 
-func init(current_player: WarriorClass) -> void:
+func init(current_player: Player) -> void:
 	super.init(current_player)
 	
 	lock_on_processor = PlayerLockOnProcessor.new(current_player)
@@ -99,8 +99,9 @@ func _init_attack_step(step: int) -> void:
 	current_time = 0
 	current_step_index = step
 	current_step = attack_steps[step]
-	model_animator.play_primary_attack(current_step.blend_position)
-	event_player.play_primary_effect(current_step.effect_step_type)
+	
+	model_animator.warrior_animator.play_action(current_step.blend_position)
+	event_player.warrior_event_player.play_primary_effect(current_step.effect_step_type)
 
 func _resolve_hit(area: Area3D) -> void:
 	var entity = EntityResolveUtil.resolve_entity(area)

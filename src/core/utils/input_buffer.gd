@@ -17,6 +17,12 @@ func is_action_just_pressed(action: StringName, exact_match: bool) -> bool:
 func is_action_just_released(action: StringName, exact_match: bool) -> bool:
 	return _buffered_events.any(func(event): return _is_action_just_released(event, action, exact_match))
 
+func get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName, deadzone: float = -1.0) -> Vector2:
+	#var negative_x = _buffered_events.
+	#Input.get_vector()
+	#event.get_action_strength()
+	return Vector2()
+
 func _is_action_pressed(event: InputEvent, action: StringName, exact_match: bool) -> bool:
 	return event.is_action_pressed(action, exact_match)
 	
