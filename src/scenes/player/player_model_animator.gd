@@ -1,13 +1,16 @@
 class_name PlayerModelAnimator
 extends AnimationTree
 
+var _class_action_one_shot = "parameters/class_action_one_shot/request"
+var _class_action_space_prefix = "parameters/class_action_space"
+
 var _falling_blend_amount = "parameters/falling/blend_amount"
 var _falling_blend_speed = 10
 var _running_blend_position = "parameters/running/blend_position"
 var _interact_request = "parameters/interact_one_shot/request"
-var _attack_request = "parameters/attack_one_shot/request"
-var _dying_blend_amount = "parameters/dying_blend/blend_amount"
-var _dying_seek_request = "parameters/dying/seek_request"
+
+var warrior_animator := WarriorModelAnimator.new(
+	self, _class_action_one_shot, _class_action_space_prefix, 0)
 
 func advance_falling_to(target_value: float, delta: float) -> void:
 	var new_value = lerpf(get(_falling_blend_amount), target_value, delta * _falling_blend_speed)
@@ -21,10 +24,3 @@ func set_running(speed: float) -> void:
 
 func play_interact() -> void:
 	set(_interact_request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func play_attack() -> void:
-	set(_attack_request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func play_death() -> void:
-	set(_dying_blend_amount, 1) # Only show death animation
-	set(_dying_seek_request, 0) # Start animation

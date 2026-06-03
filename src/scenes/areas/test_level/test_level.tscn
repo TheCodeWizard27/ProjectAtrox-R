@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bii02jkbwgsya" path="res://src/scenes/interactables/interaction_pad/interaction_pad.tscn" id="4_hqnd6"]
 [ext_resource type="PackedScene" uid="uid://bk6f702cdqdko" path="res://src/scenes/interactables/door/door.tscn" id="5_2qppl"]
 [ext_resource type="PackedScene" uid="uid://bji3kv2a6nil7" path="res://src/scenes/enemies/brood/brood_enemy.tscn" id="6_wa4ib"]
+[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="7_65dmr"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wa4ib"]
 vertices = PackedVector3Array(4.25, -3, -30.361183, 6, -3, -30.111183, 6.25, -3, -31.361183, 4, -3, -31.361183, 10, -3, -44.111183, 10, -3, -31.361183, -9.75, -3, -44.111183, -9.75, -3, -31.361183, 6.25, -3, -29.111183, 3.75, -3, -29.111183, 1, -3, -16.361183, 1.25, -3, -14.611183, 10, -3, -12.361183, 0, -3, -14.111183, 0, -3, -12.361183, -3.75, -3, -14.861183, -1, -3, -14.611183, -0.75, -3, -16.361183, -3.75, -3, -21.111183, -5.25, -3, -29.111183, -5.5, -3, -21.361183, 10, -3, -29.111183, -9.75, -3, -29.111183, -9.75, -3, -21.361183, -9.75, -2, -20.361183, -9.75, -2, -18.361183, -4.75, -2, -18.361183, -4.75, -2, -20.361183, -9.75, -1, -17.361183, -9.75, -1, -15.361183, -4.75, -1, -15.361183, -4.75, -1, -17.361183, 4.25, 1, -7.361183, 6, 1, -7.111183, 6.25, 1, -8.361183, 4, 1, -8.361183, -0.25, 1, -11.361183, -9.75, 1, -11.361183, -9.75, 1, -8.361183, 10, 1, -8.361183, 10, 1, -15.361183, 0, 1, -15.361183, -0.75, -3, -14.111183, -3.75, -3, -12.361183, -9.75, 0, -14.361183, -9.75, 0, -12.361183, -4.75, 0, -12.361183, -4.75, 0, -14.361183, -0.75, 1, 10.638817, 1, 1, 10.638817, 1.25, 1, 9.638817, 3.75, 1, -6.111183, -1, 1, 9.638817, 10, 1, 9.638817, 10, 1, -6.111183, 6.25, 1, -6.111183, -9.75, 1, -6.111183, -9.75, 1, 9.638817, 1.25, 1, 11.888817, -1.25, 1, 11.888817, -5.75, 1, 20.638817, 6, 1, 20.638817, -5.75, 1, 11.888817, 6, 1, 11.888817, -10, 1, 11.888817, -10, 1, 20.638817, -8, 1, 20.638817, -8, 1, 11.888817, 8.25, 1, 11.888817, 8.25, 1, 20.638817, 10, 1, 20.638817, 10, 1, 11.888817)
@@ -117,10 +118,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -2, -49)
 size = Vector3(4, 3, 1)
 material = ExtResource("2_72d6r")
 
-[node name="Entities" type="Node" parent="." unique_id=1962505870]
+[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("7_65dmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3110774, 0)
 
 [node name="StartPosition" type="Marker3D" parent="." unique_id=1015671782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Entities" type="Node" parent="." unique_id=1962505870]
 
 [node name="AreaEnvironment" parent="." unique_id=1183075330 instance=ExtResource("3_72d6r")]
 

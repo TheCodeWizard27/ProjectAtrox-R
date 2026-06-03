@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="3_faxgi"]
 [ext_resource type="Material" uid="uid://chxg0pjs0mx4b" path="res://src/assets/materials/development/light_source.tres" id="3_i2skr"]
 [ext_resource type="Material" uid="uid://csvksm60nfp5c" path="res://src/assets/materials/development/triplanar_texture_8.tres" id="5_7l53y"]
+[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="6_bcxkr"]
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="6_kdpxa"]
 [ext_resource type="Material" uid="uid://ca8jalwpkb4kj" path="res://src/assets/materials/mossy_stone.material" id="7_27g8u"]
 [ext_resource type="Script" uid="uid://dvny88al2x2nk" path="res://src/scenes/player/target_detector/action_target.gd" id="8_bcxkr"]
@@ -518,6 +519,8 @@ material = ExtResource("3_faxgi")
 
 [node name="PlayerSpawn" type="Marker3D" parent="." unique_id=1709350444]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("6_bcxkr")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=935337885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.004156, 20.78926, -46.446922)

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://b1184223d6ugw"]
+
+[ext_resource type="Theme" uid="uid://bxxdjk1orq1xu" path="res://src/assets/ui_theme.theme" id="1_ibrib"]
+
+[node name="PauseMenuControl" type="Control" unique_id=1910466399]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ibrib")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1986988450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=120007365]
+layout_mode = 2
+current_tab = 1
+
+[node name="Inventory" type="Control" parent="MarginContainer/TabContainer" unique_id=106865999]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Inventory" unique_id=331776896]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Inventory/MarginContainer" unique_id=1433311563]
+layout_mode = 2
+text = "Test"
+
+[node name="Content" type="Control" parent="MarginContainer/TabContainer" unique_id=1344789957]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/TabContainer/Content" unique_id=268242100]
+layout_mode = 0
+offset_right = 51.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Content/MarginContainer2" unique_id=1247866857]
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/TabContainer/Content/MarginContainer2/VBoxContainer" unique_id=1765953228]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/TabContainer/Content/MarginContainer2/VBoxContainer" unique_id=624582245]
+layout_mode = 2
+text = "Test"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/TabContainer/Content/MarginContainer2/VBoxContainer" unique_id=1501602480]
+layout_mode = 2

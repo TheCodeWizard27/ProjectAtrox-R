@@ -1,27 +1,8 @@
 
 class_name WarriorState
-extends State
+extends PlayerState
 
-var player: WarriorClass
-var body: CharacterBody3D
-var model_animator: WarriorModelAnimator
-var event_player: WarriorEventPlayer
-
-const AIRBORNE: NodePath = PlayerState.AIRBORNE
-const GROUNDED: NodePath = PlayerState.GROUNDED
-const JUMPING: NodePath = PlayerState.JUMPING
-
-const WARRIOR_AIRBORNE: NodePath = ^'Airborne'
-const WARRIOR_GROUNDED: NodePath = ^'Grounded'
-const WARRIOR_JUMPING: NodePath = ^'Jumping'
-const WARRIOR_DEAD: NodePath = ^'Dead'
-const WARRIOR_PRIMARY_ACTION: NodePath = ^'PrimaryAction'
-const WARRIOR_SECONDARY_ACTION: NodePath = ^'SecondaryAction'
-const WARRIOR_SPECIAL_ACTION: NodePath = ^'SpecialAction'
-const WARRIOR_DEFENSIVE_ACTION: NodePath = ^'DefensiveAction'
-
-func init(current_player: WarriorClass) -> void:
-	player = current_player
-	model_animator = player.model_animator
-	event_player = player.event_player
-	body = player.body
+const WARRIOR_PRIMARY_ACTION: NodePath = ^'WarriorStates/PrimaryAction'
+const WARRIOR_SECONDARY_ACTION: NodePath = ^'WarriorStates/SecondaryAction'
+const WARRIOR_SPECIAL_ACTION: NodePath = ^'WarriorStates/SpecialAction'
+const WARRIOR_DEFENSIVE_ACTION: NodePath = ^'WarriorStates/DefensiveAction'

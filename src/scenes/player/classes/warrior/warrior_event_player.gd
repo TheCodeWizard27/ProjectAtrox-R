@@ -1,6 +1,6 @@
 
 class_name WarriorEventPlayer
-extends PlayerEventPlayer
+extends Node
 
 enum PrimaryAttackSteps {
 	STEP_1,

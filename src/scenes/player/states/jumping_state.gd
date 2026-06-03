@@ -35,7 +35,7 @@ func physics_update(delta: float) -> void:
 	
 	model_animator.advance_falling_to(1, delta)
 	
-	var still_jumping = Input.is_action_pressed("jump")
+	var still_jumping = player.input_buffer.is_action_pressed("jump")
 	if(_min_jump_time <= _jump_time && !still_jumping || still_jumping && _max_jump_time <= _jump_time):
 		transition_to(PlayerState.AIRBORNE)
 		return

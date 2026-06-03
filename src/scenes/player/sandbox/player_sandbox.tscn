@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="5_nwau3"]
 [ext_resource type="PackedScene" uid="uid://dy2qi3i2pj1t1" path="res://src/scenes/interactables/box/red_box/red_box.tscn" id="5_op4lk"]
 [ext_resource type="PackedScene" uid="uid://2wafwamh0mvq" path="res://src/scenes/interactables/box/green_box/green_box.tscn" id="6_b0cyf"]
-[ext_resource type="PackedScene" uid="uid://le3yy5umvrvy" path="res://src/scenes/player/classes/warrior/warrior_class.tscn" id="6_qvchl"]
+[ext_resource type="PackedScene" uid="uid://cbekqnhp16yl5" path="res://src/scenes/player/player.tscn" id="9_boyli"]
 [ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="9_hwhuu"]
+[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="10_2hsqe"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fmgqw"]
 radius = 10.0
@@ -138,8 +139,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0171814, -1.7092499, -2.66
 use_collision = true
 size = Vector3(100, 1, 100)
 material = ExtResource("2_op4lk")
-
-[node name="WarriorClass" parent="." unique_id=1431314943 instance=ExtResource("6_qvchl")]
 
 [node name="Misc" type="Node3D" parent="." unique_id=1899049918]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.408947, 0, 0)
@@ -458,3 +457,8 @@ mesh = SubResource("BoxMesh_boyli")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestArea/Platforms/AnimatableBody3D2" unique_id=197628834]
 shape = SubResource("BoxShape3D_2hsqe")
+
+[node name="Player" parent="." unique_id=788727283 instance=ExtResource("9_boyli")]
+
+[node name="PlayerController" parent="." unique_id=230425080 node_paths=PackedStringArray("target_player") instance=ExtResource("10_2hsqe")]
+target_player = NodePath("../Player")

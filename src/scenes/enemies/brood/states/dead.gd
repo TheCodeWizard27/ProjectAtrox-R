@@ -1,7 +1,7 @@
 class_name  BroodDeadState
 extends BroodState
 
-func enter(msg: Dictionary = {}) -> void:
+func enter(_msg: Dictionary = {}) -> void:
 	enemy.hit_player.play('death')
 	pass
 	

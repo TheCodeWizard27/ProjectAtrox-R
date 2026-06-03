@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cwhwlrph0500b"]
+
+[ext_resource type="Script" uid="uid://c60g55mys1bps" path="res://src/scenes/player/pause_menu/pause_menu.gd" id="1_i3fb8"]
+[ext_resource type="Script" uid="uid://b0pivtobnnj3c" path="res://src/core/utils/viewport_input_relay.gd" id="2_c36kf"]
+[ext_resource type="PackedScene" uid="uid://b1184223d6ugw" path="res://src/scenes/player/pause_menu/pause_menu_control.tscn" id="3_spruu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_spruu"]
+viewport_path = NodePath("InputRelay/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjfsg"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_spruu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gkymx"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_fjfsg")
+size = Vector2(1.152, 0.648)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c36kf"]
+size = Vector3(1.152, 0.648, 0.01)
+
+[node name="PauseMenu" type="Node3D" unique_id=1893579191]
+script = ExtResource("1_i3fb8")
+
+[node name="InputRelay" type="Node3D" parent="." unique_id=195183898 node_paths=PackedStringArray("sub_viewport", "display_mesh", "input_area")]
+script = ExtResource("2_c36kf")
+sub_viewport = NodePath("SubViewport")
+display_mesh = NodePath("MeshInstance3D")
+input_area = NodePath("MeshInstance3D/Area3D")
+
+[node name="SubViewport" type="SubViewport" parent="InputRelay" unique_id=987352724]
+transparent_bg = true
+size = Vector2i(1152, 648)
+
+[node name="PauseMenuControl" parent="InputRelay/SubViewport" unique_id=1910466399 instance=ExtResource("3_spruu")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InputRelay" unique_id=928567830]
+mesh = SubResource("QuadMesh_gkymx")
+
+[node name="Area3D" type="Area3D" parent="InputRelay/MeshInstance3D" unique_id=1762039472]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputRelay/MeshInstance3D/Area3D" unique_id=199628445]
+shape = SubResource("BoxShape3D_c36kf")
