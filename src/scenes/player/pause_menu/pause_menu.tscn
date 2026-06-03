@@ -19,7 +19,7 @@ material = SubResource("StandardMaterial3D_fjfsg")
 size = Vector2(1.152, 0.648)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c36kf"]
-size = Vector3(1.152, 0.648, 0.1)
+size = Vector3(1.152, 0.648, 0.01)
 
 [node name="PauseMenu" type="Node3D" unique_id=1893579191]
 script = ExtResource("1_i3fb8")

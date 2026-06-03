@@ -16,6 +16,7 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	var move_dir = Vector3.ZERO
 	move_dir.x = player.input_buffer.get_action_strength("move_right") - player.input_buffer.get_action_strength("move_left")
 	move_dir.z = player.input_buffer.get_action_strength("move_backward") - player.input_buffer.get_action_strength("move_forward")
+	move_dir = move_dir.normalized()
 	move_dir = move_dir.rotated(Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
 	
 	# Calculate velocity with separated y component.

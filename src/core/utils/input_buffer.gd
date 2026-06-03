@@ -3,10 +3,13 @@ class_name InputBuffer
 var _previous_buffered_events: Array[InputEvent] = []
 var _buffered_events: Array[InputEvent] = []
 
-# This input buffer works a bit weirdly but basically
-# If InputEvent pressed enters add that to the buffer
-# -> If release event enters remove pressed event
-# -> after clear is called remove all released events
+# This is a bit of a weird attempt of getting a controllable input state
+# to query mapped actions just like with the Input singleton.
+# Events are buffered after received from push_event
+# and keep existing until a released event is received.
+# TODO clean this up and also implement the following
+# to keep it more consistent the clear method cross checks with the Input singleton
+# to remove zombie events.
 
 func push_event(event: InputEvent) -> void:
 	# Filter out old pressed
@@ -40,11 +43,10 @@ func get_vector(negative_x: StringName, positive_x: StringName, negative_y: Stri
 		get_action_strength(positive_x) - get_action_strength(negative_x),
 		get_action_strength(positive_y) - get_action_strength(negative_y)
 	)
-
+	
 func get_action_strength(action: StringName) -> float:
-	var action_strength = _buffered_events.reduce(
-		func(current, event): return current + (event as InputEvent).get_action_strength(action), 0)
-	return min(action_strength, 1.0)
+	var action_was_buffered = _buffered_events.any(func(event): return event.is_action(action))
+	return Input.get_action_strength(action) if action_was_buffered else 0.0
 
 func _is_action_pressed(event: InputEvent, action: StringName, exact_match: bool) -> bool:
 	return event.is_action_pressed(action, false, exact_match)

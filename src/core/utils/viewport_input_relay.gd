@@ -84,10 +84,9 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 	# Finally, send the processed input event to the viewport.
 	sub_viewport.push_input(event)
 	
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	for mouse_event in _mouse_events:
 		if (is_instance_of(event, mouse_event)):
 			return
 			
 	sub_viewport.push_input(event)
-	
