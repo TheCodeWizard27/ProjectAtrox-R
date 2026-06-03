@@ -190,7 +190,7 @@ _data = {
 &"hit": ExtResource("15_62k4i")
 }
 
-[node name="PlayerNew" type="Node3D" unique_id=788727283 node_paths=PackedStringArray("body", "target_detector", "event_player", "model_animator", "state_machine", "camera_anchor")]
+[node name="Player" type="Node3D" unique_id=788727283 node_paths=PackedStringArray("body", "target_detector", "event_player", "model_animator", "state_machine", "camera_anchor") groups=["entity", "player"]]
 script = ExtResource("1_far3w")
 body = NodePath("Body")
 target_detector = NodePath("Body/TargetDetector")
@@ -424,6 +424,10 @@ parameters/class_action_space/blend_position = 0.0
 parameters/class_action_space/0/blend_position = 0.0
 parameters/class_action_space/1/blend_position = 0.0
 script = ExtResource("29_ot04x")
+
+[connection signal="area_entered" from="Body/Effects/Warrior/PrimaryAttackStep1/Hurtbox" to="StateMachine/WarriorStates/PrimaryAction" method="_on_step_1_hurtbox_area_entered"]
+[connection signal="area_entered" from="Body/Effects/Warrior/PrimaryAttackStep2/Hurtbox" to="StateMachine/WarriorStates/PrimaryAction" method="_on_step_2_hurtbox_area_entered"]
+[connection signal="area_entered" from="Body/Effects/Warrior/PrimaryAttackStep3/Hurtbox" to="StateMachine/WarriorStates/PrimaryAction" method="_on_step_3_hurtbox_area_entered"]
 
 [editable path="Body/CharacterModel"]
 [editable path="Body/TargetDetector"]

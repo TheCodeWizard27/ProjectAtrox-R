@@ -17,7 +17,8 @@ func process_lock_on() -> void:
 
 func _is_camera_moving() -> bool:
 	var movement = player.input_buffer.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
-	return movement.length() > 0
+	var mouse_movement = Input.get_last_mouse_velocity()
+	return movement.length() > 0 or mouse_movement.length() > 0
 
 func _toggle_lock_on() -> void:
 	if (player.lock_on_target):

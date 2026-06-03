@@ -7,7 +7,7 @@ class_name PlayerController
 @export var hud: Hud
 @export var state_machine: StateMachine
 
-var target_player: Player = null
+@export var target_player: Player = null
 
 func _ready() -> void:
 	_init_state_machine()
