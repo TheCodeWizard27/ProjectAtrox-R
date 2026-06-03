@@ -17,9 +17,9 @@ func _init(p_animation_tree: AnimationTree, p_class_action_one_shot: String, p_c
 	_class_action_one_shot = p_class_action_one_shot
 	_class_type = p_class_type
 	_class_blend_position = p_class_action_prefix + "/blend_position"
-	_class_action_blend_position = p_class_action_prefix + "/" + (p_class_type as String) + "/blend_position"
+	_class_action_blend_position = p_class_action_prefix + "/" + str(p_class_type) + "/blend_position"
 
 func play_action(type: WarriorActionBlendPosition) -> void:
-	set(_class_blend_position, _class_type)
-	set(_class_action_blend_position, type)
-	set(_class_action_one_shot, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	_animation_tree.set(_class_blend_position, _class_type)
+	_animation_tree.set(_class_action_blend_position, type)
+	_animation_tree.set(_class_action_one_shot, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

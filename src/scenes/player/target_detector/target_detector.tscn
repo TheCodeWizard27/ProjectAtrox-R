@@ -14,6 +14,7 @@ lock_on_ray = NodePath("LockOnRay")
 shape = ExtResource("1_oak6g")
 
 [node name="LockOnRay" type="RayCast3D" parent="." unique_id=530182822]
+top_level = true
 target_position = Vector3(0, 0, -100)
 collision_mask = 4
 hit_from_inside = true

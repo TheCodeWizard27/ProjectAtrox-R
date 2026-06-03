@@ -1,33 +1,53 @@
 class_name InputBuffer
 
+var _previous_buffered_events: Array[InputEvent] = []
 var _buffered_events: Array[InputEvent] = []
 
+# This input buffer works a bit weirdly but basically
+# If InputEvent pressed enters add that to the buffer
+# -> If release event enters remove pressed event
+# -> after clear is called remove all released events
+
 func push_event(event: InputEvent) -> void:
+	# Filter out old pressed
+	if (event.is_released()):
+		_buffered_events = _buffered_events.filter(
+			func(existing_event): return !event.is_match(existing_event))
+	
 	_buffered_events.push_back(event)
 	
 func clear() -> void:
-	_buffered_events.clear()
-	
-func is_action_pressed(action: StringName, exact_match: bool) -> bool:
+	_previous_buffered_events.clear()
+	_previous_buffered_events.append_array(_buffered_events)
+	_buffered_events = _buffered_events.filter(
+		func(event): return event.is_pressed())
+
+func is_action_pressed(action: StringName, exact_match: bool = false) -> bool:
 	return _buffered_events.any(func(event): return _is_action_pressed(event, action, exact_match))
 
-func is_action_just_pressed(action: StringName, exact_match: bool) -> bool:
-	return _buffered_events.any(func(event): return _is_action_just_pressed(event, action, exact_match))
+func is_action_just_pressed(action: StringName, exact_match: bool = false) -> bool:
+	var currently_pressed = is_action_pressed(action, exact_match)
+	var previously_pressed = _previous_buffered_events.any(
+		func(event): return _is_action_pressed(event, action, exact_match))
+	
+	return currently_pressed and !previously_pressed
 
-func is_action_just_released(action: StringName, exact_match: bool) -> bool:
+func is_action_just_released(action: StringName, exact_match: bool = false) -> bool:
 	return _buffered_events.any(func(event): return _is_action_just_released(event, action, exact_match))
 
-func get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName, deadzone: float = -1.0) -> Vector2:
-	#var negative_x = _buffered_events.
-	#Input.get_vector()
-	#event.get_action_strength()
-	return Vector2()
+func get_vector(negative_x: StringName, positive_x: StringName, negative_y: StringName, positive_y: StringName) -> Vector2:	
+	return Vector2(
+		get_action_strength(positive_x) - get_action_strength(negative_x),
+		get_action_strength(positive_y) - get_action_strength(negative_y)
+	)
+
+func get_action_strength(action: StringName) -> float:
+	var action_strength = _buffered_events.reduce(
+		func(current, event): return current + (event as InputEvent).get_action_strength(action), 0)
+	return min(action_strength, 1.0)
 
 func _is_action_pressed(event: InputEvent, action: StringName, exact_match: bool) -> bool:
-	return event.is_action_pressed(action, exact_match)
+	return event.is_action_pressed(action, false, exact_match)
 	
 func _is_action_just_released(event: InputEvent, action: StringName, exact_match: bool) -> bool:
-	return event.is_action_pressed(action, exact_match)
-	
-func _is_action_just_pressed(event: InputEvent, action: StringName, exact_match: bool) -> bool:
-	return event.is_action_pressed(action, exact_match)
+	return event.is_action_just_released(action, exact_match)

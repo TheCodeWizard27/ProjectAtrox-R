@@ -72,7 +72,7 @@ func physics_update(delta: float) -> void:
 	movement_processor.process_movement(delta, movement_speed_modifier)
 	
 	# Lead towards look direction
-	var forward = (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, player.camera_controller.rotation.y)
+	var forward = (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
 	player.body.velocity += forward
 	movement_processor.look_at(player.body.position - forward)
 	
@@ -83,7 +83,7 @@ func physics_update(delta: float) -> void:
 func process_attack(delta: float) -> void:
 	current_time += delta
 	
-	if (current_time >= input_buffer_delay and Input.is_action_pressed('primary_action')):
+	if (current_time >= input_buffer_delay and player.input_buffer.is_action_pressed('primary_action')):
 		primary_attack_buffered = true
 	
 	var step_end_reached = current_time >= current_step.max_duration

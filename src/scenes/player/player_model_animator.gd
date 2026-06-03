@@ -1,9 +1,6 @@
 class_name PlayerModelAnimator
 extends AnimationTree
 
-var warrior_animator := WarriorModelAnimator.new(
-	self, _class_action_one_shot, _class_action_space_prefix, 0)
-
 var _class_action_one_shot = "parameters/class_action_one_shot/request"
 var _class_action_space_prefix = "parameters/class_action_space"
 
@@ -11,6 +8,9 @@ var _falling_blend_amount = "parameters/falling/blend_amount"
 var _falling_blend_speed = 10
 var _running_blend_position = "parameters/running/blend_position"
 var _interact_request = "parameters/interact_one_shot/request"
+
+var warrior_animator := WarriorModelAnimator.new(
+	self, _class_action_one_shot, _class_action_space_prefix, 0)
 
 func advance_falling_to(target_value: float, delta: float) -> void:
 	var new_value = lerpf(get(_falling_blend_amount), target_value, delta * _falling_blend_speed)

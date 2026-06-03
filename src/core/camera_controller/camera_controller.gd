@@ -13,18 +13,17 @@ var input_buffer: InputBuffer = InputBuffer.new()
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 func _process(delta: float) -> void:
-	if (!camera or !camera.current or disable_camera_movement):
-		return
-
 	if (lock_on_target):
 		_move_towards_target(delta)
+	
+	if (!camera or !camera.current):
+		return
 
-	var movement = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
+	var movement = input_buffer.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	process_camera_movement(movement * camera_speed * 2500 * delta)
+	
+	input_buffer.clear()
 	
 func _move_towards_target(delta: float) -> void:
 	var current_rotation = rotation
@@ -35,21 +34,21 @@ func _move_towards_target(delta: float) -> void:
 	rotation.x = current_rotation.x
 	rotation.z = current_rotation.z
 
-func _input(event: InputEvent) -> void:
-	if (!camera or !camera.current):
-		return
-	
-	if (event.is_action("click")):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	if (event.is_action_pressed("toggle_mouse_captured")):
-		if (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	if (event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
-		process_camera_movement(event.relative * camera_speed)
+#func _input(event: InputEvent) -> void:
+	#if (!camera or !camera.current):
+		#return
+	#
+	#if (event.is_action("click")):
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#
+	#if (event.is_action_pressed("toggle_mouse_captured")):
+		#if (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
+			#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#else:
+			#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#
+	#if (event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
+		#process_camera_movement(event.relative * camera_speed)
 
 func process_camera_movement(movement: Vector2) -> void:
 	is_moving = movement.length() > 0

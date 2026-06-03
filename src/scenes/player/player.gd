@@ -10,13 +10,25 @@ class_name Player
 @export var event_player: PlayerEventPlayer
 @export var model_animator: PlayerModelAnimator
 @export var state_machine: StateMachine
+@export var camera_anchor: Marker3D
 
+var looking_direction: Vector3 = Vector3.FORWARD
 var input_buffer: InputBuffer = InputBuffer.new()
 var status: PlayerStatus
 var lock_on_target: Node3D
 
+var primary_action_state: NodePath
+var secondary_action_state: NodePath
+var defensive_action_state: NodePath
+var special_action_state: NodePath
+
 func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
+	# TODO
+	primary_action_state = WarriorState.WARRIOR_PRIMARY_ACTION
+	secondary_action_state = WarriorState.WARRIOR_SECONDARY_ACTION
+	defensive_action_state = WarriorState.WARRIOR_DEFENSIVE_ACTION
+	special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION
 
 func get_hit() -> void:
 	super.get_hit()
@@ -31,14 +43,14 @@ func _ready() -> void:
 	configure_player(PlayerStatus.new())
 
 func _init_state_machine() -> void:
-	for state in state_machine.registered_states:
+	for state in state_machine.get_all_states(true):
 		if state is PlayerState:
 			state.init(self)
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
-	input_buffer.clear()
 
 func _physics_process(delta: float) -> void:	
-	body.move_and_slide()
 	state_machine.physics_process(delta)
+	body.move_and_slide()
+	input_buffer.clear()
