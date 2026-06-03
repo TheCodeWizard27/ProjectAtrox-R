@@ -6,6 +6,12 @@
 [ext_resource type="Script" uid="uid://c0aoq61wcmgwj" path="res://src/scenes/enemies/brood/states/guard.gd" id="3_h87fn"]
 [ext_resource type="Script" uid="uid://cpk3sfa23fu1i" path="res://src/scenes/enemies/brood/states/chase.gd" id="4_m4bjc"]
 [ext_resource type="Script" uid="uid://4046l1684vcd" path="res://src/scenes/enemies/brood/states/attack.gd" id="5_g38ny"]
+[ext_resource type="Script" uid="uid://cxfgsos2m8i7a" path="res://src/scenes/enemies/brood/states/hit.gd" id="6_m4bjc"]
+[ext_resource type="Script" uid="uid://b1dn7f04wllwh" path="res://src/scenes/enemies/brood/states/dead.gd" id="7_g38ny"]
+[ext_resource type="Shader" uid="uid://da4qw7mca3opu" path="res://src/shaders/basic_blood_splatter.gdshader" id="9_4vvo1"]
+[ext_resource type="Texture2D" uid="uid://dwikb4el40t0u" path="res://src/shaders/basic_blood_splatter_noise.tres" id="10_pxlev"]
+[ext_resource type="Animation" uid="uid://cjdurt52xssm6" path="res://src/scenes/player/animations/hit_reset.res" id="11_u4sdo"]
+[ext_resource type="Animation" uid="uid://y6llq321dqs7" path="res://src/scenes/player/animations/hit.res" id="12_mdc5p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ek4gk"]
 radius = 0.4
@@ -21,8 +27,94 @@ radius = 0.3
 [sub_resource type="SphereShape3D" id="SphereShape3D_h87fn"]
 radius = 4.647
 
-[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("state", "body", "player_detector") groups=["enemy", "entity"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyod8"]
+render_priority = 0
+shader = ExtResource("9_4vvo1")
+shader_parameter/Fade = 0.0
+shader_parameter/Color = Color(0.764706, 0.031373, 0.113725, 1)
+shader_parameter/Noise = ExtResource("10_pxlev")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ehxra"]
+material = SubResource("ShaderMaterial_dyod8")
+size = Vector2(1.3, 1.6)
+
+[sub_resource type="Animation" id="Animation_4vvo1"]
+resource_name = "death"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodSplatterEffect:mesh:material:shader_parameter/Fade")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodSplatterEffect:mesh:material:shader_parameter/Color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.764706, 0.031373, 0.113725, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BloodSplatterEffect:mesh:size")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.78),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.3, 1.6), Vector2(2.1, 2.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BloodSplatterEffect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../../StateMachine/Dead")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n5o6k"]
+_data = {
+&"RESET": ExtResource("11_u4sdo"),
+&"death": SubResource("Animation_4vvo1"),
+&"hit": ExtResource("12_mdc5p")
+}
+
+[node name="BroodEnemy" type="Node3D" unique_id=300210924 node_paths=PackedStringArray("hit_player", "state", "body", "player_detector") groups=["brood", "enemy", "entity"]]
 script = ExtResource("1_axasp")
+hit_player = NodePath("Body/Effects/HitSplatter/AnimationPlayer")
+max_health = 20
 state = NodePath("StateMachine")
 body = NodePath("Body")
 player_detector = NodePath("Body/PlayerDetector")
@@ -40,6 +132,14 @@ script = ExtResource("4_m4bjc")
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=255020441]
 script = ExtResource("5_g38ny")
+
+[node name="Hit" type="Node" parent="StateMachine" unique_id=1717025177]
+script = ExtResource("6_m4bjc")
+metadata/_custom_type_script = "uid://dctjvk30irj1l"
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1622119463]
+script = ExtResource("7_g38ny")
+metadata/_custom_type_script = "uid://dctjvk30irj1l"
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1945307658]
 
@@ -62,12 +162,16 @@ monitoring = false
 shape = SubResource("BoxShape3D_h87fn")
 debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
 
-[node name="AttackBox" type="Area3D" parent="Body" unique_id=1797728821 groups=["brood", "enemy"]]
+[node name="AttackBox" type="Area3D" parent="Body" unique_id=1797728821 groups=["brood", "enemy", "entity"]]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 32
+monitorable = false
 
-[node name="BroodAttackHitBox" type="CollisionShape3D" parent="Body/AttackBox" unique_id=1584484420]
+[node name="BroodAttackHitBox" type="CollisionShape3D" parent="Body/AttackBox" unique_id=1584484420 groups=["brood"]]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.15336633, 0.61263716)
 shape = SubResource("SphereShape3D_5i7ni")
+debug_color = Color(0.9999998, 0, 0.10749292, 0.41960785)
 
 [node name="PlayerDetector" type="Area3D" parent="Body" unique_id=1142086749]
 unique_name_in_owner = true
@@ -84,3 +188,16 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/LockOnTarget" unique_id=1833650257]
 shape = SubResource("SphereShape3D_h87fn")
 debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
+
+[node name="Effects" type="Node3D" parent="Body" unique_id=360728993]
+
+[node name="HitSplatter" type="Node3D" parent="Body/Effects" unique_id=940746957]
+
+[node name="BloodSplatterEffect" type="MeshInstance3D" parent="Body/Effects/HitSplatter" unique_id=10756983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000330925, 0.15635276, 0)
+visible = false
+mesh = SubResource("QuadMesh_ehxra")
+skeleton = NodePath("../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/HitSplatter" unique_id=449776599]
+libraries/ = SubResource("AnimationLibrary_n5o6k")

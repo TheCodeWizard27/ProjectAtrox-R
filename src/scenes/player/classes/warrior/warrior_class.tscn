@@ -174,7 +174,7 @@ _data = {
 &"primary_attack_step_3": ExtResource("6_52e47")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyod8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfbub"]
 render_priority = 0
 shader = ExtResource("7_08tcn")
 shader_parameter/Fade = 0.0
@@ -182,7 +182,7 @@ shader_parameter/Color = Color(0.764706, 0.031373, 0.113725, 1)
 shader_parameter/Noise = ExtResource("8_dyod8")
 
 [sub_resource type="QuadMesh" id="QuadMesh_52e47"]
-material = SubResource("ShaderMaterial_dyod8")
+material = SubResource("ShaderMaterial_gfbub")
 size = Vector2(1.3, 1.6)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v663u"]
@@ -212,7 +212,7 @@ remote_path = NodePath("../../../../Body/TargetDetector/LockOnRay")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1479056175]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0882272, 0)
-collision_layer = 41
+collision_layer = 9
 floor_snap_length = 0.2
 
 [node name="CameraTracker" type="RemoteTransform3D" parent="Body" unique_id=321823901]
@@ -225,7 +225,7 @@ shape = ExtResource("1_is7nx")
 [node name="CharacterModel" parent="Body" unique_id=1094857873 instance=ExtResource("2_0sr62")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 577986657) index="0" unique_id=1398493887]
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(1094857873, 1613913389) index="0" unique_id=1975691516]
 bones/0/position = Vector3(0, 1.0099, -0.05519999)
 bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
@@ -257,7 +257,7 @@ bone_idx = 11
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/CharacterModel/metarig/Skeleton3D/LeftHandAttachment" unique_id=79270609]
 remote_path = NodePath("../../../../../../LeftHand")
 
-[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=987980837]
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=39946228]
 transform = Transform3D(-0.005017258, 0.07755357, 0.35081345, 0.044051666, 0.05062934, -0.44127432, -0.08956708, 0.020556662, -0.23668285, -0.738985, 2.0861967, 0.1559247)
 visible = false
 mesh = SubResource("ArrayMesh_y2pnb")
@@ -369,7 +369,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
 [node name="RightHand" type="Node3D" parent="." unique_id=1422349674]
-transform = Transform3D(-0.95065856, -0.29106495, 0.10703649, 0.30858886, -0.92209375, 0.2333383, 0.030781113, 0.25485617, 0.96648324, -0.5069494, 0.920281, 0.09700575)
+transform = Transform3D(-0.95065856, -0.29106486, 0.10703651, 0.30858886, -0.92209345, 0.23333833, 0.030781113, 0.2548561, 0.96648335, -0.5069494, 0.920281, 0.09700575)
 
 [node name="WeaponModel" parent="RightHand" unique_id=1469302009 instance=ExtResource("17_4umgf")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)

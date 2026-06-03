@@ -198,7 +198,7 @@ shape = SubResource("BoxShape3D_x4gvb")
 [node name="box_blue" parent="StaticBody3D" unique_id=743151721 instance=ExtResource("1_x4gvb")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="Cube" parent="StaticBody3D/box_blue" index="0" unique_id=141802444]
+[node name="Cube" parent="StaticBody3D/box_blue" index="0" unique_id=1143041526]
 mesh = SubResource("ArrayMesh_2h4t8")
 
 [node name="Hitbox" type="Area3D" parent="StaticBody3D" unique_id=1226615842]
