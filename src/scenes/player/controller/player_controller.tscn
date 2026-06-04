@@ -5,16 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/hud/hud.tscn" id="3_8lcsd"]
 [ext_resource type="PackedScene" uid="uid://cwhwlrph0500b" path="res://src/scenes/player/pause_menu/pause_menu.tscn" id="4_efv1x"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_ifir3"]
+[ext_resource type="Script" uid="uid://qsie8ca3tgvi" path="res://src/scenes/player/controller/lock_on_target_detector.gd" id="6_efv1x"]
 [ext_resource type="Script" uid="uid://cgvwkuwrp1r10" path="res://src/scenes/player/controller/states/in_game.gd" id="6_x7p0t"]
 [ext_resource type="Script" uid="uid://dp5k83oi8fmhn" path="res://src/scenes/player/controller/states/in_pause_menu.gd" id="7_nol7y"]
 
-[node name="PlayerController" type="Node3D" unique_id=230425080 node_paths=PackedStringArray("ui_container", "camera_controller", "pause_menu", "hud", "state_machine")]
+[node name="PlayerController" type="Node3D" unique_id=230425080 node_paths=PackedStringArray("ui_container", "camera_controller", "pause_menu", "hud", "state_machine", "lock_on_target_detector")]
 script = ExtResource("1_flk7f")
 ui_container = NodePath("ThirdPersonCamera/CameraArm/Camera/UiContainer")
 camera_controller = NodePath("ThirdPersonCamera")
 pause_menu = NodePath("ThirdPersonCamera/CameraArm/Camera/UiContainer/PauseMenu")
 hud = NodePath("ThirdPersonCamera/CameraArm/Camera/UiContainer/Hud")
 state_machine = NodePath("StateMachine")
+lock_on_target_detector = NodePath("ThirdPersonCamera/CameraArm/Camera/LockOnRay")
 
 [node name="ThirdPersonCamera" parent="." unique_id=449032769 instance=ExtResource("2_4exjn")]
 
@@ -27,6 +29,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="PauseMenu" parent="ThirdPersonCamera/CameraArm/Camera/UiContainer" unique_id=1893579191 instance=ExtResource("4_efv1x")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, -0.421045)
+
+[node name="LockOnRay" type="RayCast3D" parent="ThirdPersonCamera/CameraArm/Camera" parent_id_path=PackedInt32Array(449032769, 154520845) index="1" unique_id=1276795932]
+target_position = Vector3(0, 0, -100)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("6_efv1x")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1831985044]
 script = ExtResource("5_ifir3")

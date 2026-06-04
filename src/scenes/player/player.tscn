@@ -258,9 +258,6 @@ debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
 
 [node name="TargetDetector" parent="Body" unique_id=2108185296 instance=ExtResource("5_y2jb0")]
 
-[node name="LockOnRay" parent="Body/TargetDetector" index="1" unique_id=530182822]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
-
 [node name="Effects" type="Node3D" parent="Body" unique_id=716558180]
 
 [node name="Warrior" type="Node3D" parent="Body/Effects" unique_id=1464627882]

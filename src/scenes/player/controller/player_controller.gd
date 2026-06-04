@@ -6,6 +6,7 @@ class_name PlayerController
 @export var pause_menu: PauseMenu
 @export var hud: Hud
 @export var state_machine: StateMachine
+@export var lock_on_target_detector: LockOnTargetDetector
 
 @export var target_player: Player = null
 
