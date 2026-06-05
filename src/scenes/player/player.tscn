@@ -201,6 +201,7 @@ camera_anchor = NodePath("Body/CameraAnchor")
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1929454920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.082511, 0)
+floor_snap_length = 0.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=2110266648]
 shape = ExtResource("2_456r5")
