@@ -2,11 +2,9 @@ class_name AirborneState
 extends PlayerState
 
 var movement_processor: PlayerMovementProcessor
-var lock_on_processor: PlayerLockOnProcessor
 
 func init(current_player: Player) -> void:
 	super.init(current_player)
-	lock_on_processor = PlayerLockOnProcessor.new(current_player)
 	movement_processor = PlayerMovementProcessor.new(current_player)
 
 func physics_update(delta: float) -> void:
@@ -17,4 +15,3 @@ func physics_update(delta: float) -> void:
 		return
 		
 	movement_processor.process_movement(delta)
-	lock_on_processor.process_lock_on()

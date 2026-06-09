@@ -52,12 +52,10 @@ var current_time: float = 0
 var primary_attack_buffered: bool = false
 
 var movement_processor: PlayerMovementProcessor
-var lock_on_processor: PlayerLockOnProcessor
 
 func init(current_player: Player) -> void:
 	super.init(current_player)
 	
-	lock_on_processor = PlayerLockOnProcessor.new(current_player)
 	movement_processor = PlayerMovementProcessor.new(current_player)
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -75,8 +73,6 @@ func physics_update(delta: float) -> void:
 	var forward = (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
 	player.body.velocity += forward
 	movement_processor.look_at(player.body.position - forward)
-	
-	lock_on_processor.process_lock_on()
 	
 	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length() * movement_speed_modifier)
 
