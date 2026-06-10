@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://bqb6e4b63l6u7" path="res://src/scenes/player/states/grounded_state.gd" id="19_5eyvc"]
 [ext_resource type="Script" uid="uid://dvc4who4r0kls" path="res://src/scenes/player/states/jumping_state.gd" id="20_auaqc"]
 [ext_resource type="Script" uid="uid://d0ob25qb8yjm2" path="res://src/scenes/player/states/dead_state.gd" id="21_sx7bb"]
-[ext_resource type="Script" uid="uid://okdrs1m60cwd" path="res://src/scenes/player/classes/warrior/states/warrior_defensive_action_state.gd" id="22_vmivd"]
+[ext_resource type="Script" uid="uid://b73qww04c2wpx" path="res://src/scenes/player/classes/warrior/states/warrior_defensive_action_state.gd" id="22_vmivd"]
 [ext_resource type="Script" uid="uid://cg7y30i8lt0lm" path="res://src/scenes/player/classes/warrior/states/warrior_primary_action_state.gd" id="23_ymqpe"]
 [ext_resource type="Script" uid="uid://c2oalqqye5xnc" path="res://src/scenes/player/classes/warrior/states/warrior_secondary_action_state.gd" id="24_yc73j"]
 [ext_resource type="Script" uid="uid://dbmcjcr1k13w4" path="res://src/scenes/player/classes/warrior/states/warrior_special_action_state.gd" id="25_o4vbd"]
