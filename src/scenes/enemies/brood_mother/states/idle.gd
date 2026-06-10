@@ -21,7 +21,7 @@ func physics_update(_delta: float) -> void:
 	transition_to(BroodMotherState.SPAWN, {PLAYER: enemy.detected_player})
 	
 func _on_body_entered(body: Node3D) -> void:
-	var entity = body.owner
+	var player = EntityResolveUtil.resolve_player(body)
 	
-	if("player" in entity.get_groups()):
-		enemy.detected_player = entity as Player
+	if(player != null):
+		enemy.detected_player = player
