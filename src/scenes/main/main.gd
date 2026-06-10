@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 
 	var progress = []
 	_current_load_state = ResourceLoader.load_threaded_get_status(_current_loading_path, progress)
-	print_debug('Loading', _current_loading_path, 'progress', progress)
+	print_debug('Loading ', _current_loading_path, ' progress ', progress)
 
 	_loading_screen.update_progress(progress[0])
 
@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 		_end_load()
 
 func _start_load(scene_path: String, data: Dictionary) -> void:
-	print_debug('Loading', scene_path)
+	print_debug('Loading ', scene_path)
 	
 	_scene_data = data
 	_current_loading_path = scene_path
@@ -48,7 +48,7 @@ func _start_load(scene_path: String, data: Dictionary) -> void:
 	_loading_screen.enable()
 	
 func _end_load() -> void:
-	print_debug('Finished loading', _current_loading_path)
+	print_debug('Finished loading ', _current_loading_path)
 	
 	var resource = ResourceLoader.load_threaded_get(_current_loading_path)
 

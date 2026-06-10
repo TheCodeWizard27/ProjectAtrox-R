@@ -14,7 +14,6 @@ func exit() -> void:
 func physics_update(delta: float) -> void:
 	if(enemy.got_hit):
 		process_damage_taken()
-		
 	
 	if(_detected_player == null):
 		return transition_to(BroodState.GUARD) 

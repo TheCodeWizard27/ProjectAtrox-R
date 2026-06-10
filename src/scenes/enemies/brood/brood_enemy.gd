@@ -25,7 +25,7 @@ func attack() -> void:
 	pass
 
 func get_hit() -> void:
-	got_hit = true	
+	got_hit = true
 
 func destroy() -> void:
 	queue_free()

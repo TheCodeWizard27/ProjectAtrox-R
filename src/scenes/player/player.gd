@@ -1,4 +1,4 @@
-extends BaseEntity
+extends Entity
 class_name Player
 
 @export var max_speed: float = Globals.PLAYER_MAX_SPEED

@@ -1,4 +1,4 @@
-extends BaseEntity
+extends Entity
 
 @export var hit_player: AnimationPlayer
 

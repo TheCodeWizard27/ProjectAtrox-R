@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var entities: Node = $Entities
+@onready var entities: Node = $EntitiesManager
 @onready var start_position: Marker3D = $StartPosition
 @onready var player_controller: PlayerController = $PlayerController
 
