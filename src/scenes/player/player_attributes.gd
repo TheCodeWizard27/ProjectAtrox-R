@@ -1,4 +1,4 @@
-class_name PlayerStats
+class_name PlayerAttributes
 
 var max_health: int = 100
 var strength: int = 20

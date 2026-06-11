@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1184223d6ugw"]
 
-[ext_resource type="Theme" uid="uid://bxxdjk1orq1xu" path="res://src/assets/ui_theme.theme" id="1_ibrib"]
+[ext_resource type="Script" uid="uid://dxyk3p5ucbt6u" path="res://src/scenes/player/pause_menu/pause_menu_control.gd" id="1_ibrib"]
 
 [node name="PauseMenuControl" type="Control" unique_id=1910466399]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ibrib")
+script = ExtResource("1_ibrib")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1986988450]
 layout_mode = 1
@@ -25,31 +25,232 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=120007365]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
-[node name="Inventory" type="Control" parent="MarginContainer/TabContainer" unique_id=106865999]
-visible = false
+[node name="Status" type="Control" parent="MarginContainer/TabContainer" unique_id=106865999]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Inventory" unique_id=331776896]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status" unique_id=331776896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Inventory/MarginContainer" unique_id=1433311563]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer" unique_id=621804421]
 layout_mode = 2
-text = "Test"
 
-[node name="Content" type="Control" parent="MarginContainer/TabContainer" unique_id=1344789957]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1458880146]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_right = 8
+
+[node name="StatusInfo" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer" unique_id=498336243]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1022324452]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1244934466]
+layout_mode = 2
+text = "Player Name"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1321668181]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1739036367]
+layout_mode = 2
+text = "Unknown"
+
+[node name="ClassInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1384630545]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=770075680]
+layout_mode = 2
+text = "Class"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=94832198]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=147797025]
+layout_mode = 2
+text = "Warrior"
+
+[node name="CurrencyInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1062599123]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1404306158]
+layout_mode = 2
+text = "Currency"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1891203879]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1716872162]
+layout_mode = 2
+text = "0 $"
+
+[node name="PlayTimeInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1537711337]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1026546269]
+layout_mode = 2
+text = "Play Time"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1591727301]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1799315060]
+layout_mode = 2
+text = "0"
+
+[node name="HealthInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=989137631]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=2056360182]
+layout_mode = 2
+text = "Health"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=805246862]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=511299356]
+layout_mode = 2
+text = "?"
+
+[node name="StrengthInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1665633865]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=23660505]
+layout_mode = 2
+text = "Strength"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=1396596740]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=1902714354]
+layout_mode = 2
+text = "?"
+
+[node name="DexterityInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1120275182]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=242614276]
+layout_mode = 2
+text = "Dexterity"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=1234105412]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=1348756707]
+layout_mode = 2
+text = "?"
+
+[node name="IntelligenceInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1275046633]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=613945238]
+layout_mode = 2
+text = "Intelligence"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=525512712]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=1261437430]
+layout_mode = 2
+text = "?"
+
+[node name="DefenseInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=852288853]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=238895612]
+layout_mode = 2
+text = "Defensive"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=733102873]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=1406375544]
+layout_mode = 2
+text = "?"
+
+[node name="SpeedInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo" unique_id=1001527742]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=739381079]
+layout_mode = 2
+text = "Speed"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=4750626]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=934071562]
+layout_mode = 2
+text = "?"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1568144408]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_right = 8
+
+[node name="Invenctory" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer2" unique_id=1013827965]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer2/Invenctory" unique_id=1565947942]
+layout_mode = 2
+text = "Inventory"
+
+[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer2/Invenctory" unique_id=263487014]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer2/Invenctory/PlayerInfo" unique_id=986165658]
+layout_mode = 2
+text = "Item"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer2/Invenctory/PlayerInfo" unique_id=875018264]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer2/Invenctory/PlayerInfo" unique_id=1285057770]
+layout_mode = 2
+text = "1"
+
+[node name="Placeholder" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1460452269]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Placeholder2" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1606806347]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AreaSwitcher" type="Control" parent="MarginContainer/TabContainer" unique_id=1344789957]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/TabContainer/Content" unique_id=268242100]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/TabContainer/AreaSwitcher" unique_id=268242100]
 layout_mode = 0
 offset_right = 51.0
 offset_bottom = 40.0
@@ -58,16 +259,16 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Content/MarginContainer2" unique_id=1247866857]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/AreaSwitcher/MarginContainer2" unique_id=1247866857]
 layout_mode = 2
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/TabContainer/Content/MarginContainer2/VBoxContainer" unique_id=1765953228]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/TabContainer/AreaSwitcher/MarginContainer2/VBoxContainer" unique_id=1765953228]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/TabContainer/Content/MarginContainer2/VBoxContainer" unique_id=624582245]
+[node name="Button" type="Button" parent="MarginContainer/TabContainer/AreaSwitcher/MarginContainer2/VBoxContainer" unique_id=624582245]
 layout_mode = 2
 text = "Test"
 
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/TabContainer/Content/MarginContainer2/VBoxContainer" unique_id=1501602480]
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/TabContainer/AreaSwitcher/MarginContainer2/VBoxContainer" unique_id=1501602480]
 layout_mode = 2

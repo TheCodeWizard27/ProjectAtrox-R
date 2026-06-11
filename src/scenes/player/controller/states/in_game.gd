@@ -20,6 +20,9 @@ func exit() -> void:
 	controller.ui_container.add_child(controller.pause_menu)
 
 func update(delta: float) -> void:
+	if (!controller.target_player):
+		return
+	
 	if (Input.is_action_just_pressed("menu")):
 		return transition_to(PlayerControllerState.IN_PAUSE_MENU)
 	

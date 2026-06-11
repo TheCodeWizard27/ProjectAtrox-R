@@ -1,2 +1,7 @@
 class_name Enums
-enum CombatClasses{Warrior, Ranger, Mage}
+
+enum CombatClasses {
+	WARRIOR, 
+	RANGER, 
+	MAGE
+}

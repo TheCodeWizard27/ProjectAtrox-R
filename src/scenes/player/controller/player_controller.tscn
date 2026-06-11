@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/hud/hud.tscn" id="3_8lcsd"]
 [ext_resource type="PackedScene" uid="uid://cwhwlrph0500b" path="res://src/scenes/player/pause_menu/pause_menu.tscn" id="4_efv1x"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_ifir3"]
-[ext_resource type="Script" path="res://src/scenes/player/controller/lock_on_target_detector.gd" id="6_efv1x"]
+[ext_resource type="Script" uid="uid://qsie8ca3tgvi" path="res://src/scenes/player/controller/lock_on_target_detector.gd" id="6_efv1x"]
 [ext_resource type="Script" uid="uid://cgvwkuwrp1r10" path="res://src/scenes/player/controller/states/in_game.gd" id="6_x7p0t"]
 [ext_resource type="Script" uid="uid://dp5k83oi8fmhn" path="res://src/scenes/player/controller/states/in_pause_menu.gd" id="7_nol7y"]
 

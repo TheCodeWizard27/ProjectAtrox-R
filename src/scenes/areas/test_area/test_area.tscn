@@ -1,21 +1,25 @@
 [gd_scene format=3 uid="uid://d3urhjh03a5ny"]
 
-[ext_resource type="Script" uid="uid://c72jqe1e5ctu7" path="res://src/scenes/areas/test_level/test_level.gd" id="1_ty5mh"]
-[ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="2_72d6r"]
-[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="3_72d6r"]
-[ext_resource type="PackedScene" uid="uid://bii02jkbwgsya" path="res://src/scenes/interactables/interaction_pad/interaction_pad.tscn" id="4_hqnd6"]
-[ext_resource type="Script" uid="uid://cfqd8a4uen5ps" path="res://src/scenes/areas/area_utility/entity_manager.gd" id="4_pebsw"]
-[ext_resource type="PackedScene" uid="uid://bk6f702cdqdko" path="res://src/scenes/interactables/door/door.tscn" id="5_2qppl"]
-[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="7_65dmr"]
-[ext_resource type="Script" uid="uid://c78fdjst45b4p" path="res://src/scenes/areas/area_utility/entity_spawner.gd" id="7_dn4g6"]
-[ext_resource type="Script" uid="uid://bgsvgv0fx4i4k" path="res://src/scenes/areas/area_utility/entity_spawn_container.gd" id="7_pebsw"]
+[ext_resource type="Script" uid="uid://22m56vx4fyv3" path="res://src/scenes/areas/area_core/area.gd" id="1_as0dk"]
+[ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="2_tucw0"]
+[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="3_wyw6n"]
+[ext_resource type="Script" uid="uid://cfqd8a4uen5ps" path="res://src/scenes/areas/area_core/entity_manager.gd" id="4_2f46o"]
+[ext_resource type="Script" uid="uid://cho0334equubs" path="res://src/scenes/areas/area_core/player_spawner.gd" id="4_tucw0"]
+[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="5_da2op"]
+[ext_resource type="PackedScene" uid="uid://bii02jkbwgsya" path="res://src/scenes/interactables/interaction_pad/interaction_pad.tscn" id="6_aieab"]
+[ext_resource type="PackedScene" uid="uid://bk6f702cdqdko" path="res://src/scenes/interactables/door/door.tscn" id="7_snhbp"]
+[ext_resource type="Script" uid="uid://bgsvgv0fx4i4k" path="res://src/scenes/areas/area_core/entity_spawn_container.gd" id="8_y56qc"]
+[ext_resource type="Script" uid="uid://c78fdjst45b4p" path="res://src/scenes/areas/area_core/entity_spawner.gd" id="9_8icw3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wa4ib"]
 vertices = PackedVector3Array(4.25, -3, -30.361183, 6, -3, -30.111183, 6.25, -3, -31.361183, 4, -3, -31.361183, 10, -3, -44.111183, 10, -3, -31.361183, -9.75, -3, -44.111183, -9.75, -3, -31.361183, 6.25, -3, -29.111183, 3.75, -3, -29.111183, 1, -3, -16.361183, 1.25, -3, -14.611183, 10, -3, -12.361183, 0, -3, -14.111183, 0, -3, -12.361183, -3.75, -3, -14.861183, -1, -3, -14.611183, -0.75, -3, -16.361183, -3.75, -3, -21.111183, -5.25, -3, -29.111183, -5.5, -3, -21.361183, 10, -3, -29.111183, -9.75, -3, -29.111183, -9.75, -3, -21.361183, -9.75, -2, -20.361183, -9.75, -2, -18.361183, -4.75, -2, -18.361183, -4.75, -2, -20.361183, -9.75, -1, -17.361183, -9.75, -1, -15.361183, -4.75, -1, -15.361183, -4.75, -1, -17.361183, 4.25, 1, -7.361183, 6, 1, -7.111183, 6.25, 1, -8.361183, 4, 1, -8.361183, -0.25, 1, -11.361183, -9.75, 1, -11.361183, -9.75, 1, -8.361183, 10, 1, -8.361183, 10, 1, -15.361183, 0, 1, -15.361183, -0.75, -3, -14.111183, -3.75, -3, -12.361183, -9.75, 0, -14.361183, -9.75, 0, -12.361183, -4.75, 0, -12.361183, -4.75, 0, -14.361183, -0.75, 1, 10.638817, 1, 1, 10.638817, 1.25, 1, 9.638817, 3.75, 1, -6.111183, -1, 1, 9.638817, 10, 1, 9.638817, 10, 1, -6.111183, 6.25, 1, -6.111183, -9.75, 1, -6.111183, -9.75, 1, 9.638817, 1.25, 1, 11.888817, -1.25, 1, 11.888817, -5.75, 1, 20.638817, 6, 1, 20.638817, -5.75, 1, 11.888817, 6, 1, 11.888817, -10, 1, 11.888817, -10, 1, 20.638817, -8, 1, 20.638817, -8, 1, 11.888817, 8.25, 1, 11.888817, 8.25, 1, 20.638817, 10, 1, 20.638817, 10, 1, 11.888817)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 5, 2), PackedInt32Array(7, 6, 3), PackedInt32Array(3, 6, 4), PackedInt32Array(1, 8, 0), PackedInt32Array(0, 8, 9), PackedInt32Array(10, 12, 11), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 9, 8), PackedInt32Array(10, 17, 18), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 19, 9), PackedInt32Array(8, 21, 18), PackedInt32Array(18, 21, 10), PackedInt32Array(10, 21, 12), PackedInt32Array(23, 22, 20), PackedInt32Array(20, 22, 19), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(32, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 35), PackedInt32Array(40, 39, 34), PackedInt32Array(35, 36, 34), PackedInt32Array(34, 36, 41), PackedInt32Array(34, 41, 40), PackedInt32Array(42, 13, 14), PackedInt32Array(42, 14, 16), PackedInt32Array(16, 14, 15), PackedInt32Array(15, 14, 43), PackedInt32Array(47, 46, 44), PackedInt32Array(44, 46, 45), PackedInt32Array(48, 52, 49), PackedInt32Array(49, 52, 50), PackedInt32Array(50, 52, 51), PackedInt32Array(55, 54, 53), PackedInt32Array(33, 55, 32), PackedInt32Array(32, 55, 51), PackedInt32Array(51, 55, 50), PackedInt32Array(50, 55, 53), PackedInt32Array(57, 56, 52), PackedInt32Array(52, 56, 51), PackedInt32Array(49, 58, 48), PackedInt32Array(48, 58, 59), PackedInt32Array(59, 58, 60), PackedInt32Array(60, 58, 61), PackedInt32Array(60, 62, 59), PackedInt32Array(58, 63, 61), PackedInt32Array(67, 66, 64), PackedInt32Array(64, 66, 65), PackedInt32Array(71, 70, 68), PackedInt32Array(68, 70, 69)]
 
-[node name="TestLevel" type="Node3D" unique_id=1484766364]
-script = ExtResource("1_ty5mh")
+[node name="TestArea" type="Node3D" unique_id=725829363 node_paths=PackedStringArray("player_controller", "player_spawner")]
+script = ExtResource("1_as0dk")
+player_controller = NodePath("PlayerController")
+player_spawner = NodePath("PlayerSpawner")
+metadata/_custom_type_script = "uid://22m56vx4fyv3"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1958498295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.638817)
@@ -28,140 +32,142 @@ use_collision = true
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=2052251131]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -14)
 size = Vector3(21, 4, 33)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=782514032]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 3)
 size = Vector3(13, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1811680840]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -8)
 size = Vector3(9, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=374822088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2, -26)
 size = Vector3(14, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=2019029296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -8)
 size = Vector3(9, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=657342629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2, -26)
 size = Vector3(4, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=271384401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -2.5)
 size = Vector3(1, 3, 10)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1834102812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -2.5)
 size = Vector3(1, 3, 10)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1913016619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -36)
 size = Vector3(1, 7, 55)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=26345087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -36)
 size = Vector3(1, 7, 55)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=820345940]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -2, -32)
 size = Vector3(6, 3, 3)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=191949951]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -32.5)
 size = Vector3(11, 1, 4)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=744592571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -34)
 size = Vector3(1, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1962825930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -2.5, -35)
 size = Vector3(6, 2, 3)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1670654351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -3, -38)
 size = Vector3(6, 1, 3)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=2048407144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -47)
 size = Vector3(21, 1, 33)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=99753830]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -2, -49)
 size = Vector3(14, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=2107509008]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
 size = Vector3(21, 7, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=506918803]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -2, -49)
 size = Vector3(4, 3, 1)
-material = ExtResource("2_72d6r")
+material = ExtResource("2_tucw0")
 
-[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("7_65dmr")]
+[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("3_wyw6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3110774, 0)
 
-[node name="StartPosition" type="Marker3D" parent="." unique_id=1015671782]
+[node name="PlayerSpawner" type="Marker3D" parent="." unique_id=2113268665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("4_tucw0")
+metadata/_custom_type_script = "uid://cho0334equubs"
 
 [node name="EntitiesManager" type="Node" parent="." unique_id=1962505870]
-script = ExtResource("4_pebsw")
+script = ExtResource("4_2f46o")
 
-[node name="AreaEnvironment" parent="." unique_id=1183075330 instance=ExtResource("3_72d6r")]
+[node name="AreaEnvironment" parent="." unique_id=1183075330 instance=ExtResource("5_da2op")]
 time = 0.746
 
 [node name="Objects" type="Node3D" parent="." unique_id=1297348040]
 
 [node name="Room1" type="Node3D" parent="Objects" unique_id=1364660355]
 
-[node name="InteractionPad" parent="Objects/Room1" unique_id=1915419466 instance=ExtResource("4_hqnd6")]
+[node name="InteractionPad" parent="Objects/Room1" unique_id=1915419466 instance=ExtResource("6_aieab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -6)
 
-[node name="Door" parent="Objects/Room1" unique_id=1441993751 instance=ExtResource("5_2qppl")]
+[node name="Door" parent="Objects/Room1" unique_id=1441993751 instance=ExtResource("7_snhbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 
 [node name="Room2" type="Node3D" parent="Objects" unique_id=1141251293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.638817)
 
-[node name="Door" parent="Objects/Room2" unique_id=1436856498 instance=ExtResource("5_2qppl")]
+[node name="Door" parent="Objects/Room2" unique_id=1436856498 instance=ExtResource("7_snhbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -7.3641663)
 
 [node name="EnemySpawnContainer" type="Node3D" parent="Objects/Room2" unique_id=173067137]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -7.3641663)
-script = ExtResource("7_pebsw")
+script = ExtResource("8_y56qc")
 metadata/_custom_type_script = "uid://bgsvgv0fx4i4k"
 
 [node name="Brood" type="Marker3D" parent="Objects/Room2/EnemySpawnContainer" unique_id=1829477214]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.311439, -0.5, 7.450426)
-script = ExtResource("7_dn4g6")
+script = ExtResource("9_8icw3")
 enemy_type = 1
 metadata/_custom_type_script = "uid://c78fdjst45b4p"
 
 [node name="Brood2" type="Marker3D" parent="Objects/Room2/EnemySpawnContainer" unique_id=458916959]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5118923, -0.5, 7.450426)
-script = ExtResource("7_dn4g6")
+script = ExtResource("9_8icw3")
 enemy_type = 1
 metadata/_custom_type_script = "uid://c78fdjst45b4p"
 
@@ -169,23 +175,23 @@ metadata/_custom_type_script = "uid://c78fdjst45b4p"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.89683)
 
 [node name="EntitySpawnContainer" type="Node3D" parent="Objects/Room3" unique_id=186803806]
-script = ExtResource("7_pebsw")
+script = ExtResource("8_y56qc")
 metadata/_custom_type_script = "uid://bgsvgv0fx4i4k"
 
 [node name="EntitySpawner" type="Marker3D" parent="Objects/Room3/EntitySpawnContainer" unique_id=287227791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8565617, -3.5, 6.0451393)
-script = ExtResource("7_dn4g6")
+script = ExtResource("9_8icw3")
 metadata/_custom_type_script = "uid://c78fdjst45b4p"
 
 [node name="EntitySpawner2" type="Marker3D" parent="Objects/Room3/EntitySpawnContainer" unique_id=34806003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8565617, -3.5, -6.274132)
-script = ExtResource("7_dn4g6")
+script = ExtResource("9_8icw3")
 enemy_type = 1
 metadata/_custom_type_script = "uid://c78fdjst45b4p"
 
 [node name="EntitySpawner3" type="Marker3D" parent="Objects/Room3/EntitySpawnContainer" unique_id=1816851846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.087413, -3.5, -6.274132)
-script = ExtResource("7_dn4g6")
+script = ExtResource("9_8icw3")
 enemy_type = 1
 metadata/_custom_type_script = "uid://c78fdjst45b4p"
 
