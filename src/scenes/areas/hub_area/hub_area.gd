@@ -1,4 +1,4 @@
-extends Node3D
+extends Area
 
 @onready var player_spawn: Marker3D = $PlayerSpawn
 @onready var entities: Node3D = $Entities

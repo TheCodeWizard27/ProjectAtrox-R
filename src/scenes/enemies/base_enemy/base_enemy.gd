@@ -1,4 +1,4 @@
-extends BaseEntity
+extends Entity
 class_name BaseEnemy
 
 @export var turn_threshold: float = Globals.ENTITY_TURN_THRESHOLD

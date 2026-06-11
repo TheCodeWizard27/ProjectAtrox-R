@@ -12,14 +12,23 @@ func enter(_msg: Dictionary = {}) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_is_active = true
 	
+	if (controller.target_player):
+		controller.target_player.input_buffer.clear()
+	
 	controller.ui_container.remove_child(controller.pause_menu)
 
 func exit() -> void:
 	_is_active = false
 	
+	if(controller.target_player):
+		controller.target_player.input_buffer.clear()
+	
 	controller.ui_container.add_child(controller.pause_menu)
 
 func update(delta: float) -> void:
+	if (!controller.target_player):
+		return
+	
 	if (Input.is_action_just_pressed("menu")):
 		return transition_to(PlayerControllerState.IN_PAUSE_MENU)
 	

@@ -35,6 +35,11 @@ player="Player Entities"
 brood=""
 entity="Used for all Entities"
 
+[gui]
+
+theme/custom="uid://bxxdjk1orq1xu"
+theme/custom_font="uid://q1mdfsabjloi"
+
 [input]
 
 ui_left={

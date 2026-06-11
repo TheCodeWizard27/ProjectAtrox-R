@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	var movement = input_buffer.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	process_camera_movement(movement * camera_speed * 2500 * delta)
 	
-	input_buffer.clear()
+	input_buffer.update()
 	
 func _move_towards_target(delta: float) -> void:
 	var current_rotation = rotation

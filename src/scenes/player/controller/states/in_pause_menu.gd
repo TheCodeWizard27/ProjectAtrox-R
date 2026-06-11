@@ -18,6 +18,9 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	if (Input.is_action_just_pressed("menu")):
 		transition_to(PlayerControllerState.IN_GAME)
+		
+	if (controller.target_player):
+		controller.pause_menu.update(controller.target_player.status)
 
 #func _input(event: InputEvent) -> void:
 	#if (!_is_active):

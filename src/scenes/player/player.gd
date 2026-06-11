@@ -1,4 +1,4 @@
-extends BaseEntity
+extends Entity
 class_name Player
 
 @export var max_speed: float = Globals.PLAYER_MAX_SPEED
@@ -24,11 +24,7 @@ var special_action_state: NodePath
 
 func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
-	# TODO
-	primary_action_state = WarriorState.WARRIOR_PRIMARY_ACTION
-	secondary_action_state = WarriorState.WARRIOR_SECONDARY_ACTION
-	defensive_action_state = WarriorState.WARRIOR_DEFENSIVE_ACTION
-	special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION
+	_init_class_actions()
 
 func get_hit() -> void:
 	super.get_hit()
@@ -49,8 +45,17 @@ func _init_state_machine() -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
+	status.play_time += delta
 
 func _physics_process(delta: float) -> void:	
 	state_machine.physics_process(delta)
 	body.move_and_slide()
-	input_buffer.clear()
+	input_buffer.update()
+
+func _init_class_actions() -> void:
+	match status.combat_class:
+		Enums.CombatClasses.WARRIOR:
+			primary_action_state = WarriorState.WARRIOR_PRIMARY_ACTION
+			secondary_action_state = WarriorState.WARRIOR_SECONDARY_ACTION
+			defensive_action_state = WarriorState.WARRIOR_DEFENSIVE_ACTION
+			special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION

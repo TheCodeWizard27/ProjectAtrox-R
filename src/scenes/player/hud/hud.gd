@@ -22,8 +22,11 @@ func update(player: Player, delta: float) -> void:
 	update_interaction(player.target_detector.interaction_target)
 	update_target_indicator(player.lock_on_target, delta)
 	update_target_stack(player.target_detector.targets.map(_get_target_name))
+	
+	var current_health = player.status.current_health as float
+	var max_health = player.status.attributes.max_health as float
 	update_health(
-		(player.status.current_health as float / player.status.max_health as float) if player.status != null 
+		(current_health / max_health) if player.status != null 
 		else (0 as float)
 		)
 
