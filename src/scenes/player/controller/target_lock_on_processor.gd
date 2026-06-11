@@ -15,7 +15,7 @@ func process_lock_on() -> void:
 		var new_target = player_controller.lock_on_target_detector.find_lock_on_target()
 		camera_controller.lock_on_target = new_target if new_target != null else camera_controller.lock_on_target
 		
-	input_buffer.clear()
+	input_buffer.update()
 
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)

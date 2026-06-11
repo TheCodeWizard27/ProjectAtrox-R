@@ -7,9 +7,6 @@ var _buffered_events: Array[InputEvent] = []
 # to query mapped actions just like with the Input singleton.
 # Events are buffered after received from push_event
 # and keep existing until a released event is received.
-# TODO clean this up and also implement the following
-# to keep it more consistent the clear method cross checks with the Input singleton
-# to remove zombie events.
 
 func push_event(event: InputEvent) -> void:
 	# Filter out old pressed
@@ -18,8 +15,12 @@ func push_event(event: InputEvent) -> void:
 			func(existing_event): return !event.is_match(existing_event))
 	
 	_buffered_events.push_back(event)
-	
+
 func clear() -> void:
+	_previous_buffered_events.clear()
+	_buffered_events.clear()
+	
+func update() -> void:
 	_previous_buffered_events.clear()
 	_previous_buffered_events.append_array(_buffered_events)
 	_buffered_events = _buffered_events.filter(

@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:	
 	state_machine.physics_process(delta)
 	body.move_and_slide()
-	input_buffer.clear()
+	input_buffer.update()
 
 func _init_class_actions() -> void:
 	match status.combat_class:
