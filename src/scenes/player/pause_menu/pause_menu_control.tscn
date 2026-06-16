@@ -5,6 +5,11 @@
 [ext_resource type="Shader" uid="uid://cqnfntt6hpgn" path="res://src/scenes/player/pause_menu/shaders/magic_effect.gdshader" id="3_leqty"]
 [ext_resource type="Shader" uid="uid://d140lxmfrjvsr" path="res://src/scenes/player/pause_menu/shaders/crt.gdshader" id="4_c28x6"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wl2xp"]
+resource_local_to_scene = true
+shader = ExtResource("4_c28x6")
+shader_parameter/shake = 0.010000000475
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exqj0"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -48,11 +53,6 @@ shader_parameter/dot_size = 0.1
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/gradient = SubResource("GradientTexture1D_leqty")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wl2xp"]
-resource_local_to_scene = true
-shader = ExtResource("4_c28x6")
-shader_parameter/shake = 0.010000000475
-
 [node name="PauseMenuControl" type="Control" unique_id=1910466399]
 layout_mode = 3
 anchors_preset = 15
@@ -61,6 +61,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ibrib")
+
+[node name="Scanlines" type="Panel" parent="." unique_id=719991573]
+material = SubResource("ShaderMaterial_wl2xp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background" type="Panel" parent="." unique_id=1474912789]
 layout_mode = 1
@@ -82,15 +91,6 @@ grow_vertical = 2
 
 [node name="DotMatrix" type="Panel" parent="." unique_id=1141752885]
 material = SubResource("ShaderMaterial_leqty")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Scanlines" type="Panel" parent="." unique_id=719991573]
-material = SubResource("ShaderMaterial_wl2xp")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

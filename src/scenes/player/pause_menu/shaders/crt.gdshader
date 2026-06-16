@@ -20,4 +20,5 @@ void fragment() {
     
     float scanline = sin(uv.y * 420.0) * 0.04;
     COLOR = vec4(r - scanline, g - scanline, b - scanline, 1.0);
+	COLOR.a = 0.7;
 }
