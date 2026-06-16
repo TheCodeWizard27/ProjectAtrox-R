@@ -12,6 +12,7 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_spruu")
+texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_gkymx"]
 resource_local_to_scene = true

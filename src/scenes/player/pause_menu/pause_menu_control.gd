@@ -1,16 +1,16 @@
 extends Control
 class_name PauseMenuControl
 
-@onready var name_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayerInfo/ValueLabel
-@onready var class_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/ClassInfo/ValueLabel
-@onready var currency_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/CurrencyInfo/ValueLabel
-@onready var play_time_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/PlayTimeInfo/ValueLabel
-@onready var health_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/HealthInfo/ValueLabel
-@onready var strength_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/StrengthInfo/ValueLabel
-@onready var dexterity_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DexterityInfo/ValueLabel
-@onready var intelligence_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/IntelligenceInfo/ValueLabel
-@onready var defense_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/DefenseInfo/ValueLabel
-@onready var speed_label: Label = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/MarginContainer/StatusInfo/SpeedInfo/ValueLabel
+@onready var name_label: Label = %StatusInfo/PlayerInfo/ValueLabel
+@onready var class_label: Label = %StatusInfo/ClassInfo/ValueLabel
+@onready var currency_label: Label = %StatusInfo/CurrencyInfo/ValueLabel
+@onready var play_time_label: Label = %StatusInfo/PlayTimeInfo/ValueLabel
+@onready var health_label: Label = %StatusInfo/HealthInfo/ValueLabel
+@onready var strength_label: Label = %StatusInfo/StrengthInfo/ValueLabel
+@onready var dexterity_label: Label = %StatusInfo/DexterityInfo/ValueLabel
+@onready var intelligence_label: Label = %StatusInfo/IntelligenceInfo/ValueLabel
+@onready var defense_label: Label = %StatusInfo/DefenseInfo/ValueLabel
+@onready var speed_label: Label = %StatusInfo/SpeedInfo/ValueLabel
 
 func update(player_status: PlayerStatus) -> void:
 	name_label.text = player_status.name
