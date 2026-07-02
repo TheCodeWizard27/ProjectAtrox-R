@@ -21,9 +21,11 @@ float square_stroke(vec2 uv, float width, float thickness) {
 }
 
 void fragment() {
-	float color = square_stroke(UV, 0.95, 0.02);
-	color = color - rect(UV, vec2(1.0, 0.9));
-	color = color - rect(UV, vec2(0.9, 1.0));
+	vec2 correctedUV = UV / TEXTURE_PIXEL_SIZE;
+	
+	float color = square_stroke(correctedUV, 0.95, 0.02);
+	color = color - rect(correctedUV, vec2(1.0, 0.9));
+	color = color - rect(correctedUV, vec2(0.9, 1.0));
 	
 	COLOR = texture(gradient, vec2(color));
 }

@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://c43a3ela25agr" path="res://src/scenes/player/pause_menu/shaders/dot_matrix.gdshader" id="2_exqj0"]
 [ext_resource type="Shader" uid="uid://cqnfntt6hpgn" path="res://src/scenes/player/pause_menu/shaders/magic_effect.gdshader" id="3_leqty"]
 [ext_resource type="Shader" uid="uid://d140lxmfrjvsr" path="res://src/scenes/player/pause_menu/shaders/crt.gdshader" id="4_c28x6"]
-[ext_resource type="Shader" uid="uid://dp1kb1pjuvib7" path="res://src/scenes/player/pause_menu/shaders/card.gdshader" id="5_wl2xp"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="5_b5i3v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wl2xp"]
 resource_local_to_scene = true
@@ -53,16 +53,6 @@ shader_parameter/tileSize = 32.0
 shader_parameter/dot_size = 0.1
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/gradient = SubResource("GradientTexture1D_leqty")
-
-[sub_resource type="Gradient" id="Gradient_wl2xp"]
-colors = PackedColorArray(1, 1, 1, 1, 0.83033526, 0.83033514, 0.83033514, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_b5i3v"]
-gradient = SubResource("Gradient_wl2xp")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5i3v"]
-shader = ExtResource("5_wl2xp")
-shader_parameter/gradient = SubResource("GradientTexture1D_b5i3v")
 
 [node name="PauseMenuControl" type="Control" unique_id=1910466399]
 layout_mode = 3
@@ -150,9 +140,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Panel" type="Panel" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer" unique_id=215161444]
-material = SubResource("ShaderMaterial_b5i3v")
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer" unique_id=1127096371]
 layout_mode = 2
+texture = ExtResource("5_b5i3v")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer" unique_id=1458880146]
 layout_mode = 2
@@ -324,7 +319,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2" unique_id=1568144408]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2" unique_id=539376087]
+layout_mode = 2
+texture = ExtResource("5_b5i3v")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2" unique_id=1568144408]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -333,27 +337,27 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Invenctory" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2" unique_id=1013827965]
+[node name="Invenctory" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1013827965]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2/Invenctory" unique_id=1565947942]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Invenctory" unique_id=1565947942]
 layout_mode = 2
 text = "Inventory"
 
-[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2/Invenctory" unique_id=263487014]
+[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Invenctory" unique_id=263487014]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2/Invenctory/PlayerInfo" unique_id=986165658]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Invenctory/PlayerInfo" unique_id=986165658]
 layout_mode = 2
 text = "Item"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2/Invenctory/PlayerInfo" unique_id=875018264]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Invenctory/PlayerInfo" unique_id=875018264]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer2/Invenctory/PlayerInfo" unique_id=1285057770]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Invenctory/PlayerInfo" unique_id=1285057770]
 layout_mode = 2
 text = "1"
 
