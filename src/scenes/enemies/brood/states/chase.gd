@@ -12,8 +12,8 @@ func exit() -> void:
 	enemy.player_detector.body_exited.disconnect(_on_body_exit)
 	
 func physics_update(delta: float) -> void:
-	if(enemy.got_hit):
-		process_damage_taken()
+	if (process_damage_taken()):
+		return
 	
 	if(_detected_player == null):
 		return transition_to(BroodState.GUARD) 
@@ -30,7 +30,6 @@ func physics_update(delta: float) -> void:
 	var direction = local_destination.normalized()
 
 	enemy.body.velocity = direction * enemy.speed
-
 
 func _on_body_exit(body: Node3D) -> void:
 	if(_detected_player == null || body == _detected_player.body):

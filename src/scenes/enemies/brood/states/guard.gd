@@ -17,7 +17,9 @@ func exit() -> void:
 	enemy.player_detector.body_entered.disconnect(_on_body_entered)
 	
 func physics_update(_delta: float) -> void:
-	process_damage_taken()
+	if (process_damage_taken()):
+		return
+	
 	if(_detected_player == null):
 		return
 	
