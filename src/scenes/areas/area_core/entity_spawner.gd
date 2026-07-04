@@ -1,7 +1,7 @@
 extends Marker3D
 class_name EntitySpawner
 
-enum EnemyType {
+enum EntityType {
 	BROOD_MOTHER,
 	BROOD
 }
@@ -9,13 +9,13 @@ enum EnemyType {
 var _brood_scene = preload('res://src/scenes/enemies/brood/brood_enemy.tscn')
 var _brood_mother_scene = preload('res://src/scenes/enemies/brood_mother/brood_mother_enemy.tscn')
 
-@export var enemy_type: EnemyType
+@export var enemy_type: EntityType
 
 func spawn() -> Entity:
 	match enemy_type:
-		EnemyType.BROOD:
+		EntityType.BROOD:
 			return _spawn_scene(_brood_scene)
-		EnemyType.BROOD_MOTHER:
+		EntityType.BROOD_MOTHER:
 			return _spawn_scene(_brood_mother_scene)
 			
 	return null

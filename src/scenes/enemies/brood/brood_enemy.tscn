@@ -14,8 +14,8 @@
 [ext_resource type="Animation" uid="uid://y6llq321dqs7" path="res://src/scenes/player/animations/hit.res" id="12_mdc5p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ek4gk"]
-radius = 0.4
-height = 1.3
+radius = 0.34765625
+height = 0.8887695
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h87fn"]
 
@@ -145,10 +145,10 @@ metadata/_custom_type_script = "uid://dctjvk30irj1l"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40145278, 0)
 
 [node name="BroodModel" parent="Body" unique_id=1294533965 instance=ExtResource("3_5i7ni")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.14654115, 0)
 
-[node name="BroodHurtBox" type="CollisionShape3D" parent="Body" unique_id=1242914953]
-transform = Transform3D(0.9, 0, 0, 0, -3.934025e-08, -0.9, 0, 0.9, -3.934025e-08, 0, 0, 0.11332238)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1242914953]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ek4gk")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="Body" unique_id=1478386828]
@@ -163,13 +163,14 @@ monitoring = false
 shape = SubResource("BoxShape3D_h87fn")
 debug_color = Color(0, 0.6508677, 0.0843486, 0.41960785)
 
-[node name="AttackBox" type="Area3D" parent="Body" unique_id=1797728821 groups=["brood", "enemy", "entity"]]
+[node name="Hurtbox" type="Area3D" parent="Body" unique_id=1797728821]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 32
+monitoring = false
 monitorable = false
 
-[node name="BroodAttackHitBox" type="CollisionShape3D" parent="Body/AttackBox" unique_id=1584484420 groups=["brood"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Hurtbox" unique_id=1584484420]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.15336633, 0.61263716)
 shape = SubResource("SphereShape3D_5i7ni")
 debug_color = Color(0.9999998, 0, 0.10749292, 0.41960785)

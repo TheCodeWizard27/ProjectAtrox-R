@@ -1,7 +1,7 @@
 extends BaseEnemy
 class_name BroodEnemy
 
-@onready var attack_box: Area3D = %AttackBox	
+@onready var attack_box: Area3D = %Hurtbox
 @onready var navigation_agent = $Body/NavigationAgent3D
 @export var hit_player: AnimationPlayer
 var got_hit = false
@@ -19,10 +19,6 @@ func _process(delta: float) -> void:
 func is_near_player(target: Player) -> bool:
 	var distance = body.global_position.distance_to(target.body.global_position)
 	return distance <= attack_distance
-
-func attack() -> void:
-	
-	pass
 
 func get_hit() -> void:
 	got_hit = true
