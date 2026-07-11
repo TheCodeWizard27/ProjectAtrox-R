@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfw5nfkhhu01t" path="res://src/scenes/enemies/brood/brood_enemy.gd" id="1_axasp"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="2_20tc3"]
-[ext_resource type="PackedScene" uid="uid://cnx0x3ny4q2re" path="res://assets/enemies/brood/brood_model.tscn" id="3_5i7ni"]
+[ext_resource type="PackedScene" uid="uid://cnx0x3ny4q2re" path="res://src/assets/models/enemies/brood/brood_model.tscn" id="3_5i7ni"]
 [ext_resource type="Script" uid="uid://c0aoq61wcmgwj" path="res://src/scenes/enemies/brood/states/guard.gd" id="3_h87fn"]
 [ext_resource type="Script" uid="uid://cpk3sfa23fu1i" path="res://src/scenes/enemies/brood/states/chase.gd" id="4_m4bjc"]
 [ext_resource type="Script" uid="uid://4046l1684vcd" path="res://src/scenes/enemies/brood/states/attack.gd" id="5_g38ny"]

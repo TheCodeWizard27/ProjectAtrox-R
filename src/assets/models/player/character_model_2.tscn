@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://epunrxnnpbwh"]
+
+[ext_resource type="PackedScene" uid="uid://b53csa0dasjf0" path="res://src/assets/models/player/CharacterModel_2.blend" id="1_svdlt"]
+
+[node name="CharacterModel_2" unique_id=1543654119 instance=ExtResource("1_svdlt")]
+
+[node name="Cube" parent="." index="1" unique_id=1313335889]
+visible = false

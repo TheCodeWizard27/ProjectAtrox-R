@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bhfflqc5kvv8o"]
 
-[ext_resource type="PackedScene" uid="uid://bsj80wh52g5x0" path="res://assets/interactables/box_blue.blend" id="1_x4gvb"]
+[ext_resource type="PackedScene" uid="uid://bsj80wh52g5x0" path="res://src/assets/models/interactables/box_blue.blend" id="1_x4gvb"]
 [ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="2_2c8g4"]
-[ext_resource type="Texture2D" uid="uid://bpqsyycbskwca" path="res://assets/interactables/textures/cube.png" id="2_j462w"]
+[ext_resource type="Texture2D" uid="uid://bpqsyycbskwca" path="res://src/assets/textures/cube.png" id="2_j462w"]
 
 [sub_resource type="GDScript" id="GDScript_m8j5k"]
 script/source = "extends Entity
