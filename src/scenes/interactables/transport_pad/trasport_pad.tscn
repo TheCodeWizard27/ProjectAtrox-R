@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b38d5mkximieh"]
+
+[ext_resource type="Shader" uid="uid://bpe3uh5wen4d3" path="res://src/scenes/interactables/transport_pad/trasport_pad.tres" id="1_6h0th"]
+[ext_resource type="Script" uid="uid://f4hb61fjq0s1" path="res://src/scenes/interactables/transport_pad/trasport_pad.gd" id="1_7ahim"]
+[ext_resource type="Script" uid="uid://26mpx04biwl5" path="res://src/scenes/player/target_detector/interaction_target.gd" id="2_sj35k"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dfipr"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_dfipr"]
+inner_radius = 0.85
+outer_radius = 0.799
+rings = 7
+ring_segments = 7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptb2r"]
+render_priority = 0
+shader = ExtResource("1_6h0th")
+shader_parameter/ColorParameter = Color(0.54004437, 1.7937326, 1.5924103, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dfipr"]
+material = SubResource("ShaderMaterial_ptb2r")
+top_radius = 1.0
+bottom_radius = 1.0
+radial_segments = 7
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sj35k"]
+
+[node name="TrasportPad" type="Node3D" unique_id=938732095]
+script = ExtResource("1_7ahim")
+
+[node name="BottomPanel" type="MeshInstance3D" parent="." unique_id=1717750750]
+mesh = SubResource("PlaneMesh_dfipr")
+
+[node name="TopRing" type="MeshInstance3D" parent="." unique_id=379152887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4899681, 0)
+mesh = SubResource("TorusMesh_dfipr")
+
+[node name="BottomRing" type="MeshInstance3D" parent="." unique_id=97488611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.043582678, 0)
+mesh = SubResource("TorusMesh_dfipr")
+skeleton = NodePath("../TopRing")
+
+[node name="TopPanel" type="MeshInstance3D" parent="." unique_id=1339844560]
+mesh = SubResource("PlaneMesh_dfipr")
+skeleton = NodePath("../BottomPanel")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2065719053]
+transform = Transform3D(1, 0, 0, 0, 0.7159095, 0, 0, 0, 1, 0, 0.7814015, 0)
+mesh = SubResource("CylinderMesh_dfipr")
+
+[node name="InteractableArea" type="Area3D" parent="." unique_id=992500971]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("2_sj35k")
+interactable_text = "Press E Button to Teleport"
+visible_name = "Button"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea" unique_id=673545669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76151985, 0)
+shape = SubResource("SphereShape3D_sj35k")
+
+[connection signal="interacted" from="InteractableArea" to="." method="_on_interacted"]

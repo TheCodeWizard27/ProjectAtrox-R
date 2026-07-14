@@ -19,5 +19,5 @@ func clear() -> void:
 	if (_current_node == null): return
 
 	get_parent().remove_child(_current_node)
-	_current_node.queue_free()
+	_current_node.free()
 	_current_node = null

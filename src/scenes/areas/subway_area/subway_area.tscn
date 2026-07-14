@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d1o6id4s3ob7l"]
+
+[ext_resource type="Script" uid="uid://22m56vx4fyv3" path="res://src/scenes/areas/area_core/area.gd" id="1_swwyn"]
+[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="2_vcyaw"]
+[ext_resource type="Script" uid="uid://cho0334equubs" path="res://src/scenes/areas/area_core/player_spawner.gd" id="3_udvve"]
+[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="4_udvve"]
+[ext_resource type="Script" uid="uid://cfqd8a4uen5ps" path="res://src/scenes/areas/area_core/entity_manager.gd" id="5_j1dej"]
+[ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/trasport_pad.tscn" id="6_t1200"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr1e0"]
+
+[node name="SubwayArea" type="Node3D" unique_id=1731118537 node_paths=PackedStringArray("player_controller", "player_spawner")]
+script = ExtResource("1_swwyn")
+player_controller = NodePath("PlayerController")
+player_spawner = NodePath("PlayerSpawner")
+metadata/_custom_type_script = "uid://22m56vx4fyv3"
+
+[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("2_vcyaw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.637352, 0)
+
+[node name="PlayerSpawner" type="Marker3D" parent="." unique_id=1388741866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76478267, 0)
+script = ExtResource("3_udvve")
+metadata/_custom_type_script = "uid://cho0334equubs"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1192715873]
+transform = Transform3D(1, 0, 0, 0, 0.34730014, 0, 0, 0, 1, 0.025726318, 0, -5.3197327)
+use_collision = true
+size = Vector3(4.8569946, 1, 15.563538)
+material = SubResource("StandardMaterial3D_qr1e0")
+
+[node name="AreaEnvironment" parent="." unique_id=1183075330 instance=ExtResource("4_udvve")]
+
+[node name="EntityManager" type="Node" parent="." unique_id=2090181913]
+script = ExtResource("5_j1dej")
+metadata/_custom_type_script = "uid://cfqd8a4uen5ps"
+
+[node name="TrasportPad" parent="." unique_id=938732095 instance=ExtResource("6_t1200")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48533332, 0, -3.0526743)
