@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://d0bbmswgyukml"]
 
-[ext_resource type="Script" uid="uid://cnjtalb5xipaj" path="res://src/scenes/areas/hub_area/hub_area.gd" id="1_gugdl"]
+[ext_resource type="Script" uid="uid://22m56vx4fyv3" path="res://src/scenes/areas/area_core/area.gd" id="1_5auvi"]
 [ext_resource type="Shader" uid="uid://3nvrlnsm8gvi" path="res://src/scenes/areas/hub_area/space_sky.gdshader" id="2_5auvi"]
 [ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="3_mklfy"]
 [ext_resource type="Material" uid="uid://chxg0pjs0mx4b" path="res://src/assets/materials/development/light_source.tres" id="4_b0mc8"]
+[ext_resource type="Script" uid="uid://cfqd8a4uen5ps" path="res://src/scenes/areas/area_core/entity_manager.gd" id="4_bfs62"]
 [ext_resource type="Material" uid="uid://csvksm60nfp5c" path="res://src/assets/materials/development/triplanar_texture_8.tres" id="5_bfs62"]
 [ext_resource type="Script" uid="uid://cho0334equubs" path="res://src/scenes/areas/area_core/player_spawner.gd" id="6_5auvi"]
 [ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="6_202hl"]
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="7_lrcqk"]
-[ext_resource type="Material" uid="uid://ca8jalwpkb4kj" path="res://src/assets/materials/mossy_stone.material" id="8_j7e1q"]
-[ext_resource type="Script" uid="uid://dvny88al2x2nk" path="res://src/scenes/player/target_detector/action_target.gd" id="9_qnbiq"]
+[ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/trasport_pad.tscn" id="11_mklfy"]
 
 [sub_resource type="Gradient" id="Gradient_faxgi"]
 offsets = PackedFloat32Array(0.8358209, 1)
@@ -45,22 +45,19 @@ adjustment_enabled = true
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_ohdua"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_rn3gd"]
-radius = 10.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0cyf"]
-shading_mode = 0
-billboard_mode = 1
-
-[sub_resource type="TextMesh" id="TextMesh_8fxne"]
-material = SubResource("StandardMaterial3D_b0cyf")
-text = "Cubert 3"
-depth = 0.0
-
 [node name="Hub" type="Node3D" unique_id=417783601 node_paths=PackedStringArray("player_controller", "player_spawner")]
-script = ExtResource("1_gugdl")
+script = ExtResource("1_5auvi")
 player_controller = NodePath("PlayerController")
-player_spawner = NodePath("PlayerSpawn")
+player_spawner = NodePath("PlayerSpawner")
+
+[node name="TrasportPad" parent="." unique_id=938732095 instance=ExtResource("11_mklfy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6607857, 4.0312266, -9.19379)
+is_exit = false
+
+[node name="Entities" type="Node3D" parent="." unique_id=201285081]
+
+[node name="BlueBox" parent="Entities" unique_id=883319482 instance=ExtResource("7_lrcqk")]
+transform = Transform3D(0.93326116, 0, 0.3591988, 0, 1, 0, -0.3591988, 0, 0.93326116, -26.121414, 4.4869766, -48.366966)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=912908139]
 environment = SubResource("Environment_8fxne")
@@ -103,7 +100,7 @@ size = Vector3(16, 12.865723, 80.98873)
 material = ExtResource("3_mklfy")
 
 [node name="Door2" type="CSGBox3D" parent="BaseMap/CSGCombiner3D/Tower" unique_id=1778079981]
-transform = Transform3D(0.3746066, 0, -0.92718375, 0, 1, 0, 0.92718375, 0, 0.3746066, 0.3470564, -22.817207, 0.7088177)
+transform = Transform3D(0.3746066, 0, -0.92718375, 0, 1, 0, 0.92718375, 0, 0.3746066, 0.34895563, -22.788454, 0.72343946)
 operation = 2
 size = Vector3(16, 12.224014, 80.9703)
 material = ExtResource("3_mklfy")
@@ -520,41 +517,19 @@ use_collision = true
 size = Vector3(7.445862, 1.0944214, 2.0390778)
 material = ExtResource("3_mklfy")
 
-[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=2056878650]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
-script = ExtResource("6_5auvi")
-metadata/_custom_type_script = "uid://cho0334equubs"
-
-[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("6_202hl")]
-
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=935337885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.004156, 20.78926, -46.446922)
-visible = false
 omni_range = 205.648
 omni_attenuation = -0.074
 
-[node name="Entities" type="Node3D" parent="." unique_id=201285081]
+[node name="PlayerController" parent="." unique_id=230425080 instance=ExtResource("6_202hl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.229444, 6.8045435, -5.8609743)
 
-[node name="BlueBox" parent="Entities" unique_id=883319482 instance=ExtResource("7_lrcqk")]
-transform = Transform3D(0.93326116, 0, 0.3591988, 0, 1, 0, -0.3591988, 0, 0.93326116, -26.121414, 4.4869766, -48.366966)
+[node name="PlayerSpawner" type="Marker3D" parent="." unique_id=262393956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4505, 0)
+script = ExtResource("6_5auvi")
+metadata/_custom_type_script = "uid://cho0334equubs"
 
-[node name="Marker3D3" type="Marker3D" parent="Entities" unique_id=389070440]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8501127, 5.16691, -14.205769)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Entities/Marker3D3" unique_id=1920456353]
-material = ExtResource("8_j7e1q")
-
-[node name="LockOnTarget" type="Area3D" parent="Entities/Marker3D3" unique_id=743016339]
-collision_layer = 132
-collision_mask = 0
-script = ExtResource("9_qnbiq")
-visible_name = "Cubert 3"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entities/Marker3D3/LockOnTarget" unique_id=2037792192]
-shape = SubResource("SphereShape3D_rn3gd")
-debug_color = Color(0.55883837, 0.39705127, 1, 0.41960785)
-debug_fill = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Entities/Marker3D3" unique_id=638305471]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8501967, 0)
-mesh = SubResource("TextMesh_8fxne")
+[node name="EntitiesManager" type="Node" parent="." unique_id=530493556]
+script = ExtResource("4_bfs62")
+metadata/_custom_type_script = "uid://cfqd8a4uen5ps"
