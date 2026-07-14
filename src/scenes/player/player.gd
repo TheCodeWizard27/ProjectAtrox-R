@@ -42,6 +42,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 		skeleton.remove_child(skeleton.get_node(mesh_path))
 		var new_mesh_node = other_skin_skeleton.get_node(mesh_path)
 		other_skin_skeleton.remove_child(new_mesh_node)
+		new_mesh_node.owner = null
 		skeleton.add_child(new_mesh_node)
 	
 	_init_class_actions()

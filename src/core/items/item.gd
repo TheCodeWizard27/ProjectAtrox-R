@@ -1,9 +1,10 @@
 class_name Item
 
 enum ItemType { 
-	MISC = 0, 
-	CONSUMABLE = 1, 
-	GEAR = 2 
+	MISC = 0,
+	CONSUMABLE = 1,
+	GEAR = 2,
+	UNIQUE = 3
 }
 
 var type: ItemType
@@ -23,3 +24,6 @@ static func new_consumable_item(p_item: ConsumableItems.Item, p_count: int = 1) 
 
 static func new_gear_item(p_item: GearItems.Item) -> Item:
 	return Item.new(ItemType.GEAR, p_item)
+	
+static func new_unique_item(p_item: UniqueItems.Item) -> Item:
+	return Item.new(ItemType.UNIQUE, p_item)

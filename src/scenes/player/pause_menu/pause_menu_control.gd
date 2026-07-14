@@ -17,7 +17,6 @@ class_name PauseMenuControl
 
 func update(player_status: PlayerStatus) -> void:
 	name_label.text = player_status.name
-	#class_label.text = player_status.name
 	currency_label.text = str(player_status.currency) + ' $'
 	
 	var seconds = fmod(player_status.play_time, 60)
@@ -40,14 +39,14 @@ func load_inventory(player_status: PlayerStatus) -> void:
 	
 	for item in player_status.inventory:
 		var hBox = HBoxContainer.new()
-		var name_label = Label.new()
-		hBox.add_child(name_label)
+		var item_name_label = Label.new()
+		hBox.add_child(item_name_label)
 		
 		match(item.type):
 			Item.ItemType.MISC:
-				name_label.text = MiscItems.item_table[item.item].name
+				item_name_label.text = MiscItems.item_table[item.item].name
 			Item.ItemType.CONSUMABLE: 
-				name_label.text = ConsumableItems.item_table[item.item].name
+				item_name_label.text = ConsumableItems.item_table[item.item].name
 		
 		hBox.add_spacer(false)
 		
@@ -64,9 +63,9 @@ func load_gear(player_status: PlayerStatus) -> void:
 	
 	for item in player_status.gear_inventory:
 		var hBox = HBoxContainer.new()
-		var name_label = Label.new()
-		hBox.add_child(name_label)
+		var item_name_label = Label.new()
+		hBox.add_child(item_name_label)
 		
-		name_label.text = GearItems.item_table[item.item].name
+		item_name_label.text = GearItems.item_table[item.item].name
 		
 		gear_inventory.add_child(hBox)
