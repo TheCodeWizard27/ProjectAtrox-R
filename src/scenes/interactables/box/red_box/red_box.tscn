@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://dy2qi3i2pj1t1"]
 
 [ext_resource type="Script" uid="uid://dhknwmjkh26bw" path="res://src/scenes/interactables/box/red_box/red_box.gd" id="1_cxqkn"]
-[ext_resource type="PackedScene" uid="uid://bsj80wh52g5x0" path="res://assets/interactables/box_blue.blend" id="2_vpc5a"]
+[ext_resource type="PackedScene" uid="uid://bsj80wh52g5x0" path="res://src/assets/models/interactables/box_blue.blend" id="2_vpc5a"]
 [ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="3_5q1nm"]
-[ext_resource type="Texture2D" uid="uid://bpqsyycbskwca" path="res://assets/interactables/textures/cube.png" id="3_cf2ng"]
+[ext_resource type="Texture2D" uid="uid://bpqsyycbskwca" path="res://src/assets/textures/cube.png" id="3_cf2ng"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x4gvb"]
 

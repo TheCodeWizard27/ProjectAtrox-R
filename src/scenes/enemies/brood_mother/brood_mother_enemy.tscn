@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dt3o6cyrv5wps" path="res://src/scenes/enemies/brood_mother/states/buff.gd" id="3_vvups"]
 [ext_resource type="Script" uid="uid://1fx7nbud8aiq" path="res://src/scenes/enemies/brood_mother/states/idle.gd" id="4_rlda7"]
 [ext_resource type="Script" uid="uid://cdks6t7elwdpu" path="res://src/scenes/enemies/brood_mother/states/spawn.gd" id="5_rlda7"]
-[ext_resource type="PackedScene" uid="uid://chnp87y0a3qu" path="res://assets/enemies/brood_mother/brood_mother_model.blend" id="6_33018"]
+[ext_resource type="PackedScene" uid="uid://chnp87y0a3qu" path="res://src/assets/models/enemies/brood_mother/brood_mother_model.blend" id="6_33018"]
 [ext_resource type="PackedScene" uid="uid://bji3kv2a6nil7" path="res://src/scenes/enemies/brood/brood_enemy.tscn" id="6_s7ftr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s7ftr"]

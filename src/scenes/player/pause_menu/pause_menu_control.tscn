@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://cqnfntt6hpgn" path="res://src/scenes/player/pause_menu/shaders/magic_effect.gdshader" id="3_leqty"]
 [ext_resource type="Shader" uid="uid://d140lxmfrjvsr" path="res://src/scenes/player/pause_menu/shaders/crt.gdshader" id="4_c28x6"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="5_b5i3v"]
-[ext_resource type="Texture2D" uid="uid://dskic3wjpwjt6" path="res://assets/player/textures/CharacterModel_Main.png" id="6_b5i3v"]
+[ext_resource type="Texture2D" uid="uid://dskic3wjpwjt6" path="res://src/assets/models/player/textures/CharacterModel_Main.png" id="6_b5i3v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wl2xp"]
 resource_local_to_scene = true
@@ -56,7 +56,7 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/gradient = SubResource("GradientTexture1D_leqty")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wl2xp"]
-viewport_path = NodePath("MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport")
+viewport_path = NodePath("MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport")
 
 [sub_resource type="Environment" id="Environment_b5i3v"]
 background_mode = 1
@@ -422,12 +422,16 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1282113437]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=2045296351]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1282113437]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer" unique_id=1127096371]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1127096371]
 layout_mode = 2
 texture = ExtResource("5_b5i3v")
 region_rect = Rect2(0, 0, 21, 20)
@@ -436,7 +440,7 @@ patch_margin_top = 13
 patch_margin_right = 14
 patch_margin_bottom = 13
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer" unique_id=1458880146]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1458880146]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -445,161 +449,278 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="StatusInfo" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=498336243]
+[node name="StatusInfo" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer" unique_id=498336243]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1022324452]
+[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1022324452]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1244934466]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1244934466]
 layout_mode = 2
 text = "Player Name"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1321668181]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1321668181]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1739036367]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/PlayerInfo" unique_id=1739036367]
 layout_mode = 2
 text = "Unknown"
 
-[node name="ClassInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1384630545]
+[node name="ClassInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1384630545]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=770075680]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=770075680]
 layout_mode = 2
 text = "Class"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=94832198]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=94832198]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=147797025]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=147797025]
 layout_mode = 2
 text = "Warrior"
 
-[node name="CurrencyInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1062599123]
+[node name="CurrencyInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1062599123]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1404306158]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1404306158]
 layout_mode = 2
 text = "Currency"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1891203879]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1891203879]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1716872162]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/CurrencyInfo" unique_id=1716872162]
 layout_mode = 2
 text = "0 $"
 
-[node name="PlayTimeInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1537711337]
+[node name="PlayTimeInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1537711337]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1026546269]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1026546269]
 layout_mode = 2
 text = "Play Time"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1591727301]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1591727301]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1799315060]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/PlayTimeInfo" unique_id=1799315060]
 layout_mode = 2
 text = "0"
 
-[node name="HealthInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=989137631]
+[node name="HealthInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=989137631]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=2056360182]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=2056360182]
 layout_mode = 2
 text = "Health"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=805246862]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=805246862]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=511299356]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/HealthInfo" unique_id=511299356]
 layout_mode = 2
 text = "?"
 
-[node name="StrengthInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1665633865]
+[node name="StrengthInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1665633865]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=23660505]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=23660505]
 layout_mode = 2
 text = "Strength"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=1396596740]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=1396596740]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=1902714354]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/StrengthInfo" unique_id=1902714354]
 layout_mode = 2
 text = "?"
 
-[node name="DexterityInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1120275182]
+[node name="DexterityInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1120275182]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=242614276]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=242614276]
 layout_mode = 2
 text = "Dexterity"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=1234105412]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=1234105412]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=1348756707]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/DexterityInfo" unique_id=1348756707]
 layout_mode = 2
 text = "?"
 
-[node name="IntelligenceInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1275046633]
+[node name="IntelligenceInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1275046633]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=613945238]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=613945238]
 layout_mode = 2
 text = "Intelligence"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=525512712]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=525512712]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=1261437430]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/IntelligenceInfo" unique_id=1261437430]
 layout_mode = 2
 text = "?"
 
-[node name="DefenseInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=852288853]
+[node name="DefenseInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=852288853]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=238895612]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=238895612]
 layout_mode = 2
 text = "Defensive"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=733102873]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=733102873]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=1406375544]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/DefenseInfo" unique_id=1406375544]
 layout_mode = 2
 text = "?"
 
-[node name="SpeedInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo" unique_id=1001527742]
+[node name="SpeedInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1001527742]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=739381079]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=739381079]
 layout_mode = 2
 text = "Speed"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=4750626]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=4750626]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=934071562]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/SpeedInfo" unique_id=934071562]
 layout_mode = 2
 text = "?"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1201451586]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=1500870584]
+layout_mode = 2
+texture = ExtResource("5_b5i3v")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=853871465]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer" unique_id=1264122598]
+layout_mode = 2
+texture = SubResource("ViewportTexture_wl2xp")
+expand_mode = 4
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect" unique_id=318424247]
+own_world_3d = true
+world_3d = SubResource("World3D_vrd8g")
+transparent_bg = true
+gui_disable_input = true
+size = Vector2i(254, 254)
+render_target_update_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport" unique_id=1621619954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1971815)
+
+[node name="Node3D" type="Node3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport" unique_id=1161195130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92702657, 0)
+
+[node name="Abdomen" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1814536243]
+mesh = SubResource("ArrayMesh_vrd8g")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="Arms" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=711586911]
+mesh = SubResource("ArrayMesh_udw47")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1218219084]
+mesh = SubResource("ArrayMesh_x74pc")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="Hips" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=293561415]
+mesh = SubResource("ArrayMesh_g8q0t")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="Legs" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1391529389]
+mesh = SubResource("ArrayMesh_jyrkp")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="LowerBody" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=654389216]
+mesh = SubResource("ArrayMesh_dqlin")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="Neck" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=606478091]
+mesh = SubResource("ArrayMesh_eo4rn")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="Shoulders" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1517985135]
+mesh = SubResource("ArrayMesh_yl64y")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="UpperBody" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1060380258]
+mesh = SubResource("ArrayMesh_6juet")
+skin = SubResource("Skin_geblk")
+skeleton = NodePath("../..")
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1138284741]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer3" unique_id=809177054]
+layout_mode = 2
+texture = ExtResource("5_b5i3v")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer3" unique_id=392117621]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FlowContainer" type="FlowContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer3/MarginContainer" unique_id=1633001145]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer3/MarginContainer/FlowContainer" unique_id=1869274996]
+layout_mode = 2
+text = "Test 2"
+
+[node name="Button" type="Button" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer3/MarginContainer/FlowContainer" unique_id=651279121]
+layout_mode = 2
+text = "Test 1"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1026881790]
 layout_mode = 2
@@ -637,25 +758,30 @@ size_flags_vertical = 0
 layout_mode = 2
 text = "Inventory"
 
-[node name="PlayerInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory" unique_id=263487014]
+[node name="Entries" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory" unique_id=1244243744]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/PlayerInfo" unique_id=986165658]
+[node name="Entry" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/Entries" unique_id=263487014]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/Entries/Entry" unique_id=986165658]
 layout_mode = 2
 text = "Item"
 
-[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/PlayerInfo" unique_id=875018264]
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/Entries/Entry" unique_id=875018264]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/PlayerInfo" unique_id=1285057770]
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/Entries/Entry" unique_id=1285057770]
 layout_mode = 2
 text = "1"
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1201451586]
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer" unique_id=2027635386]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=1500870584]
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3" unique_id=668537362]
 layout_mode = 2
 texture = ExtResource("5_b5i3v")
 region_rect = Rect2(0, 0, 21, 20)
@@ -664,7 +790,7 @@ patch_margin_top = 13
 patch_margin_right = 14
 patch_margin_bottom = 13
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=853871465]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3" unique_id=1551083623]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -673,101 +799,32 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1264122598]
-layout_mode = 2
-texture = SubResource("ViewportTexture_wl2xp")
-expand_mode = 4
-
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect" unique_id=318424247]
-own_world_3d = true
-world_3d = SubResource("World3D_vrd8g")
-transparent_bg = true
-gui_disable_input = true
-size = Vector2i(254, 254)
-render_target_update_mode = 1
-
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport" unique_id=1621619954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1971815)
-
-[node name="Node3D" type="Node3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport" unique_id=1161195130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.92702657, 0)
-
-[node name="Abdomen" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1814536243]
-mesh = SubResource("ArrayMesh_vrd8g")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="Arms" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=711586911]
-mesh = SubResource("ArrayMesh_udw47")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="Head" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1218219084]
-mesh = SubResource("ArrayMesh_x74pc")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="Hips" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=293561415]
-mesh = SubResource("ArrayMesh_g8q0t")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="Legs" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1391529389]
-mesh = SubResource("ArrayMesh_jyrkp")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="LowerBody" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=654389216]
-mesh = SubResource("ArrayMesh_dqlin")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="Neck" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=606478091]
-mesh = SubResource("ArrayMesh_eo4rn")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="Shoulders" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1517985135]
-mesh = SubResource("ArrayMesh_yl64y")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="UpperBody" type="MeshInstance3D" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/TextureRect/SubViewport/Node3D" unique_id=1060380258]
-mesh = SubResource("ArrayMesh_6juet")
-skin = SubResource("Skin_geblk")
-skeleton = NodePath("../..")
-
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1138284741]
-layout_mode = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3" unique_id=809177054]
-layout_mode = 2
-texture = ExtResource("5_b5i3v")
-region_rect = Rect2(0, 0, 21, 20)
-patch_margin_left = 14
-patch_margin_top = 13
-patch_margin_right = 14
-patch_margin_bottom = 13
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3" unique_id=392117621]
+[node name="Invenctory" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer" unique_id=1497832952]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
 
-[node name="FlowContainer" type="FlowContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer" unique_id=1633001145]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory" unique_id=223816318]
+layout_mode = 2
+text = "Gear"
+
+[node name="Entries" type="VBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory" unique_id=1093612966]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/FlowContainer" unique_id=1869274996]
+[node name="Entry" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory/Entries" unique_id=1962387715]
 layout_mode = 2
-text = "Test 2"
 
-[node name="Button" type="Button" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/FlowContainer" unique_id=651279121]
+[node name="Label" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory/Entries/Entry" unique_id=1732233758]
 layout_mode = 2
-text = "Test 1"
+text = "Item"
+
+[node name="Spacer" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory/Entries/Entry" unique_id=1773792618]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory/Entries/Entry" unique_id=1151867374]
+layout_mode = 2
+text = "1"
 
 [node name="Placeholder" type="Control" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1460452269]
 layout_mode = 2
