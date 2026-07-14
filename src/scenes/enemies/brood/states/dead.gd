@@ -6,4 +6,4 @@ func enter(_msg: Dictionary = {}) -> void:
 	pass
 
 func destroy() -> void:
-	enemy.destroy()
+	enemy.kill()

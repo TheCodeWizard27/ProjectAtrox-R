@@ -11,7 +11,7 @@ func update_progress(_progress: float) -> void:
 	pass
 
 func enable() -> void:
-	Events.camera_change_requested.emit(camera)
+	Events.request_camera_change(camera)
 	visible = true
 	set_process(true)
 

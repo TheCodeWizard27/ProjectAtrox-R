@@ -19,7 +19,7 @@ static func resolve_player(node: Node) -> Player:
 static func resolve_enemy(node: Node) -> Entity:
 	var scene_root = node.owner
 	
-	if('enemy' in scene_root.get_groups() and scene_root is BaseEnemy):
+	if('enemy' in scene_root.get_groups() and scene_root is Enemy):
 		return scene_root
 		
 	return null

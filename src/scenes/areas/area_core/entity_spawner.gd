@@ -22,5 +22,5 @@ func spawn() -> Entity:
 
 func _spawn_scene(resource: PackedScene) -> Entity:
 	var entity = resource.instantiate() as Entity
-	Events.spawn_entity.emit(entity, global_position, rotation)
+	Events.entity.spawn_entity(entity, global_position, rotation)
 	return entity

@@ -1,15 +1,17 @@
 extends Node
 
-@warning_ignore("unused_signal")
+var entity: EntityEvents = EntityEvents.new()
+var enemy: EnemyEvents = EnemyEvents.new()
+var player: PlayerEvents = PlayerEvents.new()
+
 signal scene_change_requested(scene_path: String, data: Dictionary)
+func request_scene_change(scene_path: String, data: Dictionary) -> void:
+	scene_change_requested.emit(scene_path, data)
 
-@warning_ignore("unused_signal")
 signal camera_change_requested(camera: Camera3D)
+func request_camera_change(camera: Camera3D) -> void:
+	camera_change_requested.emit(camera)
 
-@warning_ignore("unused_signal")
-signal spawn_entity(entity: Entity, position: Vector3, rotation: Vector3)
-
-@warning_ignore("unused_signal")
 signal box_destroyed()
-
-var player = PlayerEvents.new()
+func notify_box_destruction() -> void:
+	box_destroyed.emit()
