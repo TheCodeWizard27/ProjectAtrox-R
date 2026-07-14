@@ -46,6 +46,8 @@ func _start_load(scene_path: String, data: Dictionary) -> void:
 	_current_load_state = ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS
 	ResourceLoader.load_threaded_request(_current_loading_path)
 	_loading_screen.enable()
+	await get_tree().process_frame
+	_sub_scene.clear()
 	
 func _end_load() -> void:
 	print_debug('Finished loading ', _current_loading_path)
