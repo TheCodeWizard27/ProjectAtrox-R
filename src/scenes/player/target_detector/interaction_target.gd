@@ -5,5 +5,5 @@ extends ActionTarget
 
 signal interacted
 
-func interact() -> void:
-	interacted.emit()
+func interact(player: Player, arg: Dictionary) -> void:
+	interacted.emit(player, arg)

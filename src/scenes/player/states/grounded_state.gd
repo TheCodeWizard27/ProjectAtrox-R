@@ -30,7 +30,7 @@ func physics_update(delta: float) -> void:
 		return transition_to(player.special_action_state)
 		
 	if(player.target_detector.interaction_target != null and Input.is_action_just_pressed("interact")):
-		player.target_detector.interaction_target.interact()
+		player.target_detector.interaction_target.interact(player, {})
 	
 	movement_processor.process_movement(delta)
 	

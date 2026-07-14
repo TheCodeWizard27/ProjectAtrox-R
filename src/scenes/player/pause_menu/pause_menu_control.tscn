@@ -861,3 +861,36 @@ text = "Test"
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer/TabContainer/AreaSwitcher/MarginContainer2/VBoxContainer" unique_id=1501602480]
 layout_mode = 2
+
+[node name="QuestSelector" type="Control" parent="MarginContainer/TabContainer" unique_id=691660724]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="QuestMarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/QuestSelector" unique_id=1324399667]
+layout_mode = 0
+offset_right = 129.0
+offset_bottom = 62.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer" unique_id=1330554188]
+layout_mode = 2
+
+[node name="CurrentQuest" type="Label" parent="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer" unique_id=930952336]
+unique_name_in_owner = true
+layout_mode = 2
+text = "No Quest Selected"
+
+[node name="SubwayQuestButton" type="Button" parent="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer" unique_id=1056827542]
+layout_mode = 2
+text = "Subway surf"
+
+[node name="TestQuestButton" type="Button" parent="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer" unique_id=1282218858]
+layout_mode = 2
+text = "Test Level"
+
+[connection signal="pressed" from="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer/SubwayQuestButton" to="." method="select_quest" binds= ["SUBWAY_SURF"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer/TestQuestButton" to="." method="select_quest" binds= ["TESTORIAL"]]

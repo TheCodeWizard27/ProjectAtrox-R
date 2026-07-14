@@ -11,3 +11,5 @@ signal spawn_entity(entity: Entity, position: Vector3, rotation: Vector3)
 
 @warning_ignore("unused_signal")
 signal box_destroyed()
+
+var player = PlayerEvents.new()

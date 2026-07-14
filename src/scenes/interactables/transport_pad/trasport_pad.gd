@@ -4,10 +4,12 @@ extends Node3D
 @export var is_exit: = true
 signal activated
 
-func _on_interacted() -> void:
-	interactable_area.monitorable = false
-	activated.emit()
+func _on_interacted(player: Player, arg: Dictionary) -> void:
 	if(is_exit):
-		Events.scene_change_requested.emit("res://src/scenes/areas/hub_area/hub_area.tscn", {})
-	else:
-		Events.scene_change_requested.emit("res://src/scenes/areas/subway_area/subway_area.tscn", {})		
+		Events.scene_change_requested.emit(Locations.location_table.get(Locations.LocationEnum.HUB).path, {})
+		return
+	if(player.status.current_quest):
+		interactable_area.monitorable = false
+		activated.emit()
+		Events.scene_change_requested.emit(player.status.current_quest.location.path, {})
+		return

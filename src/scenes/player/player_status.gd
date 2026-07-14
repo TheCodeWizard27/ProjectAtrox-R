@@ -16,6 +16,8 @@ var gear_inventory: Array[Item] = [
 	Item.new_gear_item(GearItems.Item.HIGHTECH_WEAPON)
 ]
 
+var current_quest: Quest
+
 var weapon_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_WEAPON)
 var head_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_HELMET)
 var chest_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_BREASTPLATE)

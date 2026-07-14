@@ -51,12 +51,16 @@ func get_hit() -> void:
 	super.get_hit()
 	status.current_health -= 1 # TODO
 	event_player.play_getting_hit()
+	
+func accept_quest(quest: Quest) -> void:
+	status.current_quest = quest
 
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)
 
 func _ready() -> void:
 	_init_state_machine()
+	connect_to_events()
 	configure_player(PlayerStatus.new())
 
 func _init_state_machine() -> void:
@@ -80,3 +84,6 @@ func _init_class_actions() -> void:
 			secondary_action_state = WarriorState.WARRIOR_SECONDARY_ACTION
 			defensive_action_state = WarriorState.WARRIOR_DEFENSIVE_ACTION
 			special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION
+			
+func connect_to_events() -> void:
+	Events.player.accept_quest.connect(accept_quest)
