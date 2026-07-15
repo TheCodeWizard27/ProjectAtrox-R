@@ -16,14 +16,15 @@ func enter(_msg: Dictionary = {}) -> void:
 func exit() -> void:
 	enemy.player_detector.body_entered.disconnect(_on_body_entered)
 	
-func physics_update(_delta: float) -> void:
-	if (process_damage_taken()):
-		return
+func physics_update(_delta: float) -> StateResult:
+	var result = process_damage_taken()
+	if (result.type != StateResult.Type.CONTINUE):
+		return result
 	
 	if(_detected_player == null):
-		return
+		return StateResult.continue_result
 	
-	transition_to(BroodState.CHASE, {PLAYER: _detected_player})
+	return StateResult.transition_to(BroodState.CHASE, {PLAYER: _detected_player})
 	
 func _on_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent_node_3d()

@@ -15,12 +15,14 @@ func exit() -> void:
 	
 	controller.ui_container.add_child(controller.hud)
 
-func update(_delta: float) -> void:
+func update(_delta: float) -> StateResult:
 	if (Input.is_action_just_pressed("menu")):
-		transition_to(PlayerControllerState.IN_GAME)
+		return StateResult.transition_to(PlayerControllerState.IN_GAME)
 		
 	if (controller.target_player):
 		controller.pause_menu.update(controller.target_player.status)
+	
+	return StateResult.continue_result
 
 #func _input(event: InputEvent) -> void:
 	#if (!_is_active):

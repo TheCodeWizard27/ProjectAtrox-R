@@ -65,8 +65,9 @@ func enter(_msg: Dictionary = {}) -> void:
 	var attack_step = _msg.get(attack_step_parameter)
 	_init_attack_step(attack_step if attack_step is float else 0)
 
-func physics_update(delta: float) -> void:
-	process_attack(delta)
+func physics_update(delta: float) -> StateResult:
+	var result = process_attack(delta)
+	
 	movement_processor.process_movement(delta, movement_speed_modifier)
 	
 	# Lead towards look direction
@@ -75,8 +76,10 @@ func physics_update(delta: float) -> void:
 	movement_processor.look_at(player.body.position - forward)
 	
 	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length() * movement_speed_modifier)
+	
+	return result
 
-func process_attack(delta: float) -> void:
+func process_attack(delta: float) -> StateResult:
 	current_time += delta
 	
 	if (current_time >= input_buffer_delay and player.input_buffer.is_action_pressed('primary_action')):
@@ -86,9 +89,12 @@ func process_attack(delta: float) -> void:
 	
 	if (step_end_reached):
 		if(primary_attack_buffered and current_step_index < attack_steps.size() - 1):
-			return _init_attack_step(current_step_index + 1)
+			_init_attack_step(current_step_index + 1)
+			return StateResult.continue_result
 		
-		transition_to(WarriorState.GROUNDED)
+		return StateResult.transition_to(WarriorState.GROUNDED)
+	
+	return StateResult.continue_result
 
 func _init_attack_step(step: int) -> void:
 	primary_attack_buffered = false

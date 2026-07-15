@@ -39,23 +39,31 @@ func transition_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
 	
 	emit_signal("transitioned", current_state.name)
 	
-func transition_from(msg: Dictionary = {}) -> void:
+func transition_back(msg: Dictionary = {}) -> void:
 	if(_state_stack.is_empty()):
 		transition_to(initial_state, msg)
+		return
 	
 	transition_to(_state_stack.pop_back(), msg)
 
 func process(delta: float) -> void: # Needs to be manually called!
-	current_state.update(delta)
+	handle_result(current_state.update(delta))
 	
 func physics_process(delta: float) -> void: # Needs to be manually called!
-	current_state.physics_update(delta)
+	handle_result(current_state.physics_update(delta))
+
+func handle_result(result: StateResult) -> void:
+	if (result.type == StateResult.Type.CONTINUE):
+		return
+	
+	match(result.type):
+		StateResult.Type.TRANSITION_TO:
+			transition_to(result.target_state_path, result.msg)
+		StateResult.Type.TRANSITION_BACK:
+			transition_back(result.msg)
 
 func discover_states(root_node: Node = null) -> void:
 	root_node = self if root_node == null else root_node
-	
-	if (root_node == self):
-		_cleanup_states()
 	
 	for node in root_node.get_children():
 		if (node.get_child_count() > 0):
@@ -70,8 +78,6 @@ func discover_states(root_node: Node = null) -> void:
 		
 		print_debug("Detected State ", state)
 		_registered_states.append(state)
-		state.connect("transitioned_to", _on_transitioned_to)
-		state.connect("transitioned_back", _on_transitioned_from)
 
 func init() -> void:
 	discover_states()
@@ -87,14 +93,3 @@ func _ready() -> void:
 	assert(current_state, 'Please set an initial state.')
 	
 	current_state.enter()
-
-func _on_transitioned_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
-	transition_to(target_state_path, msg)
-	
-func _on_transitioned_from(msg: Dictionary = {}) -> void:
-	transition_from(msg)
-
-func _cleanup_states() -> void:
-	for state in _registered_states:
-		state.disconnect("transitioned_to", _on_transitioned_to)
-		state.disconnect("transitioned_back", _on_transitioned_from)

@@ -11,15 +11,13 @@ const DEAD: NodePath = ^"Dead"
 
 var enemy_got_hit_processor = EnemyGotHitProcessor.new()
 
-func process_damage_taken() -> bool:
+func process_damage_taken() -> StateResult:
 	if(enemy.got_hit):
 		enemy.got_hit = false
 		enemy_got_hit_processor.process_hit(enemy)
-		transition_to(BroodState.HIT)
-		return true
+		return StateResult.transition_to(BroodState.HIT)
 	
-	if(enemy.current_health <= 0): 
-		transition_to(BroodState.DEAD) 
-		return true
+	if(enemy.current_health <= 0):
+		return StateResult.transition_to(BroodState.DEAD) 
 	
-	return false
+	return StateResult.continue_result

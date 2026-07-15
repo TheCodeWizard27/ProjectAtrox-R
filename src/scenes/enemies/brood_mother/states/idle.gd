@@ -14,11 +14,11 @@ func enter(_msg: Dictionary = {}) -> void:
 func exit() -> void:
 	enemy.player_detector.body_entered.disconnect(_on_body_entered)
 	
-func physics_update(_delta: float) -> void:
+func physics_update(_delta: float) -> StateResult:
 	if(enemy.detected_player == null):
-		return
+		return StateResult.continue_result
 	
-	transition_to(BroodMotherState.SPAWN, {PLAYER: enemy.detected_player})
+	return StateResult.transition_to(BroodMotherState.SPAWN, {PLAYER: enemy.detected_player})
 	
 func _on_body_entered(body: Node3D) -> void:
 	var player = EntityResolveUtil.resolve_player(body)

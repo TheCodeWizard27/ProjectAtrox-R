@@ -20,9 +20,9 @@ func exit() -> void:
 	enemy.buff_box.body_entered.disconnect(_on_brood_enter)
 	enemy.buff_box.body_exited.disconnect(_on_brood_exit)
 	
-func physics_update(delta: float) -> void:
+func physics_update(delta: float) -> StateResult:
 	if(enemy.detected_player == null):
-		transition_to(BroodMotherState.IDLE, {PLAYER: enemy.detected_player})
+		return StateResult.transition_to(BroodMotherState.IDLE, {PLAYER: enemy.detected_player})
 		
 	if(current_brood_size < 3):
 		_attack_cooldown -= delta
@@ -30,6 +30,7 @@ func physics_update(delta: float) -> void:
 			_attack_cooldown = enemy.attack_cooldown
 			spawn()
 	
+	return StateResult.continue_result
 
 func spawn(_spawn_scene := spawn_scene) -> void:
 	var spawn_instance: Node3D = enemy.spawns[current_brood_size -1].load_in(_spawn_scene)

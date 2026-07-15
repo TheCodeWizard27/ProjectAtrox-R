@@ -29,14 +29,13 @@ func enter(_msg: Dictionary = {}) -> void:
 	
 	body.velocity.y = _max_velocity
 
-func physics_update(delta: float) -> void:
+func physics_update(delta: float) -> StateResult:
 	
 	model_animator.advance_falling_to(1, delta)
 	
 	var still_jumping = player.input_buffer.is_action_pressed("jump")
 	if(_min_jump_time <= _jump_time && !still_jumping || still_jumping && _max_jump_time <= _jump_time):
-		transition_to(PlayerState.AIRBORNE)
-		return
+		return StateResult.transition_to(PlayerState.AIRBORNE)
 	
 	if(!still_jumping):
 		body.velocity.y -= abs(_min_gravity - Globals.GRAVITY) * delta
@@ -44,3 +43,5 @@ func physics_update(delta: float) -> void:
 	movement_processor.process_movement(delta)
 	
 	_jump_time += delta
+	
+	return StateResult.continue_result
