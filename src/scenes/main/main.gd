@@ -5,15 +5,17 @@ extends Node3D
 
 @onready var _loading_screen: LoadingScreen = $LoadingScene
 @onready var _sub_scene: PlaceholderNode = $SubScene
+@onready var _item_data = preload("res://src/resources/data_tables/item_data.csv")
 
-var _current_load_state: int # (ResourceLoader.ThreadLoadStatus)
+var _current_load_state: ResourceLoader.ThreadLoadStatus
 var _current_loading_path: String
 var _current_scene: Node
 var _scene_data: Dictionary
 
 func _ready() -> void:
+	var test = _item_data as CsvData
+	
 	Events.scene_change_requested.connect(_start_load)
-
 	_start_load(initial_scene_path, {})
 
 func _process(_delta: float) -> void:

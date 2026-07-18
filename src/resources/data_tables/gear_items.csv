@@ -1,0 +1,9 @@
+Id,Key,SlotType
+20001,NoviceWeapon,0
+20002,NoviceHelmet,1
+20003,NoviceBreastPlate,2
+20004,NoviceLegs,3
+20005,VeteranWeapon
+20006,VeteranHelmet
+20007,VeteranBreastPlate
+20008,VeteranLegs

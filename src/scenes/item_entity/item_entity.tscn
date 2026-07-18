@@ -24,7 +24,7 @@ material = SubResource("StandardMaterial3D_762o0")
 
 [sub_resource type="Shader" id="Shader_lag22"]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, diffuse_burley, shadows_disabled;
+render_mode blend_mix, depth_draw_opaque, diffuse_burley, cull_disabled, shadows_disabled;
 
 uniform vec4 color : source_color = vec4(1);
 

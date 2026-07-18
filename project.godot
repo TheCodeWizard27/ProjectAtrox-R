@@ -28,6 +28,10 @@ Events="*res://src/core/events/events.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/csv_importer/plugin.cfg")
+
 [global_group]
 
 enemy="Enemy Entities"
