@@ -3,7 +3,11 @@ Id,Key,SlotType
 20002,NoviceHelmet,1
 20003,NoviceBreastPlate,2
 20004,NoviceLegs,3
-20005,VeteranWeapon
-20006,VeteranHelmet
-20007,VeteranBreastPlate
-20008,VeteranLegs
+20005,VeteranWeapon,0
+20006,VeteranHelmet,1
+20007,VeteranBreastPlate,2
+20008,VeteranLegs,3
+20009,HightechWeapon,0
+20010,HightechHelmet,1
+20011,HightechBreastPlate,2
+20012,HightechLegs,3

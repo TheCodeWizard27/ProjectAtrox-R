@@ -46,11 +46,7 @@ func load_inventory(player_status: PlayerStatus) -> void:
 		var item_name_label = Label.new()
 		hBox.add_child(item_name_label)
 		
-		match(item.type):
-			Item.ItemType.MISC:
-				item_name_label.text = MiscItems.item_table[item.item].name
-			Item.ItemType.CONSUMABLE: 
-				item_name_label.text = ConsumableItems.item_table[item.item].name
+		item_name_label.text = ItemTable.get_item(item.id).name
 		
 		hBox.add_spacer(false)
 		
@@ -70,7 +66,7 @@ func load_gear(player_status: PlayerStatus) -> void:
 		var item_name_label = Label.new()
 		hBox.add_child(item_name_label)
 		
-		item_name_label.text = GearItems.item_table[item.item].name
+		item_name_label.text = ItemTable.get_item(item.id).name
 		
 		gear_inventory.add_child(hBox)
 

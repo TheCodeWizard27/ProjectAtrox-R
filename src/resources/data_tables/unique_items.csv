@@ -1,3 +1,3 @@
-Id,NameKey,DescriptionKey
-1,Item.Titanium.Name,Item.Titanium.Description
-2,Item.Carbon.Name,Item.Carbon.Description
+Id,Key
+40001,KeyA
+40002,KeyB

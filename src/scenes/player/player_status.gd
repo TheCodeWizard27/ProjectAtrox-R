@@ -8,17 +8,17 @@ var base_attributes: PlayerAttributes = PlayerAttributes.new()
 var attributes: PlayerAttributes = PlayerAttributes.new()
 var currency: int = 0
 
-var inventory: Array[Item] = [
-	Item.new_consumable_item(ConsumableItems.Item.HEAL_CRYSTAL),
-	Item.new_misc_item(MiscItems.Item.TITANIUM, 2)
-]
-var gear_inventory: Array[Item] = [
-	Item.new_gear_item(GearItems.Item.HIGHTECH_WEAPON)
-]
-
 var current_quest: Quest
 
-var weapon_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_WEAPON)
-var head_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_HELMET)
-var chest_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_BREASTPLATE)
-var legs_slot: Item = Item.new_gear_item(GearItems.Item.NOVICE_LEGS)
+var inventory: Array[ItemReference] = [
+	ItemReference.new(ItemId.HEAL_CRYSTAL),
+	ItemReference.new(ItemId.TITANIUM, 2)
+]
+var gear_inventory: Array[ItemReference] = [
+	ItemReference.new(ItemId.HIGH_TECH_WEAPON)
+]
+
+var weapon_slot: ItemReference = ItemReference.new(ItemId.NOVICE_WEAPON)
+var head_slot: ItemReference = ItemReference.new(ItemId.NOVICE_HELMET)
+var chest_slot: ItemReference = ItemReference.new(ItemId.NOVICE_BREASTPLATE)
+var legs_slot: ItemReference = ItemReference.new(ItemId.NOVICE_LEGS)
