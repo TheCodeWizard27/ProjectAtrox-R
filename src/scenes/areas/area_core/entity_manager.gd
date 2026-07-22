@@ -11,5 +11,7 @@ func _on_spawn_entity(entity: Entity, position: Vector3, rotation: Vector3) -> v
 	entity.rotation = rotation
 
 func _on_enemy_death(enemy: Enemy) -> void:
-	var item = preload('res://src/scenes/item_entity/item_entity.tscn').instantiate()
+	var item = preload('res://src/scenes/item_entity/item_entity.tscn').instantiate() as ItemEntity
 	Events.entity.spawn_entity(item, enemy.get_entity_position(), enemy.get_entity_rotation())
+	item.item_reference = ItemReference.new(ItemId.CARBON)
+	item.add_spawn_velocity()

@@ -62,6 +62,6 @@ func _end_load() -> void:
 	_current_scene = _sub_scene.load_in(resource)
 	
 	if (_current_scene is LoadableScene):
-		_current_scene.onLoad(_scene_data)
+		_current_scene.on_load(_scene_data)
 	
 	_loading_screen.disable();

@@ -151,7 +151,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 
 [node name="Item" parent="Objects/Room1" unique_id=166414530 instance=ExtResource("9_v13j1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6858473, 1.243859, -4.7866845)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6858473, 1.7481375, -4.7866845)
 
 [node name="Room2" type="Node3D" parent="Objects" unique_id=1141251293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.638817)

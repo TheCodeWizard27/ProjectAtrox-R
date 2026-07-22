@@ -11,7 +11,6 @@ static func setup_instance() -> void:
 	instance = ItemTable.new()
 
 static func get_item(id: int) -> Item:
-	var test = instance
 	return instance._items.get(id)
 
 static func get_item_type(id: int) -> Item.Type:

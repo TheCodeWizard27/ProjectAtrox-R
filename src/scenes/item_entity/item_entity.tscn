@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dcl2616mfsayk" path="res://src/scenes/item_entity/item_entity.gd" id="1_ascup"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_762o0"]
+bounce = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e35kq"]
+height = 1.0
+
 [sub_resource type="Gradient" id="Gradient_h5xlt"]
 offsets = PackedFloat32Array(0.26027396, 0.5856164, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
@@ -103,14 +109,33 @@ shader_parameter/gradient_texture_2 = SubResource("GradientTexture2D_bpqc0")
 material = SubResource("ShaderMaterial_j5quk")
 size = Vector2(0.565, 1.755)
 
-[node name="ItemEntity" type="Node3D" unique_id=166414530]
+[sub_resource type="SphereShape3D" id="SphereShape3D_e35kq"]
+
+[node name="ItemEntity" type="Node3D" unique_id=166414530 groups=["entity", "item"]]
 script = ExtResource("1_ascup")
 
-[node name="Orb" type="MeshInstance3D" parent="." unique_id=1020114687]
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=536422509]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_762o0")
+lock_rotation = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2006016606]
+shape = SubResource("CapsuleShape3D_e35kq")
+
+[node name="Orb" type="MeshInstance3D" parent="RigidBody3D" unique_id=1020114687]
 sorting_offset = 2.0
 mesh = SubResource("QuadMesh_e35kq")
+skeleton = NodePath("../..")
 
-[node name="Shine" type="MeshInstance3D" parent="." unique_id=1905191491]
+[node name="Shine" type="MeshInstance3D" parent="RigidBody3D" unique_id=1905191491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55324745, 0)
 sorting_offset = 1.0
 mesh = SubResource("QuadMesh_762o0")
+skeleton = NodePath("../..")
+
+[node name="CollectionBox" type="Area3D" parent="RigidBody3D" unique_id=309667075]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/CollectionBox" unique_id=1120596324]
+shape = SubResource("SphereShape3D_e35kq")
