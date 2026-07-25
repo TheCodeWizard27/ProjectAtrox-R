@@ -11,6 +11,7 @@ class_name PauseMenuControl
 @onready var intelligence_label: Label = %StatusInfo/IntelligenceInfo/ValueLabel
 @onready var defense_label: Label = %StatusInfo/DefenseInfo/ValueLabel
 @onready var speed_label: Label = %StatusInfo/SpeedInfo/ValueLabel
+@onready var current_quest_label: Label = %CurrentQuest
 
 @onready var inventory: VBoxContainer = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/Invenctory/Entries
 @onready var gear_inventory: VBoxContainer = $MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer3/MarginContainer/Invenctory/Entries
@@ -31,6 +32,9 @@ func update(player_status: PlayerStatus) -> void:
 	intelligence_label.text = str(player_status.attributes.intelligence)
 	defense_label.text = str(player_status.attributes.defense)
 	speed_label.text = str(player_status.attributes.speed)
+	if(player_status.current_quest):
+		current_quest_label.text = str(player_status.current_quest.name)
+	
 
 func load_inventory(player_status: PlayerStatus) -> void:
 	var children = inventory.get_children()
@@ -69,3 +73,7 @@ func load_gear(player_status: PlayerStatus) -> void:
 		item_name_label.text = GearItems.item_table[item.item].name
 		
 		gear_inventory.add_child(hBox)
+
+func select_quest(quest_name: String) -> void:
+	var quest = Quests.quest_table.get(Quests.QuestEnum.get(quest_name))
+	Events.player.accept_quest.emit(quest)

@@ -7,7 +7,7 @@
 
 [node name="Main" type="Node3D" unique_id=642863641]
 script = ExtResource("1_45uaa")
-initial_scene_path = "uid://d3urhjh03a5ny"
+initial_scene_path = "uid://d0bbmswgyukml"
 
 [node name="CameraManager" type="Node" parent="." unique_id=1227643498]
 script = ExtResource("2_vw57g")

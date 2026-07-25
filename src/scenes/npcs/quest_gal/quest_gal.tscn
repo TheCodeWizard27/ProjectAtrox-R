@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://duhoijwkg61jh"]
+
+[ext_resource type="PackedScene" uid="uid://baljmccficbe7" path="res://src/assets/models/npcs/MageTutor.blend" id="1_mo1dv"]
+[ext_resource type="Script" uid="uid://cu7xw5pki72en" path="res://src/scenes/npcs/quest_gal/quest_gal.gd" id="1_ris4n"]
+[ext_resource type="Script" uid="uid://26mpx04biwl5" path="res://src/scenes/player/target_detector/interaction_target.gd" id="2_8h8cu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dfipr"]
+
+[node name="TeleportConductor" type="Node3D" unique_id=684414697]
+script = ExtResource("1_ris4n")
+
+[node name="MageTutor" parent="." unique_id=2010140297 instance=ExtResource("1_mo1dv")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.36542165, 0, 0)
+
+[node name="InteractableArea" type="Area3D" parent="." unique_id=519814507]
+transform = Transform3D(2.068626, 0, 0, 0, 2.1473653, 0, 0, 0, 2.46136, 0, 0, 0)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("2_8h8cu")
+interactable_text = "Select Quest with E"
+visible_name = "Select Quest"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea" unique_id=1305670736]
+shape = SubResource("SphereShape3D_dfipr")
+
+[connection signal="interacted" from="InteractableArea" to="." method="_on_interacted"]

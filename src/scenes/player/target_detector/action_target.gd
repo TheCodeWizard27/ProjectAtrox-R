@@ -3,5 +3,5 @@ extends Node3D
 
 @export var visible_name: String
 
-func interact() -> void:
+func interact(player: Player, arg: Dictionary) -> void:
 	pass
