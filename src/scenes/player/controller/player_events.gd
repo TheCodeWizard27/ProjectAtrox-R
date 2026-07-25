@@ -1,3 +1,5 @@
 class_name PlayerEvents
 
-signal accept_quest(quest: Quest)
+signal quest_accepted(quest: Quest)
+func accept_quest(quest: Quest) -> void:
+	quest_accepted.emit(quest)

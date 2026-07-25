@@ -4,7 +4,7 @@ extends Node3D
 
 var quest = Quests.quest_table.get(Quests.QuestEnum.SUBWAY_SURF)
 
-func _on_interacted(player: Player, arg: Dictionary) -> void:
+func _on_interacted(_player: Player, _arg: Dictionary) -> void:
 	interactable_area.monitorable = false	
-	Events.player.accept_quest.emit(quest)
+	Events.player.accept_quest(quest)
 	

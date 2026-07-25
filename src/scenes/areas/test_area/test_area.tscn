@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://bgsvgv0fx4i4k" path="res://src/scenes/areas/area_core/entity_spawn_container.gd" id="8_y56qc"]
 [ext_resource type="Script" uid="uid://c78fdjst45b4p" path="res://src/scenes/areas/area_core/entity_spawner.gd" id="9_8icw3"]
 [ext_resource type="PackedScene" uid="uid://c0na3emjcg5w0" path="res://src/scenes/item_entity/item_entity.tscn" id="9_v13j1"]
-[ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/trasport_pad.tscn" id="11_0pkb1"]
+[ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/transport_pad.tscn" id="11_0pkb1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wa4ib"]
 vertices = PackedVector3Array(4.25, -3, -30.361183, 6, -3, -30.111183, 6.25, -3, -31.361183, 4, -3, -31.361183, 10, -3, -44.111183, 10, -3, -31.361183, -9.75, -3, -44.111183, -9.75, -3, -31.361183, 6.25, -3, -29.111183, 3.75, -3, -29.111183, 1, -3, -16.361183, 1.25, -3, -14.611183, 10, -3, -12.361183, 0, -3, -14.111183, 0, -3, -12.361183, -3.75, -3, -14.861183, -1, -3, -14.611183, -0.75, -3, -16.361183, -3.75, -3, -21.111183, -5.25, -3, -29.111183, -5.5, -3, -21.361183, 10, -3, -29.111183, -9.75, -3, -29.111183, -9.75, -3, -21.361183, -9.75, -2, -20.361183, -9.75, -2, -18.361183, -4.75, -2, -18.361183, -4.75, -2, -20.361183, -9.75, -1, -17.361183, -9.75, -1, -15.361183, -4.75, -1, -15.361183, -4.75, -1, -17.361183, 4.25, 1, -7.361183, 6, 1, -7.111183, 6.25, 1, -8.361183, 4, 1, -8.361183, -0.25, 1, -11.361183, -9.75, 1, -11.361183, -9.75, 1, -8.361183, 10, 1, -8.361183, 10, 1, -15.361183, 0, 1, -15.361183, -0.75, -3, -14.111183, -3.75, -3, -12.361183, -9.75, 0, -14.361183, -9.75, 0, -12.361183, -4.75, 0, -12.361183, -4.75, 0, -14.361183, -0.75, 1, 10.638817, 1, 1, 10.638817, 1.25, 1, 9.638817, 3.75, 1, -6.111183, -1, 1, 9.638817, 10, 1, 9.638817, 10, 1, -6.111183, 6.25, 1, -6.111183, -9.75, 1, -6.111183, -9.75, 1, 9.638817, 1.25, 1, 11.888817, -1.25, 1, 11.888817, -5.75, 1, 20.638817, 6, 1, 20.638817, -5.75, 1, 11.888817, 6, 1, 11.888817, -10, 1, 11.888817, -10, 1, 20.638817, -8, 1, 20.638817, -8, 1, 11.888817, 8.25, 1, 11.888817, 8.25, 1, 20.638817, 10, 1, 20.638817, 10, 1, 11.888817)
@@ -200,7 +200,7 @@ script = ExtResource("9_8icw3")
 enemy_type = 1
 metadata/_custom_type_script = "uid://c78fdjst45b4p"
 
-[node name="TrasportPad" parent="." unique_id=938732095 instance=ExtResource("11_0pkb1")]
+[node name="TransportPad" parent="." unique_id=938732095 instance=ExtResource("11_0pkb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5099144, 0.61632943, -5.769111)
 
 [connection signal="activated" from="Objects/Room1/InteractionPad" to="Objects/Room1/Door" method="open"]

@@ -4,6 +4,6 @@ extends Node3D
 
 signal activated
 
-func _on_interacted() -> void:
+func _on_interacted(_player: Player, _args: Dictionary) -> void:
 	interactable_area.monitorable = false
 	activated.emit()

@@ -4,7 +4,7 @@ extends Node3D
 @export var is_exit: = true
 signal activated
 
-func _on_interacted(player: Player, arg: Dictionary) -> void:
+func _on_interacted(player: Player, _arg: Dictionary) -> void:
 	if(is_exit):
 		Events.scene_change_requested.emit(Locations.location_table.get(Locations.LocationEnum.HUB).path, {})
 		return

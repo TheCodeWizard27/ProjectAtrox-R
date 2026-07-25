@@ -72,4 +72,4 @@ func load_gear(player_status: PlayerStatus) -> void:
 
 func select_quest(quest_name: String) -> void:
 	var quest = Quests.quest_table.get(Quests.QuestEnum.get(quest_name))
-	Events.player.accept_quest.emit(quest)
+	Events.player.quest_accepted.emit(quest)
