@@ -6,15 +6,18 @@ extends Node3D
 @onready var _loading_screen: LoadingScreen = $LoadingScene
 @onready var _sub_scene: PlaceholderNode = $SubScene
 
-var _current_load_state: int # (ResourceLoader.ThreadLoadStatus)
+var _current_load_state: ResourceLoader.ThreadLoadStatus
 var _current_loading_path: String
 var _current_scene: Node
 var _scene_data: Dictionary
 
 func _ready() -> void:
 	Events.scene_change_requested.connect(_start_load)
-
 	_start_load(initial_scene_path, {})
+	_start_up()
+	
+func _start_up() -> void:
+	ItemTable.setup_instance()
 
 func _process(_delta: float) -> void:
 	if _current_load_state == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
@@ -59,6 +62,6 @@ func _end_load() -> void:
 	_current_scene = _sub_scene.load_in(resource)
 	
 	if (_current_scene is LoadableScene):
-		_current_scene.onLoad(_scene_data)
+		_current_scene.on_load(_scene_data)
 	
 	_loading_screen.disable();

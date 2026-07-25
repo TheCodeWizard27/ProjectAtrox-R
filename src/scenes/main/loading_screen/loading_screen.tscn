@@ -1,8 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqbyl2wsy3378"]
+[gd_scene format=3 uid="uid://dqbyl2wsy3378"]
 
 [ext_resource type="Script" uid="uid://cbxhl3chdvgkk" path="res://src/scenes/main/loading_screen/loading_screen.gd" id="1_4x3u6"]
+[ext_resource type="PackedScene" uid="uid://bc73jj3rnddkq" path="res://src/scenes/areas/environment/area_environment.tscn" id="2_defsi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_00ali"]
+
+[sub_resource type="Animation" id="Animation_bmuie"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_defsi"]
 resource_name = "load"
@@ -16,33 +27,23 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0.35355335, -0.14644659, 0.35355335, 0.85355335, 4.6666665, 1, 0.35355332, 0.85355335, -0.35355335, 0.14644656, 10, 1, 0.35662517, -0.13899237, 0.35045454, 0.85479885)
 
-[sub_resource type="Animation" id="Animation_bmuie"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1odd"]
 _data = {
 &"RESET": SubResource("Animation_bmuie"),
 &"load": SubResource("Animation_defsi")
 }
 
-[node name="Load" type="Node3D"]
+[node name="Load" type="Node3D" unique_id=1139372878]
 script = ExtResource("1_4x3u6")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="AreaEnvironment" parent="." unique_id=1183075330 instance=ExtResource("2_defsi")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=17206410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0195307, 2.266912)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=959484812]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 1.0436449, 0)
 mesh = SubResource("BoxMesh_00ali")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_e1odd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2055071567]
+libraries/ = SubResource("AnimationLibrary_e1odd")

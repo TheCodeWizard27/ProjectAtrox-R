@@ -86,4 +86,12 @@ func _init_class_actions() -> void:
 			special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION
 			
 func connect_to_events() -> void:
-	Events.player.accept_quest.connect(accept_quest)
+	Events.player.quest_accepted.connect(accept_quest)
+
+func _on_item_collector_area_entered(area: Area3D) -> void:
+	var item_entity = EntityResolveUtil.resolve_item(area)
+	
+	if (item_entity == null or item_entity.item_reference == null):
+		return
+	
+	status.inventory.append(item_entity.pick_up())

@@ -11,18 +11,18 @@ func enter(msg: Dictionary = {}) -> void:
 func exit() -> void:
 	enemy.player_detector.body_exited.disconnect(_on_body_exit)
 	
-func physics_update(delta: float) -> void:
-	if (process_damage_taken()):
-		return
+func physics_update(delta: float) -> StateResult:
+	var result = process_damage_taken()
+	if (result.type != StateResult.Type.CONTINUE):
+		return result
 	
 	if(_detected_player == null):
-		return transition_to(BroodState.GUARD) 
+		return StateResult.transition_to(BroodState.GUARD) 
 	
 	_attack_cooldown -= delta
 	if(_attack_cooldown <= 0 && enemy.is_near_player(_detected_player)):
 		_attack_cooldown = enemy.attack_cooldown
-		transition_to(BroodState.ATTACK)
-		return
+		return StateResult.transition_to(BroodState.ATTACK)
 		
 	enemy.navigation_agent.set_target_position(_detected_player.body.global_position)
 	var destination = enemy.navigation_agent.get_next_path_position()
@@ -30,6 +30,8 @@ func physics_update(delta: float) -> void:
 	var direction = local_destination.normalized()
 
 	enemy.body.velocity = direction * enemy.speed
+	
+	return StateResult.continue_result
 
 func _on_body_exit(body: Node3D) -> void:
 	if(_detected_player == null || body == _detected_player.body):

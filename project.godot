@@ -28,12 +28,17 @@ Events="*res://src/core/events/events.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/csv_importer/plugin.cfg")
+
 [global_group]
 
 enemy="Enemy Entities"
 player="Player Entities"
 brood=""
 entity="Used for all Entities"
+item=""
 
 [gui]
 
@@ -195,3 +200,5 @@ camera_down={
 3d_physics/layer_6="EnemyHurtboxLayer"
 3d_physics/layer_7="EnemyDetectionLayer"
 3d_physics/layer_8="InteractableLayer"
+3d_physics/layer_9="EntityPhysicsLayer"
+3d_physics/layer_10="ItemCollectionLayer"

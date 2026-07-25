@@ -7,9 +7,9 @@ extends LoadableScene
 func _ready() -> void:
 	# Load if this scene was loaded without a loader
 	if (self == get_tree().current_scene):
-		onLoad({})
+		on_load({})
 
-func onLoad(_data: Dictionary) -> void:
+func on_load(_data: Dictionary) -> void:
 	# TODO Take data for player initialization
 	var player = player_spawner.spawn(PlayerStatus.new())
 	player_controller.target_player = player

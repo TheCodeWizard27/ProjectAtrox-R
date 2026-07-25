@@ -1,5 +1,5 @@
 extends Entity
-class_name BaseEnemy
+class_name Enemy
 
 @export var turn_threshold: float = Globals.ENTITY_TURN_THRESHOLD
 @export var attack_distance: float = 2
@@ -32,3 +32,14 @@ func _physics_process(delta: float) -> void:
 	if(movement.length() > turn_threshold):
 		var target = Quaternion(Vector3.UP, Vector2(body.velocity.z, body.velocity.x).angle())
 		body.basis = body.basis.slerp(target, 0.2)
+
+
+func kill() -> void:
+	Events.enemy.notify_death(self)
+	queue_free()
+
+func get_entity_position() -> Vector3:
+	return body.global_position
+	
+func get_entity_rotation() -> Vector3:
+	return body.global_rotation

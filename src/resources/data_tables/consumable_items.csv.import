@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv-data-importer"
+type="Resource"
+uid="uid://c0coa8lf776hy"
+path="res://.godot/imported/consumable_items.csv-d7a4ec8e3453491ffdf6cdb68d6b8f2e.res"
+
+[deps]
+
+source_file="res://src/resources/data_tables/consumable_items.csv"
+dest_files=["res://.godot/imported/consumable_items.csv-d7a4ec8e3453491ffdf6cdb68d6b8f2e.res"]
+
+[params]
+
+delimiter=","
+has_header=true

@@ -1,4 +1,4 @@
-extends BaseEnemy
+extends Enemy
 class_name BroodEnemy
 
 @onready var attack_box: Area3D = %Hurtbox
@@ -22,9 +22,6 @@ func is_near_player(target: Player) -> bool:
 
 func get_hit() -> void:
 	got_hit = true
-
-func destroy() -> void:
-	queue_free()
 
 func _on_body_entered(p_body: Node3D) -> void:
 	var entity = EntityResolveUtil.resolve_entity(p_body)

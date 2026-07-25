@@ -143,6 +143,8 @@ metadata/_custom_type_script = "uid://dctjvk30irj1l"
 
 [node name="Body" type="CharacterBody3D" parent="." unique_id=1945307658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40145278, 0)
+collision_layer = 320
+collision_mask = 257
 
 [node name="BroodModel" parent="Body" unique_id=1294533965 instance=ExtResource("3_5i7ni")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.14654115, 0)
@@ -177,6 +179,9 @@ debug_color = Color(0.9999998, 0, 0.10749292, 0.41960785)
 
 [node name="PlayerDetector" type="Area3D" parent="Body" unique_id=1142086749]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 8
+monitorable = false
 
 [node name="PlayerDetectionBox" type="CollisionShape3D" parent="Body/PlayerDetector" unique_id=644497794]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)

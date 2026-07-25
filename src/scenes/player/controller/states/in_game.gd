@@ -25,16 +25,18 @@ func exit() -> void:
 	
 	controller.ui_container.add_child(controller.pause_menu)
 
-func update(delta: float) -> void:
+func update(delta: float) -> StateResult:
 	if (!controller.target_player):
-		return
+		return StateResult.continue_result
 	
 	if (Input.is_action_just_pressed("menu")):
-		return transition_to(PlayerControllerState.IN_PAUSE_MENU)
+		return StateResult.transition_to(PlayerControllerState.IN_PAUSE_MENU)
 	
 	target_processor.process_lock_on()
 	controller.hud.update(controller.target_player, delta)
 	sync_camera_and_player()
+	
+	return StateResult.continue_result
 
 func _input(event: InputEvent) -> void:
 	if (!_is_active):

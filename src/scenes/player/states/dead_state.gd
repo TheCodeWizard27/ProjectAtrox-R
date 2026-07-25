@@ -1,6 +1,6 @@
 class_name DeadState
 extends PlayerState
 
-func physics_update(_delta: float) -> void:
+func physics_update(_delta: float) -> StateResult:
 	# TODO Add animation and logic
-	pass
+	return StateResult.continue_result

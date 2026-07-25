@@ -9,11 +9,14 @@ func enter(_msg: Dictionary = {}) -> void:
 func exit() -> void:
 	enemy.attack_box.monitoring = false
 
-func update(delta: float) -> void:
-	if (process_damage_taken()):
-		return
+func update(delta: float) -> StateResult:
+	var result = process_damage_taken()
+	if (result.type != StateResult.Type.CONTINUE):
+		return result
 	
 	_stuck_time -= delta
 	
 	if(_stuck_time <= 0):
-		transition_to(BroodState.GUARD)
+		return StateResult.transition_to(BroodState.GUARD)
+	
+	return StateResult.continue_result

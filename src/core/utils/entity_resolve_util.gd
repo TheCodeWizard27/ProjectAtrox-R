@@ -16,10 +16,18 @@ static func resolve_player(node: Node) -> Player:
 		
 	return null
 
-static func resolve_enemy(node: Node) -> Entity:
+static func resolve_enemy(node: Node) -> Enemy:
 	var scene_root = node.owner
 	
-	if('enemy' in scene_root.get_groups() and scene_root is BaseEnemy):
+	if('enemy' in scene_root.get_groups() and scene_root is Enemy):
+		return scene_root
+		
+	return null
+
+static func resolve_item(node: Node) -> ItemEntity:
+	var scene_root = node.owner
+	
+	if('item' in scene_root.get_groups() and scene_root is ItemEntity):
 		return scene_root
 		
 	return null

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b38d5mkximieh"]
 
-[ext_resource type="Shader" uid="uid://bpe3uh5wen4d3" path="res://src/scenes/interactables/transport_pad/trasport_pad.tres" id="1_6h0th"]
-[ext_resource type="Script" uid="uid://f4hb61fjq0s1" path="res://src/scenes/interactables/transport_pad/trasport_pad.gd" id="1_7ahim"]
+[ext_resource type="Shader" uid="uid://bpe3uh5wen4d3" path="res://src/scenes/interactables/transport_pad/transport_pad.tres" id="1_6h0th"]
+[ext_resource type="Script" uid="uid://f4hb61fjq0s1" path="res://src/scenes/interactables/transport_pad/transport_pad.gd" id="1_7ahim"]
 [ext_resource type="Script" uid="uid://26mpx04biwl5" path="res://src/scenes/player/target_detector/interaction_target.gd" id="2_sj35k"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dfipr"]
@@ -28,7 +28,7 @@ cap_bottom = false
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sj35k"]
 
-[node name="TrasportPad" type="Node3D" unique_id=938732095]
+[node name="TransportPad" type="Node3D" unique_id=938732095]
 script = ExtResource("1_7ahim")
 
 [node name="BottomPanel" type="MeshInstance3D" parent="." unique_id=1717750750]

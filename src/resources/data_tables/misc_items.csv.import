@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv-data-importer"
+type="Resource"
+uid="uid://cnw3wkllnfpeu"
+path="res://.godot/imported/misc_items.csv-620eef75c4d8a2ced1ae22c6142a45b6.res"
+
+[deps]
+
+source_file="res://src/resources/data_tables/misc_items.csv"
+dest_files=["res://.godot/imported/misc_items.csv-620eef75c4d8a2ced1ae22c6142a45b6.res"]
+
+[params]
+
+delimiter=","
+has_header=true

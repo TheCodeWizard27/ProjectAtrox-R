@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv-data-importer"
+type="Resource"
+uid="uid://djtvrvgnd7j2h"
+path="res://.godot/imported/gear_items.csv-e24b0e34b2927160a6c2dc9a3ea4eefb.res"
+
+[deps]
+
+source_file="res://src/resources/data_tables/gear_items.csv"
+dest_files=["res://.godot/imported/gear_items.csv-e24b0e34b2927160a6c2dc9a3ea4eefb.res"]
+
+[params]
+
+delimiter=","
+has_header=true

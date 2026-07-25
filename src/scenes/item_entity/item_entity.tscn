@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://c0na3emjcg5w0"]
+
+[ext_resource type="Script" uid="uid://dcl2616mfsayk" path="res://src/scenes/item_entity/item_entity.gd" id="1_ascup"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_762o0"]
+bounce = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e35kq"]
+height = 1.0
+
+[sub_resource type="Gradient" id="Gradient_h5xlt"]
+offsets = PackedFloat32Array(0.26027396, 0.5856164, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6vtfw"]
+gradient = SubResource("Gradient_h5xlt")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.6025641, 0.3888889)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_762o0"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_6vtfw")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_e35kq"]
+material = SubResource("StandardMaterial3D_762o0")
+
+[sub_resource type="Shader" id="Shader_lag22"]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, diffuse_burley, cull_disabled, shadows_disabled;
+
+uniform vec4 color : source_color = vec4(1);
+
+uniform sampler2D noise_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D gradient_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform sampler2D gradient_texture_2 : source_color, filter_linear_mipmap, repeat_enable;
+
+void vertex() {
+	// Billboard Mode: Y-Billboard
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(
+			vec4(normalize(cross(vec3(0.0, 1.0, 0.0), MAIN_CAM_INV_VIEW_MATRIX[2].xyz)), 0.0),
+			vec4(0.0, 1.0, 0.0, 0.0),
+			vec4(normalize(cross(MAIN_CAM_INV_VIEW_MATRIX[0].xyz, vec3(0.0, 1.0, 0.0))), 0.0),
+			MODEL_MATRIX[3]);
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec2 shineUV = base_uv + vec2(TIME * 0.5, TIME);
+	vec4 noise = texture(noise_texture, shineUV);
+	vec4 alpha = texture(gradient_texture, base_uv);
+	alpha *=  texture(gradient_texture_2, base_uv);
+	
+	vec4 finalColor = color * noise;
+	
+	ALBEDO = finalColor.rgb;
+	ALPHA *= color.a * alpha.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_lag22"]
+offsets = PackedFloat32Array(0.07191781, 0.8150685, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.50980395, 0.50980395, 0.50980395, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h5xlt"]
+gradient = SubResource("Gradient_lag22")
+fill = 1
+fill_from = Vector2(0.48290598, 0.8034188)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_bpqc0"]
+offsets = PackedFloat32Array(0, 0.6267123, 0.8356164, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bpqc0"]
+gradient = SubResource("Gradient_bpqc0")
+fill_from = Vector2(0, 0.123931624)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_j5quk"]
+offsets = PackedFloat32Array(0.40068492, 1)
+colors = PackedColorArray(1.353256, 1.353256, 1.353256, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h5xlt"]
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h5xlt"]
+width = 124
+height = 124
+noise = SubResource("FastNoiseLite_h5xlt")
+color_ramp = SubResource("Gradient_j5quk")
+seamless = true
+normalize = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j5quk"]
+render_priority = 0
+shader = SubResource("Shader_lag22")
+shader_parameter/color = Color(1.0115298, 1.274, 1.0076519, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_h5xlt")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_h5xlt")
+shader_parameter/gradient_texture_2 = SubResource("GradientTexture2D_bpqc0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_762o0"]
+material = SubResource("ShaderMaterial_j5quk")
+size = Vector2(0.565, 1.755)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e35kq"]
+
+[node name="ItemEntity" type="Node3D" unique_id=166414530 groups=["entity", "item"]]
+script = ExtResource("1_ascup")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=536422509]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_762o0")
+lock_rotation = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2006016606]
+shape = SubResource("CapsuleShape3D_e35kq")
+
+[node name="Orb" type="MeshInstance3D" parent="RigidBody3D" unique_id=1020114687]
+sorting_offset = 2.0
+mesh = SubResource("QuadMesh_e35kq")
+skeleton = NodePath("../..")
+
+[node name="Shine" type="MeshInstance3D" parent="RigidBody3D" unique_id=1905191491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55324745, 0)
+sorting_offset = 1.0
+mesh = SubResource("QuadMesh_762o0")
+skeleton = NodePath("../..")
+
+[node name="CollectionBox" type="Area3D" parent="RigidBody3D" unique_id=309667075]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/CollectionBox" unique_id=1120596324]
+shape = SubResource("SphereShape3D_e35kq")

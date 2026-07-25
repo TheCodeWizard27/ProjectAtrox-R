@@ -1,4 +1,4 @@
-extends BaseEnemy
+extends Enemy
 class_name BroodMotherEnemy
 
 var spawns: Array[PlaceholderNode]
