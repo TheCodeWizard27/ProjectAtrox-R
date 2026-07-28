@@ -1,0 +1,56 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://wdq17ea0jwgp"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fcpuv"]
+parameter_name = "Fade"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_4bkxc"]
+constant = Color(0, 0, 1, 1)
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bnkpf"]
+parameter_name = "Mask"
+texture_filter = 3
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tgkdr"]
+source = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2mhj8"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ci3t7"]
+default_input_values = [0, 0.0, 1, 1.0]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_mes60"]
+modes/cull = 2
+flags/unshaded = true
+nodes/vertex/0/position = Vector2(840, 120)
+nodes/fragment/0/position = Vector2(660, 120)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_bnkpf")
+nodes/fragment/4/position = Vector2(-500, -140)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_tgkdr")
+nodes/fragment/5/position = Vector2(40, -100)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_2mhj8")
+nodes/fragment/7/position = Vector2(-480, 200)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatOp_ci3t7")
+nodes/fragment/9/position = Vector2(380, 160)
+nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_fcpuv")
+nodes/fragment/10/position = Vector2(-440, 320)
+nodes/fragment/11/node = SubResource("VisualShaderNodeColorConstant_4bkxc")
+nodes/fragment/11/position = Vector2(476.59235, 24.503843)
+nodes/fragment/connections = PackedInt32Array(4, 0, 5, 2, 7, 0, 5, 0, 5, 0, 9, 0, 9, 0, 0, 1, 10, 0, 9, 1, 11, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_fcpuv"]
+offsets = PackedFloat32Array(0, 0.3875598)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2fkct"]
+gradient = SubResource("Gradient_fcpuv")
+fill_from = Vector2(0.42307693, 0.44017094)
+fill_to = Vector2(0.71794873, 0.7307692)
+
+[resource]
+render_priority = 0
+shader = SubResource("VisualShader_mes60")
+shader_parameter/Mask = SubResource("GradientTexture2D_2fkct")
+shader_parameter/Fade = 0.0

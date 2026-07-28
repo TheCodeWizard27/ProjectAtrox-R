@@ -27,8 +27,12 @@ func configure_player(new_status: PlayerStatus) -> void:
 	
 	# Simple mesh replacement test.
 	var skeleton: Skeleton3D = $Body/CharacterModel/metarig/Skeleton3D
+	var other_skin
+	if(status.combat_class == Enums.CombatClasses.WARRIOR):
+		other_skin = preload("res://src/assets/models/player/character_model.tscn").instantiate()	
+	if(status.combat_class == Enums.CombatClasses.MAGE):
+		other_skin = preload("res://src/assets/models/player/character_model_2.tscn").instantiate()
 	
-	var other_skin = preload("res://src/assets/models/player/character_model_2.tscn").instantiate()
 	var other_skin_skeleton = other_skin.get_node('metarig').get_node('Skeleton3D')
 	
 	var mesh_names: Array[String] = [
@@ -84,6 +88,11 @@ func _init_class_actions() -> void:
 			secondary_action_state = WarriorState.WARRIOR_SECONDARY_ACTION
 			defensive_action_state = WarriorState.WARRIOR_DEFENSIVE_ACTION
 			special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION
+		Enums.CombatClasses.MAGE:
+			primary_action_state = MageState.MAGE_PRIMARY_ACTION
+			secondary_action_state = MageState.MAGE_SECONDARY_ACTION
+			defensive_action_state = MageState.MAGE_DEFENSIVE_ACTION
+			special_action_state = MageState.MAGE_SPECIAL_ACTION
 			
 func connect_to_events() -> void:
 	Events.player.quest_accepted.connect(accept_quest)
