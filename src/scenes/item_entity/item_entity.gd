@@ -12,6 +12,14 @@ func add_spawn_velocity() -> void:
 	body.linear_velocity.x = dir.x
 	body.linear_velocity.z = dir.y
 
+func delay_pick_up() -> void:
+	collection_box.set_deferred('monitorable', false)
+	var timer = Timer.new()
+	add_child(timer)
+	timer.one_shot = true
+	timer.timeout.connect(func(): collection_box.set_deferred('monitorable', true))
+	timer.start(0.5)
+
 func pick_up() -> ItemReference:
 	var timer = Timer.new()
 	add_child(timer)

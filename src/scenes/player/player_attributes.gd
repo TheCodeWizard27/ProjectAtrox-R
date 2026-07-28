@@ -7,3 +7,6 @@ var intelligence: int = 20
 var defense: int = 20
 var crit_chance: float = 0.1
 var speed: float = 1.0
+
+var inventory_size: int = 25
+var gear_inventory_size: int = 8

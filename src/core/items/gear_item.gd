@@ -16,3 +16,4 @@ func _init(p_id: int, p_name: String, p_description: String):
 	type = Item.Type.GEAR
 	name = p_name
 	description = p_description
+	stack_limit = 1

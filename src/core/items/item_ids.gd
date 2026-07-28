@@ -1,6 +1,6 @@
-class_name ItemId
+class_name ItemIds
 
-enum {
+enum Id {
 	HEAL_CRYSTAL = 10000,
 	ENERGY_DRINK = 10001,
 	ELEMENTAL_INFUSION = 10002,

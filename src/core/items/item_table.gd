@@ -2,7 +2,7 @@ class_name ItemTable
 
 static var instance: ItemTable
 
-var _items: Dictionary[int, Item] = {}
+var _items: Dictionary[ItemIds.Id, Item] = {}
 
 static func setup_instance() -> void:
 	if (instance != null):
@@ -10,22 +10,22 @@ static func setup_instance() -> void:
 	
 	instance = ItemTable.new()
 
-static func get_item(id: int) -> Item:
+static func get_item(id: ItemIds.Id) -> Item:
 	return instance._items.get(id)
 
-static func get_item_type(id: int) -> Item.Type:
+static func get_item_type(id: ItemIds.Id) -> Item.Type:
 	return instance._items.get(id).type
 
-static func get_consumable_item(id: int) -> ConsumableItem:
+static func get_consumable_item(id: ItemIds.Id) -> ConsumableItem:
 	return instance._items.get(id) as ConsumableItem
 
-static func get_gear_item(id: int) -> GearItem:
+static func get_gear_item(id: ItemIds.Id) -> GearItem:
 	return instance._items.get(id) as GearItem
 
-static func get_misc_item(id: int) -> MiscItem:
+static func get_misc_item(id: ItemIds.Id) -> MiscItem:
 	return instance._items.get(id) as MiscItem
 
-static func get_unique_item(id: int) -> UniqueItem:
+static func get_unique_item(id: ItemIds.Id) -> UniqueItem:
 	return instance._items.get(id) as UniqueItem
 
 func _init() -> void:

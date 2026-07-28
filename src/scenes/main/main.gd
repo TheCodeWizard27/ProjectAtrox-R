@@ -14,10 +14,7 @@ var _scene_data: Dictionary
 func _ready() -> void:
 	Events.scene_change_requested.connect(_start_load)
 	_start_load(initial_scene_path, {})
-	_start_up()
-	
-func _start_up() -> void:
-	ItemTable.setup_instance()
+	StartUp.start_up()
 
 func _process(_delta: float) -> void:
 	if _current_load_state == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:

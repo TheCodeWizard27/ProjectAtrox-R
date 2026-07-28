@@ -14,6 +14,7 @@ class_name Player
 
 var looking_direction: Vector3 = Vector3.FORWARD
 var input_buffer: InputBuffer = InputBuffer.new()
+var inventory: InventorySystem = InventorySystem.new()
 var status: PlayerStatus
 var lock_on_target: Node3D
 
@@ -24,6 +25,7 @@ var special_action_state: NodePath
 
 func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
+	inventory.player_status = new_status
 	
 	# Simple mesh replacement test.
 	var skeleton: Skeleton3D = $Body/CharacterModel/metarig/Skeleton3D
@@ -57,6 +59,12 @@ func accept_quest(quest: Quest) -> void:
 
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)
+
+func get_entity_position() -> Vector3:
+	return body.position
+	
+func get_entity_rotation() -> Vector3:
+	return body.rotation
 
 func _ready() -> void:
 	_init_state_machine()
@@ -94,4 +102,15 @@ func _on_item_collector_area_entered(area: Area3D) -> void:
 	if (item_entity == null or item_entity.item_reference == null):
 		return
 	
-	status.inventory.append(item_entity.pick_up())
+	var result = inventory.add_item(item_entity.pick_up())
+	
+	if (result == null):
+		return
+	
+	# TODO cleanup but basically spawn Item leftovers
+	var item = preload('res://src/scenes/item_entity/item_entity.tscn').instantiate() as ItemEntity
+	Events.entity.spawn_entity(item, get_entity_position(), get_entity_rotation())
+	item.delay_pick_up()
+	item.add_spawn_velocity()
+	item.item_reference = result
+	
