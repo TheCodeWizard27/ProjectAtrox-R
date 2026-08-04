@@ -27,8 +27,8 @@ var special_action_state: NodePath
 
 func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
-	inventory.player_status = new_status
-	effects.player = self
+	inventory.configure(status)
+	effects.configure(self, status.effects)
 	
 	# Simple mesh replacement test.
 	var skeleton: Skeleton3D = $Body/CharacterModel/metarig/Skeleton3D

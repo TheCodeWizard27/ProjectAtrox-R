@@ -32,7 +32,7 @@ func _assign_effect_behaviour(effects: Array[Effect], behaviours: Dictionary[Eff
 		var effect = ArrayUtil.first_or_default(effects, func(p_effect: Effect): return p_effect.id == effect_id)
 		
 		assert(effects != null, 'Cannot attach effect behaviour, effect ' + str(effect_id) + ' doesn\'t exist.')
-		if(effects != null):
+		if(effects == null):
 			continue
 			
 		effect.behaviour = behaviours[effect_id]

@@ -1,11 +1,14 @@
 class_name EffectSystem
 
-var player: Player
+var entity: Entity
+var effects: Array[EffectReference]
 var next_effect_tick: float
 
 signal effects_updated()
 
-# TODO This also needs to be done for the enemy.
+func configure(p_entity: Entity, p_effects: Array[EffectReference]) -> void:
+	entity = p_entity
+	effects = p_effects
 
 func process_effects(delta: float) -> void:
 	next_effect_tick -= delta
@@ -19,19 +22,19 @@ func process_effects(delta: float) -> void:
 func add_effect(effect_reference: EffectReference) -> void:
 	var effect = EffectTable.get_effect(effect_reference.id)
 	
-	var existing_reference = ArrayUtil.first_or_default(player.status.effects, func(other_effect: EffectReference):
+	var existing_reference = ArrayUtil.first_or_default(effects, func(other_effect: EffectReference):
 		return other_effect.id == effect_reference.id
 		)
 	
 	if (existing_reference != null):
 		_join_references(existing_reference, effect_reference, effect.behaviour)
 	else:
-		player.status.effects.append(effect_reference)
+		effects.append(effect_reference)
 		
 	effects_updated.emit()
 
 func remove_effect(effect_reference: EffectReference) -> void:
-	player.status.effects.erase(effect_reference)
+	effects.erase(effect_reference)
 	effects_updated.emit()
 
 func _join_references(
@@ -41,14 +44,14 @@ func _join_references(
 		
 	match(behaviour):
 		Effect.JoinBehaviour.KEEP_SEPERATE:
-			player.status.effects.append(new_reference)
+			effects.append(new_reference)
 		Effect.JoinBehaviour.STACK:
 			original_reference.stack += new_reference.stack
 		Effect.JoinBehaviour.RENEW:
 			original_reference.duration = new_reference.duration
 
 func _update_effect_duration(delta: float) -> void:
-	for effect_reference in player.status.effects:
+	for effect_reference in effects:
 		if (effect_reference.is_permanent):
 			continue
 		
@@ -59,7 +62,7 @@ func _update_effect_duration(delta: float) -> void:
 
 func _process_all_effects() -> void:
 	
-	for effect_reference in player.status.effects:
+	for effect_reference in effects:
 		var effect = EffectTable.get_effect(effect_reference.id)
 		
-		effect.behaviour.process(player)
+		effect.behaviour.process(entity)
