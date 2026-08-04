@@ -56,13 +56,13 @@ func _load_items() -> void:
 
 func _assign_consumption_behaviour(items: Array[ConsumableItem], behaviours: Dictionary[ItemIds.Id, ConsumptionBehaviour]) -> void:
 	for item_id in behaviours:
-		var index = items.find_custom(func(item: ConsumableItem): return item.id == item_id)
+		var item = ArrayUtil.first_or_default(items, func(p_item: ConsumableItem): return p_item.id == item_id)
 		
-		assert(index >= 0, 'Cannot attach consumption behaviour, item ' + str(item_id) + ' doesn\'t exist.')
-		if(index < 0):
+		assert(item != null, 'Cannot attach consumption behaviour, item ' + str(item_id) + ' doesn\'t exist.')
+		if(item != null):
 			continue
 			
-		items[index].behaviour = behaviours[item_id]
+		item.behaviour = behaviours[item_id]
 
 func _load_consumable_items(csv_data: CsvData) -> Array[ConsumableItem]:
 	var loaded_items: Array[ConsumableItem] = []

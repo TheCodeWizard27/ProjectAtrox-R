@@ -27,15 +27,15 @@ func _load_effects() -> void:
 		
 		_effects.set(effect.id, effect)
 
-func _assign_effect_behaviour(items: Array[Effect], behaviours: Dictionary[EffectIds.Id, EffectBehaviour]) -> void:
-	for item_id in behaviours:
-		var index = items.find_custom(func(item: Effect): return item.id == item_id)
+func _assign_effect_behaviour(effects: Array[Effect], behaviours: Dictionary[EffectIds.Id, EffectBehaviour]) -> void:
+	for effect_id in behaviours:
+		var effect = ArrayUtil.first_or_default(effects, func(p_effect: Effect): return p_effect.id == effect_id)
 		
-		assert(index >= 0, 'Cannot attach effect behaviour, effect ' + str(item_id) + ' doesn\'t exist.')
-		if(index < 0):
+		assert(effects != null, 'Cannot attach effect behaviour, effect ' + str(effect_id) + ' doesn\'t exist.')
+		if(effects != null):
 			continue
 			
-		items[index].behaviour = behaviours[item_id]
+		effect.behaviour = behaviours[effect_id]
 
 func _load_effects_base(csv_data: CsvData) -> Array[Effect]:
 	var loaded_effects: Array[Effect] = []
@@ -43,6 +43,7 @@ func _load_effects_base(csv_data: CsvData) -> Array[Effect]:
 	for item in csv_data.entries:
 		loaded_effects.append(Effect.new(
 			item.get('Id'),
+			item.get('JoinBehaviour'),
 			'Effect.' + item.get('Key') + '.Name',
 			'Effect.' + item.get('Key') + '.Description'
 		))

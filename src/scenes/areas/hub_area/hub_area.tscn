@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="6_202hl"]
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="7_lrcqk"]
 [ext_resource type="PackedScene" uid="uid://duhoijwkg61jh" path="res://src/scenes/npcs/quest_gal/quest_gal.tscn" id="11_b0mc8"]
-[ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/trasport_pad.tscn" id="11_mklfy"]
+[ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/transport_pad.tscn" id="11_mklfy"]
 
 [sub_resource type="Gradient" id="Gradient_faxgi"]
 offsets = PackedFloat32Array(0.8358209, 1)

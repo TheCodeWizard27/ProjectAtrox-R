@@ -1,6 +1,7 @@
 class_name EffectReference
 
 var id: EffectIds.Id = EffectIds.Id.UNKNOWN
+var stack: float = 1
 var duration: float
 var is_permanent: bool
 
