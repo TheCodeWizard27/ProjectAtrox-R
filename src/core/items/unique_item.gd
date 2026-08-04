@@ -1,7 +1,7 @@
 class_name UniqueItem
 extends Item
 
-func _init(p_id: int, p_name: String, p_description: String):
+func _init(p_id: ItemIds.Id, p_name: String, p_description: String):
 	id = p_id
 	type = Item.Type.UNIQUE
 	name = p_name

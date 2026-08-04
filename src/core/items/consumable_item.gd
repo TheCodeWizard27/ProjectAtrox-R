@@ -1,7 +1,9 @@
 class_name ConsumableItem
 extends Item
 
-func _init(p_id: int, p_name: String, p_description: String):
+var behaviour: ConsumptionBehaviour = ConsumptionBehaviour.do_nothing
+
+func _init(p_id: ItemIds.Id, p_name: String, p_description: String):
 	id = p_id
 	type = Item.Type.CONSUMABLE
 	name = p_name

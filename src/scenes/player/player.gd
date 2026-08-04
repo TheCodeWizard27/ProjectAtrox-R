@@ -13,10 +13,12 @@ class_name Player
 @export var camera_anchor: Marker3D
 
 var looking_direction: Vector3 = Vector3.FORWARD
-var input_buffer: InputBuffer = InputBuffer.new()
-var inventory: InventorySystem = InventorySystem.new()
-var status: PlayerStatus
 var lock_on_target: Node3D
+var input_buffer: InputBuffer = InputBuffer.new()
+
+var inventory: InventorySystem = InventorySystem.new()
+var effects: EffectSystem = EffectSystem.new()
+var status: PlayerStatus
 
 var primary_action_state: NodePath
 var secondary_action_state: NodePath
@@ -26,6 +28,7 @@ var special_action_state: NodePath
 func configure_player(new_status: PlayerStatus) -> void:
 	status = new_status
 	inventory.player_status = new_status
+	effects.player = self
 	
 	# Simple mesh replacement test.
 	var skeleton: Skeleton3D = $Body/CharacterModel/metarig/Skeleton3D
@@ -48,27 +51,32 @@ func configure_player(new_status: PlayerStatus) -> void:
 		skeleton.add_child(new_mesh_node)
 	
 	_init_class_actions()
+	effects.add_effect(EffectReference.create_with_duration(EffectIds.Id.REGEN, 5))
+
+#region Entity implementation
 
 func get_hit() -> void:
 	super.get_hit()
 	status.current_health -= 1 # TODO
 	event_player.play_getting_hit()
 	
-func accept_quest(quest: Quest) -> void:
-	status.current_quest = quest
-
-func push_event(event: InputEvent) -> void:
-	input_buffer.push_event(event)
-
 func get_entity_position() -> Vector3:
 	return body.position
 	
 func get_entity_rotation() -> Vector3:
 	return body.rotation
 
+func add_effect(effect_reference: EffectReference) -> void:
+	effects.add_effect(effect_reference)
+
+#endregion
+
+func push_event(event: InputEvent) -> void:
+	input_buffer.push_event(event)
+
 func _ready() -> void:
 	_init_state_machine()
-	connect_to_events()
+	_connect_to_events()
 	configure_player(PlayerStatus.new())
 
 func _init_state_machine() -> void:
@@ -77,6 +85,7 @@ func _init_state_machine() -> void:
 			state.init(self)
 
 func _process(delta: float) -> void:
+	effects.process_effects(delta)
 	state_machine.process(delta)
 	status.play_time += delta
 
@@ -93,8 +102,11 @@ func _init_class_actions() -> void:
 			defensive_action_state = WarriorState.WARRIOR_DEFENSIVE_ACTION
 			special_action_state = WarriorState.WARRIOR_SPECIAL_ACTION
 			
-func connect_to_events() -> void:
-	Events.player.quest_accepted.connect(accept_quest)
+func _connect_to_events() -> void:
+	Events.player.quest_accepted.connect(_on_accept_quest)
+
+func _on_accept_quest(quest: Quest) -> void:
+	status.current_quest = quest
 
 func _on_item_collector_area_entered(area: Area3D) -> void:
 	var item_entity = EntityResolveUtil.resolve_item(area)

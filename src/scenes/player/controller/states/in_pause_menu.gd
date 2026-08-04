@@ -22,6 +22,7 @@ func update(_delta: float) -> StateResult:
 	if (controller.target_player):
 		controller.pause_menu.update(controller.target_player.status)
 	
+	sync_camera_and_player()
 	return StateResult.continue_result
 
 #func _input(event: InputEvent) -> void:
