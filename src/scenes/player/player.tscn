@@ -6,9 +6,11 @@
 [ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="4_xnolk"]
 [ext_resource type="PackedScene" uid="uid://dytnbxafjovke" path="res://src/scenes/player/target_detector/target_detector.tscn" id="5_y2jb0"]
 [ext_resource type="Animation" uid="uid://bi28u1nt7dvs8" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_1_reset.res" id="6_gl5ki"]
+[ext_resource type="Material" uid="uid://d1ugxo0ous3b7" path="res://src/scenes/player/classes/warrior/effects/swing_test_shader.tres" id="6_qhiop"]
 [ext_resource type="Animation" uid="uid://c7gkadfevuift" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_1.res" id="7_r3wvq"]
 [ext_resource type="Animation" uid="uid://dqqcl6wh36un8" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_2_reset.res" id="8_fl7o5"]
 [ext_resource type="Animation" uid="uid://1u4ng2boa8w5" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_2.res" id="9_5lekh"]
+[ext_resource type="Material" uid="uid://wdq17ea0jwgp" path="res://src/scenes/player/classes/mage/effects/mage_test_shader.tres" id="9_ptg44"]
 [ext_resource type="Animation" uid="uid://b2ktwhj82irpy" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_3_reset.res" id="10_rjh5f"]
 [ext_resource type="Animation" uid="uid://cle5mv8w1vett" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_3.res" id="11_1gxce"]
 [ext_resource type="Shader" uid="uid://da4qw7mca3opu" path="res://src/shaders/basic_blood_splatter.gdshader" id="12_yybc2"]
@@ -26,9 +28,14 @@
 [ext_resource type="Script" uid="uid://c2oalqqye5xnc" path="res://src/scenes/player/classes/warrior/states/warrior_secondary_action_state.gd" id="24_yc73j"]
 [ext_resource type="Script" uid="uid://dbmcjcr1k13w4" path="res://src/scenes/player/classes/warrior/states/warrior_special_action_state.gd" id="25_o4vbd"]
 [ext_resource type="Script" uid="uid://eupecw8h6qu5" path="res://src/scenes/player/player_event_player.gd" id="26_fib21"]
+[ext_resource type="Script" uid="uid://csyvx5jscm6bi" path="res://src/scenes/player/classes/mage/states/mage_defensive_action_state.gd" id="26_q6e5w"]
+[ext_resource type="Script" uid="uid://c1wlsbtkdpxia" path="res://src/scenes/player/classes/mage/states/mage_primary_action_state.gd" id="27_qhiop"]
 [ext_resource type="Script" uid="uid://cog4d4aoclon" path="res://src/scenes/player/classes/warrior/warrior_event_player.gd" id="27_xk3rm"]
+[ext_resource type="Script" uid="uid://l8bv6poa44l8" path="res://src/scenes/player/classes/mage/mage_event_player.gd" id="28_5eyvc"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dkxp8vns7eycu" path="res://src/scenes/player/resources/player_animation_tree.tres" id="28_i83xy"]
+[ext_resource type="Script" uid="uid://c0fj8e7ru3n0o" path="res://src/scenes/player/classes/mage/states/mage_secondary_action_state.gd" id="28_ptg44"]
 [ext_resource type="Script" uid="uid://bfxi1fvwevr3v" path="res://src/scenes/player/player_model_animator.gd" id="29_ot04x"]
+[ext_resource type="Script" uid="uid://b1m36kajufyx1" path="res://src/scenes/player/classes/mage/states/mage_special_action_state.gd" id="29_u53oj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt1od"]
 
@@ -68,58 +75,8 @@ radius = 1.2013305
 [sub_resource type="BoxShape3D" id="BoxShape3D_wuh6u"]
 size = Vector3(1.2287292, 1.2212524, 1.387022)
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_1ec48"]
-parameter_name = "Fade"
-default_value_enabled = true
-default_value = 1.0
-
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_akher"]
-parameter_name = "Mask"
-texture_filter = 3
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_68a7p"]
-source = 5
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fypif"]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_8uwej"]
-default_input_values = [0, 0.0, 1, 1.0]
-operator = 2
-
-[sub_resource type="VisualShader" id="VisualShader_w2vmd"]
-modes/cull = 2
-flags/unshaded = true
-nodes/vertex/0/position = Vector2(720, 100)
-nodes/fragment/0/position = Vector2(660, 120)
-nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_akher")
-nodes/fragment/4/position = Vector2(-500, -140)
-nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_68a7p")
-nodes/fragment/5/position = Vector2(40, -100)
-nodes/fragment/7/node = SubResource("VisualShaderNodeInput_fypif")
-nodes/fragment/7/position = Vector2(-480, 200)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatOp_8uwej")
-nodes/fragment/9/position = Vector2(380, 160)
-nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_1ec48")
-nodes/fragment/10/position = Vector2(-440, 320)
-nodes/fragment/connections = PackedInt32Array(4, 0, 5, 2, 7, 0, 5, 0, 5, 0, 9, 0, 9, 0, 0, 1, 10, 0, 9, 1)
-
-[sub_resource type="Gradient" id="Gradient_fcpuv"]
-offsets = PackedFloat32Array(0, 0.3875598)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2nbt8"]
-gradient = SubResource("Gradient_fcpuv")
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_52e47"]
-render_priority = 0
-shader = SubResource("VisualShader_w2vmd")
-shader_parameter/Mask = SubResource("GradientTexture2D_2nbt8")
-shader_parameter/Fade = 0.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_m140g"]
-material = SubResource("ShaderMaterial_52e47")
+[sub_resource type="PlaneMesh" id="PlaneMesh_qhiop"]
+material = ExtResource("9_ptg44")
 size = Vector2(3, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sqm47"]
@@ -131,14 +88,8 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_towy7"]
 size = Vector3(1.2287292, 1.2212524, 1.387022)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dlhd"]
-render_priority = 0
-shader = SubResource("VisualShader_w2vmd")
-shader_parameter/Mask = SubResource("GradientTexture2D_2nbt8")
-shader_parameter/Fade = 0.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_gp85v"]
-material = SubResource("ShaderMaterial_0dlhd")
+[sub_resource type="PlaneMesh" id="PlaneMesh_ptg44"]
+material = ExtResource("9_ptg44")
 size = Vector2(3, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_14cwn"]
@@ -150,24 +101,12 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_4r0ru"]
 size = Vector3(0.9412155, 1.2212524, 2.2106009)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_omrbx"]
-render_priority = 0
-shader = SubResource("VisualShader_w2vmd")
-shader_parameter/Mask = SubResource("GradientTexture2D_2nbt8")
-shader_parameter/Fade = 0.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_p72sp"]
-material = SubResource("ShaderMaterial_omrbx")
+[sub_resource type="PlaneMesh" id="PlaneMesh_u53oj"]
+material = ExtResource("9_ptg44")
 size = Vector2(3, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ono0"]
-render_priority = 0
-shader = SubResource("VisualShader_w2vmd")
-shader_parameter/Mask = SubResource("GradientTexture2D_2nbt8")
-shader_parameter/Fade = 0.0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2pwbc"]
-material = SubResource("ShaderMaterial_2ono0")
+[sub_resource type="PlaneMesh" id="PlaneMesh_dm4jd"]
+material = ExtResource("9_ptg44")
 size = Vector2(3, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5t8dg"]
@@ -175,6 +114,22 @@ _data = {
 &"RESET": ExtResource("10_rjh5f"),
 &"primary_attack_step_3": ExtResource("11_1gxce")
 }
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m140g"]
+material = ExtResource("6_qhiop")
+size = Vector2(3, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gp85v"]
+material = ExtResource("6_qhiop")
+size = Vector2(3, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p72sp"]
+material = ExtResource("6_qhiop")
+size = Vector2(3, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2pwbc"]
+material = ExtResource("6_qhiop")
+size = Vector2(3, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dyod8"]
 render_priority = 0
@@ -214,7 +169,7 @@ shape = ExtResource("2_456r5")
 [node name="CharacterModel" parent="Body" unique_id=292343521 instance=ExtResource("3_aupic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(292343521, 1055756562) index="0" unique_id=1552473421]
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(292343521, 1985638707) index="0" unique_id=1167664771]
 bones/0/position = Vector3(0, 1.0099, -0.05519999)
 bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
@@ -246,7 +201,7 @@ bone_idx = 11
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/CharacterModel/metarig/Skeleton3D/LeftHandAttachment" unique_id=1250158813]
 remote_path = NodePath("../../../../../../ModelAttachments/LeftHand")
 
-[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=411355828]
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=521227321]
 transform = Transform3D(-0.005017258, 0.07755357, 0.35081345, 0.044051666, 0.05062934, -0.44127432, -0.08956708, 0.020556662, -0.23668285, -0.738985, 2.0861967, 0.1559247)
 visible = false
 mesh = SubResource("ArrayMesh_xtykr")
@@ -273,6 +228,84 @@ monitorable = false
 shape = SubResource("SphereShape3D_e35kq")
 
 [node name="Effects" type="Node3D" parent="Body" unique_id=716558180]
+
+[node name="Mage" type="Node3D" parent="Body/Effects" unique_id=1947562344]
+
+[node name="PrimaryAttackStep1" type="Node3D" parent="Body/Effects/Mage" unique_id=1096418198]
+
+[node name="Hurtbox" type="Area3D" parent="Body/Effects/Mage/PrimaryAttackStep1" unique_id=1532914546]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Effects/Mage/PrimaryAttackStep1/Hurtbox" unique_id=1617989631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 1.186)
+visible = false
+shape = SubResource("BoxShape3D_wuh6u")
+debug_color = Color(0.99215686, 0.011764706, 0.2627451, 0.41960785)
+
+[node name="SwingEffect" type="MeshInstance3D" parent="Body/Effects/Mage/PrimaryAttackStep1" unique_id=10317610]
+transform = Transform3D(0.49488807, 0.6933766, -0.5237505, -0.47620815, 0.72057533, 0.5039811, 0.72685045, -4.1812292e-08, 0.6867958, 0.0062264204, 0.35963196, 0.4962433)
+visible = false
+mesh = SubResource("PlaneMesh_qhiop")
+skeleton = NodePath("../../../Warrior")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/Mage/PrimaryAttackStep1" unique_id=203202715]
+libraries/ = SubResource("AnimationLibrary_sqm47")
+
+[node name="PrimaryAttackStep2" type="Node3D" parent="Body/Effects/Mage" unique_id=1070313291]
+
+[node name="Hurtbox" type="Area3D" parent="Body/Effects/Mage/PrimaryAttackStep2" unique_id=816267862]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Effects/Mage/PrimaryAttackStep2/Hurtbox" unique_id=407939241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 1.186)
+visible = false
+shape = SubResource("BoxShape3D_towy7")
+debug_color = Color(0.99215686, 0.011764706, 0.2627451, 0.41960785)
+
+[node name="SwingEffect" type="MeshInstance3D" parent="Body/Effects/Mage/PrimaryAttackStep2" unique_id=601867835]
+transform = Transform3D(0.26635796, -0.7417889, -0.615469, 0.22133799, 0.66854537, -0.70996946, 0.9381168, 0.0528792, 0.34225866, 0.01312536, 0.35611898, 0.7895774)
+visible = false
+mesh = SubResource("PlaneMesh_ptg44")
+skeleton = NodePath("../../PrimaryAttackStep1/SwingEffect")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/Mage/PrimaryAttackStep2" unique_id=88930594]
+libraries/ = SubResource("AnimationLibrary_14cwn")
+
+[node name="PrimaryAttackStep3" type="Node3D" parent="Body/Effects/Mage" unique_id=1901656087]
+
+[node name="Hurtbox" type="Area3D" parent="Body/Effects/Mage/PrimaryAttackStep3" unique_id=303406998]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Effects/Mage/PrimaryAttackStep3/Hurtbox" unique_id=1527446884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149, 1.599)
+visible = false
+shape = SubResource("BoxShape3D_4r0ru")
+debug_color = Color(0.99117035, 0.010396242, 0.26147646, 0.41960785)
+
+[node name="SwingEffects" type="Node3D" parent="Body/Effects/Mage/PrimaryAttackStep3" unique_id=1485361014]
+visible = false
+
+[node name="SwingEffect" type="MeshInstance3D" parent="Body/Effects/Mage/PrimaryAttackStep3/SwingEffects" unique_id=145031015]
+transform = Transform3D(0.1327898, -0.5951043, -0.7926017, 0.2276884, 0.79661286, -0.5599695, 0.9646371, -0.10610798, 0.24128029, 0.24289185, -0.08937228, 1.4116583)
+mesh = SubResource("PlaneMesh_u53oj")
+skeleton = NodePath("../../../PrimaryAttackStep1/SwingEffect")
+
+[node name="SwingEffect2" type="MeshInstance3D" parent="Body/Effects/Mage/PrimaryAttackStep3/SwingEffects" unique_id=2015944260]
+transform = Transform3D(0.024226218, -0.57082385, 0.82071507, -0.0057132775, -0.82102203, -0.570868, 0.99969006, 0.009140998, -0.023151636, -0.20692629, 0.07280433, 1.8369563)
+mesh = SubResource("PlaneMesh_dm4jd")
+skeleton = NodePath("../../../PrimaryAttackStep1/SwingEffect")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Effects/Mage/PrimaryAttackStep3" unique_id=2141183948]
+libraries/ = SubResource("AnimationLibrary_5t8dg")
 
 [node name="Warrior" type="Node3D" parent="Body/Effects" unique_id=1464627882]
 
@@ -369,7 +402,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9343593, 0)
 [node name="ModelAttachments" type="Node3D" parent="." unique_id=256263]
 
 [node name="RightHand" type="Node3D" parent="ModelAttachments" unique_id=815230383]
-transform = Transform3D(-0.95062554, -0.29105836, 0.10703065, 0.30857816, -0.9220728, 0.23332557, 0.030780045, 0.2548504, 0.96643054, -0.5069494, 0.9145648, 0.09700575)
+transform = Transform3D(-0.9506256, -0.29105833, 0.10703065, 0.30857816, -0.92207277, 0.23332557, 0.030780047, 0.2548504, 0.96643054, -0.5069494, 0.9145648, 0.09700575)
 
 [node name="WeaponModel" parent="ModelAttachments/RightHand" unique_id=707384600 instance=ExtResource("16_28ueq")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
@@ -408,9 +441,24 @@ script = ExtResource("24_yc73j")
 [node name="SpecialAction" type="Node" parent="StateMachine/WarriorStates" unique_id=605186786]
 script = ExtResource("25_o4vbd")
 
-[node name="EventPlayer" type="Node" parent="." unique_id=715285622 node_paths=PackedStringArray("warrior_event_player", "hit_animator")]
+[node name="MageStates" type="Node" parent="StateMachine" unique_id=1687889236]
+
+[node name="DefensiveAction" type="Node" parent="StateMachine/MageStates" unique_id=1180801513]
+script = ExtResource("26_q6e5w")
+
+[node name="PrimaryAction" type="Node" parent="StateMachine/MageStates" unique_id=610627152]
+script = ExtResource("27_qhiop")
+
+[node name="SecondaryAction" type="Node" parent="StateMachine/MageStates" unique_id=1922280984]
+script = ExtResource("28_ptg44")
+
+[node name="SpecialAction" type="Node" parent="StateMachine/MageStates" unique_id=81581171]
+script = ExtResource("29_u53oj")
+
+[node name="EventPlayer" type="Node" parent="." unique_id=715285622 node_paths=PackedStringArray("warrior_event_player", "mage_event_player", "hit_animator")]
 script = ExtResource("26_fib21")
 warrior_event_player = NodePath("WarriorEventPlayer")
+mage_event_player = NodePath("MageEventPlayer")
 hit_animator = NodePath("../Body/Effects/HitSplatter/AnimationPlayer")
 
 [node name="WarriorEventPlayer" type="Node" parent="EventPlayer" unique_id=1898690908 node_paths=PackedStringArray("primary_attack_step_1_animator", "primary_attack_step_2_animator", "primary_attack_step_3_animator")]
@@ -418,6 +466,13 @@ script = ExtResource("27_xk3rm")
 primary_attack_step_1_animator = NodePath("../../Body/Effects/Warrior/PrimaryAttackStep1/AnimationPlayer")
 primary_attack_step_2_animator = NodePath("../../Body/Effects/Warrior/PrimaryAttackStep2/AnimationPlayer")
 primary_attack_step_3_animator = NodePath("../../Body/Effects/Warrior/PrimaryAttackStep3/AnimationPlayer")
+
+[node name="MageEventPlayer" type="Node" parent="EventPlayer" unique_id=1769511824 node_paths=PackedStringArray("primary_attack_step_1_animator", "primary_attack_step_2_animator", "primary_attack_step_3_animator")]
+script = ExtResource("28_5eyvc")
+primary_attack_step_1_animator = NodePath("../../Body/Effects/Mage/PrimaryAttackStep1/AnimationPlayer")
+primary_attack_step_2_animator = NodePath("../../Body/Effects/Mage/PrimaryAttackStep2/AnimationPlayer")
+primary_attack_step_3_animator = NodePath("../../Body/Effects/Mage/PrimaryAttackStep3/AnimationPlayer")
+metadata/_custom_type_script = "uid://l8bv6poa44l8"
 
 [node name="ModelAnimator" type="AnimationTree" parent="." unique_id=1749884896]
 root_node = NodePath("../Body/CharacterModel")
@@ -437,6 +492,9 @@ parameters/class_action_space/1/blend_position = 0.0
 script = ExtResource("29_ot04x")
 
 [connection signal="area_entered" from="Body/ItemCollector" to="." method="_on_item_collector_area_entered"]
+[connection signal="area_entered" from="Body/Effects/Mage/PrimaryAttackStep1/Hurtbox" to="StateMachine/MageStates/PrimaryAction" method="_on_step_1_hurtbox_area_entered"]
+[connection signal="area_entered" from="Body/Effects/Mage/PrimaryAttackStep2/Hurtbox" to="StateMachine/MageStates/PrimaryAction" method="_on_step_2_hurtbox_area_entered"]
+[connection signal="area_entered" from="Body/Effects/Mage/PrimaryAttackStep3/Hurtbox" to="StateMachine/MageStates/PrimaryAction" method="_on_step_3_hurtbox_area_entered"]
 [connection signal="area_entered" from="Body/Effects/Warrior/PrimaryAttackStep1/Hurtbox" to="StateMachine/WarriorStates/PrimaryAction" method="_on_step_1_hurtbox_area_entered"]
 [connection signal="area_entered" from="Body/Effects/Warrior/PrimaryAttackStep2/Hurtbox" to="StateMachine/WarriorStates/PrimaryAction" method="_on_step_2_hurtbox_area_entered"]
 [connection signal="area_entered" from="Body/Effects/Warrior/PrimaryAttackStep3/Hurtbox" to="StateMachine/WarriorStates/PrimaryAction" method="_on_step_3_hurtbox_area_entered"]

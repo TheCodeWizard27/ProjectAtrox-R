@@ -32,6 +32,17 @@ func update(player_status: PlayerStatus) -> void:
 	intelligence_label.text = str(player_status.attributes.intelligence)
 	defense_label.text = str(player_status.attributes.defense)
 	speed_label.text = str(player_status.attributes.speed)
+	
+	# TODO Figure out how to localize stuff and how to map class name from enum to translated combat class name
+	match player_status.combat_class:
+		Enums.CombatClasses.WARRIOR:
+			class_label.text = "Warrrior"		
+		Enums.CombatClasses.MAGE:
+			class_label.text = "Mage"
+		Enums.CombatClasses.RANGER:
+			class_label.text = "Ranger"
+			
+			
 	if(player_status.current_quest):
 		current_quest_label.text = str(player_status.current_quest.name)
 	

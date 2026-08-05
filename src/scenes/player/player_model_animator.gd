@@ -12,6 +12,9 @@ var _interact_request = "parameters/interact_one_shot/request"
 var warrior_animator := WarriorModelAnimator.new(
 	self, _class_action_one_shot, _class_action_space_prefix, 0)
 
+var mage_animator := MageModelAnimator.new(
+	self, _class_action_one_shot, _class_action_space_prefix, 0)
+
 func advance_falling_to(target_value: float, delta: float) -> void:
 	var new_value = lerpf(get(_falling_blend_amount), target_value, delta * _falling_blend_speed)
 	set(_falling_blend_amount, new_value)

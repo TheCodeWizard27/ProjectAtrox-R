@@ -483,7 +483,6 @@ size_flags_horizontal = 3
 
 [node name="ValueLabel" type="Label" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo/ClassInfo" unique_id=147797025]
 layout_mode = 2
-text = "Warrior"
 
 [node name="CurrencyInfo" type="HBoxContainer" parent="MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/StatusInfo" unique_id=1062599123]
 layout_mode = 2

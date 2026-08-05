@@ -3,6 +3,8 @@ class_name PlayerEventPlayer
 extends Node
 
 @export var warrior_event_player: WarriorEventPlayer
+@export var mage_event_player: MageEventPlayer
+
 
 @export var hit_animator: AnimationPlayer
 
