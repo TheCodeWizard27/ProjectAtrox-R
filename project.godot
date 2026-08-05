@@ -190,6 +190,11 @@ camera_down={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://src/resources/localization/locale/en/items.mo", "res://src/resources/localization/locale/de/items.mo")
+locale/test="de"
+
 [layer_names]
 
 3d_physics/layer_1="BasePhysicsLayer"
