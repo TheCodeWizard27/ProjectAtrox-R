@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv-data-importer"
+type="Resource"
+uid="uid://dnwp22thtn78q"
+path="res://.godot/imported/effects.csv-6a5008d62ed755452f0bf7132fb167d2.res"
+
+[deps]
+
+source_file="res://src/resources/data_tables/effects.csv"
+dest_files=["res://.godot/imported/effects.csv-6a5008d62ed755452f0bf7132fb167d2.res"]
+
+[params]
+
+delimiter=","
+has_header=true

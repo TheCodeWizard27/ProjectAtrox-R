@@ -9,3 +9,6 @@ func get_entity_position() -> Vector3:
 	
 func get_entity_rotation() -> Vector3:
 	return rotation
+
+func add_effect(_effect_reference: EffectReference) -> void:
+	pass

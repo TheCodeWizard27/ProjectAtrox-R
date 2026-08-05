@@ -1,6 +1,7 @@
 class_name ItemIds
 
 enum Id {
+	UNKNOWN = -1,
 	HEAL_CRYSTAL = 10000,
 	ENERGY_DRINK = 10001,
 	ELEMENTAL_INFUSION = 10002,

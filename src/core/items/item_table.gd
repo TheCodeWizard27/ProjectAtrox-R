@@ -35,6 +35,7 @@ func _load_items() -> void:
 	var all_items: Array[Item]
 	
 	var consumable_items = _load_consumable_items(load('res://src/resources/data_tables/consumable_items.csv'))
+	_assign_consumption_behaviour(consumable_items, ConsumptionBehaviourDefinitions.get_mapped_behaviours())
 	all_items.append_array(consumable_items)
 	
 	var gear_items = _load_gear_items(preload('res://src/resources/data_tables/gear_items.csv'))
@@ -52,6 +53,16 @@ func _load_items() -> void:
 			pass
 		
 		_items.set(item.id, item)
+
+func _assign_consumption_behaviour(items: Array[ConsumableItem], behaviours: Dictionary[ItemIds.Id, ConsumptionBehaviour]) -> void:
+	for item_id in behaviours:
+		var item = ArrayUtil.first_or_default(items, func(p_item: ConsumableItem): return p_item.id == item_id)
+		
+		assert(item != null, 'Cannot attach consumption behaviour, item ' + str(item_id) + ' doesn\'t exist.')
+		if(item != null):
+			continue
+			
+		item.behaviour = behaviours[item_id]
 
 func _load_consumable_items(csv_data: CsvData) -> Array[ConsumableItem]:
 	var loaded_items: Array[ConsumableItem] = []

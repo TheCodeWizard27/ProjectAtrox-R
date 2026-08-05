@@ -4,6 +4,9 @@ var player_status: PlayerStatus
 
 signal inventory_updated()
 
+func configure(p_player_status: PlayerStatus) -> void:
+	player_status = p_player_status
+
 # Returns either null or ItemReference with what could not be added to the inventory.
 func add_item(item: ItemReference) -> ItemReference:
 	var type = ItemTable.get_item_type(item.id)
