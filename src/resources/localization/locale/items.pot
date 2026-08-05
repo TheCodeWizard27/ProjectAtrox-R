@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2026-08-05 15:02+0200\n"
+"Last-Translator: <EMAIL@ADDRESS>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Item.HealCrystal.Name"
+msgstr ""
+
+msgid "Item.EnergyDrink.Name"
+msgstr ""
+
+msgid "Item.ElementalInfusion.Name"
+msgstr ""
+
+msgid "Item.Herb.Name"
+msgstr ""
+
+msgid "Item.Potion.Name"
+msgstr ""
+
+msgid "Item.ThrowingKnife.Name"
+msgstr ""
+
+msgid "Item.ShockTrap.Name"
+msgstr ""

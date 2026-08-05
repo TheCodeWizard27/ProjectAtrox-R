@@ -46,7 +46,9 @@ func load_inventory(player_status: PlayerStatus) -> void:
 		var item_name_label = Label.new()
 		hBox.add_child(item_name_label)
 		
-		item_name_label.text = ItemTable.get_item(item.id).name
+		
+		
+		item_name_label.text = tr(ItemTable.get_item(item.id).name)
 		
 		hBox.add_spacer(false)
 		
