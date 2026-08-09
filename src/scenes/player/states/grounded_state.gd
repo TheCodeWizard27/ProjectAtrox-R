@@ -11,6 +11,9 @@ func physics_update(delta: float) -> StateResult:
 	
 	model_animator.advance_falling_to(0, delta)
 	
+	if (player.status.current_health <= 0):
+		return StateResult.transition_to(PlayerState.DEAD)
+	
 	if (!body.is_on_floor()):
 		return StateResult.transition_to(PlayerState.AIRBORNE)
 	

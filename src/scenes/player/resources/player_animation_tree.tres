@@ -1,5 +1,11 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dkxp8vns7eycu"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7x2w"]
+animation = &"Dying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vbna4"]
+animation = &"Dying"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6gf5d"]
 animation = &"Falling"
 
@@ -59,6 +65,10 @@ blend_point_1/node = SubResource("AnimationNodeBlendSpace1D_ie1vs")
 blend_point_1/pos = 1.0
 blend_point_1/name = &"1"
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vbna4"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_m7x2w"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8tvdu"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6ap8y"]
@@ -79,20 +89,28 @@ blend_point_1/pos = 1.0
 blend_point_1/name = &"1"
 
 [resource]
-graph_offset = Vector2(-258.4989, 124.680664)
-nodes/output/position = Vector2(1280, 520)
+graph_offset = Vector2(-184.12732, 283.70874)
+nodes/output/position = Vector2(1700, 560)
 nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
 nodes/running/position = Vector2(20, 80)
 nodes/interact_one_shot/node = SubResource("AnimationNodeOneShot_6ap8y")
 nodes/interact_one_shot/position = Vector2(260, 180)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_6gf5d")
-nodes/Animation/position = Vector2(720, 720)
+nodes/FallingAnimation/node = SubResource("AnimationNodeAnimation_6gf5d")
+nodes/FallingAnimation/position = Vector2(720, 720)
 nodes/falling/node = SubResource("AnimationNodeBlend2_8tvdu")
 nodes/falling/position = Vector2(1080, 480)
-nodes/Interact/node = SubResource("AnimationNodeAnimation_6ap8y")
-nodes/Interact/position = Vector2(40, 360)
+nodes/InteractAnimation/node = SubResource("AnimationNodeAnimation_6ap8y")
+nodes/InteractAnimation/position = Vector2(40, 360)
 nodes/class_action_one_shot/node = SubResource("AnimationNodeOneShot_0bsxv")
 nodes/class_action_one_shot/position = Vector2(640, 240)
 nodes/class_action_space/node = SubResource("AnimationNodeBlendSpace1D_wse62")
 nodes/class_action_space/position = Vector2(320, 560)
-node_connections = [&"output", 0, &"falling", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"Interact", &"falling", 0, &"class_action_one_shot", &"falling", 1, &"Animation", &"class_action_one_shot", 0, &"interact_one_shot", &"class_action_one_shot", 1, &"class_action_space"]
+nodes/dying_one_shot/node = SubResource("AnimationNodeOneShot_m7x2w")
+nodes/dying_one_shot/position = Vector2(1520, 700)
+nodes/DyingAnimation/node = SubResource("AnimationNodeAnimation_m7x2w")
+nodes/DyingAnimation/position = Vector2(1260, 880)
+nodes/dying/node = SubResource("AnimationNodeBlend2_vbna4")
+nodes/dying/position = Vector2(1320, 560)
+nodes/DyingAnimtionDone/node = SubResource("AnimationNodeAnimation_vbna4")
+nodes/DyingAnimtionDone/position = Vector2(980, 820)
+node_connections = [&"output", 0, &"dying_one_shot", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"InteractAnimation", &"falling", 0, &"class_action_one_shot", &"falling", 1, &"FallingAnimation", &"class_action_one_shot", 0, &"interact_one_shot", &"class_action_one_shot", 1, &"class_action_space", &"dying_one_shot", 0, &"dying", &"dying_one_shot", 1, &"DyingAnimation", &"dying", 0, &"falling", &"dying", 1, &"DyingAnimtionDone"]
