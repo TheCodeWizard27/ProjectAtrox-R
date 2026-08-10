@@ -492,10 +492,8 @@ parameters/class_action_one_shot/request = 0
 parameters/class_action_space/blend_position = 0.0
 parameters/class_action_space/0/blend_position = 0.0
 parameters/class_action_space/1/blend_position = 0.0
-parameters/dying_one_shot/active = false
-parameters/dying_one_shot/internal_active = false
-parameters/dying_one_shot/request = 0
 parameters/dying/blend_amount = 0.0
+parameters/dying_time_seek/seek_request = -1.0
 script = ExtResource("29_ot04x")
 
 [connection signal="area_entered" from="Body/ItemCollector" to="." method="_on_item_collector_area_entered"]
