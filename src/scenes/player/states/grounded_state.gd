@@ -11,9 +11,6 @@ func physics_update(delta: float) -> StateResult:
 	
 	model_animator.advance_falling_to(0, delta)
 	
-	if (Input.is_key_pressed(KEY_0)):
-		return StateResult.transition_to(PlayerState.DEAD)
-	
 	if (player.status.current_health <= 0):
 		return StateResult.transition_to(PlayerState.DEAD)
 	

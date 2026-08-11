@@ -6,8 +6,10 @@ func enter(_msg: Dictionary = {}) -> void:
 
 func physics_update(_delta: float) -> StateResult:
 	
-	if (Input.is_key_pressed(KEY_1)):
-		return StateResult.transition_to(PlayerState.GROUNDED)
+	player.status.current_health = 0
+	
+	if (Input.is_action_pressed('interact')):
+		Events.scene_change_requested.emit(Locations.location_table.get(Locations.LocationEnum.HUB).path, {})
 	
 	return StateResult.continue_result
 

@@ -201,6 +201,9 @@ metadata/_custom_type_script = "uid://deiwhqeehxgm3"
 [node name="TransportPad" parent="." unique_id=938732095 instance=ExtResource("11_0pkb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5099144, 0.61632943, -5.769111)
 
+[node name="TransportPad2" parent="." unique_id=971219356 instance=ExtResource("11_0pkb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9148428, -3.4688761, -58.024475)
+
 [connection signal="activated" from="Objects/Room1/InteractionPad" to="Objects/Room1/Door" method="open"]
 [connection signal="activated" from="Objects/Room1/InteractionPad" to="Objects/Room2/EnemySpawnContainer" method="spawn"]
 [connection signal="all_entities_dead" from="Objects/Room2/EnemySpawnContainer" to="Objects/Room2/Door" method="open"]
