@@ -30,7 +30,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 	inventory.configure(status)
 	effects.configure(self, status.effects)
 	
-	# Simple mesh replacement test.
+	# TODO remove Simple mesh replacement test.
 	var skeleton: Skeleton3D = $Body/CharacterModel/metarig/Skeleton3D
 	var other_skin
 	if(status.combat_class == Enums.CombatClasses.WARRIOR):
@@ -54,7 +54,11 @@ func configure_player(new_status: PlayerStatus) -> void:
 		new_mesh_node.owner = null
 		skeleton.add_child(new_mesh_node)
 	
+	update_attributes()
 	_init_class_actions()
+	_init_resources()
+	
+	# TODO remove effect test
 	effects.add_effect(EffectReference.create_with_duration(EffectIds.Id.REGEN, 5))
 	effects.add_effect(EffectReference.create_with_duration(EffectIds.Id.SPEED, 5))
 
@@ -62,7 +66,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 
 func get_hit() -> void:
 	super.get_hit()
-	status.current_health -= 5 # TODO
+	status.resources.health -= 5 # TODO
 	event_player.play_getting_hit()
 	
 func get_entity_position() -> Vector3:
@@ -117,7 +121,10 @@ func _init_class_actions() -> void:
 			secondary_action_state = MageState.MAGE_SECONDARY_ACTION
 			defensive_action_state = MageState.MAGE_DEFENSIVE_ACTION
 			special_action_state = MageState.MAGE_SPECIAL_ACTION
-			
+
+func _init_resources() -> void:
+	status.resources.health = status.attributes.max_health.value
+
 func _connect_to_events() -> void:
 	Events.player.quest_accepted.connect(_on_accept_quest)
 

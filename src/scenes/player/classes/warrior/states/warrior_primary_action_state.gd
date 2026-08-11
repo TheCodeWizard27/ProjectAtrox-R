@@ -66,6 +66,10 @@ func enter(_msg: Dictionary = {}) -> void:
 	_init_attack_step(attack_step if attack_step is float else 0)
 
 func physics_update(delta: float) -> StateResult:
+	
+	if (player.status.resources.health <= 0):
+		return StateResult.transition_to(PlayerState.DEAD)
+	
 	var result = process_attack(delta)
 	
 	movement_processor.process_movement(delta, movement_speed_modifier)
