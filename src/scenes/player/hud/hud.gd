@@ -7,6 +7,7 @@ class_name Hud
 #@onready var _target_stack_text: MeshInstance3D = $TargetStack/Text
 #@onready var _target_stack_text_shadow: MeshInstance3D = $TargetStack/Text/TextShadow
 
+@onready var _death_indicator: Node3D = $DeathIndicator
 @onready var _interaction_label: Node3D = $InteractionLabel
 @onready var _interaction_label_text: MeshInstance3D = $InteractionLabel/Text
 @onready var _interaction_label_shadow: MeshInstance3D = $InteractionLabel/Text/TextShadow
@@ -29,6 +30,11 @@ func update(player: Player, delta: float) -> void:
 		(current_health / max_health) if player.status != null 
 		else (0 as float)
 		)
+	
+	show_death_indicator(current_health <= 0)
+
+func show_death_indicator(p_show: bool = true) -> void:
+	_death_indicator.visible = p_show
 
 func update_interaction(interaction_target: InteractionTarget) -> void:
 	var has_interaction_target = interaction_target != null

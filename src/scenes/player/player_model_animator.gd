@@ -4,6 +4,9 @@ extends AnimationTree
 var _class_action_one_shot = "parameters/class_action_one_shot/request"
 var _class_action_space_prefix = "parameters/class_action_space"
 
+var _dying_blend_amount = "parameters/dying/blend_amount"
+var _dying_time_seek = "parameters/dying_time_seek/seek_request"
+
 var _falling_blend_amount = "parameters/falling/blend_amount"
 var _falling_blend_speed = 10
 var _running_blend_position = "parameters/running/blend_position"
@@ -27,3 +30,10 @@ func set_running(speed: float) -> void:
 
 func play_interact() -> void:
 	set(_interact_request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func play_death() -> void:
+	set(_dying_blend_amount, 1)
+
+func reset_death() -> void:
+	set(_dying_blend_amount, 0)
+	set(_dying_time_seek, 0)

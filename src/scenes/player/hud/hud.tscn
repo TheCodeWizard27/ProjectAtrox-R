@@ -92,9 +92,9 @@ render_priority = 0
 shader = ExtResource("4_8a4cl")
 shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
 
-[sub_resource type="QuadMesh" id="QuadMesh_t4k86"]
+[sub_resource type="QuadMesh" id="QuadMesh_0vvra"]
 material = SubResource("ShaderMaterial_6j5wj")
-size = Vector2(1, 0.05)
+size = Vector2(1.2, 0.05)
 center_offset = Vector3(0.38, 0, 0)
 
 [sub_resource type="Shader" id="Shader_p04jj"]
@@ -131,9 +131,9 @@ render_priority = 0
 shader = SubResource("Shader_p04jj")
 shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="TextMesh" id="TextMesh_0vvra"]
+[sub_resource type="TextMesh" id="TextMesh_iw747"]
 material = SubResource("ShaderMaterial_t4k86")
-text = "> Press Button"
+text = "> You died press E to return to the hub"
 font = ExtResource("5_0vvra")
 font_size = 7
 horizontal_alignment = 0
@@ -143,6 +143,27 @@ depth = 0.0
 render_priority = 0
 shader = SubResource("Shader_p04jj")
 shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_li14g"]
+material = SubResource("ShaderMaterial_we0nm")
+text = "> You died press E to return to the hub"
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_t4k86"]
+material = SubResource("ShaderMaterial_6j5wj")
+size = Vector2(1, 0.05)
+center_offset = Vector3(0.38, 0, 0)
+
+[sub_resource type="TextMesh" id="TextMesh_0vvra"]
+material = SubResource("ShaderMaterial_t4k86")
+text = "> Press Button"
+font = ExtResource("5_0vvra")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
 
 [sub_resource type="TextMesh" id="TextMesh_nj8rj"]
 material = SubResource("ShaderMaterial_we0nm")
@@ -366,6 +387,26 @@ mesh = SubResource("QuadMesh_nj8rj")
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_t4k86")
 autoplay = &"SpinTargetIndicator"
+
+[node name="DeathIndicator" type="Node3D" parent="." unique_id=1411191399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019946396, -0.8213736)
+
+[node name="Background" type="MeshInstance3D" parent="DeathIndicator" unique_id=1829952840]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.3, 0, 0)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_0vvra")
+skeleton = NodePath("../..")
+
+[node name="Text" type="MeshInstance3D" parent="DeathIndicator" unique_id=256498341]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, -0.42708704, 0.018460095, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_iw747")
+skeleton = NodePath("../../TargetStack")
+
+[node name="TextShadow" type="MeshInstance3D" parent="DeathIndicator/Text" unique_id=1574511711]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_li14g")
 
 [node name="InteractionLabel" type="Node3D" parent="." unique_id=49357123]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30981046, -0.8213736)
