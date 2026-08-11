@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bhdkhb5dsqe8h" path="res://src/scenes/player/controller/player_controller.gd" id="1_flk7f"]
 [ext_resource type="PackedScene" uid="uid://cymdlyvr388fm" path="res://src/scenes/player/controller/third_person_camera.tscn" id="2_4exjn"]
-[ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/hud/hud.tscn" id="3_8lcsd"]
-[ext_resource type="PackedScene" uid="uid://cwhwlrph0500b" path="res://src/scenes/player/pause_menu/pause_menu.tscn" id="4_efv1x"]
+[ext_resource type="PackedScene" uid="uid://duuko6ulcqrbu" path="res://src/scenes/player/controller/hud/hud.tscn" id="3_8lcsd"]
+[ext_resource type="PackedScene" uid="uid://cwhwlrph0500b" path="res://src/scenes/player/controller/pause_menu/pause_menu.tscn" id="4_efv1x"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="5_ifir3"]
 [ext_resource type="Script" uid="uid://qsie8ca3tgvi" path="res://src/scenes/player/controller/lock_on_target_detector.gd" id="6_efv1x"]
 [ext_resource type="Script" uid="uid://cgvwkuwrp1r10" path="res://src/scenes/player/controller/states/in_game.gd" id="6_x7p0t"]

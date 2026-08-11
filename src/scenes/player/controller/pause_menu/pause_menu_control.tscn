@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://b1184223d6ugw"]
 
-[ext_resource type="Script" uid="uid://dxyk3p5ucbt6u" path="res://src/scenes/player/pause_menu/pause_menu_control.gd" id="1_ibrib"]
-[ext_resource type="Shader" uid="uid://c43a3ela25agr" path="res://src/scenes/player/pause_menu/shaders/dot_matrix.gdshader" id="2_exqj0"]
-[ext_resource type="Shader" uid="uid://cqnfntt6hpgn" path="res://src/scenes/player/pause_menu/shaders/magic_effect.gdshader" id="3_leqty"]
-[ext_resource type="Shader" uid="uid://d140lxmfrjvsr" path="res://src/scenes/player/pause_menu/shaders/crt.gdshader" id="4_c28x6"]
+[ext_resource type="Script" uid="uid://dxyk3p5ucbt6u" path="res://src/scenes/player/controller/pause_menu/pause_menu_control.gd" id="1_ibrib"]
+[ext_resource type="Shader" uid="uid://c43a3ela25agr" path="res://src/scenes/player/controller/pause_menu/shaders/dot_matrix.gdshader" id="2_exqj0"]
+[ext_resource type="Shader" uid="uid://cqnfntt6hpgn" path="res://src/scenes/player/controller/pause_menu/shaders/magic_effect.gdshader" id="3_leqty"]
+[ext_resource type="Shader" uid="uid://d140lxmfrjvsr" path="res://src/scenes/player/controller/pause_menu/shaders/crt.gdshader" id="4_c28x6"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="5_b5i3v"]
 [ext_resource type="Texture2D" uid="uid://dskic3wjpwjt6" path="res://src/assets/models/player/textures/CharacterModel_Main.png" id="6_b5i3v"]
 

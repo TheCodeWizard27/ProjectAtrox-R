@@ -9,6 +9,12 @@ signal effects_updated()
 func configure(p_entity: Entity, p_effects: Array[EffectReference]) -> void:
 	entity = p_entity
 	effects = p_effects
+	
+func update_attributes(attributes: EntityAttributes) -> void:
+	for effect_reference in effects:
+		var effect = EffectTable.get_effect(effect_reference.id)
+		
+		effect.behaviour.process_attribute(attributes)
 
 func process_effects(delta: float) -> void:
 	next_effect_tick -= delta

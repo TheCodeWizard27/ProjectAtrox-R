@@ -31,6 +31,9 @@ func enter(_msg: Dictionary = {}) -> void:
 
 func physics_update(delta: float) -> StateResult:
 	
+	if (player.status.resources.health <= 0):
+		return StateResult.transition_to(PlayerState.DEAD)
+	
 	model_animator.advance_falling_to(1, delta)
 	
 	var still_jumping = player.input_buffer.is_action_pressed("jump")

@@ -10,7 +10,10 @@ func init(current_player: Player) -> void:
 func physics_update(delta: float) -> StateResult:
 	model_animator.advance_falling_to(1, delta)
 	
-	if(body.is_on_floor()):
+	if (player.status.resources.health <= 0):
+		return StateResult.transition_to(PlayerState.DEAD)
+	
+	if (body.is_on_floor()):
 		return StateResult.transition_to(PlayerState.GROUNDED)
 		
 	movement_processor.process_movement(delta)
