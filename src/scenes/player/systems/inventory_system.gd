@@ -7,6 +7,25 @@ signal inventory_updated()
 func configure(p_player_status: PlayerStatus) -> void:
 	player_status = p_player_status
 
+func update_attributes(attributes: PlayerAttributes) -> void:
+	var item_references: Array[ItemReference] = [
+		player_status.weapon_slot,
+		player_status.head_slot,
+		player_status.chest_slot,
+		player_status.legs_slot,
+	]
+	
+	for item_reference in item_references:
+		var item = ItemTable.get_gear_item(item_reference.id)
+		
+		attributes.max_health.flat_modifier += item.max_health_bonus
+		attributes.strength.flat_modifier += item.strength_bonus
+		attributes.dexterity.flat_modifier += item.dexterity_bonus
+		attributes.intelligence.flat_modifier += item.intelligence_bonus
+		attributes.defense.flat_modifier += item.defense_bonus
+		attributes.crit_chance.flat_modifier += item.crit_chance_bonus
+		attributes.speed.flat_modifier += item.speed_bonus
+
 # Returns either null or ItemReference with what could not be added to the inventory.
 func add_item(item: ItemReference) -> ItemReference:
 	var type = ItemTable.get_item_type(item.id)
@@ -15,13 +34,13 @@ func add_item(item: ItemReference) -> ItemReference:
 		return _add_or_increase(
 			item, 
 			player_status.gear_inventory,
-			player_status.attributes.gear_inventory_size
+			floor(player_status.attributes.gear_inventory_size.value)
 			)
 	
 	return _add_or_increase(
 		item, 
 		player_status.inventory,
-		player_status.attributes.inventory_size
+		floor(player_status.attributes.inventory_size.value)
 		)
 
 # Returns either null or ItemReference with count of what was removed

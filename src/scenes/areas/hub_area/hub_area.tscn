@@ -52,7 +52,7 @@ player_controller = NodePath("PlayerController")
 player_spawner = NodePath("PlayerSpawner")
 
 [node name="TrasportPad" parent="." unique_id=938732095 instance=ExtResource("11_mklfy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6607857, 4.0312266, -9.19379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6607857, 4.036518, -9.19379)
 is_exit = false
 
 [node name="Entities" type="Node3D" parent="." unique_id=201285081]

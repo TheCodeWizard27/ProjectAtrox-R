@@ -56,6 +56,7 @@ func configure_player(new_status: PlayerStatus) -> void:
 	
 	_init_class_actions()
 	effects.add_effect(EffectReference.create_with_duration(EffectIds.Id.REGEN, 5))
+	effects.add_effect(EffectReference.create_with_duration(EffectIds.Id.SPEED, 5))
 
 #region Entity implementation
 
@@ -78,6 +79,11 @@ func add_effect(effect_reference: EffectReference) -> void:
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)
 
+func update_attributes() -> void:
+	status.attributes = status.base_attributes.copy()
+	inventory.update_attributes(status.attributes)
+	effects.update_attributes(status.attributes)
+
 func _ready() -> void:
 	_init_state_machine()
 	_connect_to_events()
@@ -90,6 +96,7 @@ func _init_state_machine() -> void:
 
 func _process(delta: float) -> void:
 	effects.process_effects(delta)
+	update_attributes() # TODO check Maybe do this conditionally?
 	state_machine.process(delta)
 	status.play_time += delta
 
@@ -134,4 +141,3 @@ func _on_item_collector_area_entered(area: Area3D) -> void:
 	item.delay_pick_up()
 	item.add_spawn_velocity()
 	item.item_reference = result
-	

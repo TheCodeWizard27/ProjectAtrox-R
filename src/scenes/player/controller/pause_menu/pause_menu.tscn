@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cwhwlrph0500b"]
 
-[ext_resource type="Script" uid="uid://c60g55mys1bps" path="res://src/scenes/player/pause_menu/pause_menu.gd" id="1_i3fb8"]
+[ext_resource type="Script" uid="uid://c60g55mys1bps" path="res://src/scenes/player/controller/pause_menu/pause_menu.gd" id="1_i3fb8"]
 [ext_resource type="Script" uid="uid://b0pivtobnnj3c" path="res://src/core/utils/viewport_input_relay.gd" id="2_c36kf"]
-[ext_resource type="PackedScene" uid="uid://b1184223d6ugw" path="res://src/scenes/player/pause_menu/pause_menu_control.tscn" id="3_spruu"]
+[ext_resource type="PackedScene" uid="uid://b1184223d6ugw" path="res://src/scenes/player/controller/pause_menu/pause_menu_control.tscn" id="3_spruu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_spruu"]
 viewport_path = NodePath("InputRelay/SubViewport")

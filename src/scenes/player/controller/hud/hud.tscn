@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://duuko6ulcqrbu"]
 
-[ext_resource type="Script" uid="uid://cifoc0wna1ud8" path="res://src/scenes/player/hud/hud.gd" id="1_j8ngh"]
-[ext_resource type="Shader" uid="uid://bhwfk1eskn2pr" path="res://src/scenes/player/hud/target_indicator.gdshader" id="2_p04jj"]
-[ext_resource type="Shader" uid="uid://cdpcgt1a73snk" path="res://src/scenes/player/hud/target_indicator_foreground.gdshader" id="3_we0nm"]
-[ext_resource type="Shader" uid="uid://bpihfhtw5nrv3" path="res://src/scenes/player/hud/hud_bg.gdshader" id="4_8a4cl"]
+[ext_resource type="Script" uid="uid://cifoc0wna1ud8" path="res://src/scenes/player/controller/hud/hud.gd" id="1_j8ngh"]
+[ext_resource type="Shader" uid="uid://b2dt152erxtjn" path="res://src/scenes/player/controller/hud/target_indicator.gdshader" id="2_p04jj"]
+[ext_resource type="Shader" uid="uid://cdpcgt1a73snk" path="res://src/scenes/player/controller/hud/target_indicator_foreground.gdshader" id="3_we0nm"]
+[ext_resource type="Shader" uid="uid://bcfphsle07kcs" path="res://src/scenes/player/controller/hud/hud_bg.gdshader" id="4_8a4cl"]
 [ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="5_0vvra"]
-[ext_resource type="Shader" uid="uid://dm8u1cy0kw1ge" path="res://src/scenes/player/hud/hud_bar.gdshader" id="6_we0nm"]
+[ext_resource type="Shader" uid="uid://dmpd4j6t8k653" path="res://src/scenes/player/controller/hud/hud_bar.gdshader" id="6_we0nm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8ngh"]
 render_priority = 0

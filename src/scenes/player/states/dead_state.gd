@@ -6,7 +6,7 @@ func enter(_msg: Dictionary = {}) -> void:
 
 func physics_update(_delta: float) -> StateResult:
 	
-	player.status.current_health = 0
+	player.status.resources.health = 0
 	
 	if (Input.is_action_pressed('interact')):
 		Events.scene_change_requested.emit(Locations.location_table.get(Locations.LocationEnum.HUB).path, {})

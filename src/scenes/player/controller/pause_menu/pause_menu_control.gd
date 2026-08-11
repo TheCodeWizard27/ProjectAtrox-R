@@ -26,12 +26,12 @@ func update(player_status: PlayerStatus) -> void:
 	var time_text = '%02d:%02d:%02d' % [hours, minutes, seconds]
 	play_time_label.text = time_text
 	
-	health_label.text = str(player_status.current_health) + ' / ' + str(player_status.attributes.max_health)
-	strength_label.text = str(player_status.attributes.strength)
-	dexterity_label.text = str(player_status.attributes.dexterity)
-	intelligence_label.text = str(player_status.attributes.intelligence)
-	defense_label.text = str(player_status.attributes.defense)
-	speed_label.text = str(player_status.attributes.speed)
+	health_label.text = str(player_status.resources.health) + ' / ' + str(player_status.attributes.max_health.value)
+	strength_label.text = str(player_status.attributes.strength.value)
+	dexterity_label.text = str(player_status.attributes.dexterity.value)
+	intelligence_label.text = str(player_status.attributes.intelligence.value)
+	defense_label.text = str(player_status.attributes.defense.value)
+	speed_label.text = str(player_status.attributes.speed.value)
 	
 	# TODO Figure out how to localize stuff and how to map class name from enum to translated combat class name
 	match player_status.combat_class:

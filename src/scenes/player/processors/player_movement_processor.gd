@@ -21,7 +21,7 @@ func process_movement(delta: float, speed_modifier: float = 1) -> void:
 	
 	# Calculate velocity with separated y component.
 	var y_velocity = body.velocity.y
-	body.velocity = move_dir * player.max_speed * speed_modifier
+	body.velocity = move_dir * player.max_speed * speed_modifier * player.status.attributes.speed.value
 	body.velocity.y = y_velocity - Globals.GRAVITY * delta
 	
 	if (speed_modifier <= 0):
