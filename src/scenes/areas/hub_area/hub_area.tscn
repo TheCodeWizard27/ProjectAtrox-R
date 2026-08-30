@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="7_lrcqk"]
 [ext_resource type="PackedScene" uid="uid://duhoijwkg61jh" path="res://src/scenes/npcs/quest_gal/quest_gal.tscn" id="11_b0mc8"]
 [ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/transport_pad.tscn" id="11_mklfy"]
+[ext_resource type="PackedScene" uid="uid://bvon4hcx4ryhf" path="res://src/assets/models/player/BaseMesh.blend" id="12_b0mc8"]
 
 [sub_resource type="Gradient" id="Gradient_faxgi"]
 offsets = PackedFloat32Array(0.8358209, 1)
@@ -537,3 +538,6 @@ metadata/_custom_type_script = "uid://cfqd8a4uen5ps"
 
 [node name="TeleportConductor" parent="." unique_id=684414697 instance=ExtResource("11_b0mc8")]
 transform = Transform3D(-0.8215444, 0, 0.5701445, 0, 1, 0, -0.5701445, 0, -0.8215444, 12.633771, 6.2643714, -30.134151)
+
+[node name="BaseMesh" parent="." unique_id=323910699 instance=ExtResource("12_b0mc8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78324413, 3.9960327, -24.11256)
