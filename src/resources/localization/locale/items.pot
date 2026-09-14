@@ -30,3 +30,6 @@ msgstr ""
 
 msgid "Item.ShockTrap.Name"
 msgstr ""
+
+msgid "Dialogue.TestDialogue"
+msgstr ""

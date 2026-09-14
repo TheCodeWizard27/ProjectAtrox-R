@@ -169,7 +169,7 @@ shape = ExtResource("2_456r5")
 [node name="CharacterModel" parent="Body" unique_id=292343521 instance=ExtResource("3_aupic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(292343521, 837344432) index="0" unique_id=1283497286]
+[node name="Skeleton3D" parent="Body/CharacterModel/metarig" parent_id_path=PackedInt32Array(292343521, 351588552) index="0" unique_id=1573956476]
 bones/0/position = Vector3(0, 1.0099, -0.05519999)
 bones/0/rotation = Quaternion(0.12581962, 0, 0, 0.99205315)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
@@ -204,7 +204,7 @@ bone_idx = 11
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Body/CharacterModel/metarig/Skeleton3D/LeftHandAttachment" unique_id=1250158813]
 remote_path = NodePath("../../../../../../ModelAttachments/LeftHand")
 
-[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=1167373612]
+[node name="Cube" parent="Body/CharacterModel" index="1" unique_id=1022294337]
 transform = Transform3D(-0.095012225, 0.010154655, 0.17796396, 0.030841494, 0.022137066, 0.56379, 0.0030763664, 0.091691345, -0.1558252, -0.506949, 0.8320542, 0.09700591)
 visible = false
 mesh = SubResource("ArrayMesh_xtykr")

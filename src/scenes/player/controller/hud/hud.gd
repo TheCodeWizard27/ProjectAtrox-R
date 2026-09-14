@@ -14,6 +14,10 @@ class_name Hud
 
 @onready var _health_bar: MeshInstance3D = $Health/Health
 
+@onready var _dialogue_box: Node3D = $DialogueBox
+@onready var _dialogue_box_text: MeshInstance3D = $DialogueBox/DialogueText
+@onready var _dialogue_box_text_shadow: MeshInstance3D = $DialogueBox/DialogueText/DialogueTextShadow
+
 func update(player: Player, delta: float) -> void:
 	if (not is_instance_valid(player.target_detector.interaction_target)):
 		player.target_detector.interaction_target = null
@@ -23,6 +27,7 @@ func update(player: Player, delta: float) -> void:
 	update_interaction(player.target_detector.interaction_target)
 	update_target_indicator(player.lock_on_target, delta)
 	update_target_stack(player.target_detector.targets.map(_get_target_name))
+	update_dialogue(player.status.current_dialogue)
 	
 	var current_health = player.status.resources.health as float
 	var max_health = player.status.attributes.max_health.value as float
@@ -32,9 +37,18 @@ func update(player: Player, delta: float) -> void:
 		)
 	
 	show_death_indicator(current_health <= 0)
-
+	
+	if(player.status.current_dialogue):
+		var dialogue_text = TextMesh.new()
+		dialogue_text.text = player.status.current_dialogue
+		_dialogue_box_text.mesh = dialogue_text
+		
 func show_death_indicator(p_show: bool = true) -> void:
 	_death_indicator.visible = p_show
+	
+
+func show_text_box(p_show: bool = true) -> void:
+	_dialogue_box.visible = p_show
 
 func update_interaction(interaction_target: InteractionTarget) -> void:
 	var has_interaction_target = interaction_target != null
@@ -45,6 +59,12 @@ func update_interaction(interaction_target: InteractionTarget) -> void:
 	
 	_interaction_label_text.mesh.set('text', interaction_target.interactable_text)
 	_interaction_label_shadow.mesh.set('text', interaction_target.interactable_text)
+
+func update_dialogue(dialogue: Dialogue) -> void:
+	if(dialogue):	
+		var current_line = dialogue.get_current_line()
+		_dialogue_box_text.mesh.set('text', current_line)
+		_dialogue_box_text_shadow.mesh.set('text', current_line)
 
 func update_target_stack(_list: Array) -> void:
 	_target_stack.visible = false # TODO properly implement until then hide for now.

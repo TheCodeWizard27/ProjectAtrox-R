@@ -5,6 +5,7 @@ var controller: PlayerController
 
 const IN_GAME: NodePath = ^'InGame'
 const IN_PAUSE_MENU: NodePath = ^'InPauseMenu'
+const IN_DIALOGUE: NodePath = ^'InDialogue'
 
 func init(p_player_controller: PlayerController) -> void:
 	controller = p_player_controller

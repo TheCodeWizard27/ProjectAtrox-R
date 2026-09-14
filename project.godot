@@ -193,7 +193,7 @@ camera_down={
 [internationalization]
 
 locale/translations=PackedStringArray("res://src/resources/localization/locale/en/items.mo", "res://src/resources/localization/locale/de/items.mo")
-locale/test="de"
+locale/test="en"
 
 [layer_names]
 

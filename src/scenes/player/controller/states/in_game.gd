@@ -1,12 +1,14 @@
 extends PlayerControllerState
 
 var _is_active: bool = false
+var dialogue_request: bool
 
 var target_processor: TargetLockOnProcessor
 
 func init(p_player_controller: PlayerController):
 	super.init(p_player_controller)
 	target_processor = TargetLockOnProcessor.new(p_player_controller)
+	Events.player.dialogue_started.connect(dialogue_listener)
 
 func enter(_msg: Dictionary = {}) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -22,8 +24,6 @@ func exit() -> void:
 	
 	if(controller.target_player):
 		controller.target_player.input_buffer.clear()
-	
-	controller.ui_container.add_child(controller.pause_menu)
 
 func update(delta: float) -> StateResult:
 	if (!controller.target_player):
@@ -31,6 +31,10 @@ func update(delta: float) -> StateResult:
 	
 	if (Input.is_action_just_pressed("menu")):
 		return StateResult.transition_to(PlayerControllerState.IN_PAUSE_MENU)
+	
+	if(dialogue_request):
+		dialogue_request = false
+		return StateResult.transition_to(PlayerControllerState.IN_DIALOGUE)
 	
 	target_processor.process_lock_on()
 	controller.hud.update(controller.target_player, delta)
@@ -52,3 +56,7 @@ func _input(event: InputEvent) -> void:
 	
 	if (controller.target_player):
 		controller.target_player.push_event(event)
+		
+func dialogue_listener(dialogue: Dialogue) -> void:
+	dialogue_request = true
+	controller.target_player.status.current_dialogue = dialogue

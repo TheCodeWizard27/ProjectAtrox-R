@@ -7,3 +7,5 @@ var attributes: PlayerAttributes = PlayerAttributes.new()
 var resources: PlayerResources = PlayerResources.new()
 
 var effects: Array[EffectReference]
+
+var current_dialogue: Dialogue
