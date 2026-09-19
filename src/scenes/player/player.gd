@@ -31,20 +31,23 @@ func configure_player(new_status: PlayerStatus) -> void:
 	effects.configure(self, status.effects)
 	
 	# TODO remove Simple mesh replacement test.
-	var skeleton: Skeleton3D = $Body/CharacterModel/metarig/Skeleton3D
-	var other_skin
-	if(status.combat_class == Enums.CombatClasses.WARRIOR):
-		other_skin = preload("res://src/assets/models/player/character_model.tscn").instantiate()	
-	if(status.combat_class == Enums.CombatClasses.MAGE):
-		other_skin = preload("res://src/assets/models/player/character_model_2.tscn").instantiate()
+	var skeleton: Skeleton3D = $Body/BaseMesh/metarig/Skeleton3D
+	#var other_skin = preload("res://src/assets/models/player/heads/head_1.tscn").instantiate()
+	#var other_skin = preload("res://src/assets/models/player/heads/head_2.tscn").instantiate()
+	var other_skin = preload("res://src/assets/models/player/heads/head_3.tscn").instantiate()
+	
+	#if(status.combat_class == Enums.CombatClasses.WARRIOR):
+		#other_skin = preload("res://src/assets/models/player/character_model.tscn").instantiate()	
+	#if(status.combat_class == Enums.CombatClasses.MAGE):
+		#other_skin = preload("res://src/assets/models/player/character_model_2.tscn").instantiate()
 	
 	var other_skin_skeleton = other_skin.get_node('metarig').get_node('Skeleton3D')
 	
 	var mesh_names: Array[String] = [
 		'Head',
-		'Arms',
-		'LowerBody',
-		'Legs'
+		#'Arms',
+		#'LowerBody',
+		#'Legs'
 	]
 	
 	for mesh_path in mesh_names:
