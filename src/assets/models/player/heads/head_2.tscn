@@ -16,8 +16,8 @@ texture_filter = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi8kt"]
 resource_name = "M_Hair"
 cull_mode = 2
+albedo_color = Color(0.65752107, 0.5718193, 0.37482333, 1)
 albedo_texture = ExtResource("3_twbsa")
-roughness = 0.5
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 

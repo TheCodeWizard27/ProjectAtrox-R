@@ -19,6 +19,7 @@ albedo_texture = ExtResource("3_0sxs5")
 emission = Color(1, 1, 1, 1)
 emission_operator = 1
 emission_texture = ExtResource("3_0sxs5")
+texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_h2hf4"]
 resource_name = "head_3_Cube_002"
