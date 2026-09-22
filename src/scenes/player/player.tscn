@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://cbekqnhp16yl5"]
+[gd_scene format=4 uid="uid://cbekqnhp16yl5"]
 
 [ext_resource type="Script" uid="uid://tu4o4f2320px" path="res://src/scenes/player/player.gd" id="1_far3w"]
 [ext_resource type="Shape3D" uid="uid://cwteu348p18vc" path="res://src/scenes/player/resources/player_body_collision.tres" id="2_456r5"]
+[ext_resource type="Texture2D" uid="uid://c8rxqaaw0dbj7" path="res://src/assets/models/player/textures/T_Face.png" id="4_u53oj"]
 [ext_resource type="Shape3D" uid="uid://b1nmqy72l58gm" path="res://src/scenes/player/resources/player_hitbox_collision.tres" id="4_xnolk"]
 [ext_resource type="PackedScene" uid="uid://dytnbxafjovke" path="res://src/scenes/player/target_detector/target_detector.tscn" id="5_y2jb0"]
 [ext_resource type="Animation" uid="uid://bi28u1nt7dvs8" path="res://src/scenes/player/classes/warrior/animations/primary_attack_step_1_reset.res" id="6_gl5ki"]
@@ -36,6 +37,33 @@
 [ext_resource type="Script" uid="uid://c0fj8e7ru3n0o" path="res://src/scenes/player/classes/mage/states/mage_secondary_action_state.gd" id="28_ptg44"]
 [ext_resource type="Script" uid="uid://bfxi1fvwevr3v" path="res://src/scenes/player/player_model_animator.gd" id="29_ot04x"]
 [ext_resource type="Script" uid="uid://b1m36kajufyx1" path="res://src/scenes/player/classes/mage/states/mage_special_action_state.gd" id="29_u53oj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm4jd"]
+resource_name = "M_Face"
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("4_u53oj")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_usmrg"]
+resource_name = "BaseMesh_Cube_003"
+_surfaces = [{
+"aabb": AABB(0.038057778, 1.5847642, -0.071894825, 0.06533845, 0.23619986, 0.14595032),
+"attribute_data": PackedByteArray("AABEPwAALD8AAAA/AAAcPwAAUD8AAMg+AAAQPwAAMD8AAFA/AADIPgAAAD8AAAAAAABAPwAAgD0AAAA/AADIPgAARD8AACw/AAAsPwAAbD8AABA/AAAwPwAAcD4AACw/AAAAPwAAHD8AAOA+AAAwPwAAQD4AAMg+AABAPgAAyD4AAAA/AAAAAAAAAD8AAMg+AACAPgAAgD0AAHA+AAAsPwAA4D4AADA/AACgPgAAbD8AAAA/AAAcPwAAAD8AAMg+AABQPwAAyD4AAEA+AADIPgAAAD8AAMg+AAAAPwAAHD8AACw/AABsPwAAAD8AAEA/AAAQPwAAMD8AAAA/AACAPwAA4D4AADA/AAAAPwAAgD8AAKA+AABsPwAAAD8AAEA/"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0.038057778, 1.5847642, -0.071894825, 0.06533845, 0.23619986, 0.14595032), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0, 0, 0, -1, -1, -1), AABB(0.038057778, 1.5847642, -0.071894825, 0.06533845, 0.23619986, 0.14595032)],
+"format": 34359745559,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAMAA0ACwAOAAwADwAQABEADwASABAAEwAUABUAFgAXABgAGQAaABsAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEA"),
+"material": SubResource("StandardMaterial3D_dm4jd"),
+"name": "M_Face",
+"primitive": 3,
+"skin_data": PackedByteArray("HAAXAAAAAACB0X0uAAAAABwAFwAAAAAA19gnJwAAAAAcABcAAAAAAOvpExYAAAAAHAAXAAAAAAAU0+osAAAAABwAFwAAAAAA6+kTFgAAAAAcABcAAAAAAH73gAgAAAAAHAAXAAAAAACG8ngNAAAAABwAFwAAAAAAEevtFAAAAAAcABcAAAAAAIHRfS4AAAAAHAAXAAAAAAAfj99wAAAAABwAFwAAAAAAFNPqLAAAAAAcABcAAAAAAP3QAS8AAAAAHAAXAAAAAADX2CcnAAAAABwAFwAAAAAAKtPULAAAAAAcABcAAAAAAKfpVxYAAAAAHAAXAAAAAACn6VcWAAAAABwAFwAAAAAAfveACAAAAAAcABcAAAAAABHr7RQAAAAAHAAXAAAAAABg8p4NAAAAABwAFwAAAAAA/dABLwAAAAAcABcAAAAAACrT1CwAAAAAHAAXAAAAAAB7jYNyAAAAABwAFwAAAAAA19gnJwAAAAAcABcAAAAAABHr7RQAAAAAHAAXAAAAAADr6RMWAAAAABwAFwAAAAAAp+lXFgAAAAAcABcAAAAAABHr7RQAAAAAHAAXAAAAAADX2CcnAAAAABwAFwAAAAAAH4/fcAAAAAAcABcAAAAAAHfMhzMAAAAAHAAXAAAAAAAU0+osAAAAABwAFwAAAAAAwoo8dQAAAAAcABcAAAAAACrT1CwAAAAAHAAXAAAAAADCijx1AAAAABwAFwAAAAAAe42DcgAAAAAcABcAAAAAAHfMhzMAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("lc+HPcp+1D+WlX+9ivXMPTxp1j/PmY06z8OSPR4h3T+YPZO9+Z29PT5l1D+Rr2y8z8OSPR4h3T+YPZO9z8OSPVoV6T/PmY06ccVgPUnv5j8ElWu9ZsHTPR4h3T/PmY06lc+HPcp+1D+WlX+9AX0oPZ//zD9TRSq9+Z29PT5l1D+Rr2y8lc+HPcp+1D+ZN4Q9ivXMPTxp1j/PmY06+Z29PT5l1D8CC4g8z8OSPR4h3T9nqpc9z8OSPR4h3T9nqpc9z8OSPVoV6T/PmY06ZsHTPR4h3T/PmY06ccVgPUnv5j+gbnQ9lc+HPcp+1D+ZN4Q9+Z29PT5l1D8CC4g8eeIbPZ//zD/vHjM9ivXMPTxp1j/PmY06ZsHTPR4h3T/PmY06z8OSPR4h3T+YPZO9z8OSPR4h3T9nqpc9ZsHTPR4h3T/PmY06ivXMPTxp1j/PmY06AX0oPZ//zD9TRSq9ztnNPUo40j/PmY06+Z29PT5l1D+Rr2y8h0mDPY7Zyj/PmY06+Z29PT5l1D8CC4g8h0mDPY7Zyj/PmY06eeIbPZ//zD/vHjM9ztnNPUo40j/PmY06s/brTof/X6qz9utOav71qbP2607p/3nVs/brTvn7DalP6P61bv/b0k/o/rWR/JKsT+j+tT3++axP6P611v4erTTbiTo5+5WmNNuJOjn7laY024k6OfuVpurOs3bA1DrA6s6zduvTycDqzrN2G9ICwurOs3YL1fS/AMqvl0Xatr8Ayq+XJdm1wQDKr5c92pPAAMqvl/TZ4MAiuRNZ+cxgwiK5E1n5zGDCIrkTWfnMYMKX+nBV//9k05f6cFX//2TTl/pwVf//ZNNw1Zh6M9n/v3DVmHoz2f+/cNWYejPZ/79T4vc0+P92olPi9zTF/qrdU+L3NNn9xt1T4vc0Sv8tommzi2I2wre+abOLYgbCdcBps4titcIKwGmzi2J2wke/")
+}]
+blend_shape_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e35kq"]
 radius = 1.2013305
@@ -137,22 +165,22 @@ shape = ExtResource("2_456r5")
 [node name="BaseMesh" parent="Body" unique_id=276777726 instance=ExtResource("17_ptg44")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.99969304, 0)
 
-[node name="Skeleton3D" parent="Body/BaseMesh/metarig" parent_id_path=PackedInt32Array(276777726, 1359537885) index="0" unique_id=461966125]
+[node name="Skeleton3D" parent="Body/BaseMesh/metarig" parent_id_path=PackedInt32Array(276777726, 1143062797) index="0" unique_id=694088653]
 bones/0/position = Vector3(0, 1.1161939, -0.055200003)
 bones/0/rotation = Quaternion(0.1975385, 1.1686028e-07, 2.3548424e-08, 0.9802951)
 bones/1/rotation = Quaternion(0.22220828, 0.7507654, 0.45850676, -0.42041215)
 bones/3/rotation = Quaternion(-0.13978064, -1.1803898e-07, -1.6663149e-08, 0.9901826)
-bones/6/position = Vector3(0.1264326, -0.012645775, -0.05405097)
-bones/6/scale = Vector3(1.0682814, 1.0682814, 1.0682813)
-bones/7/position = Vector3(-0.1264326, -0.012645692, -0.05405093)
-bones/7/scale = Vector3(1.0682814, 1.0682814, 1.0682813)
+bones/6/position = Vector3(0.11914961, -0.012645775, -0.054050967)
+bones/6/scale = Vector3(1.0044498, 1.00445, 1.0044497)
+bones/7/position = Vector3(-0.119149595, -0.012645692, -0.05405093)
+bones/7/scale = Vector3(1.0044498, 1.00445, 1.0044497)
 bones/9/position = Vector3(-0.04667005, 0.17428261, -0.0057982565)
-bones/9/rotation = Quaternion(-0.3508855, 0.5090032, -0.41200897, 0.6693607)
+bones/9/rotation = Quaternion(-0.35633558, 0.5039095, -0.4192017, 0.66586053)
 bones/10/rotation = Quaternion(0.002549366, -0.15028499, -0.035658006, 0.9879962)
 bones/12/rotation = Quaternion(0.011669753, 0.0018655605, -0.07525473, 0.99709433)
 bones/14/rotation = Quaternion(0.011669753, 0.0018655605, -0.07525473, 0.99709433)
 bones/16/position = Vector3(0.046670035, 0.1742826, -0.005798126)
-bones/16/rotation = Quaternion(-0.3865672, -0.5419178, 0.34635547, 0.6610059)
+bones/16/rotation = Quaternion(-0.4004406, -0.52080137, 0.30577743, 0.6891397)
 bones/17/rotation = Quaternion(0.000784719, 0.14982155, 0.07677608, 0.98572737)
 bones/19/rotation = Quaternion(-0.23168898, -0.060117465, -0.07166991, 0.96828175)
 bones/21/rotation = Quaternion(-0.23168898, -0.060117465, -0.07166991, 0.96828175)
@@ -169,8 +197,11 @@ bones/35/rotation = Quaternion(0.05895372, 0.0014635099, 0.023355931, 0.9979864)
 bones/36/rotation = Quaternion(-0.59817654, -1.5306811e-06, 1.2851821e-06, 0.80136436)
 bones/38/rotation = Quaternion(-7.10682e-08, 0.99381065, -0.111087166, -3.392231e-06)
 
+[node name="Face" parent="Body/BaseMesh/metarig/Skeleton3D" index="0" unique_id=142203759]
+mesh = SubResource("ArrayMesh_usmrg")
+
 [node name="RightHandAttachment" type="BoneAttachment3D" parent="Body/BaseMesh/metarig/Skeleton3D" index="4" unique_id=537125311]
-transform = Transform3D(-0.96073776, -0.18625768, -0.2056464, 0.2600558, -0.862849, -0.43342966, -0.09671225, -0.469892, 0.87740964, -0.3395796, 0.99494255, -0.070757076)
+transform = Transform3D(-0.9333265, -0.17685486, -0.31244767, 0.30172247, -0.85803694, -0.41561386, -0.19458841, -0.48217615, 0.85419023, -0.36547002, 1.0019395, -0.082399935)
 bone_name = "weapon_grip.R"
 bone_idx = 21
 
@@ -178,7 +209,7 @@ bone_idx = 21
 remote_path = NodePath("../../../../../../ModelAttachments/RightHand")
 
 [node name="LeftHandAttachment" type="BoneAttachment3D" parent="Body/BaseMesh/metarig/Skeleton3D" index="5" unique_id=567642001]
-transform = Transform3D(-0.98336154, 0.010866973, 0.18133174, 0.023040622, -0.98268527, 0.18384108, 0.18018995, 0.18496016, 0.9660852, 0.31479055, 0.99330866, 0.016408298)
+transform = Transform3D(-0.98262227, -0.010630768, 0.18530971, 0.0445451, -0.98268783, 0.17983043, 0.18018994, 0.18496, 0.96608514, 0.30145255, 0.99084044, 0.016408183)
 bone_name = "weapon_grip.L"
 bone_idx = 14
 
@@ -439,13 +470,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9343593, 0)
 [node name="ModelAttachments" type="Node3D" parent="." unique_id=256263]
 
 [node name="RightHand" type="Node3D" parent="ModelAttachments" unique_id=815230383]
-transform = Transform3D(-0.8701505, -0.16869557, -0.18625619, 0.23553534, -0.78149164, -0.3925619, -0.08759336, -0.42558622, 0.79467934, -0.30756092, 1.0193439, -0.06408546)
+transform = Transform3D(-0.84532386, -0.16017933, -0.28298724, 0.2732733, -0.7771333, -0.37642595, -0.17624085, -0.43671212, 0.7736493, -0.33101013, 1.025681, -0.07463052)
 
 [node name="WeaponModel" parent="ModelAttachments/RightHand" unique_id=707384600 instance=ExtResource("16_28ueq")]
 transform = Transform3D(0.97286266, 0.23083752, 0.015890632, 0.008422218, 0.033304483, -0.99940956, -0.23123026, 0.97242236, 0.030456662, -0.009926379, 0.07222611, -0.07891303)
 
 [node name="LeftHand" type="Node3D" parent="ModelAttachments" unique_id=1812734447]
-transform = Transform3D(-0.89064115, 0.009842327, 0.16423406, 0.02086814, -0.8900286, 0.16650684, 0.16319993, 0.1675204, 0.87499374, 0.2851092, 1.017864, 0.014861184)
+transform = Transform3D(-0.88997155, -0.009628409, 0.16783695, 0.040344976, -0.8900309, 0.16287436, 0.16319992, 0.16752025, 0.8749937, 0.27302882, 1.0156286, 0.01486108)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1970312196]
 script = ExtResource("17_xm3y6")
