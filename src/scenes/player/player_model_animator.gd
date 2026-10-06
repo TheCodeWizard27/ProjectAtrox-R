@@ -27,6 +27,7 @@ func reset_falling_animation() -> void:
 
 func set_running(speed: float) -> void:
 	set(_running_blend_position, speed)
+	
 
 func play_interact() -> void:
 	set(_interact_request, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

@@ -9,6 +9,8 @@ animation = &"Falling"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ap8y"]
 animation = &"Interacting"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m7x2w"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0bsxv"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0bsxv"]
@@ -87,8 +89,8 @@ blend_point_1/name = &"1"
 
 [resource]
 nodes/output/position = Vector2(1700, 560)
-nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
-nodes/running/position = Vector2(20, 80)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_m7x2w")
+nodes/TimeScale/position = Vector2(40, 80)
 nodes/interact_one_shot/node = SubResource("AnimationNodeOneShot_6ap8y")
 nodes/interact_one_shot/position = Vector2(260, 180)
 nodes/FallingAnimation/node = SubResource("AnimationNodeAnimation_6gf5d")
@@ -107,4 +109,6 @@ nodes/DyingAnimation/node = SubResource("AnimationNodeAnimation_m7x2w")
 nodes/DyingAnimation/position = Vector2(980, 880)
 nodes/dying_time_seek/node = SubResource("AnimationNodeTimeSeek_m7x2w")
 nodes/dying_time_seek/position = Vector2(1160, 780)
-node_connections = [&"output", 0, &"dying", &"interact_one_shot", 0, &"running", &"interact_one_shot", 1, &"InteractAnimation", &"falling", 0, &"class_action_one_shot", &"falling", 1, &"FallingAnimation", &"class_action_one_shot", 0, &"interact_one_shot", &"class_action_one_shot", 1, &"class_action_space", &"dying", 0, &"falling", &"dying", 1, &"dying_time_seek", &"dying_time_seek", 0, &"DyingAnimation"]
+nodes/running/node = SubResource("AnimationNodeBlendSpace1D_7vxwc")
+nodes/running/position = Vector2(-180, 60)
+node_connections = [&"output", 0, &"dying", &"TimeScale", 0, &"running", &"interact_one_shot", 0, &"TimeScale", &"interact_one_shot", 1, &"InteractAnimation", &"falling", 0, &"class_action_one_shot", &"falling", 1, &"FallingAnimation", &"class_action_one_shot", 0, &"interact_one_shot", &"class_action_one_shot", 1, &"class_action_space", &"dying", 0, &"falling", &"dying", 1, &"dying_time_seek", &"dying_time_seek", 0, &"DyingAnimation"]

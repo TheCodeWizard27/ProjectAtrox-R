@@ -43,7 +43,7 @@ var attack_steps: Array[PrimaryAttackData] = [
 ]
 
 var input_buffer_delay: float = 0.2
-var movement_speed_modifier: float = 0.2
+var movement_speed_modifier: float = 0.0
 var forward_momentum: float = 1
 
 var current_step_index: int = 0
