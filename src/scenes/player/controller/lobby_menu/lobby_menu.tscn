@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cyli2eokfh6t7"]
+
+[ext_resource type="Script" uid="uid://bf6gt81n1yqty" path="res://src/scenes/player/controller/lobby_menu/lobby_menu.gd" id="1_6rnrq"]
+[ext_resource type="Script" uid="uid://b0pivtobnnj3c" path="res://src/core/utils/viewport_input_relay.gd" id="2_jvuki"]
+[ext_resource type="Script" uid="uid://tgxlk31om13u" path="res://src/scenes/player/controller/lobby_menu/lobby_menu_controller.gd" id="3_jvuki"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_syt38"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csewt"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_syt38")
+
+[sub_resource type="QuadMesh" id="QuadMesh_iill2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_csewt")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dfipr"]
+
+[node name="LobbyMenu" type="Node3D" unique_id=627455425]
+script = ExtResource("1_6rnrq")
+
+[node name="InputRelay" type="Node3D" parent="." unique_id=888099369]
+script = ExtResource("2_jvuki")
+
+[node name="SubViewport" type="SubViewport" parent="InputRelay" unique_id=116499642]
+
+[node name="LobbyMenuControl" type="Control" parent="InputRelay/SubViewport" unique_id=714454040]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_jvuki")
+metadata/_custom_type_script = "uid://tgxlk31om13u"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InputRelay" unique_id=1697641232]
+mesh = SubResource("QuadMesh_iill2")
+
+[node name="Area3D" type="Area3D" parent="InputRelay/MeshInstance3D" unique_id=2010502981]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputRelay/MeshInstance3D/Area3D" unique_id=106364555]
+shape = SubResource("BoxShape3D_dfipr")
