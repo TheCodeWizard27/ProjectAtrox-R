@@ -2,40 +2,49 @@
 
 [ext_resource type="Script" uid="uid://bf6gt81n1yqty" path="res://src/scenes/player/controller/lobby_menu/lobby_menu.gd" id="1_6rnrq"]
 [ext_resource type="Script" uid="uid://b0pivtobnnj3c" path="res://src/core/utils/viewport_input_relay.gd" id="2_jvuki"]
-[ext_resource type="Script" uid="uid://tgxlk31om13u" path="res://src/scenes/player/controller/lobby_menu/lobby_menu_controller.gd" id="3_jvuki"]
+[ext_resource type="PackedScene" uid="uid://ch7ckkivtftjk" path="res://src/scenes/player/controller/lobby_menu/lobby_menu_controller.tscn" id="3_jvuki"]
+[ext_resource type="PackedScene" uid="uid://ombmt4yylu4c" path="res://src/scenes/player/controller/lobby_menu/create_lobby_menu_controller.tscn" id="4_iill2"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_syt38"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iill2"]
+viewport_path = NodePath("InputRelay/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csewt"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_syt38")
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_iill2")
+texture_filter = 0
 
-[sub_resource type="QuadMesh" id="QuadMesh_iill2"]
+[sub_resource type="QuadMesh" id="QuadMesh_2bx3b"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_csewt")
+size = Vector2(1.152, 0.648)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dfipr"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_syt38"]
+size = Vector3(1.152, 0.648, 0.01)
 
 [node name="LobbyMenu" type="Node3D" unique_id=627455425]
 script = ExtResource("1_6rnrq")
 
-[node name="InputRelay" type="Node3D" parent="." unique_id=888099369]
+[node name="InputRelay" type="Node3D" parent="." unique_id=888099369 node_paths=PackedStringArray("sub_viewport", "display_mesh", "input_area")]
 script = ExtResource("2_jvuki")
+sub_viewport = NodePath("SubViewport")
+display_mesh = NodePath("MeshInstance3D")
+input_area = NodePath("MeshInstance3D/Area3D")
 
 [node name="SubViewport" type="SubViewport" parent="InputRelay" unique_id=116499642]
+transparent_bg = true
+size = Vector2i(1152, 648)
 
-[node name="LobbyMenuControl" type="Control" parent="InputRelay/SubViewport" unique_id=714454040]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_jvuki")
-metadata/_custom_type_script = "uid://tgxlk31om13u"
+[node name="CreateLobbyMenuController" parent="InputRelay/SubViewport" unique_id=836866758 instance=ExtResource("4_iill2")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="InputRelay" unique_id=1697641232]
-mesh = SubResource("QuadMesh_iill2")
+[node name="LobbyMenuController" parent="InputRelay/SubViewport" unique_id=357762632 instance=ExtResource("3_jvuki")]
+visible = false
 
-[node name="Area3D" type="Area3D" parent="InputRelay/MeshInstance3D" unique_id=2010502981]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InputRelay" unique_id=632108678]
+mesh = SubResource("QuadMesh_2bx3b")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InputRelay/MeshInstance3D/Area3D" unique_id=106364555]
-shape = SubResource("BoxShape3D_dfipr")
+[node name="Area3D" type="Area3D" parent="InputRelay/MeshInstance3D" unique_id=2083457512]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputRelay/MeshInstance3D/Area3D" unique_id=1030633699]
+shape = SubResource("BoxShape3D_syt38")

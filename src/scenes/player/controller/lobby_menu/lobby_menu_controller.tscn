@@ -14,3 +14,67 @@ script = ExtResource("1_mu64u")
 
 [node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("1_u620n")]
 layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1865383552]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TabContainer" type="TabContainer" parent="MenuBackground/MarginContainer" unique_id=983170062]
+layout_mode = 2
+current_tab = 0
+
+[node name="Status" type="Control" parent="MenuBackground/MarginContainer/TabContainer" unique_id=1926961184]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/TabContainer/Status" unique_id=377740814]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer" unique_id=1415835329]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=391564826]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectLobbyButton" type="Button" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1771343225]
+layout_mode = 2
+text = "Select Lobby"
+
+[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=23470354]
+layout_mode = 2
+text = "Create Lobby"
+
+[node name="PlayOfflineButton" type="Button" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1306951602]
+layout_mode = 2
+text = "Play Offline"
+
+[node name="HubConfigurationButton" type="Button" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=96723075]
+layout_mode = 2
+text = "Hub Configuration"
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=1438859329]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Placeholder2" type="Control" parent="MenuBackground/MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer" unique_id=2112907848]
+layout_mode = 2
+size_flags_horizontal = 3
