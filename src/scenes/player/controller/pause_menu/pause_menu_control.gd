@@ -86,3 +86,6 @@ func load_gear(player_status: PlayerStatus) -> void:
 func select_quest(quest_name: String) -> void:
 	var quest = Quests.quest_table.get(Quests.QuestEnum.get(quest_name))
 	Events.player.quest_accepted.emit(quest)
+
+func leave_lobby() -> void:
+	Events.scene_change_requested.emit(Locations.location_table.get(Locations.LocationEnum.LOBBY_MENU).path, {})

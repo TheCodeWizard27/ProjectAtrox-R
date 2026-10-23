@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://ch7ckkivtftjk"]
+
+[ext_resource type="Script" uid="uid://tgxlk31om13u" path="res://src/scenes/player/controller/lobby_menu/lobby_main/lobby_menu_controller.gd" id="1_mu64u"]
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="1_u620n"]
+
+[node name="LobbyMenuController" type="Control" unique_id=357762632]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mu64u")
+
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("1_u620n")]
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1865383552]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=1835301897]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1953617901]
+layout_mode = 2
+
+[node name="Online Options" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer" unique_id=502287358]
+layout_mode = 2
+text = "Select Lobby"
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=377740814]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1415835329]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=391564826]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SelectLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1771343225]
+layout_mode = 2
+text = "Select Lobby"
+
+[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=23470354]
+layout_mode = 2
+text = "Create Lobby"
+
+[node name="PlayOfflineButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1306951602]
+layout_mode = 2
+text = "Play Offline"
+
+[node name="HubConfigurationButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=96723075]
+layout_mode = 2
+text = "Hub Configuration"
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1438859329]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Placeholder2" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=2112907848]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SelectLobbyButton" to="." method="navigation_action" binds= [1]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/CreateLobbyButton" to="." method="navigation_action" binds= [2]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PlayOfflineButton" to="." method="navigation_action" binds= [3]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HubConfigurationButton" to="." method="navigation_action" binds= [4]]

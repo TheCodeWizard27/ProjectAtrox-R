@@ -317,9 +317,10 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=120007365]
 layout_mode = 2
-current_tab = 0
+current_tab = 3
 
 [node name="Status" type="Control" parent="MarginContainer/TabContainer" unique_id=106865999]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -808,5 +809,28 @@ text = "Subway surf"
 layout_mode = 2
 text = "Test Level"
 
+[node name="LobbySettings" type="Control" parent="MarginContainer/TabContainer" unique_id=1176893834]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="LobbySettingsMarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/LobbySettings" unique_id=821481015]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 559.0
+offset_right = 1124.0
+offset_bottom = 603.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/LobbySettings/LobbySettingsMarginContainer" unique_id=1988786985]
+layout_mode = 2
+
+[node name="LeaveLobbyButton" type="Button" parent="MarginContainer/TabContainer/LobbySettings/LobbySettingsMarginContainer/VBoxContainer" unique_id=1938137726]
+layout_mode = 2
+text = "Leave Lobby"
+
 [connection signal="pressed" from="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer/SubwayQuestButton" to="." method="select_quest" binds= ["SUBWAY_SURF"]]
 [connection signal="pressed" from="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer/TestQuestButton" to="." method="select_quest" binds= ["TESTORIAL"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/LobbySettings/LobbySettingsMarginContainer/VBoxContainer/LeaveLobbyButton" to="." method="leave_lobby"]
