@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgrb1iflsi3xa" path="res://src/scenes/player/controller/lobby_menu/configure_hub/configure_hub_controller.gd" id="1_4evy1"]
 [ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_enanu"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_ixdqm"]
 
 [node name="ConfigureHubController" type="Control" unique_id=572103495]
 layout_mode = 3
@@ -41,35 +42,108 @@ text = "Lobby Menu"
 layout_mode = 2
 text = "Configure Hub"
 
-[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1849253484]
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1194263751]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1107581796]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=973988161]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=955896389]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=2066197498]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1389718314]
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=535691032]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1085203160]
+layout_mode = 2
+texture = ExtResource("3_ixdqm")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=717211631]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HostConfigContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer" unique_id=2045304707]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HostAdressContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer" unique_id=1614958883]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer/HostAdressContainer" unique_id=991749793]
+layout_mode = 2
+text = "Host Adress:"
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer/HostAdressContainer" unique_id=272710355]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer/HostAdressContainer" unique_id=1638361622]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 3
+max_length = 30
+expand_to_text_length = true
+
+[node name="PrivateContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer" unique_id=1464013313]
+layout_mode = 2
+
+[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer/PrivateContainer" unique_id=366286201]
+layout_mode = 2
+text = "Reset"
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/HostConfigContainer/PrivateContainer" unique_id=1166917950]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1643787504]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NavigationBottomButtons" type="MarginContainer" parent="MenuBackground" unique_id=431241303]
+layout_mode = 0
+offset_left = 898.0
+offset_top = 594.0
+offset_right = 1143.0
+offset_bottom = 644.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/NavigationBottomButtons" unique_id=1959438195]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MenuBackground/NavigationBottomButtons/VBoxContainer" unique_id=1522732576]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreateLobbyButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=1302949171]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="HubConfigurationButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=246277140]
 layout_mode = 2
 text = "Create Lobby"
-
-[node name="HubConfigurationButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1705408272]
-layout_mode = 2
-text = "Hub Configuration"
-
-[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1151086692]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Placeholder2" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=363225661]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer/LobbyMenu" to="." method="navigation_action" binds= [0]]

@@ -15,14 +15,17 @@ var menu_path_dictonary = {
 
 var transition_state_result: StateResult = StateResult.continue_result
 
-@export var menu_control: LobbyControl
+var _menu_control: LobbyControl
+
+func init_for_control(menu_control: LobbyControl):
+	_menu_control = menu_control
 
 func enter(_msg: Dictionary = {}) -> void:
-	menu_control.visible = true
+	_menu_control.visible = true
 	
 func exit() -> void:
 	transition_state_result = StateResult.continue_result
-	menu_control.visible = false
+	_menu_control.visible = false
 
 func update(_delta: float) -> StateResult:
 	if (transition_state_result != StateResult.continue_result):
@@ -31,4 +34,3 @@ func update(_delta: float) -> StateResult:
 
 func set_transition_result(menuEnum: Enums.LobbyMenuScreens) -> void:
 	transition_state_result = StateResult.transition_to(menu_path_dictonary.get(menuEnum))
-	
