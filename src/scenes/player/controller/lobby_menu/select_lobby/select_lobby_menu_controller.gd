@@ -1,0 +1,2 @@
+extends LobbyControl
+class_name SelectLobbyMenuControl

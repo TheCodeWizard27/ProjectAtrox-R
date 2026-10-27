@@ -1,59 +1,9 @@
 [gd_scene format=4 uid="uid://b1184223d6ugw"]
 
 [ext_resource type="Script" uid="uid://dxyk3p5ucbt6u" path="res://src/scenes/player/controller/pause_menu/pause_menu_control.gd" id="1_ibrib"]
-[ext_resource type="Shader" uid="uid://c43a3ela25agr" path="res://src/scenes/player/controller/pause_menu/shaders/dot_matrix.gdshader" id="2_exqj0"]
-[ext_resource type="Shader" uid="uid://cqnfntt6hpgn" path="res://src/scenes/player/controller/pause_menu/shaders/magic_effect.gdshader" id="3_leqty"]
-[ext_resource type="Shader" uid="uid://d140lxmfrjvsr" path="res://src/scenes/player/controller/pause_menu/shaders/crt.gdshader" id="4_c28x6"]
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_780yt"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="5_b5i3v"]
 [ext_resource type="Texture2D" uid="uid://dskic3wjpwjt6" path="res://src/assets/models/player/textures/CharacterModel_Main.png" id="6_b5i3v"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wl2xp"]
-resource_local_to_scene = true
-shader = ExtResource("4_c28x6")
-shader_parameter/shake = 0.010000000475
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exqj0"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.88235295, 0.88235295, 0.88235295, 0.8039216)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="Gradient" id="Gradient_leqty"]
-offsets = PackedFloat32Array(0, 0.23041475, 0.48847926, 0.5483871)
-colors = PackedColorArray(1.347661e-06, 0.9691631, 0.77035373, 1, 0.99999994, 0.6585414, 0.42596477, 1, 0.9999998, 0.2614437, 0.80279785, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_c28x6"]
-frequency = 0.0026
-fractal_octaves = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wl2xp"]
-noise = SubResource("FastNoiseLite_c28x6")
-color_ramp = SubResource("Gradient_leqty")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c28x6"]
-shader = ExtResource("3_leqty")
-shader_parameter/noise = SubResource("NoiseTexture2D_wl2xp")
-
-[sub_resource type="Gradient" id="Gradient_exqj0"]
-offsets = PackedFloat32Array(0.9308756, 1)
-colors = PackedColorArray(0.78352344, 0.7835234, 0.7835234, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_leqty"]
-gradient = SubResource("Gradient_exqj0")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_leqty"]
-shader = ExtResource("2_exqj0")
-shader_parameter/tileSize = 32.0
-shader_parameter/dot_size = 0.1
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/gradient = SubResource("GradientTexture1D_leqty")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wl2xp"]
 viewport_path = NodePath("MarginContainer/TabContainer/Status/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/TextureRect/SubViewport")
@@ -350,41 +300,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ibrib")
 
-[node name="Scanlines" type="Panel" parent="." unique_id=719991573]
-material = SubResource("ShaderMaterial_wl2xp")
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("2_780yt")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Background" type="Panel" parent="." unique_id=1474912789]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_exqj0")
-
-[node name="MagicEffect" type="Panel" parent="." unique_id=2061306360]
-material = SubResource("ShaderMaterial_c28x6")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DotMatrix" type="Panel" parent="." unique_id=1141752885]
-material = SubResource("ShaderMaterial_leqty")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1986988450]
 layout_mode = 1
@@ -400,9 +317,10 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=120007365]
 layout_mode = 2
-current_tab = 0
+current_tab = 3
 
 [node name="Status" type="Control" parent="MarginContainer/TabContainer" unique_id=106865999]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -891,5 +809,28 @@ text = "Subway surf"
 layout_mode = 2
 text = "Test Level"
 
+[node name="LobbySettings" type="Control" parent="MarginContainer/TabContainer" unique_id=1176893834]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="LobbySettingsMarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/LobbySettings" unique_id=821481015]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 559.0
+offset_right = 1124.0
+offset_bottom = 603.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/LobbySettings/LobbySettingsMarginContainer" unique_id=1988786985]
+layout_mode = 2
+
+[node name="LeaveLobbyButton" type="Button" parent="MarginContainer/TabContainer/LobbySettings/LobbySettingsMarginContainer/VBoxContainer" unique_id=1938137726]
+layout_mode = 2
+text = "Leave Lobby"
+
 [connection signal="pressed" from="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer/SubwayQuestButton" to="." method="select_quest" binds= ["SUBWAY_SURF"]]
 [connection signal="pressed" from="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer/TestQuestButton" to="." method="select_quest" binds= ["TESTORIAL"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/LobbySettings/LobbySettingsMarginContainer/VBoxContainer/LeaveLobbyButton" to="." method="leave_lobby"]
