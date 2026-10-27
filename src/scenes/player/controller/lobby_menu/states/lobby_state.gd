@@ -34,3 +34,23 @@ func update(_delta: float) -> StateResult:
 
 func set_transition_result(menuEnum: Enums.LobbyMenuScreens) -> void:
 	transition_state_result = StateResult.transition_to(menu_path_dictonary.get(menuEnum))
+
+func get_address() -> AddressInfo:
+	var configuration = NetworkConfiguration.get_current()
+	var stun_request = StunRequest.new(configuration.stun_host_ip, configuration.stun_port)
+	add_child(stun_request)
+	
+	var result = await stun_request.request_for_port(configuration.multiplayer_port)
+	if (result != OK):
+		push_error(result)
+		stun_request.queue_free()
+		return null
+	
+	var response = await stun_request.resolved
+	
+	stun_request.queue_free()
+	var public_ip = response[StunRequest.RESULT_ADDRESS]
+	var public_port = response[StunRequest.RESULT_PORT]
+	
+	var local_ip = IpHelper.get_local_ip()
+	return AddressInfo.new(public_ip, public_port, local_ip, configuration.multiplayer_port)

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dm1n1ckr13d8m" path="res://src/scenes/player/controller/lobby_menu/select_lobby/select_lobby_menu_controller.gd" id="1_o1wqu"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_hpm44"]
 [ext_resource type="Texture2D" uid="uid://bat6b4ocq5qum" path="res://src/assets/textures/LockUI.png" id="4_w7e02"]
+[ext_resource type="PackedScene" uid="uid://d2qjwt0jhsxqj" path="res://src/scenes/player/controller/lobby_menu/select_lobby/lobby_container.tscn" id="5_0itd6"]
 
 [node name="SelectLobbyMenuController" type="Control" unique_id=1095022744]
 layout_mode = 3
@@ -107,60 +108,18 @@ layout_mode = 2
 texture = ExtResource("4_w7e02")
 expand_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1288880275]
+[node name="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1790736069 instance=ExtResource("5_0itd6")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=903579997]
-layout_mode = 2
-texture = ExtResource("3_hpm44")
-region_rect = Rect2(0, 0, 21, 20)
-patch_margin_left = 14
-patch_margin_top = 13
-patch_margin_right = 14
-patch_margin_bottom = 13
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=1256438268]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="LobbyConfigContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=183796923]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="LobbyNameContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer" unique_id=705428709]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1465895443]
-layout_mode = 2
-text = "Cardenio's Camp"
-
-[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1165545085]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label2" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=677337337]
-layout_mode = 2
-text = "1 / 4"
-
-[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=715525442]
-visible = false
-layout_mode = 2
-texture = ExtResource("4_w7e02")
-expand_mode = 2
 
 [node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1976714059]
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TempLobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1423858579]
+layout_mode = 2
+
 [node name="PasswordContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1477859571]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16

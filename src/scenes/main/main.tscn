@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://82odlqfby4ge" path="res://src/scenes/main/main.gd" id="1_45uaa"]
 [ext_resource type="PackedScene" uid="uid://by4mr1ewypcjr" path="res://src/core/placeholder_node/placeholder_node.tscn" id="2_45uaa"]
 [ext_resource type="Script" uid="uid://csq8ghnc66rxk" path="res://src/scenes/main/camera_manager.gd" id="2_vw57g"]
+[ext_resource type="Script" uid="uid://dwmtsr4fve52m" path="res://src/scenes/main/networking/host_lobby_processor.gd" id="5_3q0a4"]
+[ext_resource type="Script" uid="uid://84n4e6ajiq28" path="res://src/scenes/main/networking/lobby_client_processor.gd" id="5_cx4eu"]
 
 [node name="Main" type="Node3D" unique_id=642863641]
 script = ExtResource("1_45uaa")
@@ -16,3 +18,13 @@ metadata/_custom_type_script = "uid://csq8ghnc66rxk"
 [node name="LoadingScene" parent="." unique_id=925105104 instance=ExtResource("1_4rfip")]
 
 [node name="SubScene" parent="." unique_id=1512131719 instance=ExtResource("2_45uaa")]
+
+[node name="Networking" type="Node" parent="." unique_id=2102778865]
+
+[node name="HostLobbyProcessor" type="Node" parent="Networking" unique_id=903711058]
+script = ExtResource("5_3q0a4")
+metadata/_custom_type_script = "uid://dwmtsr4fve52m"
+
+[node name="LobbyClientProcessor" type="Node" parent="Networking" unique_id=947268141]
+script = ExtResource("5_cx4eu")
+metadata/_custom_type_script = "uid://84n4e6ajiq28"

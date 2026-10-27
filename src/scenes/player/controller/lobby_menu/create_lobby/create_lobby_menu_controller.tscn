@@ -98,7 +98,8 @@ text = "Lobby Name         "
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=501129010]
+[node name="LobbyNameEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=501129010]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 3
@@ -130,7 +131,8 @@ text = "Lobby Passwort"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=795989604]
+[node name="PasswordEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=795989604]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -157,13 +159,14 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CreateLobbyButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=1139044656]
+[node name="BackButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=1139044656]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Back"
 
-[node name="HubConfigurationButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=933998794]
+[node name="CreateLobbyButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=933998794]
 layout_mode = 2
 text = "Create Lobby"
 
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer/LobbyMenu" to="." method="navigation_action" binds= [0]]
+[connection signal="pressed" from="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2/CreateLobbyButton" to="." method="_on_create_lobby_button_pressed"]
