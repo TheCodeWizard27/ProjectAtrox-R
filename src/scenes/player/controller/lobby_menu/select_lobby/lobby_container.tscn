@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://d2qjwt0jhsxqj"]
+
+[ext_resource type="Script" uid="uid://pumm0d5e00c7" path="res://src/scenes/player/controller/lobby_menu/select_lobby/lobby_container.gd" id="1_8uxiw"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="1_r1kp7"]
+[ext_resource type="Texture2D" uid="uid://bat6b4ocq5qum" path="res://src/assets/textures/LockUI.png" id="2_8uxiw"]
+
+[node name="PanelContainer" type="PanelContainer" unique_id=1790736069]
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_8uxiw")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1943888978]
+layout_mode = 2
+texture = ExtResource("1_r1kp7")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1549746833]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LobbyNameContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1554414358]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/LobbyNameContainer" unique_id=1061815514]
+layout_mode = 2
+text = "Cardenio's Camp"
+
+[node name="Placeholder" type="Control" parent="MarginContainer/LobbyNameContainer" unique_id=1270313931]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerCountLabel" type="Label" parent="MarginContainer/LobbyNameContainer" unique_id=364012832]
+layout_mode = 2
+text = "1 / 4"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/LobbyNameContainer" unique_id=1921880316]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_8uxiw")
+expand_mode = 2
+
+[node name="ClickableArea" type="Button" parent="." unique_id=1440789030]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="ClickableArea" to="." method="_on_clickable_area_pressed"]
