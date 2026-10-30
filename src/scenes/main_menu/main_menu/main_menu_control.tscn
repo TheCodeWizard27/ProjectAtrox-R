@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://ch7ckkivtftjk"]
 
-[ext_resource type="Script" uid="uid://tgxlk31om13u" path="res://src/scenes/player/controller/lobby_menu/lobby_main/lobby_menu_controller.gd" id="1_mu64u"]
-[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="1_u620n"]
+[ext_resource type="Script" uid="uid://tgxlk31om13u" path="res://src/scenes/main_menu/main_menu/main_menu_control.gd" id="1_pfv28"]
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_trn15"]
 
-[node name="LobbyMenuController" type="Control" unique_id=357762632]
+[node name="MainMenuControl" type="Control" unique_id=357762632]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mu64u")
+script = ExtResource("1_pfv28")
 
-[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("1_u620n")]
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("2_trn15")]
 layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1865383552]
@@ -75,8 +75,3 @@ size_flags_horizontal = 3
 [node name="Placeholder2" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=2112907848]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/SelectLobbyButton" to="." method="navigation_action" binds= [1]]
-[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/CreateLobbyButton" to="." method="navigation_action" binds= [2]]
-[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PlayOfflineButton" to="." method="navigation_action" binds= [3]]
-[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/HubConfigurationButton" to="." method="navigation_action" binds= [4]]

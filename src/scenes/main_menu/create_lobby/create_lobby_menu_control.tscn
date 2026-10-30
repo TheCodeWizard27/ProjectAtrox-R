@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ombmt4yylu4c"]
 
 [ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="1_eefva"]
-[ext_resource type="Script" uid="uid://boibij5w3xv3b" path="res://src/scenes/player/controller/lobby_menu/create_lobby/create_lobby_menu_controller.gd" id="1_uhpe5"]
+[ext_resource type="Script" uid="uid://boibij5w3xv3b" path="res://src/scenes/main_menu/create_lobby/create_lobby_menu_control.gd" id="1_uhpe5"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_dajey"]
 
-[node name="CreateLobbyMenuController" type="Control" unique_id=836866758]
+[node name="CreateLobbyMenuControl" type="Control" unique_id=836866758]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

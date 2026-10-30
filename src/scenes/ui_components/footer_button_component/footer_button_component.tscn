@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dklula3es4w21"]
+
+[ext_resource type="Script" uid="uid://got38j5h4bar" path="res://src/scenes/ui_components/footer_button_component/footer_button_component.gd" id="1_4oopv"]
+
+[node name="FooterButtonComponent" type="GridContainer" unique_id=7175755]
+offset_right = 258.0
+offset_bottom = 48.0
+columns = 2
+script = ExtResource("1_4oopv")
+
+[node name="RejectMargin" type="MarginContainer" parent="." unique_id=2081943043]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 8
+
+[node name="RejectButton" type="Button" parent="RejectMargin" unique_id=1008009687]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="AcceptMargin" type="MarginContainer" parent="." unique_id=886606810]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 8
+
+[node name="AcceptButton" type="Button" parent="AcceptMargin" unique_id=715118584]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Create Lobby"
+
+[connection signal="pressed" from="RejectMargin/RejectButton" to="." method="_on_reject_button_pressed"]
+[connection signal="pressed" from="AcceptMargin/AcceptButton" to="." method="_on_accept_button_pressed"]

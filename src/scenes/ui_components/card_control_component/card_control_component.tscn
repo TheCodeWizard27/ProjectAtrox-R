@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://d2qjwt0jhsxqj"]
+
+[ext_resource type="Script" uid="uid://pumm0d5e00c7" path="res://src/scenes/ui_components/card_control_component/card_control_component.gd" id="1_rsgrb"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="2_o5nsm"]
+[ext_resource type="Texture2D" uid="uid://bat6b4ocq5qum" path="res://src/assets/textures/LockUI.png" id="3_p2608"]
+
+[node name="CardControlComponent" type="PanelContainer" unique_id=1726423550]
+offset_right = 237.0
+offset_bottom = 37.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_rsgrb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=765043043]
+layout_mode = 2
+texture = ExtResource("2_o5nsm")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=847834080]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LobbyConfigContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1826499058]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="LobbyNameContainer" type="HBoxContainer" parent="MarginContainer/LobbyConfigContainer" unique_id=950848467]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1839512247]
+layout_mode = 2
+text = "Sancho's Coole Lobby"
+
+[node name="Placeholder" type="Control" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=2108887390]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerCountLabel" type="Label" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=905488713]
+layout_mode = 2
+text = "1 / 4"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=326653775]
+layout_mode = 2
+texture = ExtResource("3_p2608")
+expand_mode = 2
+
+[node name="ClickableArea" type="Button" parent="." unique_id=509010956]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
