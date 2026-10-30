@@ -1,2 +1,0 @@
-extends LobbyControl
-class_name LobbyMenuControl

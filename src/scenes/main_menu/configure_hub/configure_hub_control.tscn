@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://wliy5rvr2mq0"]
 
-[ext_resource type="Script" uid="uid://dgrb1iflsi3xa" path="res://src/scenes/player/controller/lobby_menu/configure_hub/configure_hub_controller.gd" id="1_4evy1"]
+[ext_resource type="Script" uid="uid://dgrb1iflsi3xa" path="res://src/scenes/main_menu/configure_hub/configure_hub_control.gd" id="1_4evy1"]
 [ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_enanu"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_ixdqm"]
 
-[node name="ConfigureHubController" type="Control" unique_id=572103495]
+[node name="ConfigureHubControl" type="Control" unique_id=572103495]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

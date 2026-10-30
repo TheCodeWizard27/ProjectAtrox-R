@@ -7,7 +7,7 @@ enum CombatClasses {
 }
 
 enum LobbyMenuScreens {
-	LOBBY_MENU = 0,
+	MAIN_MENU = 0,
 	SELECT_LOBBY = 1,
 	CREATE_LOBBY = 2,
 	PLAY_OFFLINE = 3,

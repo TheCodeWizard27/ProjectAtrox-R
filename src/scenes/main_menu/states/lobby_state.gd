@@ -1,13 +1,13 @@
 extends State
 class_name LobbyState
 
-const LOBBY_MENU: NodePath = ^'LobbyMenu'
+const MAIN_MENU: NodePath = ^'MainMenu'
 const CREATE_LOBBY: NodePath = ^'CreateLobby'
 const SELECT_LOBBY: NodePath = ^'SelectLobby'
 const CONFIGURE_HUB: NodePath = ^'ConfigureHub'
 
 var menu_path_dictonary = {
-	Enums.LobbyMenuScreens.LOBBY_MENU : LOBBY_MENU,
+	Enums.LobbyMenuScreens.MAIN_MENU : MAIN_MENU,
 	Enums.LobbyMenuScreens.CREATE_LOBBY : CREATE_LOBBY,
 	Enums.LobbyMenuScreens.SELECT_LOBBY : SELECT_LOBBY,
 	Enums.LobbyMenuScreens.CONFIGURE_HUB : CONFIGURE_HUB

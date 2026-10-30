@@ -1,61 +1,92 @@
-[gd_scene format=3 uid="uid://c4ik6ibj0vpla"]
+[gd_scene format=3 uid="uid://cyli2eokfh6t7"]
 
-[ext_resource type="Script" uid="uid://c26sfmf5awqwy" path="res://src/scenes/main_menu/main_menu.gd" id="1_gxxi0"]
-[ext_resource type="PackedScene" uid="uid://dfcour3otamx3" path="res://src/scenes/main_menu/main_menu_actions.tscn" id="2_4gslo"]
+[ext_resource type="Script" uid="uid://bf6gt81n1yqty" path="res://src/scenes/main_menu/main_menu.gd" id="1_gxxi0"]
 [ext_resource type="Script" uid="uid://b0pivtobnnj3c" path="res://src/core/utils/viewport_input_relay.gd" id="2_e3xdh"]
-[ext_resource type="PackedScene" uid="uid://ch152aq45rym3" path="res://src/scenes/components/button_element/button_element.tscn" id="3_4gslo"]
+[ext_resource type="PackedScene" uid="uid://ombmt4yylu4c" path="res://src/scenes/main_menu/create_lobby/create_lobby_menu_control.tscn" id="3_qct50"]
+[ext_resource type="PackedScene" uid="uid://ch7ckkivtftjk" path="res://src/scenes/main_menu/main_menu/main_menu_control.tscn" id="4_amwcb"]
+[ext_resource type="PackedScene" uid="uid://dbmo63at5nuur" path="res://src/scenes/main_menu/select_lobby/select_lobby_menu_control.tscn" id="5_q2ttg"]
+[ext_resource type="PackedScene" uid="uid://wliy5rvr2mq0" path="res://src/scenes/main_menu/configure_hub/configure_hub_control.tscn" id="6_v38du"]
+[ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="7_mbmwu"]
+[ext_resource type="Script" uid="uid://co2b862rflitr" path="res://src/scenes/main_menu/states/configure_hub.gd" id="8_4hf8t"]
+[ext_resource type="Script" uid="uid://bq8c3758aic6y" path="res://src/scenes/main_menu/states/create_lobby.gd" id="9_i7p0y"]
+[ext_resource type="Script" uid="uid://dl6c78jbcuv3w" path="res://src/scenes/main_menu/states/join_lobby.gd" id="10_jbdtg"]
+[ext_resource type="Script" uid="uid://cla8cbwa5hfq7" path="res://src/scenes/main_menu/states/main_menu.gd" id="11_qnn2u"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0on4r"]
-viewport_path = NodePath("Test1/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_iill2"]
+viewport_path = NodePath("InputRelay/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvjhp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csewt"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_0on4r")
-texture_filter = 1
+albedo_texture = SubResource("ViewportTexture_iill2")
+texture_filter = 0
 
-[sub_resource type="QuadMesh" id="QuadMesh_gxxi0"]
+[sub_resource type="QuadMesh" id="QuadMesh_2bx3b"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_qvjhp")
+material = SubResource("StandardMaterial3D_csewt")
+size = Vector2(1.152, 0.648)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4gslo"]
-size = Vector3(1, 1, 0.1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_syt38"]
+size = Vector3(1.152, 0.648, 0.01)
 
-[node name="MainMenu" type="Node3D" unique_id=990611379]
+[node name="LobbyMenu" type="Node3D" unique_id=627455425 node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_gxxi0")
+state_machine = NodePath("StateMachine")
 
-[node name="Test1" type="Node3D" parent="." unique_id=1157824640 node_paths=PackedStringArray("sub_viewport", "display_mesh", "input_area")]
+[node name="Camera" type="Camera3D" parent="." unique_id=912798992]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4196577)
+current = true
+
+[node name="InputRelay" type="Node3D" parent="." unique_id=888099369 node_paths=PackedStringArray("sub_viewport", "display_mesh", "input_area")]
 script = ExtResource("2_e3xdh")
 sub_viewport = NodePath("SubViewport")
-display_mesh = NodePath("Screen")
-input_area = NodePath("Screen/Area3D")
+display_mesh = NodePath("MeshInstance3D")
+input_area = NodePath("MeshInstance3D/Area3D")
 
-[node name="SubViewport" type="SubViewport" parent="Test1" unique_id=1662373913]
+[node name="SubViewport" type="SubViewport" parent="InputRelay" unique_id=116499642]
 transparent_bg = true
-size = Vector2i(1024, 1024)
-size_2d_override = Vector2i(1024, 1024)
-size_2d_override_stretch = true
+size = Vector2i(1152, 648)
 
-[node name="MainMenuActions" parent="Test1/SubViewport" unique_id=783800915 instance=ExtResource("2_4gslo")]
-offset_right = -512.0
-offset_bottom = -512.0
-
-[node name="Screen" type="MeshInstance3D" parent="Test1" unique_id=1120840554]
-mesh = SubResource("QuadMesh_gxxi0")
-skeleton = NodePath("../..")
-
-[node name="Area3D" type="Area3D" parent="Test1/Screen" unique_id=1636880629]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Test1/Screen/Area3D" unique_id=1798371168]
-shape = SubResource("BoxShape3D_4gslo")
-
-[node name="Test2" type="Node3D" parent="." unique_id=1708747013]
+[node name="CreateLobbyMenuController" parent="InputRelay/SubViewport" unique_id=836866758 instance=ExtResource("3_qct50")]
 visible = false
 
-[node name="Save" parent="Test2" unique_id=171651377 instance=ExtResource("3_4gslo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25765923, 0)
-text = "Save"
+[node name="MainMenuController" parent="InputRelay/SubViewport" unique_id=357762632 instance=ExtResource("4_amwcb")]
 
-[node name="ButtonElement" parent="Test2" unique_id=1267950058 instance=ExtResource("3_4gslo")]
-text = "Back"
+[node name="SelectLobbyMenuController" parent="InputRelay/SubViewport" unique_id=1095022744 instance=ExtResource("5_q2ttg")]
+visible = false
+
+[node name="ConfigureHubController" parent="InputRelay/SubViewport" unique_id=572103495 instance=ExtResource("6_v38du")]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InputRelay" unique_id=632108678]
+mesh = SubResource("QuadMesh_2bx3b")
+
+[node name="Area3D" type="Area3D" parent="InputRelay/MeshInstance3D" unique_id=2083457512]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputRelay/MeshInstance3D/Area3D" unique_id=1030633699]
+shape = SubResource("BoxShape3D_syt38")
+
+[node name="StateMachine" type="Node" parent="." unique_id=268653807]
+script = ExtResource("7_mbmwu")
+initial_state = NodePath("MainMenu")
+metadata/_custom_type_script = "uid://brf10fbscg178"
+
+[node name="ConfigureHub" type="Node" parent="StateMachine" unique_id=875614046 node_paths=PackedStringArray("menu_control")]
+script = ExtResource("8_4hf8t")
+menu_control = NodePath("../../InputRelay/SubViewport/ConfigureHubController")
+
+[node name="CreateLobby" type="Node" parent="StateMachine" unique_id=2145705095 node_paths=PackedStringArray("menu_control")]
+script = ExtResource("9_i7p0y")
+menu_control = NodePath("../../InputRelay/SubViewport/CreateLobbyMenuController")
+
+[node name="SelectLobby" type="Node" parent="StateMachine" unique_id=2127428190 node_paths=PackedStringArray("menu_control")]
+script = ExtResource("10_jbdtg")
+menu_control = NodePath("../../InputRelay/SubViewport/SelectLobbyMenuController")
+
+[node name="MainMenu" type="Node" parent="StateMachine" unique_id=250944933 node_paths=PackedStringArray("menu_control")]
+script = ExtResource("11_qnn2u")
+menu_control = NodePath("../../InputRelay/SubViewport/MainMenuController")
+
+[connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/SelectLobbyMenuController" to="." method="change_lobby_menu_screen"]

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dbmo63at5nuur"]
 
-[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="1_k55gd"]
-[ext_resource type="Script" uid="uid://dm1n1ckr13d8m" path="res://src/scenes/player/controller/lobby_menu/select_lobby/select_lobby_menu_controller.gd" id="1_o1wqu"]
+[ext_resource type="Script" uid="uid://dm1n1ckr13d8m" path="res://src/scenes/main_menu/select_lobby/select_lobby_menu_control.gd" id="1_o1wqu"]
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_tia5u"]
 [ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_hpm44"]
-[ext_resource type="Texture2D" uid="uid://bat6b4ocq5qum" path="res://src/assets/textures/LockUI.png" id="4_w7e02"]
-[ext_resource type="PackedScene" uid="uid://d2qjwt0jhsxqj" path="res://src/scenes/player/controller/lobby_menu/select_lobby/lobby_container.tscn" id="5_0itd6"]
+[ext_resource type="PackedScene" uid="uid://d2qjwt0jhsxqj" path="res://src/scenes/ui_components/card_control_component/card_control_component.tscn" id="5_0itd6"]
+[ext_resource type="PackedScene" uid="uid://dklula3es4w21" path="res://src/scenes/ui_components/footer_button_component/footer_button_component.tscn" id="5_ptjd8"]
 
 [node name="SelectLobbyMenuController" type="Control" unique_id=1095022744]
 layout_mode = 3
@@ -15,10 +15,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1wqu")
 
-[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("1_k55gd")]
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("2_tia5u")]
 layout_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1808051211]
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1417259548]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,19 +30,19 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=750307769]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=347949417]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1054453780]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=532788466]
 layout_mode = 2
 
-[node name="LobbyMenu" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2066633635]
+[node name="LobbyMenuButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer" unique_id=407261872]
 layout_mode = 2
 text = "Lobby Menu"
 
-[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer" unique_id=791898069]
+[node name="SelectLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer" unique_id=658259451]
 layout_mode = 2
-text = "Select Lobby"
+text = "Create Lobby"
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=504164321]
 layout_mode = 2
@@ -51,72 +51,33 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1991326865]
+[node name="LobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1991326865]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=630810719]
+[node name="CardControlComponent2" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1726423550 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1001507372 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1976714059]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=613569093]
+[node name="TempLobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1153774859]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CardControlComponent2" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer" unique_id=683654976 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer" unique_id=2139948960 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer" unique_id=1271832375]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1734681993]
-layout_mode = 2
-texture = ExtResource("3_hpm44")
-region_rect = Rect2(0, 0, 21, 20)
-patch_margin_left = 14
-patch_margin_top = 13
-patch_margin_right = 14
-patch_margin_bottom = 13
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1481272903]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="LobbyConfigContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer" unique_id=998641387]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="LobbyNameContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer" unique_id=1229378922]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1628342255]
-layout_mode = 2
-text = "Sancho's Coole Lobby"
-
-[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1459455893]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label2" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=441236418]
-layout_mode = 2
-text = "1 / 4"
-
-[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1092448378]
-layout_mode = 2
-texture = ExtResource("4_w7e02")
-expand_mode = 2
-
-[node name="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1790736069 instance=ExtResource("5_0itd6")]
-layout_mode = 2
-
-[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1976714059]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TempLobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1423858579]
-layout_mode = 2
 
 [node name="PasswordContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1477859571]
 visible = false
@@ -213,32 +174,11 @@ text = "Confirm"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NavigationBottomButtons" type="MarginContainer" parent="MenuBackground" unique_id=392590552]
-layout_mode = 0
-offset_left = 898.0
-offset_top = 594.0
-offset_right = 1143.0
-offset_bottom = 644.0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+[node name="FooterButtonComponent" parent="MenuBackground" unique_id=7175755 instance=ExtResource("5_ptjd8")]
+layout_mode = 1
+offset_left = 895.0
+offset_top = 590.0
+offset_right = 1124.0
+offset_bottom = 624.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/NavigationBottomButtons" unique_id=807150135]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MenuBackground/NavigationBottomButtons/VBoxContainer" unique_id=1084311663]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="CreateLobbyButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=2094494313]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Back"
-
-[node name="HubConfigurationButton" type="Button" parent="MenuBackground/NavigationBottomButtons/VBoxContainer/HBoxContainer2" unique_id=763596246]
-layout_mode = 2
-text = "Create Lobby"
-
-[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer/LobbyMenu" to="." method="navigation_action" binds= [0]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer/LobbyMenuButton" to="." method="navigation_action" binds= [0]]
