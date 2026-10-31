@@ -14,7 +14,8 @@ class_name Player
 
 var looking_direction: Vector3 = Vector3.FORWARD
 var lock_on_target: Node3D
-var input_buffer: InputBuffer = InputBuffer.new()
+#var input_buffer: InputBuffer = InputBuffer.new()
+var input_buffer: ActionBuffer = ActionBuffer.new()
 
 var inventory: InventorySystem = InventorySystem.new()
 var effects: EffectSystem = EffectSystem.new()
@@ -82,6 +83,12 @@ func add_effect(effect_reference: EffectReference) -> void:
 	effects.add_effect(effect_reference)
 
 #endregion
+
+func set_action(action: StringName, is_pressed: bool) -> void:
+	if (is_pressed):
+		input_buffer.set_action_pressed(action)
+	else:
+		input_buffer.set_action_release(action)
 
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)

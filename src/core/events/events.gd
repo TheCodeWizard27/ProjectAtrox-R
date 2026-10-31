@@ -1,6 +1,7 @@
 extends Node
 
 var networking: NetworkingEvents = NetworkingEvents.new()
+var area: AreaEvents = AreaEvents.new()
 var entity: EntityEvents = EntityEvents.new()
 var enemy: EnemyEvents = EnemyEvents.new()
 var player: PlayerEvents = PlayerEvents.new()

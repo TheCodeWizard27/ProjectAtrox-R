@@ -69,6 +69,8 @@ func _on_lobby_clicked(lobby: LobbyListEntry) -> void:
 		address.local_port
 	))
 
-func _on_lobby_joined() -> void:
+func _on_lobby_joined(instance: ClientLobbyInstance) -> void:
 	Events.scene_change_requested.emit(
-		Locations.location_table.get(Locations.LocationEnum.HUB).path, {})
+		Locations.location_table.get(Locations.LocationEnum.HUB).path, {
+			InstanceManager.LOBBY_INSTANCE: instance
+		})

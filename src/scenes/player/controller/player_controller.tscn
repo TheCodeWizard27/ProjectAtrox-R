@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cgvwkuwrp1r10" path="res://src/scenes/player/controller/states/in_game.gd" id="6_x7p0t"]
 [ext_resource type="Script" uid="uid://dp5k83oi8fmhn" path="res://src/scenes/player/controller/states/in_pause_menu.gd" id="7_nol7y"]
 
-[node name="PlayerController" type="Node3D" unique_id=230425080 node_paths=PackedStringArray("ui_container", "camera_controller", "pause_menu", "hud", "state_machine", "lock_on_target_detector")]
+[node name="PlayerController" type="Node" unique_id=948017268 node_paths=PackedStringArray("ui_container", "camera_controller", "pause_menu", "hud", "state_machine", "lock_on_target_detector")]
 script = ExtResource("1_flk7f")
 ui_container = NodePath("ThirdPersonCamera/CameraArm/Camera/UiContainer")
 camera_controller = NodePath("ThirdPersonCamera")

@@ -54,6 +54,8 @@ func _on_lobby_create_requested(data: CreateLobbyData) -> void:
 		address.local_port
 	))
 
-func _on_server_started() -> void:
+func _on_server_started(instance: HostLobbyInstance) -> void:
 	Events.scene_change_requested.emit(
-		Locations.location_table.get(Locations.LocationEnum.HUB).path, {})
+		Locations.location_table.get(Locations.LocationEnum.HUB).path, {
+			InstanceManager.LOBBY_INSTANCE: instance
+		})

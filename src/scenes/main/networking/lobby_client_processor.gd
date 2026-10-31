@@ -5,13 +5,26 @@ enum IncomingEventType {
 	CONNECTION_INFO
 }
 
+signal packet_received(id: int, type: HostPacket.Event, payload: Dictionary)
+
 var _web_socket: WebSocketPeer = WebSocketPeer.new()
 var _enet_peer: ENetMultiplayerPeer
+var _scene_multiplayer: SceneMultiplayer
 var _configuration: NetworkConfiguration
 var _public_ip: String
 var _local_port: int
 
 var _started = false
+
+func stop() -> void:
+	_started = false
+	_enet_peer.close()
+
+func send_packet(type: ClientPacket.Event, payload: Dictionary) -> void:
+	_scene_multiplayer.send_bytes(ClientPacket.create_packet(type, payload))
+
+func get_peer_id() -> int:
+	return _enet_peer.get_unique_id()
 
 func _ready() -> void:
 	_configuration = NetworkConfiguration.get_current()
@@ -83,6 +96,8 @@ func _punch_hole(ip: String, port: int) -> void:
 		_join_lobby(ip, port)
 		# TODO Setup hole keep alive.
 		return
+	
+	Events.networking.notify_lobby_join_failed()
 
 func _join_lobby(ip: String, port: int) -> void:
 	_enet_peer = ENetMultiplayerPeer.new()
@@ -94,6 +109,20 @@ func _join_lobby(ip: String, port: int) -> void:
 	
 	multiplayer.multiplayer_peer = _enet_peer
 	multiplayer.connected_to_server.connect(_on_connected)
+	_scene_multiplayer = multiplayer as SceneMultiplayer
+	_scene_multiplayer.peer_packet.connect(_on_peer_packet)
+	_web_socket.close()
 	
 func _on_connected() -> void:
-	Events.networking.notify_lobby_joined()
+	Events.networking.notify_lobby_joined(self)
+	
+	var packet = ClientPacket.create_packet(ClientPacket.Event.INIT_PLAYER, {
+		'name': 'Player'
+	})
+	_scene_multiplayer.send_bytes(packet)
+
+func _on_peer_packet(id: int, packet: PackedByteArray) -> void:
+	var type = HostPacket.get_type(packet)
+	var payload = HostPacket.get_payload(packet)
+	
+	packet_received.emit(id, type, payload)
