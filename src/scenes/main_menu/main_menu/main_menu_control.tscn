@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tgxlk31om13u" path="res://src/scenes/main_menu/main_menu/main_menu_control.gd" id="1_pfv28"]
 [ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_trn15"]
+[ext_resource type="PackedScene" uid="uid://dbvlyh2umgwu0" path="res://src/scenes/ui_components/header_component/header_component.tscn" id="3_csuwf"]
 
 [node name="MainMenuControl" type="Control" unique_id=357762632]
 layout_mode = 3
@@ -30,12 +31,10 @@ theme_override_constants/margin_bottom = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=1835301897]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1953617901]
+[node name="HeaderComponent" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=7175755 instance=ExtResource("3_csuwf")]
 layout_mode = 2
-
-[node name="Online Options" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/HBoxContainer" unique_id=502287358]
-layout_mode = 2
-text = "Select Lobby"
+hide_home_button = true
+current_menu_string = "Main Menu"
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=377740814]
 layout_mode = 2
@@ -44,34 +43,31 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1415835329]
+[node name="GridContainer" type="GridContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1241130364]
 layout_mode = 2
-theme_override_constants/separation = 8
+columns = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=391564826]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=391564826]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SelectLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1771343225]
+[node name="SelectLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2" unique_id=1771343225]
 layout_mode = 2
 text = "Select Lobby"
 
-[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=23470354]
+[node name="CreateLobbyButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2" unique_id=23470354]
 layout_mode = 2
 text = "Create Lobby"
 
-[node name="PlayOfflineButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1306951602]
+[node name="PlayOfflineButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2" unique_id=1306951602]
 layout_mode = 2
 text = "Play Offline"
 
-[node name="HubConfigurationButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=96723075]
+[node name="HubConfigurationButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2" unique_id=96723075]
 layout_mode = 2
 text = "Hub Configuration"
 
-[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1438859329]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Placeholder2" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=2112907848]
-layout_mode = 2
-size_flags_horizontal = 3
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/SelectLobbyButton" to="." method="navigation_action" binds= [1]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/CreateLobbyButton" to="." method="navigation_action" binds= [2]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/PlayOfflineButton" to="." method="navigation_action" binds= [3]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/HubConfigurationButton" to="." method="navigation_action" binds= [4]]

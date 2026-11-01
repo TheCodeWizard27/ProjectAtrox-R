@@ -2,6 +2,9 @@ extends LobbyState
 
 @export var menu_control: SelectLobbyMenuControl
 
+signal password_validation_failed()
+
+
 func _ready():
 	init_for_control(menu_control)
 
@@ -33,7 +36,7 @@ func _load_lobbies() -> void:
 	client.queue_free()
 	menu_control.init_lobby_list(response.entries)
 
-func _on_lobby_clicked(lobby: LobbyListEntry) -> void:
+func _on_lobby_clicked(lobby: LobbyListEntry, password: String = "") -> void:
 	# Step 1 Request address.
 	var address = await get_address()
 	if (address == null):
@@ -46,11 +49,11 @@ func _on_lobby_clicked(lobby: LobbyListEntry) -> void:
 	# Step 2 Request join lobby connection
 	var join_response = await client.create_join_lobby_connection(CreateJoinLobbyConnectionRequest.new(
 		lobby.lobby_id,
-		'', # TODO Password
+		password, 
 		address
 	))
 	if (join_response.was_unsuccessful):
-		# TODO Handle Error
+		password_validation_failed.emit()
 		client.queue_free()
 		return
 	

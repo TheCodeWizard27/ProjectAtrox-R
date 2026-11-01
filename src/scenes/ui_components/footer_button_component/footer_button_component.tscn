@@ -18,7 +18,6 @@ theme_override_constants/margin_right = 8
 [node name="RejectButton" type="Button" parent="RejectMargin" unique_id=1008009687]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Back"
 
 [node name="AcceptMargin" type="MarginContainer" parent="." unique_id=886606810]
 layout_mode = 2
@@ -29,7 +28,6 @@ theme_override_constants/margin_right = 8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Create Lobby"
 
 [connection signal="pressed" from="RejectMargin/RejectButton" to="." method="_on_reject_button_pressed"]
 [connection signal="pressed" from="AcceptMargin/AcceptButton" to="." method="_on_accept_button_pressed"]

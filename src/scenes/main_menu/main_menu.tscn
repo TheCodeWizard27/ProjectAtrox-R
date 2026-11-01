@@ -89,4 +89,8 @@ menu_control = NodePath("../../InputRelay/SubViewport/SelectLobbyMenuController"
 script = ExtResource("11_qnn2u")
 menu_control = NodePath("../../InputRelay/SubViewport/MainMenuController")
 
+[connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/CreateLobbyMenuController" to="." method="change_lobby_menu_screen"]
+[connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/MainMenuController" to="." method="change_lobby_menu_screen"]
 [connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/SelectLobbyMenuController" to="." method="change_lobby_menu_screen"]
+[connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/ConfigureHubController" to="." method="change_lobby_menu_screen"]
+[connection signal="password_validation_failed" from="StateMachine/SelectLobby" to="InputRelay/SubViewport/SelectLobbyMenuController" method="show_password_error"]

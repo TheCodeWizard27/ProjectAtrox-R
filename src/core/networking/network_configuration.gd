@@ -14,6 +14,7 @@ var hole_punch_delay = 0.3
 
 var multiplayer_port = 7777
 var hub_server: String = '83.78.19.253:7213'
+var custom_hub_server: String
 
 func _init():
 	stun_host_ip = IP.resolve_hostname(_stun_host, IP.TYPE_IPV4)
@@ -23,3 +24,6 @@ static func get_current() -> NetworkConfiguration:
 		_instance = new()
 	
 	return _instance
+
+func set_custom_hub_address(address: String) -> void:
+	custom_hub_server = address
