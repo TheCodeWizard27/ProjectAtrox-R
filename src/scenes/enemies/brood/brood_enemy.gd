@@ -20,6 +20,9 @@ func is_near_player(target: Player) -> bool:
 	var distance = body.global_position.distance_to(target.body.global_position)
 	return distance <= attack_distance
 
+func get_entity_id() -> EntityIds.Id:
+	return EntityIds.Id.BROOD
+
 func get_hit() -> void:
 	got_hit = true
 

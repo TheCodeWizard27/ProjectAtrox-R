@@ -13,14 +13,23 @@ func _init(processor: HostLobbyProcessor):
 	processor.peer_connected.connect(_on_peer_connected)
 	processor.peer_disconnected.connect(_on_peer_disconnected)
 
-func send_update(players: Dictionary[int, Player]) -> void:
-	var updates: Dictionary[int, Dictionary] = {}
+func send_update(players: Dictionary[int, Player], entities: Dictionary[int, Entity]) -> void:
+	var player_part: Dictionary = {}
+	var entity_part: Dictionary = {}
+	var updates: Dictionary[String, Dictionary] = {
+		'player': player_part,
+		'entity': entity_part
+	}
 	
 	for id in players:
 		var player = players[id]
-		updates.set(id, HostPlayerUpdatePacket.from_player(player))
+		player_part.set(id, HostPlayerUpdatePacket.from_player(player))
 	
-	_processor.send_packet(HostPacket.Event.UPDATE_PLAYERS, updates)
+	for id in entities:
+		var entity = entities[id]
+		entity_part.set(id, HostEntityUpdatePacket.from_entity(entity))
+	
+	_processor.send_packet(HostPacket.Event.UPDATE, updates)
 
 func send_area_changed(location: Locations.LocationEnum) -> void:
 	_processor.send_packet(HostPacket.Event.AREA_CHANGED, {

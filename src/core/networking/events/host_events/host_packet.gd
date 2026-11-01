@@ -1,7 +1,7 @@
 class_name HostPacket
 
 enum Event {
-	UPDATE_PLAYERS,
+	UPDATE,
 	AREA_CHANGED
 }
 

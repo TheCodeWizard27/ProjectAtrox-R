@@ -14,4 +14,6 @@ func _ready() -> void:
 		var placeholder = PlaceholderNode.new()
 		spawns.append(placeholder)
 		spawn_location.add_child(placeholder)
-	
+
+func get_entity_id() -> EntityIds.Id:
+	return EntityIds.Id.BROOD_MOTHER

@@ -68,19 +68,28 @@ func configure_player(new_status: PlayerStatus) -> void:
 
 #region Entity implementation
 
+func get_state_snapshot() -> Dictionary:
+	return state_machine.get_snapshot()
+
+func sync_state(snapshot: Dictionary) -> void:
+	state_machine.sync(snapshot)
+
 func get_hit() -> void:
 	super.get_hit()
 	status.resources.health -= 5 # TODO
 	event_player.play_getting_hit()
 	
 func get_entity_position() -> Vector3:
-	return body.position
+	return body.global_position
 	
 func get_entity_rotation() -> Vector3:
 	return body.rotation
 
 func set_entity_rotation(p_rotation: Vector3) -> void:
 	body.rotation = p_rotation
+
+func set_entity_position(p_position: Vector3) -> void:
+	body.global_position = p_position
 
 func add_effect(effect_reference: EffectReference) -> void:
 	effects.add_effect(effect_reference)

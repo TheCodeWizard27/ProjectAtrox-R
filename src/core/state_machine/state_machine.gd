@@ -13,6 +13,20 @@ signal transitioned(state_name)
 var _registered_states: Array[State] = []
 var _state_stack: Array[NodePath] = []
 
+func get_snapshot() -> Dictionary:
+	var snapshot = current_state.get_snapshot()
+	snapshot.set('state', get_path_to(current_state))
+	return snapshot
+
+func sync(snapshot: Dictionary) -> void:
+	var state_path = NodePath(snapshot.get('state'))
+	
+	if (state_path != get_path_to(current_state)):
+		transition_to(state_path, {})
+	
+	current_state.is_synced = true
+	current_state.sync(snapshot)
+
 func get_all_states(discover: bool = false) -> Array[State]:
 	if (discover):
 		discover_states()
@@ -36,8 +50,7 @@ func transition_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
 	current_state.exit()
 	current_state = get_node(target_state_path)
 	current_state.enter(msg)
-	
-	emit_signal("transitioned", current_state.name)
+	transitioned.emit(current_state.name)
 	
 func transition_back(msg: Dictionary = {}) -> void:
 	if(_state_stack.is_empty()):
@@ -76,7 +89,7 @@ func discover_states(root_node: Node = null) -> void:
 		if (not state):
 			continue
 		
-		print_debug("Detected State ", state)
+		#print_debug("Detected State ", state)
 		_registered_states.append(state)
 
 func init() -> void:

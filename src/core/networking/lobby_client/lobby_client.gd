@@ -45,7 +45,7 @@ func get_lobbies() -> LobbyListResponse:
 	var raw_lobby_entries = JSON.parse_string(body.get_string_from_utf8()) as Array
 	var lobby_entries: Array[LobbyListEntry] = []
 	lobby_entries.assign(raw_lobby_entries.map(_map_to_lobby_list_entry))
-	
+	request.queue_free()
 	return LobbyListResponse.new(lobby_entries)
 
 func create_host_lobby_connection(request_data: CreateHostLobbyConnectionRequest) -> LobbyConnectionResponse:
@@ -74,6 +74,7 @@ func create_host_lobby_connection(request_data: CreateHostLobbyConnectionRequest
 	var response = await request.request_completed
 	var body = response[RESPONSE_BODY]
 	var connection_id = JSON.parse_string(body.get_string_from_utf8())
+	request.queue_free()
 	return LobbyConnectionResponse.new(connection_id)
 
 func create_join_lobby_connection(request_data: CreateJoinLobbyConnectionRequest) -> LobbyConnectionResponse:
@@ -102,6 +103,7 @@ func create_join_lobby_connection(request_data: CreateJoinLobbyConnectionRequest
 	var response = await request.request_completed
 	var body = response[RESPONSE_BODY]
 	var connection_id = JSON.parse_string(body.get_string_from_utf8())
+	request.queue_free()
 	return LobbyConnectionResponse.new(connection_id)
 
 func _map_to_lobby_list_entry(entry: Dictionary) -> LobbyListEntry:

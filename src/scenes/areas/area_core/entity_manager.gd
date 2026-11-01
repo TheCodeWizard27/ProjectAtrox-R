@@ -1,8 +1,17 @@
 extends Node
 class_name EntityManager
 
+var _player_scene = preload('res://src/scenes/player/player.tscn')
+
 func _init() -> void:
 	Events.enemy.died.connect(_on_enemy_death)
+
+func spawn_player(player_status: PlayerStatus, position: Vector3, rotation: Vector3) -> Player:
+	var entity = _player_scene.instantiate() as Player
+	entity.configure_player(player_status)
+	spawn_entity(entity, position, rotation)
+	
+	return entity
 
 func spawn_entity(entity: Entity, position: Vector3, rotation: Vector3) -> void:
 	add_child(entity)
