@@ -1,7 +1,8 @@
 class_name HostPacket
 
 enum Event {
-	UPDATE_PLAYERS
+	UPDATE_PLAYERS,
+	AREA_CHANGED
 }
 
 static func create_packet(type: Event, payload: Dictionary) -> PackedByteArray:

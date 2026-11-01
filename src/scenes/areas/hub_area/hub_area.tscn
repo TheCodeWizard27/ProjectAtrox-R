@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://22m56vx4fyv3" path="res://src/scenes/areas/area_core/area.gd" id="1_5auvi"]
 [ext_resource type="Shader" uid="uid://3nvrlnsm8gvi" path="res://src/scenes/areas/hub_area/space_sky.gdshader" id="2_5auvi"]
 [ext_resource type="PackedScene" uid="uid://bsuwq26dqy2iy" path="res://src/scenes/instance_manager/instance_manager.tscn" id="2_mklfy"]
+[ext_resource type="PackedScene" uid="uid://d2n4ijaq33u5f" path="res://src/scenes/areas/area_core/player_spawner/player_spawner.tscn" id="3_5auvi"]
 [ext_resource type="Material" uid="uid://bs46epok0bxjq" path="res://src/assets/materials/development/dark.tres" id="3_mklfy"]
 [ext_resource type="Material" uid="uid://chxg0pjs0mx4b" path="res://src/assets/materials/development/light_source.tres" id="4_b0mc8"]
 [ext_resource type="Material" uid="uid://csvksm60nfp5c" path="res://src/assets/materials/development/triplanar_texture_8.tres" id="5_bfs62"]
-[ext_resource type="Script" uid="uid://cho0334equubs" path="res://src/scenes/areas/area_core/player_spawner.gd" id="6_5auvi"]
 [ext_resource type="PackedScene" uid="uid://bhfflqc5kvv8o" path="res://src/scenes/interactables/box/blue_box/blue_box.tscn" id="7_lrcqk"]
 [ext_resource type="PackedScene" uid="uid://duhoijwkg61jh" path="res://src/scenes/npcs/quest_gal/quest_gal.tscn" id="11_b0mc8"]
 [ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/transport_pad.tscn" id="11_mklfy"]
@@ -52,10 +52,8 @@ instance_manager = NodePath("InstanceManager")
 [node name="InstanceManager" parent="." unique_id=982024805 node_paths=PackedStringArray("player_spawner") instance=ExtResource("2_mklfy")]
 player_spawner = NodePath("../PlayerSpawner")
 
-[node name="PlayerSpawner" type="Marker3D" parent="." unique_id=262393956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4505, 0)
-script = ExtResource("6_5auvi")
-metadata/_custom_type_script = "uid://cho0334equubs"
+[node name="PlayerSpawner" parent="." unique_id=875339613 instance=ExtResource("3_5auvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.031227, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=912908139]
 environment = SubResource("Environment_8fxne")

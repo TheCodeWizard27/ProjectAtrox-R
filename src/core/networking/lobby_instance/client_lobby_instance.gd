@@ -1,7 +1,8 @@
 class_name ClientLobbyInstance
 extends LobbyInstance
 
-signal player_updated(id: int, position: Vector3)
+signal player_updated(id: int, position: HostPlayerUpdatePacket)
+signal area_changed(location: Locations.LocationEnum)
 
 var _initialized_players: Dictionary[int, String] = {}
 var _processor: LobbyClientProcessor
@@ -33,6 +34,8 @@ func _on_packet_received(id: int, type: HostPacket.Event, payload: Dictionary) -
 	match(type):
 		HostPacket.Event.UPDATE_PLAYERS:
 			_on_update_players(id, payload)
+		HostPacket.Event.AREA_CHANGED:
+			_on_area_changed(id, payload)
 	
 func _on_update_players(_id: int, payload: Dictionary) -> void:
 	var player_updates = payload as Dictionary[String, Dictionary]
@@ -44,4 +47,7 @@ func _on_update_players(_id: int, payload: Dictionary) -> void:
 			_initialized_players.set(id, 'test')
 			player_connected.emit(id, 'test')
 		
-		player_updated.emit(id, PacketHelper.parse_vector(player.get('position')))
+		player_updated.emit(id, HostPlayerUpdatePacket.from_payload(player))
+
+func _on_area_changed(_id: int, payload: Dictionary) -> void:
+	area_changed.emit(payload.get('area') as Locations.LocationEnum)

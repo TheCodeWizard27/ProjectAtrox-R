@@ -170,17 +170,17 @@ bones/0/position = Vector3(0, 1.1161939, -0.055200003)
 bones/0/rotation = Quaternion(0.1975385, 1.1686028e-07, 2.3548424e-08, 0.9802951)
 bones/1/rotation = Quaternion(0.22220828, 0.7507654, 0.45850676, -0.42041215)
 bones/3/rotation = Quaternion(-0.13978064, -1.1803898e-07, -1.6663149e-08, 0.9901826)
-bones/6/position = Vector3(0.120788015, -0.012645775, -0.054050967)
-bones/6/scale = Vector3(1.0200357, 1.0200359, 1.0200356)
-bones/7/position = Vector3(-0.120788, -0.012645692, -0.05405093)
-bones/7/scale = Vector3(1.0200357, 1.0200359, 1.0200356)
+bones/6/position = Vector3(0.12201602, -0.012645775, -0.054050967)
+bones/6/scale = Vector3(1.0305265, 1.0305265, 1.0305264)
+bones/7/position = Vector3(-0.122016005, -0.012645692, -0.05405093)
+bones/7/scale = Vector3(1.0305265, 1.0305265, 1.0305264)
 bones/9/position = Vector3(-0.04667005, 0.17428261, -0.0057982565)
-bones/9/rotation = Quaternion(-0.35505506, 0.50511533, -0.41751122, 0.66669255)
+bones/9/rotation = Quaternion(-0.3541571, 0.5059576, -0.4163259, 0.6672724)
 bones/10/rotation = Quaternion(0.002549366, -0.15028499, -0.035658006, 0.9879962)
 bones/12/rotation = Quaternion(0.011669753, 0.0018655605, -0.07525473, 0.99709433)
 bones/14/rotation = Quaternion(0.011669753, 0.0018655605, -0.07525473, 0.99709433)
 bones/16/position = Vector3(0.046670035, 0.1742826, -0.005798126)
-bones/16/rotation = Quaternion(-0.39716774, -0.5261039, 0.31576973, 0.68246764)
+bones/16/rotation = Quaternion(-0.39492232, -0.529621, 0.32246727, 0.6779033)
 bones/17/rotation = Quaternion(0.000784719, 0.14982155, 0.07677608, 0.98572737)
 bones/19/rotation = Quaternion(-0.23168898, -0.060117465, -0.07166991, 0.96828175)
 bones/21/rotation = Quaternion(-0.23168898, -0.060117465, -0.07166991, 0.96828175)
@@ -201,7 +201,7 @@ bones/38/rotation = Quaternion(-7.10682e-08, 0.99381065, -0.111087166, -3.392231
 mesh = SubResource("ArrayMesh_usmrg")
 
 [node name="RightHandAttachment" type="BoneAttachment3D" parent="Body/BaseMesh/metarig/Skeleton3D" index="4" unique_id=537125311]
-transform = Transform3D(-0.9410982, -0.17928262, -0.28669012, 0.29173785, -0.8591635, -0.4203877, -0.1709456, -0.47926474, 0.8608614, -0.35929313, 1.000133, -0.07931421)
+transform = Transform3D(-0.9459409, -0.18086988, -0.26922363, 0.28494355, -0.85993993, -0.4234492, -0.15492707, -0.47727168, 0.8649908, -0.35507974, 0.9989519, -0.07732405)
 bone_name = "weapon_grip.R"
 bone_idx = 21
 
@@ -209,7 +209,7 @@ bone_idx = 21
 remote_path = NodePath("../../../../../../ModelAttachments/RightHand")
 
 [node name="LeftHandAttachment" type="BoneAttachment3D" parent="Body/BaseMesh/metarig/Skeleton3D" index="5" unique_id=567642001]
-transform = Transform3D(-0.9828388, -0.0055649285, 0.18438017, 0.03947904, -0.98272955, 0.18078338, 0.18018994, 0.18496002, 0.96608514, 0.30460045, 0.99139583, 0.016408212)
+transform = Transform3D(-0.98297495, -0.002017803, 0.1837264, 0.03593136, -0.9827433, 0.18144765, 0.18018991, 0.18495998, 0.9660851, 0.30680284, 0.9917943, 0.016408172)
 bone_name = "weapon_grip.L"
 bone_idx = 14
 
@@ -470,13 +470,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9343593, 0)
 [node name="ModelAttachments" type="Node3D" parent="." unique_id=256263]
 
 [node name="RightHand" type="Node3D" parent="ModelAttachments" unique_id=815230383]
-transform = Transform3D(-0.85236275, -0.16237818, -0.25965837, 0.2642301, -0.77815366, -0.38074964, -0.15482731, -0.43407524, 0.77969146, -0.32541564, 1.024045, -0.07183575)
+transform = Transform3D(-0.8567489, -0.16381578, -0.24383877, 0.25807643, -0.7788569, -0.38352248, -0.14031917, -0.43227008, 0.7834315, -0.32159954, 1.0229752, -0.07003324)
 
 [node name="WeaponModel" parent="ModelAttachments/RightHand" unique_id=707384600 instance=ExtResource("16_28ueq")]
 transform = Transform3D(0.97286266, 0.23083752, 0.015890632, 0.008422218, 0.033304483, -0.99940956, -0.23123026, 0.97242236, 0.030456662, -0.009926379, 0.07222611, -0.07891303)
 
 [node name="LeftHand" type="Node3D" parent="ModelAttachments" unique_id=1812734447]
-transform = Transform3D(-0.89016765, -0.0050402232, 0.16699506, 0.03575659, -0.8900687, 0.16373745, 0.16319992, 0.16752028, 0.8749937, 0.2758799, 1.0161315, 0.014861107)
+transform = Transform3D(-0.890291, -0.0018275533, 0.16640294, 0.03254342, -0.8900812, 0.1643391, 0.16319989, 0.16752024, 0.8749936, 0.27787462, 1.0164924, 0.01486107)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1970312196]
 script = ExtResource("17_xm3y6")

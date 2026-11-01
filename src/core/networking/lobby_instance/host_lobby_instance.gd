@@ -18,11 +18,14 @@ func send_update(players: Dictionary[int, Player]) -> void:
 	
 	for id in players:
 		var player = players[id]
-		updates.set(id, {
-			'position': PacketHelper.stringify_vector(player.body.global_position)
-		})
+		updates.set(id, HostPlayerUpdatePacket.from_player(player))
 	
 	_processor.send_packet(HostPacket.Event.UPDATE_PLAYERS, updates)
+
+func send_area_changed(location: Locations.LocationEnum) -> void:
+	_processor.send_packet(HostPacket.Event.AREA_CHANGED, {
+		'area': location
+	})
 
 func get_unique_id() -> int:
 	return _processor.get_peer_id()
@@ -57,4 +60,6 @@ func _on_init_player(id: int, payload: Dictionary) -> void:
 	if (_initialized_players.has(id)):
 		return
 	
-	player_connected.emit(id, payload.get('name'))
+	var name = payload.get('name')
+	_initialized_players.set(id, name)
+	player_connected.emit(id, name)

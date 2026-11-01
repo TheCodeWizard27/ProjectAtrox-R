@@ -75,9 +75,10 @@ func physics_update(delta: float) -> StateResult:
 	movement_processor.process_movement(delta, movement_speed_modifier)
 	
 	# Lead towards look direction
-	var forward = (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
+	var forward = (Vector3.FORWARD * forward_momentum).rotated(
+		Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
 	player.body.velocity += forward
-	movement_processor.look_at(player.body.position - forward)
+	movement_processor.look_at(player.body.global_position - forward)
 	
 	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length() * movement_speed_modifier)
 	
