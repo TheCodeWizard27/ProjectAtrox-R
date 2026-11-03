@@ -5,12 +5,28 @@ enum IncomingEventType {
 	CONNECTION_INFO
 }
 
+signal packet_received(id: int, type: ClientPacket.Event, payload: Dictionary)
+signal peer_connected(id: int)
+signal peer_disconnected(id: int)
+
+var is_running = false
+
 var _web_socket: WebSocketPeer = WebSocketPeer.new()
 var _enet_peer: ENetMultiplayerPeer
+var _scene_multiplayer: SceneMultiplayer
 var _configuration: NetworkConfiguration
 var _public_ip: String
 
-var is_running = false
+func send_packet(type: HostPacket.Event, payload: Dictionary) -> void:
+	_scene_multiplayer.send_bytes(HostPacket.create_packet(type, payload))
+
+func stop() -> void:
+	is_running = false
+	_enet_peer.close()
+	_web_socket.close()
+
+func get_peer_id() -> int:
+	return _enet_peer.get_unique_id()
 
 func _ready() -> void:
 	_configuration = NetworkConfiguration.get_current()
@@ -30,7 +46,11 @@ func _start_hosting(port: int) -> void:
 		return
 	
 	multiplayer.multiplayer_peer = _enet_peer
-	Events.networking.notify_lobby_server_started()
+	_enet_peer.peer_connected.connect(_on_peer_connected)
+	_enet_peer.peer_disconnected.connect(_on_peer_disconnected)
+	_scene_multiplayer = multiplayer as SceneMultiplayer
+	_scene_multiplayer.peer_packet.connect(_on_peer_packet)
+	Events.networking.notify_lobby_server_started(self)
 	print_debug('Started Server on ', port)
 	is_running = true
 
@@ -83,7 +103,7 @@ func _punch_hole(ip: String, port: int) -> void:
 		# TODO Setup hole keep alive.
 		return
 	
-	# TODO handle failure
+	Events.networking.notify_lobby_server_start_failed()
 	
 func _is_peer_connected(ip: String, port: int) -> bool:
 	for peer_id in multiplayer.get_peers():
@@ -95,4 +115,15 @@ func _is_peer_connected(ip: String, port: int) -> bool:
 			return true
 		
 	return false
+
+func _on_peer_connected(id: int) -> void:
+	peer_connected.emit(id)
+
+func _on_peer_disconnected(id: int) -> void:
+	peer_disconnected.emit(id)
+
+func _on_peer_packet(id: int, packet: PackedByteArray) -> void:
+	var type = ClientPacket.get_type(packet)
+	var payload = ClientPacket.get_payload(packet)
 	
+	packet_received.emit(id, type, payload)

@@ -8,11 +8,13 @@ func init(current_player: Player) -> void:
 	movement_processor = PlayerMovementProcessor.new(current_player)
 
 func physics_update(delta: float) -> StateResult:
-	
 	model_animator.advance_falling_to(0, delta)
 	
 	if (player.status.resources.health <= 0):
 		return StateResult.transition_to(PlayerState.DEAD)
+	
+	if (is_synced):
+		return StateResult.continue_result
 	
 	if (!body.is_on_floor()):
 		return StateResult.transition_to(PlayerState.AIRBORNE)
@@ -32,7 +34,7 @@ func physics_update(delta: float) -> StateResult:
 	if (player.input_buffer.is_action_just_pressed("special_action") and player.special_action_state):
 		return StateResult.transition_to(player.special_action_state)
 		
-	if(player.target_detector.interaction_target != null and Input.is_action_just_pressed("interact")):
+	if(player.target_detector.interaction_target != null and player.input_buffer.is_action_just_pressed("interact")):
 		player.target_detector.interaction_target.interact(player, {})
 	
 	movement_processor.process_movement(delta)
@@ -40,3 +42,12 @@ func physics_update(delta: float) -> StateResult:
 	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length())
 	
 	return StateResult.continue_result
+
+func get_snapshot() -> Dictionary:
+	return {
+		'run': Vector2(body.velocity.x, body.velocity.z).length()
+	}
+
+func sync(snapshot: Dictionary) -> void:
+	var run_speed = snapshot.get('run')
+	model_animator.set_running(run_speed)

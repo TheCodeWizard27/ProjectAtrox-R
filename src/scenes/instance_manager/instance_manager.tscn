@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bsuwq26dqy2iy"]
+
+[ext_resource type="Script" uid="uid://dxl11hwe4skcc" path="res://src/scenes/instance_manager/instance_manager.gd" id="1_bsfne"]
+[ext_resource type="PackedScene" uid="uid://dlw5nuwcfielu" path="res://src/scenes/player/controller/player_controller.tscn" id="2_bsfne"]
+[ext_resource type="Script" uid="uid://cfqd8a4uen5ps" path="res://src/scenes/areas/area_core/entity_manager.gd" id="2_ugewv"]
+
+[node name="InstanceManager" type="Node" unique_id=982024805 node_paths=PackedStringArray("player_controller", "entity_manager")]
+script = ExtResource("1_bsfne")
+player_controller = NodePath("PlayerController")
+entity_manager = NodePath("EntityManager")
+
+[node name="PlayerController" parent="." unique_id=948017268 instance=ExtResource("2_bsfne")]
+
+[node name="EntityManager" type="Node" parent="." unique_id=1022171828]
+script = ExtResource("2_ugewv")
+metadata/_custom_type_script = "uid://cfqd8a4uen5ps"

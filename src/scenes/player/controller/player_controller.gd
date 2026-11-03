@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 class_name PlayerController
 
 @export var ui_container: Node3D
@@ -13,7 +13,13 @@ class_name PlayerController
 		_configure_new_player(new_player)
 	get: return _target_player
 
+signal action_pressed(action: StringName, is_pressed: bool)
+
 var _target_player: Player = null
+
+func notify_action_pressed(input: InputEvent):
+	for event in ActionHelper.resolve_actions(input):
+		action_pressed.emit(event.action, event.is_pressed)
 
 func _ready() -> void:
 	_init_state_machine()

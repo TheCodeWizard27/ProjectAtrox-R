@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d2n4ijaq33u5f"]
+
+[ext_resource type="Script" uid="uid://cho0334equubs" path="res://src/scenes/areas/area_core/player_spawner/player_spawner.gd" id="1_sycd2"]
+
+[node name="PlayerSpawner" type="Marker3D" unique_id=875339613]
+script = ExtResource("1_sycd2")
+
+[node name="Slot1" type="Marker3D" parent="." unique_id=1035481507]
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, -1.25, 0, 0)
+
+[node name="Slot2" type="Marker3D" parent="." unique_id=588792017]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.5, 0, -0.5)
+
+[node name="Slot3" type="Marker3D" parent="." unique_id=450304917]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.5, 0, -0.5)
+
+[node name="Slot4" type="Marker3D" parent="." unique_id=1129869790]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.25, 0, 0)

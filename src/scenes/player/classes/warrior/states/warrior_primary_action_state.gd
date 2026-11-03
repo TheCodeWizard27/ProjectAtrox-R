@@ -72,12 +72,16 @@ func physics_update(delta: float) -> StateResult:
 	
 	var result = process_attack(delta)
 	
+	if (is_synced):
+		return StateResult.continue_result
+	
 	movement_processor.process_movement(delta, movement_speed_modifier)
 	
 	# Lead towards look direction
-	var forward = (Vector3.FORWARD * forward_momentum).rotated(Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
+	var forward = (Vector3.FORWARD * forward_momentum).rotated(
+		Vector3.UP, Basis.looking_at(player.looking_direction).get_euler().y)
 	player.body.velocity += forward
-	movement_processor.look_at(player.body.position - forward)
+	movement_processor.look_at(player.body.global_position - forward)
 	
 	model_animator.set_running(Vector2(body.velocity.x, body.velocity.z).length() * movement_speed_modifier)
 	
@@ -99,6 +103,17 @@ func process_attack(delta: float) -> StateResult:
 		return StateResult.transition_to(WarriorState.GROUNDED)
 	
 	return StateResult.continue_result
+
+func get_snapshot() -> Dictionary:
+	return {
+		'step': current_step_index
+	}
+
+func sync(snapshot: Dictionary) -> void:
+	var step_index = snapshot.get('step')
+	
+	if (step_index != current_step_index):
+		_init_attack_step(step_index)
 
 func _init_attack_step(step: int) -> void:
 	primary_attack_buffered = false

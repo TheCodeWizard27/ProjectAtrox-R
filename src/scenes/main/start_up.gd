@@ -4,3 +4,4 @@ class_name StartUp
 static func start_up() -> void:
 	ItemTable.setup_instance()
 	EffectTable.setup_instance()
+	EntityTable.setup_instance()

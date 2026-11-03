@@ -52,3 +52,4 @@ func _input(event: InputEvent) -> void:
 	
 	if (controller.target_player):
 		controller.target_player.push_event(event)
+		controller.notify_action_pressed(event)

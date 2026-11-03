@@ -43,3 +43,15 @@ func get_entity_position() -> Vector3:
 	
 func get_entity_rotation() -> Vector3:
 	return body.global_rotation
+
+func set_entity_rotation(p_rotation: Vector3) -> void:
+	body.rotation = p_rotation
+
+func set_entity_position(p_position: Vector3) -> void:
+	body.global_position = p_position
+
+func get_state_snapshot() -> Dictionary:
+	return state.get_snapshot()
+
+func sync_state(snapshot: Dictionary) -> void:
+	state.sync(snapshot)

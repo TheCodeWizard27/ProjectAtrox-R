@@ -14,7 +14,8 @@ class_name Player
 
 var looking_direction: Vector3 = Vector3.FORWARD
 var lock_on_target: Node3D
-var input_buffer: InputBuffer = InputBuffer.new()
+#var input_buffer: InputBuffer = InputBuffer.new()
+var input_buffer: ActionBuffer = ActionBuffer.new()
 
 var inventory: InventorySystem = InventorySystem.new()
 var effects: EffectSystem = EffectSystem.new()
@@ -67,21 +68,39 @@ func configure_player(new_status: PlayerStatus) -> void:
 
 #region Entity implementation
 
+func get_state_snapshot() -> Dictionary:
+	return state_machine.get_snapshot()
+
+func sync_state(snapshot: Dictionary) -> void:
+	state_machine.sync(snapshot)
+
 func get_hit() -> void:
 	super.get_hit()
 	status.resources.health -= 5 # TODO
 	event_player.play_getting_hit()
 	
 func get_entity_position() -> Vector3:
-	return body.position
+	return body.global_position
 	
 func get_entity_rotation() -> Vector3:
 	return body.rotation
+
+func set_entity_rotation(p_rotation: Vector3) -> void:
+	body.rotation = p_rotation
+
+func set_entity_position(p_position: Vector3) -> void:
+	body.global_position = p_position
 
 func add_effect(effect_reference: EffectReference) -> void:
 	effects.add_effect(effect_reference)
 
 #endregion
+
+func set_action(action: StringName, is_pressed: bool) -> void:
+	if (is_pressed):
+		input_buffer.set_action_pressed(action)
+	else:
+		input_buffer.set_action_release(action)
 
 func push_event(event: InputEvent) -> void:
 	input_buffer.push_event(event)

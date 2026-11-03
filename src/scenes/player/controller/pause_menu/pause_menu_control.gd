@@ -44,7 +44,8 @@ func update(player_status: PlayerStatus) -> void:
 			
 			
 	if(player_status.current_quest):
-		current_quest_label.text = str(player_status.current_quest.name)
+		var location = Locations.location_table.get(player_status.current_quest.location)
+		current_quest_label.text = str(location.name)
 	
 
 func load_inventory(player_status: PlayerStatus) -> void:

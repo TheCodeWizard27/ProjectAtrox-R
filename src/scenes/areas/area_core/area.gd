@@ -1,15 +1,15 @@
 class_name Area
 extends LoadableScene
 
-@export var player_controller: PlayerController
-@export var player_spawner: PlayerSpawner
+@export var instance_manager: InstanceManager
 
 func _ready() -> void:
 	# Load if this scene was loaded without a loader
 	if (self == get_tree().current_scene):
 		on_load({})
 
-func on_load(_data: Dictionary) -> void:
-	# TODO Take data for player initialization
-	var player = player_spawner.spawn(PlayerStatus.new())
-	player_controller.target_player = player
+func on_load(data: Dictionary) -> void:
+	var instance = data.get(InstanceManager.LOBBY_INSTANCE) \
+		if data.has(InstanceManager.LOBBY_INSTANCE) else OfflineLobbyInstance.new()
+	
+	instance_manager.init(instance)

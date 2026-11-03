@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 
 	var progress = []
 	_current_load_state = ResourceLoader.load_threaded_get_status(_current_loading_path, progress)
-	print_debug('Loading ', _current_loading_path, ' progress ', progress)
+	#print_debug('Loading ', _current_loading_path, ' progress ', progress)
 
 	_loading_screen.update_progress(progress[0])
 

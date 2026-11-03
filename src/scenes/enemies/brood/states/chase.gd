@@ -5,13 +5,22 @@ var _attack_cooldown: float
 var _detected_player: Player
 
 func enter(msg: Dictionary = {}) -> void:
+	if (is_synced):
+		return
+	
 	_detected_player = msg[BroodGuardState.PLAYER]
 	enemy.player_detector.body_exited.connect(_on_body_exit)
 	
 func exit() -> void:
+	if (is_synced):
+		return
+	
 	enemy.player_detector.body_exited.disconnect(_on_body_exit)
 	
 func physics_update(delta: float) -> StateResult:
+	if (is_synced):
+		return StateResult.continue_result
+	
 	var result = process_damage_taken()
 	if (result.type != StateResult.Type.CONTINUE):
 		return result
