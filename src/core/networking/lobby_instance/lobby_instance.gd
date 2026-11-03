@@ -5,6 +5,9 @@ var lobby_data: LobbyData
 @warning_ignore("unused_signal")
 signal player_connected(id: int, name: String)
 
+func stop() -> void:
+	pass
+
 func get_unique_id() -> int:
 	return -1
 

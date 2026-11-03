@@ -12,6 +12,7 @@ var _lobby_container_scene = preload('res://src/scenes/ui_components/card_contro
 var selected_lobby = LobbyListEntry
 
 func init_lobby_list(lobbies: Array[LobbyListEntry]) -> void:
+	print('Lobbies ', lobbies.size())
 	var all_children = lobby_container.get_children()
 	for child: CardControlComponent in all_children:
 		lobby_container.remove_child(child)

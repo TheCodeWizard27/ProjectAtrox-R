@@ -1,6 +1,7 @@
 class_name ClientLobbyInstance
 extends LobbyInstance
 
+signal disconnected()
 signal player_updated(id: int, player: HostPlayerUpdatePacket)
 signal entity_updated(id: int, entity: HostEntityUpdatePacket)
 signal area_changed(location: Locations.LocationEnum)
@@ -11,6 +12,13 @@ var _processor: LobbyClientProcessor
 func _init(processor: LobbyClientProcessor):
 	_processor = processor
 	processor.packet_received.connect(_on_packet_received)
+	processor.disconnected.connect(disconnected.emit)
+
+func stop() -> void:
+	_processor.stop()
+
+func is_connected_to_server() -> bool:
+	return _processor.is_connected_to_server()
 
 func send_action(action: StringName, is_pressed: bool) -> void:
 	var event = ClientPacket.Event.ACTION_PRESSED \

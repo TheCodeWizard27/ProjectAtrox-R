@@ -33,10 +33,10 @@ func _init_existing_players() -> void:
 		_on_player_connected(id, connected_players[id])
 
 func _init_for_host(instance: HostLobbyInstance) -> void:
-	print('init for host')
 	Events.area.area_change_requested.connect(_on_area_change_request)
 	instance.player_update.connect(_on_player_update)
 	instance.player_action.connect(_on_player_action)
+	instance.player_disconnected.connect(_on_player_disconnected)
 	
 	var timer = Timer.new()
 	add_child(timer)
@@ -45,6 +45,11 @@ func _init_for_host(instance: HostLobbyInstance) -> void:
 	timer.start(1.0 / 30.0)
 
 func _init_for_client(instance: ClientLobbyInstance) -> void:
+	instance.disconnected.connect(_on_disconnected.bind(instance))
+	
+	if (!instance.is_connected_to_server()):
+		_on_disconnected(instance)
+	
 	instance.player_updated.connect(_on_player_updated)
 	instance.entity_updated.connect(_on_entity_updated)
 	instance.area_changed.connect(_on_area_changed)
@@ -174,3 +179,17 @@ func _spawn_player(player_status: PlayerStatus) -> Player:
 	var spawn_location = player_spawner.get_next_spawn_location()
 	return entity_manager.spawn_player(player_status,
 		spawn_location.global_position, spawn_location.rotation)
+
+func _on_player_disconnected(id: int) -> void:
+	if (!players.has(id)):
+		return
+	
+	var player = players.get(id) as Player
+	player.queue_free()
+	players.erase(id)
+
+func _on_disconnected(instance: ClientLobbyInstance) -> void:
+	instance.stop()
+	var main_menu_path = Locations.location_table.get(Locations.LocationEnum.LOBBY_MENU).path
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Events.request_scene_change(main_menu_path, {})
