@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://ombmt4yylu4c"]
+
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="1_eefva"]
+[ext_resource type="Script" uid="uid://boibij5w3xv3b" path="res://src/scenes/main_menu/create_lobby/create_lobby_menu_control.gd" id="1_uhpe5"]
+[ext_resource type="PackedScene" uid="uid://dbvlyh2umgwu0" path="res://src/scenes/ui_components/header_component/header_component.tscn" id="3_b5cra"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_dajey"]
+[ext_resource type="PackedScene" uid="uid://dklula3es4w21" path="res://src/scenes/ui_components/footer_button_component/footer_button_component.tscn" id="4_08miq"]
+
+[node name="CreateLobbyMenuControl" type="Control" unique_id=836866758]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhpe5")
+
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("1_eefva")]
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1514643904]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=1697185694]
+layout_mode = 2
+
+[node name="HeaderComponent" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=7175755 instance=ExtResource("3_b5cra")]
+layout_mode = 2
+current_menu_string = "Create lobby"
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=121279165]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="GridContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1125095964]
+layout_mode = 2
+columns = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=512336097]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=951747506]
+layout_mode = 2
+texture = ExtResource("3_dajey")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=690957859]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LobbyConfigContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=1236477933]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="LobbyNameContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer" unique_id=475337253]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=965876359]
+layout_mode = 2
+text = "Lobby Name         "
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=449817264]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LobbyNameEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=679262686]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 3
+max_length = 30
+expand_to_text_length = true
+
+[node name="PrivateContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer" unique_id=1202589535]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PrivateContainer" unique_id=1132860820]
+layout_mode = 2
+text = "Private Lobby"
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PrivateContainer" unique_id=1410804553]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrivateToggleCheckbox" type="CheckBox" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PrivateContainer" unique_id=391257054]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PasswordContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer" unique_id=1864719589]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=1248356236]
+layout_mode = 2
+text = "Lobby Passwort"
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=1132473211]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PasswordEdit" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=1128687663]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FooterButtonComponent" parent="MenuBackground" unique_id=1974797460 instance=ExtResource("4_08miq")]
+layout_mode = 0
+offset_left = 895.0
+offset_top = 590.0
+offset_right = 1124.0
+offset_bottom = 624.0
+reject_string = "Back"
+accept_string = "Create Lobby"
+
+[connection signal="home_button_pressed" from="MenuBackground/MarginContainer/VBoxContainer/HeaderComponent" to="." method="navigation_action" binds= [0]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PrivateContainer/PrivateToggleCheckbox" to="." method="private_checkbox_toggle"]
+[connection signal="accept_button_pressed" from="MenuBackground/FooterButtonComponent" to="." method="_on_create_lobby_button_pressed"]
+[connection signal="reject_button_pressed" from="MenuBackground/FooterButtonComponent" to="." method="navigation_action" binds= [0]]

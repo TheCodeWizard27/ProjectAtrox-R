@@ -1,0 +1,221 @@
+[gd_scene format=3 uid="uid://dbmo63at5nuur"]
+
+[ext_resource type="Script" uid="uid://dm1n1ckr13d8m" path="res://src/scenes/main_menu/select_lobby/select_lobby_menu_control.gd" id="1_o1wqu"]
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_tia5u"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="3_hpm44"]
+[ext_resource type="PackedScene" uid="uid://dbvlyh2umgwu0" path="res://src/scenes/ui_components/header_component/header_component.tscn" id="3_ptjd8"]
+[ext_resource type="PackedScene" uid="uid://d2qjwt0jhsxqj" path="res://src/scenes/ui_components/card_control_component/card_control_component.tscn" id="5_0itd6"]
+[ext_resource type="PackedScene" uid="uid://dklula3es4w21" path="res://src/scenes/ui_components/footer_button_component/footer_button_component.tscn" id="5_ptjd8"]
+
+[node name="SelectLobbyMenuController" type="Control" unique_id=1095022744]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1wqu")
+
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("2_tia5u")]
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1417259548]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=347949417]
+layout_mode = 2
+
+[node name="HeaderComponent" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=7175755 instance=ExtResource("3_ptjd8")]
+layout_mode = 2
+current_menu_string = "Select Lobby"
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=504164321]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1991326865]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CardControlComponent2" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1726423550 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1001507372 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1976714059]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TempLobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1153774859]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer" unique_id=2139948960 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
+[node name="PasswordContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1477859571]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer" unique_id=1160033783]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer" unique_id=1472490281]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer" unique_id=687874519]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2002333442]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=1327212652]
+layout_mode = 2
+texture = ExtResource("3_hpm44")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer" unique_id=863801160]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PasswordContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer" unique_id=1006107379]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="PasswordTitleContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer" unique_id=830996055]
+layout_mode = 2
+
+[node name="PasswordLable" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordTitleContainer" unique_id=1734156647]
+layout_mode = 2
+text = "Lobby Name"
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordTitleContainer" unique_id=1439801285]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PasswordInputContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer" unique_id=2106409209]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordInputContainer" unique_id=2114079990]
+layout_mode = 2
+text = "Password:"
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordInputContainer" unique_id=520548955]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PasswordInputControl" type="LineEdit" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordInputContainer" unique_id=15479026]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 3
+max_length = 30
+expand_to_text_length = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer" unique_id=310473549]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer" unique_id=186297129]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CancelPasswordInputButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer" unique_id=240013073]
+layout_mode = 2
+text = "Cancel"
+
+[node name="ConfirmPasswordButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer" unique_id=168236885]
+layout_mode = 2
+text = "Confirm"
+
+[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer" unique_id=503029279]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PasswordValidationContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1129884084]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer" unique_id=353671785]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer" unique_id=2033824316]
+layout_mode = 2
+texture = ExtResource("3_hpm44")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer" unique_id=795557590]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer/MarginContainer" unique_id=275244291]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7058824, 0.043137256, 0.043137256, 1)
+text = "Password is incorrect"
+
+[node name="FooterButtonComponent" parent="MenuBackground" unique_id=1108446115 instance=ExtResource("5_ptjd8")]
+layout_mode = 1
+offset_left = 895.0
+offset_top = 590.0
+offset_right = 1124.0
+offset_bottom = 624.0
+hide_accept_button = true
+reject_string = "Back"
+accept_string = "asdf"
+
+[connection signal="home_button_pressed" from="MenuBackground/MarginContainer/VBoxContainer/HeaderComponent" to="." method="navigation_action" binds= [0]]
+[connection signal="clicked" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer/CardControlComponent" to="." method="_on_lobby_clicked"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer/CancelPasswordInputButton" to="." method="cancel_password_input"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer/ConfirmPasswordButton" to="." method="enter_password"]
+[connection signal="reject_button_pressed" from="MenuBackground/FooterButtonComponent" to="." method="navigation_action" binds= [0]]

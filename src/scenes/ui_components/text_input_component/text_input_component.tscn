@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cxie1x0s04m85"]
+
+[ext_resource type="Script" uid="uid://0dpb73j2mho7" path="res://src/scenes/ui_components/text_input_component/text_input_component.gd" id="1_hmta4"]
+
+[node name="TextInputComponent" type="Control" unique_id=989521119]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_hmta4")
+
+[node name="Label" type="Label" parent="." unique_id=916607545]
+layout_mode = 0
+text = "Lobby Name         "
+
+[node name="LobbyNameEdit" type="LineEdit" parent="." unique_id=830754916]
+unique_name_in_owner = true
+layout_mode = 0
+size_flags_horizontal = 3
+alignment = 3
+max_length = 30
+expand_to_text_length = true
