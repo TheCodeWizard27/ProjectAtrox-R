@@ -20,7 +20,7 @@ func init(instance: LobbyInstance) -> void:
 		_init_for_client(instance)
 	
 	Events.entity.entity_spawn_requested.connect(_on_spawn_entity_request)
-	Events.area.area_change_requested.connect(_on_area_change_request)
+	Events.enemy.died.connect(_on_enemy_death)
 	lobby_instance.player_connected.connect(_on_player_connected)
 	
 	var player = _spawn_player(PlayerStatus.new())
@@ -33,6 +33,8 @@ func _init_existing_players() -> void:
 		_on_player_connected(id, connected_players[id])
 
 func _init_for_host(instance: HostLobbyInstance) -> void:
+	print('init for host')
+	Events.area.area_change_requested.connect(_on_area_change_request)
 	instance.player_update.connect(_on_player_update)
 	instance.player_action.connect(_on_player_action)
 	
@@ -55,17 +57,28 @@ func _init_for_client(instance: ClientLobbyInstance) -> void:
 	timer.start(1.0 / 30.0)
 
 func _on_area_changed(location: Locations.LocationEnum) -> void:
-	Events.area.request_area_change(location, {})
+	#Events.area.request_area_change(location, {})
+	_on_area_change_request(location, {})
 
 func _on_update_clients_tick(instance: HostLobbyInstance) -> void:
 	var player_updates: Dictionary[int, Player] = {
 		1: player_controller.target_player
 	}
 	
-	for peer_id in players:
+	for peer_id in players.duplicate():
 		player_updates.set(peer_id, players[peer_id])
 	
-	instance.send_update(player_updates, entities.duplicate())
+	var entity_updates: Dictionary[int, Entity] = {}
+	
+	for entity_id in entities.duplicate():
+		var entity = entities[entity_id]
+		if (!is_instance_valid(entity)):
+			entities.erase(entity_id)
+			continue
+		
+		entity_updates.set(entity_id, entity)
+	
+	instance.send_update(player_updates, entity_updates)
 
 func _on_update_server(instance: ClientLobbyInstance) -> void:
 	if (!player_controller.target_player):
@@ -82,25 +95,21 @@ func _on_player_updated(id: int, update: HostPlayerUpdatePacket) -> void:
 		return
 	
 	var player = players.get(id) as Player
-	#player.set_entity_position(update.position)
 	player.set_entity_rotation(update.rotation)
 	player.set_entity_position(lerp(player.get_entity_position(), update.position, 0.8))
-	#player.set_entity_rotation(lerp(player.get_entity_rotation(), update.rotation, 0.5))
 	player.sync_state(update.state_snapshot)
 
 func _on_entity_updated(id: int, update: HostEntityUpdatePacket) -> void:
 	if (!entities.has(id)):
+		_spawn_entity(id, update)
+	
+	if (!is_instance_valid(entities.get(id))):
+		entities.erase(id)
 		return
-		#_spawn_entity(id, update)
 	
 	var entity = entities.get(id) as Entity
 	
-	#if (entity == null):
-		#return
-	
-	#entity.set_entity_position(lerp(entity.get_entity_position(), update.position, 0.5))
-	#entity.set_entity_rotation(lerp(entity.get_entity_rotation(), update.rotation, 0.5))
-	entity.set_entity_position(update.position)
+	entity.set_entity_position(lerp(entity.get_entity_position(), update.position, 0.8))
 	entity.set_entity_rotation(update.rotation)
 	entity.sync_state(update.state_snapshot)
 
@@ -125,7 +134,16 @@ func _on_player_action(id: int, action: StringName, pressed: bool) -> void:
 	var player = players.get(id) as Player
 	player.set_action(action, pressed)
 
-func _on_spawn_entity_request(entity: Entity, position: Vector3, rotation: Vector3) -> void:	
+func _on_enemy_death(entity: Enemy) -> void:
+	if (lobby_instance is ClientLobbyInstance):
+		return
+	
+	if (lobby_instance is HostLobbyInstance):
+		entities.erase(entity.get_instance_id())
+	
+	entity_manager.spawn_item_entity(entity)
+
+func _on_spawn_entity_request(entity: Entity, position: Vector3, rotation: Vector3) -> void:
 	if (lobby_instance is ClientLobbyInstance):
 		return
 	
@@ -145,9 +163,12 @@ func _on_area_change_request(location: Locations.LocationEnum, data: Dictionary)
 func _spawn_entity(id: int, packet: HostEntityUpdatePacket) -> void:
 	var entity_path = EntityTable.get_entity_path(packet.entity_id)
 	
+	if (entity_path == null):
+		return
+	
 	var entity = (load(entity_path) as PackedScene).instantiate() as Entity
 	entity_manager.spawn_entity(entity, packet.position, packet.rotation)
-	entities.set(id, packet)
+	entities.set(id, entity)
 
 func _spawn_player(player_status: PlayerStatus) -> Player:
 	var spawn_location = player_spawner.get_next_spawn_location()

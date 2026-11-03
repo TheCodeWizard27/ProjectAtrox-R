@@ -12,6 +12,7 @@ signal transitioned(state_name)
 
 var _registered_states: Array[State] = []
 var _state_stack: Array[NodePath] = []
+var _is_synced: bool = false
 
 func get_snapshot() -> Dictionary:
 	var snapshot = current_state.get_snapshot()
@@ -19,12 +20,12 @@ func get_snapshot() -> Dictionary:
 	return snapshot
 
 func sync(snapshot: Dictionary) -> void:
+	_is_synced = true
 	var state_path = NodePath(snapshot.get('state'))
 	
 	if (state_path != get_path_to(current_state)):
 		transition_to(state_path, {})
 	
-	current_state.is_synced = true
 	current_state.sync(snapshot)
 
 func get_all_states(discover: bool = false) -> Array[State]:
@@ -49,6 +50,7 @@ func transition_to(target_state_path: NodePath, msg: Dictionary = {}) -> void:
 	
 	current_state.exit()
 	current_state = get_node(target_state_path)
+	current_state.is_synced = _is_synced
 	current_state.enter(msg)
 	transitioned.emit(current_state.name)
 	

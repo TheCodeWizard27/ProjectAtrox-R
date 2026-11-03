@@ -10,7 +10,7 @@ static func setup_instance() -> void:
 	
 	instance = EntityTable.new()
 
-static func get_entity_path(id: EntityIds.Id) -> String:
+static func get_entity_path(id: EntityIds.Id) -> Variant:
 	return instance._entities.get(id)
 
 func _init() -> void:
