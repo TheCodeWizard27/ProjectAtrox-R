@@ -76,7 +76,7 @@ func sync_state(snapshot: Dictionary) -> void:
 
 func get_hit() -> void:
 	super.get_hit()
-	status.resources.health -= 5 # TODO
+	status.resources.health -= 15 # TODO
 	event_player.play_getting_hit()
 	
 func get_entity_position() -> Vector3:
