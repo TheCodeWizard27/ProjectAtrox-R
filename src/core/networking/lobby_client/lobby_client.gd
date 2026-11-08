@@ -16,11 +16,10 @@ var _hub_server: String
 
 func _init(p_configuration: NetworkConfiguration):
 	_configuration = p_configuration
-	#if(_configuration.custom_hub_server):
-		#_hub_server = _configuration.custom_hub_server
-	#else:
-		#_hub_server = 'localhost:7213'
-	_hub_server = _configuration.hub_server
+	if(_configuration.custom_hub_server):
+		_hub_server = _configuration.custom_hub_server
+	else:
+		_hub_server = _configuration.hub_server
 	_https_url = 'https://' + _hub_server
 	_ws_url = 'wss://' + _hub_server
 
