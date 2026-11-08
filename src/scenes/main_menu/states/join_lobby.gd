@@ -4,7 +4,6 @@ extends LobbyState
 
 signal password_validation_failed()
 
-
 func _ready():
 	init_for_control(menu_control)
 

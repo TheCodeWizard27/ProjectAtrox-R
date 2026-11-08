@@ -1,7 +1,7 @@
 extends LobbyControl
 class_name CreateLobbyMenuControl
 
-@onready var lobby_name_control = %LobbyNameEdit
+@onready var lobby_name_control: LineEdit = %LobbyNameEdit
 @onready var password_control = %PasswordEdit
 @onready var private_toggle_checkbox = %PrivateToggleCheckbox
 @onready var password_container = %PasswordContainer
@@ -9,6 +9,9 @@ class_name CreateLobbyMenuControl
 signal lobby_create_requested(create_data: CreateLobbyData)
 
 func _on_create_lobby_button_pressed() -> void:
+	if (lobby_name_control.text.is_empty()):
+		return
+	
 	var create_data: CreateLobbyData
 	var password: String
 	if(private_toggle_checkbox.pressed):

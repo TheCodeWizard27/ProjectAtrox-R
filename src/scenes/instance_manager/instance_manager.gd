@@ -55,6 +55,7 @@ func _init_for_client(instance: ClientLobbyInstance) -> void:
 	if (!instance.is_connected_to_server()):
 		_on_disconnected(instance)
 	
+	instance.player_disconnected.connect(_on_player_disconnected)
 	instance.player_updated.connect(_on_player_updated)
 	instance.entity_updated.connect(_on_entity_updated)
 	instance.area_changed.connect(_on_area_changed)

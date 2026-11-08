@@ -3,6 +3,7 @@ extends LobbyInstance
 
 signal disconnected()
 signal player_updated(id: int, player: HostPlayerUpdatePacket)
+signal player_disconnected(id: int)
 signal entity_updated(id: int, entity: HostEntityUpdatePacket)
 signal area_changed(location: Locations.LocationEnum)
 
@@ -57,6 +58,12 @@ func _on_update(_id: int, payload: Dictionary) -> void:
 			player_connected.emit(id, 'test')
 		
 		player_updated.emit(id, HostPlayerUpdatePacket.from_payload(player))
+	
+	for id in _initialized_players:
+		var player_exists = player_updates.has(str(id))
+		
+		if (not player_exists):
+			player_disconnected.emit(id)
 	
 	var entity_updates = payload.get('entity') as Dictionary[String, Dictionary]
 	for raw_id in entity_updates:

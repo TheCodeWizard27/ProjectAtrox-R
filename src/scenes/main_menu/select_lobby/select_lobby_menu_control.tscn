@@ -45,12 +45,12 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
+[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=2139948960 instance=ExtResource("5_0itd6")]
+layout_mode = 2
+
 [node name="TempLobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1153774859]
 layout_mode = 2
 theme_override_constants/separation = 8
-
-[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer" unique_id=2139948960 instance=ExtResource("5_0itd6")]
-layout_mode = 2
 
 [node name="PasswordContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1477859571]
 unique_name_in_owner = true
@@ -201,7 +201,7 @@ reject_string = "Back"
 accept_string = "asdf"
 
 [connection signal="home_button_pressed" from="MenuBackground/MarginContainer/VBoxContainer/HeaderComponent" to="." method="navigation_action" binds= [0]]
-[connection signal="clicked" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/TempLobbyContainer/CardControlComponent" to="." method="_on_lobby_clicked"]
+[connection signal="clicked" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/CardControlComponent" to="." method="_on_lobby_clicked"]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer/CancelPasswordInputButton" to="." method="cancel_password_input"]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/ButtonContainer/ConfirmPasswordButton" to="." method="enter_password"]
 [connection signal="reject_button_pressed" from="MenuBackground/FooterButtonComponent" to="." method="navigation_action" binds= [0]]
