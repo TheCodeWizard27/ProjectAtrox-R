@@ -2,14 +2,13 @@ extends LobbyState
 
 @export var menu_control: SelectLobbyMenuControl
 
-signal password_validation_failed()
-
 func _ready():
 	init_for_control(menu_control)
 
 func enter(msg: Dictionary = {}) -> void:
 	super.enter(msg)
 	
+	menu_control.reset()
 	menu_control.lobby_clicked.connect(_on_lobby_clicked)
 	_load_lobbies()
 	Events.networking.lobby_joined.connect(_on_lobby_joined)
@@ -52,7 +51,7 @@ func _on_lobby_clicked(lobby: LobbyListEntry, password: String = "") -> void:
 		address
 	))
 	if (join_response.was_unsuccessful):
-		password_validation_failed.emit()
+		menu_control.toggle_error(true)
 		client.queue_free()
 		return
 	

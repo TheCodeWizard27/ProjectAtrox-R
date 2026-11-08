@@ -155,7 +155,6 @@ size_flags_horizontal = 3
 
 [node name="PasswordValidationContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1129884084]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -188,7 +187,7 @@ theme_override_constants/margin_bottom = 8
 [node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer/MarginContainer" unique_id=275244291]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7058824, 0.043137256, 0.043137256, 1)
-text = "Password is incorrect"
+text = "Verbindung konnte nicht hergestellt werden!"
 
 [node name="FooterButtonComponent" parent="MenuBackground" unique_id=1108446115 instance=ExtResource("5_ptjd8")]
 layout_mode = 1

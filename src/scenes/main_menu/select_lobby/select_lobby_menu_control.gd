@@ -39,9 +39,15 @@ func _on_lobby_clicked(lobby: LobbyListEntry) -> void:
 func enter_password() -> void:
 	lobby_clicked.emit(selected_lobby, password_input.text)
 
-func show_password_error() -> void:
-	password_validation_container.visible = true
-	pass
+func reset() -> void:
+	password_validation_container.hide()
+	password_container.hide()
+
+func toggle_error(show: bool) -> void:
+	if (show):
+		password_validation_container.show()
+	else:
+		password_validation_container.hide()
 
 func cancel_password_input() -> void:
 	password_container.visible = false
