@@ -5,6 +5,10 @@ enum IncomingEventType {
 	CONNECTION_INFO
 }
 
+enum OutgoingEventType {
+	LOBBY_UPDATE
+}
+
 signal packet_received(id: int, type: ClientPacket.Event, payload: Dictionary)
 signal peer_connected(id: int)
 signal peer_disconnected(id: int)
@@ -12,18 +16,43 @@ signal peer_disconnected(id: int)
 var is_running = false
 
 var _web_socket: WebSocketPeer = WebSocketPeer.new()
+var _keep_alive_timers: Dictionary[int, Timer] = {}
+var _update_hub_server_timer: Timer
 var _enet_peer: ENetMultiplayerPeer
 var _scene_multiplayer: SceneMultiplayer
 var _configuration: NetworkConfiguration
 var _public_ip: String
 
+var _player_count: int = 1
+var _lobby_joinable: bool = true
+
+func update_lobby_state(player_count: int, joinable: bool) -> void:
+	_player_count = player_count
+	_lobby_joinable = joinable
+
 func send_packet(type: HostPacket.Event, payload: Dictionary) -> void:
 	_scene_multiplayer.send_bytes(HostPacket.create_packet(type, payload))
 
 func stop() -> void:
+	if (!is_running):
+		return
+	
 	is_running = false
+	_enet_peer.peer_connected.disconnect(_on_peer_connected)
+	_enet_peer.peer_disconnected.disconnect(_on_peer_disconnected)
+	_scene_multiplayer.peer_packet.disconnect(_on_peer_packet)
 	_enet_peer.close()
 	_web_socket.close()
+	
+	for timer_id in _keep_alive_timers:
+		var timer = _keep_alive_timers[timer_id]
+		timer.stop()
+		remove_child(timer)
+	
+	_keep_alive_timers.clear()
+	
+	_update_hub_server_timer.stop()
+	remove_child(_update_hub_server_timer)
 
 func get_peer_id() -> int:
 	return _enet_peer.get_unique_id()
@@ -31,6 +60,7 @@ func get_peer_id() -> int:
 func _ready() -> void:
 	_configuration = NetworkConfiguration.get_current()
 	Events.networking.host_lobby_requested.connect(_on_host_server_requested)
+	Events.networking.stop_network_request.connect(stop)
 
 func _on_host_server_requested(host_data: HostLobbyServerData) -> void:
 	_web_socket = host_data.web_socket
@@ -53,6 +83,7 @@ func _start_hosting(port: int) -> void:
 	Events.networking.notify_lobby_server_started(self)
 	print_debug('Started Server on ', port)
 	is_running = true
+	_set_up_hub_server_update()
 
 func _process(_delta: float) -> void:
 	if (not is_running):
@@ -97,11 +128,8 @@ func _punch_hole(ip: String, port: int) -> void:
 		connection.socket_send(ip, port, hole_punch_message.to_utf8_buffer())
 		await get_tree().create_timer(_configuration.hole_punch_delay).timeout
 		
-		if (!_is_peer_connected(ip, port)):
-			continue
-		
-		# TODO Setup hole keep alive.
-		return
+		if (_is_peer_connected(ip, port)):
+			return
 	
 	Events.networking.notify_lobby_server_start_failed()
 	
@@ -118,12 +146,55 @@ func _is_peer_connected(ip: String, port: int) -> bool:
 
 func _on_peer_connected(id: int) -> void:
 	peer_connected.emit(id)
+	_set_up_keep_alive(id)
 
 func _on_peer_disconnected(id: int) -> void:
 	peer_disconnected.emit(id)
+	
+	if (!_keep_alive_timers.has(id)):
+		return
+	
+	var timer = _keep_alive_timers.get(id) as Timer
+	remove_child(timer)
+	timer.stop()
+	_keep_alive_timers.erase(id)
 
 func _on_peer_packet(id: int, packet: PackedByteArray) -> void:
 	var type = ClientPacket.get_type(packet)
 	var payload = ClientPacket.get_payload(packet)
 	
 	packet_received.emit(id, type, payload)
+
+func _set_up_hub_server_update() -> void:
+	var timer = Timer.new()
+	add_child(timer)
+	_update_hub_server_timer = timer
+	timer.one_shot = false
+	timer.timeout.connect(_on_hub_server_update)
+	timer.start(2)
+
+func _on_hub_server_update() -> void:
+	_web_socket.send_text(JSON.stringify({
+		'Type': OutgoingEventType.LOBBY_UPDATE,
+		'Data': {
+			'PlayerCount': _player_count,
+			'Joinable': _lobby_joinable
+		}
+	}))
+
+func _set_up_keep_alive(id: int) -> void:
+	var timer = Timer.new()
+	add_child(timer)
+	_keep_alive_timers.set(id, timer)
+	timer.one_shot = false
+	timer.timeout.connect(_on_keep_hole_alive.bind(id))
+	timer.start(4)
+
+func _on_keep_hole_alive(id: int) -> void:
+	var peer = _enet_peer.get_peer(id)
+	var connection = _enet_peer.host
+	var hole_punch_message = _configuration.hole_punch_message
+	
+	var peer_id = peer.get_remote_address()
+	var peer_port = peer.get_remote_port()
+	connection.socket_send(peer_id, peer_port, hole_punch_message.to_utf8_buffer())

@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://dy38jllcr2wpg"]
+
+[ext_resource type="Shader" uid="uid://bcfphsle07kcs" path="res://src/scenes/player/controller/hud/hud_bg.gdshader" id="1_iugjp"]
+[ext_resource type="FontFile" uid="uid://q1mdfsabjloi" path="res://src/assets/Geo-Regular.ttf" id="2_m7dfp"]
+[ext_resource type="Shader" uid="uid://dmpd4j6t8k653" path="res://src/scenes/player/controller/hud/hud_bar.gdshader" id="3_kju3w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6j5wj"]
+render_priority = 0
+shader = ExtResource("1_iugjp")
+shader_parameter/color = Color(0.38, 0.37, 0.33, 0.74)
+
+[sub_resource type="QuadMesh" id="QuadMesh_j8ngh"]
+material = SubResource("ShaderMaterial_6j5wj")
+size = Vector2(0.82, 0.1)
+center_offset = Vector3(0.38, 0, 0)
+
+[sub_resource type="Shader" id="Shader_p04jj"]
+code = "shader_type spatial;
+
+render_mode unshaded, blend_mix, depth_test_disabled, cull_disabled;
+
+uniform vec4 color : source_color = vec4(1,1,1,1);
+
+void vertex() {
+	if (PROJECTION_MATRIX[3][3] != 0.0) {
+		// Orthogonal matrix; try to do about the same with viewport size.
+		float h = abs(1.0 / (2.0 * PROJECTION_MATRIX[1][1]));
+		// Consistent with vertical FOV (Keep Height).
+		float sc = (h * 2.0);
+		MODELVIEW_MATRIX[0] *= sc;
+		MODELVIEW_MATRIX[1] *= sc;
+		MODELVIEW_MATRIX[2] *= sc;
+	} else {
+		// Scale by depth.
+		float sc = -(MODELVIEW_MATRIX)[3].z;
+		MODELVIEW_MATRIX[0] *= sc;
+		MODELVIEW_MATRIX[1] *= sc;
+		MODELVIEW_MATRIX[2] *= sc;
+	}
+}
+
+void fragment() {
+	ALBEDO.rgb = color.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4k86"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_6j5wj"]
+material = SubResource("ShaderMaterial_t4k86")
+text = "HP: ["
+font = ExtResource("2_m7dfp")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_we0nm"]
+render_priority = 0
+shader = SubResource("Shader_p04jj")
+shader_parameter/color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_8a4cl"]
+material = SubResource("ShaderMaterial_we0nm")
+text = "HP ["
+font = ExtResource("2_m7dfp")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_p04jj"]
+material = SubResource("ShaderMaterial_t4k86")
+text = "]"
+font = ExtResource("2_m7dfp")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="TextMesh" id="TextMesh_we0nm"]
+material = SubResource("ShaderMaterial_we0nm")
+text = "]"
+font = ExtResource("2_m7dfp")
+font_size = 7
+horizontal_alignment = 0
+depth = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8a4cl"]
+render_priority = 0
+shader = ExtResource("3_kju3w")
+shader_parameter/color = Color(0.36078432, 0.8784314, 0.6039216, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_p04jj"]
+material = SubResource("ShaderMaterial_8a4cl")
+size = Vector2(0.54, 0.05)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p04jj"]
+render_priority = 0
+shader = ExtResource("3_kju3w")
+shader_parameter/color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+shader_parameter/size = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_we0nm"]
+material = SubResource("ShaderMaterial_p04jj")
+size = Vector2(0.54, 0.05)
+
+[node name="Health" type="Node3D" unique_id=905419959]
+transform = Transform3D(0.9698082, 0, 0.24386892, 0.03410858, 0.99017066, -0.13564165, -0.24147184, 0.1398644, 0.96027565, 0, 0, 0)
+
+[node name="Background" type="MeshInstance3D" parent="." unique_id=1607639404]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+sorting_offset = 1000.0
+mesh = SubResource("QuadMesh_j8ngh")
+skeleton = NodePath("../..")
+
+[node name="StartText" type="MeshInstance3D" parent="." unique_id=1095736251]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_6j5wj")
+
+[node name="TextShadow" type="MeshInstance3D" parent="StartText" unique_id=666611006]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_8a4cl")
+
+[node name="EndText" type="MeshInstance3D" parent="." unique_id=406817573]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0.58, 0, 0)
+sorting_offset = 1002.0
+mesh = SubResource("TextMesh_p04jj")
+
+[node name="TextShadow" type="MeshInstance3D" parent="EndText" unique_id=1933172802]
+transform = Transform3D(1.0000006, 0, 0, 0, 1.0000001, 2.9802322e-08, -1.4901161e-08, -1.4901161e-08, 1.0000005, 0.004999995, -0.004999995, 0)
+sorting_offset = 1001.0
+mesh = SubResource("TextMesh_we0nm")
+
+[node name="Health" type="MeshInstance3D" parent="." unique_id=1538800378]
+transform = Transform3D(1, 0, 0, 0, 1, 4.4703484e-08, -4.4703484e-08, 0, 1, 0.33, 0, 0)
+sorting_offset = 10002.0
+mesh = SubResource("QuadMesh_p04jj")
+
+[node name="HealthShadow" type="MeshInstance3D" parent="Health" unique_id=462310611]
+transform = Transform3D(1.0000004, 0, 0, -3.7252903e-09, 1, 7.4505806e-08, -5.9604645e-08, 0, 1, 0.005, -0.005, 0)
+sorting_offset = 10001.0
+mesh = SubResource("QuadMesh_we0nm")

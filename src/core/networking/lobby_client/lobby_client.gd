@@ -19,8 +19,7 @@ func _init(p_configuration: NetworkConfiguration):
 	if(_configuration.custom_hub_server):
 		_hub_server = _configuration.custom_hub_server
 	else:
-		_hub_server = 'localhost:7213'
-		#_hub_server = _configuration.hub_server
+		_hub_server = _configuration.hub_server
 	_https_url = 'https://' + _hub_server
 	_ws_url = 'wss://' + _hub_server
 
@@ -34,7 +33,14 @@ func connect_to_websocket(connection_id: String) -> LobbySocketConnectionRespons
 	if (result != OK):
 		return LobbySocketConnectionResponse.new_unsuccessful()
 	
-	return LobbySocketConnectionResponse.new(socket)
+	for i in range(10):
+		socket.poll()
+		if (socket.get_ready_state() == WebSocketPeer.State.STATE_OPEN):
+			return LobbySocketConnectionResponse.new(socket)
+		
+		await get_tree().create_timer(0.3).timeout
+	
+	return LobbySocketConnectionResponse.new_unsuccessful()
 
 func get_lobbies() -> LobbyListResponse:
 	var request = HTTPRequest.new()

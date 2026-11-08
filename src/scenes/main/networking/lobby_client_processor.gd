@@ -6,9 +6,11 @@ enum IncomingEventType {
 }
 
 signal packet_received(id: int, type: HostPacket.Event, payload: Dictionary)
+signal disconnected()
 
 var _web_socket: WebSocketPeer = WebSocketPeer.new()
 var _enet_peer: ENetMultiplayerPeer
+var _keep_alive_timer: Timer
 var _scene_multiplayer: SceneMultiplayer
 var _configuration: NetworkConfiguration
 var _public_ip: String
@@ -17,18 +19,33 @@ var _local_port: int
 var _started = false
 
 func stop() -> void:
+	if (!_started):
+		return
+	
 	_started = false
+	multiplayer.connected_to_server.disconnect(_on_connected)
+	multiplayer.server_disconnected.disconnect(_on_disconnected)
+	_scene_multiplayer.peer_packet.disconnect(_on_peer_packet)
 	_enet_peer.close()
+	_web_socket.close()
+	
+	if (_keep_alive_timer != null):
+		_keep_alive_timer.stop()
+		remove_child(_keep_alive_timer)
 
 func send_packet(type: ClientPacket.Event, payload: Dictionary) -> void:
-	_scene_multiplayer.send_bytes(ClientPacket.create_packet(type, payload))
+	_scene_multiplayer.send_bytes(ClientPacket.create_packet(type, payload), 1)
 
 func get_peer_id() -> int:
 	return _enet_peer.get_unique_id()
 
+func is_connected_to_server() -> bool:
+	return _enet_peer.get_connection_status() != MultiplayerPeer.ConnectionStatus.CONNECTION_DISCONNECTED
+
 func _ready() -> void:
 	_configuration = NetworkConfiguration.get_current()
 	Events.networking.join_lobby_requested.connect(_on_join_lobby_requested)
+	Events.networking.stop_network_request.connect(stop)
 
 func _on_join_lobby_requested(join_data: JoinLobbyData) -> void:
 	_web_socket = join_data.web_socket
@@ -94,7 +111,6 @@ func _punch_hole(ip: String, port: int) -> void:
 			continue
 		
 		_join_lobby(ip, port)
-		# TODO Setup hole keep alive.
 		return
 	
 	Events.networking.notify_lobby_join_failed()
@@ -109,20 +125,40 @@ func _join_lobby(ip: String, port: int) -> void:
 	
 	multiplayer.multiplayer_peer = _enet_peer
 	multiplayer.connected_to_server.connect(_on_connected)
+	multiplayer.server_disconnected.connect(_on_disconnected)
 	_scene_multiplayer = multiplayer as SceneMultiplayer
 	_scene_multiplayer.peer_packet.connect(_on_peer_packet)
 	_web_socket.close()
 	
 func _on_connected() -> void:
+	_set_up_keep_alive()
 	Events.networking.notify_lobby_joined(self)
 	
-	var packet = ClientPacket.create_packet(ClientPacket.Event.INIT_PLAYER, {
+	send_packet(ClientPacket.Event.INIT_PLAYER, {
 		'name': 'Player'
 	})
-	_scene_multiplayer.send_bytes(packet)
+
+func _on_disconnected() -> void:
+	disconnected.emit()
 
 func _on_peer_packet(id: int, packet: PackedByteArray) -> void:
 	var type = HostPacket.get_type(packet)
 	var payload = HostPacket.get_payload(packet)
 	
 	packet_received.emit(id, type, payload)
+
+func _set_up_keep_alive() -> void:
+	_keep_alive_timer = Timer.new()
+	add_child(_keep_alive_timer)
+	_keep_alive_timer.one_shot = false
+	_keep_alive_timer.timeout.connect(_on_keep_hole_alive)
+	_keep_alive_timer.start(4)
+
+func _on_keep_hole_alive() -> void:
+	var connection = _enet_peer.host
+	var peer = _enet_peer.get_peer(1) # 1 Is always server peer.
+	var hole_punch_message = _configuration.hole_punch_message
+	
+	var peer_id = peer.get_remote_address()
+	var peer_port = peer.get_remote_port()
+	connection.socket_send(peer_id, peer_port, hole_punch_message.to_utf8_buffer())

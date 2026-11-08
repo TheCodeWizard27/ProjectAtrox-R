@@ -33,7 +33,7 @@ func update(delta: float) -> StateResult:
 		return StateResult.transition_to(PlayerControllerState.IN_PAUSE_MENU)
 	
 	target_processor.process_lock_on()
-	controller.hud.update(controller.target_player, delta)
+	controller.hud.update(controller.target_player, controller.other_players, delta)
 	sync_camera_and_player()
 	
 	return StateResult.continue_result

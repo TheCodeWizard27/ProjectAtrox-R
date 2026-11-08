@@ -3,6 +3,7 @@ extends LobbyInstance
 
 signal player_update(id: int, looking_direction: Vector3)
 signal player_action(id: int, action: StringName, pressed: bool)
+signal player_disconnected(id: int)
 
 var _initialized_players: Dictionary[int, String] = {}
 var _processor: HostLobbyProcessor
@@ -12,6 +13,10 @@ func _init(processor: HostLobbyProcessor):
 	processor.packet_received.connect(_on_packet_received)
 	processor.peer_connected.connect(_on_peer_connected)
 	processor.peer_disconnected.connect(_on_peer_disconnected)
+	processor.peer_disconnected.connect(player_disconnected.emit)
+
+func stop() -> void:
+	_processor.stop()
 
 func send_update(players: Dictionary[int, Player], entities: Dictionary[int, Entity]) -> void:
 	var player_part: Dictionary = {}
@@ -47,6 +52,7 @@ func _on_peer_connected(_id: int) -> void:
 
 func _on_peer_disconnected(id: int) -> void:
 	_initialized_players.erase(id)
+	_processor.update_lobby_state(_initialized_players.size() + 1, true)
 
 func _on_packet_received(id: int, type: ClientPacket.Event, payload: Dictionary) -> void:
 	match(type):
@@ -72,3 +78,4 @@ func _on_init_player(id: int, payload: Dictionary) -> void:
 	var name = payload.get('name')
 	_initialized_players.set(id, name)
 	player_connected.emit(id, name)
+	_processor.update_lobby_state(_initialized_players.size() + 1, true) # TODO Joinable

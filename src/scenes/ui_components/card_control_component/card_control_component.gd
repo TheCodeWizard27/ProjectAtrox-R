@@ -10,7 +10,7 @@ signal clicked
 
 func set_entry(lobby: LobbyListEntry) -> void:
 	label.text = lobby.name
-	player_count.text = '1 / 4'
+	player_count.text = str(lobby.player_count) + ' / 4'
 	private_icon.visible = lobby.is_private
 
 func _on_clickable_area_pressed() -> void:

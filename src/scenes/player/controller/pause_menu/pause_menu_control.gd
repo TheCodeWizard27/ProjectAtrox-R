@@ -89,4 +89,5 @@ func select_quest(quest_name: String) -> void:
 	Events.player.quest_accepted.emit(quest)
 
 func leave_lobby() -> void:
+	Events.networking.request_stop_network()
 	Events.scene_change_requested.emit(Locations.location_table.get(Locations.LocationEnum.LOBBY_MENU).path, {})

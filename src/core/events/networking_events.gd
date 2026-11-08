@@ -23,3 +23,7 @@ func notify_lobby_joined(processor: LobbyClientProcessor) -> void:
 signal lobby_join_failed()
 func notify_lobby_join_failed() -> void:
 	lobby_join_failed.emit()
+
+signal stop_network_request()
+func request_stop_network() -> void:
+	stop_network_request.emit()

@@ -18,7 +18,6 @@ static func _do_nothing(_player: Player) -> void:
 
 static func _heal(player: Player, heal_amount: float) -> void:
 	player.status.resources.health += heal_amount
-	print('Healing for ', heal_amount)
 
 #endregion
 

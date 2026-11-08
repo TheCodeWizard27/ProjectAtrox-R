@@ -21,7 +21,6 @@ static func _do_nothing(_entity: Entity) -> void:
 	pass
 
 static func _regen(entity: Entity, heal_amount: float) -> void:
-	print(entity, entity is Player, heal_amount)
 	if (entity is Player):
 		_regen_player(entity, heal_amount)
 	elif (entity is Enemy):
@@ -29,7 +28,6 @@ static func _regen(entity: Entity, heal_amount: float) -> void:
 
 static func _regen_player(player: Player, heal_amount: float) -> void:
 	player.status.resources.health += heal_amount
-	print('Healing for ', heal_amount)
 
 static func _regen_enemy(enemy: Enemy, heal_amount: float) -> void:
 	enemy.current_health += heal_amount
