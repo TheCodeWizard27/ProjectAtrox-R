@@ -40,7 +40,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=1839512247]
 layout_mode = 2
-text = "Sancho's Coole Lobby"
+text = "No Lobbies"
 
 [node name="Placeholder" type="Control" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=2108887390]
 layout_mode = 2
@@ -48,9 +48,9 @@ size_flags_horizontal = 3
 
 [node name="PlayerCountLabel" type="Label" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=905488713]
 layout_mode = 2
-text = "1 / 4"
 
 [node name="PrivateIcon" type="TextureRect" parent="MarginContainer/LobbyConfigContainer/LobbyNameContainer" unique_id=326653775]
+visible = false
 layout_mode = 2
 texture = ExtResource("3_p2608")
 expand_mode = 2
