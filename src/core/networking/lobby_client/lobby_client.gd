@@ -34,7 +34,14 @@ func connect_to_websocket(connection_id: String) -> LobbySocketConnectionRespons
 	if (result != OK):
 		return LobbySocketConnectionResponse.new_unsuccessful()
 	
-	return LobbySocketConnectionResponse.new(socket)
+	for i in range(10):
+		socket.poll()
+		if (socket.get_ready_state() == WebSocketPeer.State.STATE_OPEN):
+			return LobbySocketConnectionResponse.new(socket)
+		
+		await get_tree().create_timer(0.3).timeout
+	
+	return LobbySocketConnectionResponse.new_unsuccessful()
 
 func get_lobbies() -> LobbyListResponse:
 	var request = HTTPRequest.new()

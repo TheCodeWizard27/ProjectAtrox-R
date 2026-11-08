@@ -5,6 +5,10 @@ enum IncomingEventType {
 	CONNECTION_INFO
 }
 
+enum OutgoingEventType {
+	LOBBY_UPDATE
+}
+
 signal packet_received(id: int, type: ClientPacket.Event, payload: Dictionary)
 signal peer_connected(id: int)
 signal peer_disconnected(id: int)
@@ -13,10 +17,18 @@ var is_running = false
 
 var _web_socket: WebSocketPeer = WebSocketPeer.new()
 var _keep_alive_timers: Dictionary[int, Timer] = {}
+var _update_hub_server_timer: Timer
 var _enet_peer: ENetMultiplayerPeer
 var _scene_multiplayer: SceneMultiplayer
 var _configuration: NetworkConfiguration
 var _public_ip: String
+
+var _player_count: int = 1
+var _lobby_joinable: bool = true
+
+func update_lobby_state(player_count: int, joinable: bool) -> void:
+	_player_count = player_count
+	_lobby_joinable = joinable
 
 func send_packet(type: HostPacket.Event, payload: Dictionary) -> void:
 	_scene_multiplayer.send_bytes(HostPacket.create_packet(type, payload))
@@ -38,6 +50,9 @@ func stop() -> void:
 		remove_child(timer)
 	
 	_keep_alive_timers.clear()
+	
+	_update_hub_server_timer.stop()
+	remove_child(_update_hub_server_timer)
 
 func get_peer_id() -> int:
 	return _enet_peer.get_unique_id()
@@ -68,6 +83,7 @@ func _start_hosting(port: int) -> void:
 	Events.networking.notify_lobby_server_started(self)
 	print_debug('Started Server on ', port)
 	is_running = true
+	_set_up_hub_server_update()
 
 func _process(_delta: float) -> void:
 	if (not is_running):
@@ -148,6 +164,23 @@ func _on_peer_packet(id: int, packet: PackedByteArray) -> void:
 	var payload = ClientPacket.get_payload(packet)
 	
 	packet_received.emit(id, type, payload)
+
+func _set_up_hub_server_update() -> void:
+	var timer = Timer.new()
+	add_child(timer)
+	_update_hub_server_timer = timer
+	timer.one_shot = false
+	timer.timeout.connect(_on_hub_server_update)
+	timer.start(2)
+
+func _on_hub_server_update() -> void:
+	_web_socket.send_text(JSON.stringify({
+		'Type': OutgoingEventType.LOBBY_UPDATE,
+		'Data': {
+			'PlayerCount': _player_count,
+			'Joinable': _lobby_joinable
+		}
+	}))
 
 func _set_up_keep_alive(id: int) -> void:
 	var timer = Timer.new()

@@ -131,6 +131,7 @@ func _on_player_connected(id: int, _name: String) -> void:
 	
 	var player = _spawn_player(PlayerStatus.new())
 	players.set(id, player)
+	player_controller.other_players.set(id, player)
 
 func _on_player_action(id: int, action: StringName, pressed: bool) -> void:
 	if (!players.has(id)):
@@ -187,6 +188,7 @@ func _on_player_disconnected(id: int) -> void:
 	var player = players.get(id) as Player
 	player.queue_free()
 	players.erase(id)
+	player_controller.other_players.erase(id)
 
 func _on_disconnected(instance: ClientLobbyInstance) -> void:
 	instance.stop()

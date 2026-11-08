@@ -34,7 +34,7 @@ func stop() -> void:
 		remove_child(_keep_alive_timer)
 
 func send_packet(type: ClientPacket.Event, payload: Dictionary) -> void:
-	_scene_multiplayer.send_bytes(ClientPacket.create_packet(type, payload))
+	_scene_multiplayer.send_bytes(ClientPacket.create_packet(type, payload), 1)
 
 func get_peer_id() -> int:
 	return _enet_peer.get_unique_id()
@@ -134,10 +134,9 @@ func _on_connected() -> void:
 	_set_up_keep_alive()
 	Events.networking.notify_lobby_joined(self)
 	
-	var packet = ClientPacket.create_packet(ClientPacket.Event.INIT_PLAYER, {
+	send_packet(ClientPacket.Event.INIT_PLAYER, {
 		'name': 'Player'
 	})
-	_scene_multiplayer.send_bytes(packet)
 
 func _on_disconnected() -> void:
 	disconnected.emit()

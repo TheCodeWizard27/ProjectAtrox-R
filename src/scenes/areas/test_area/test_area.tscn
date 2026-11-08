@@ -8,10 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bii02jkbwgsya" path="res://src/scenes/interactables/interaction_pad/interaction_pad.tscn" id="6_aieab"]
 [ext_resource type="PackedScene" uid="uid://bk6f702cdqdko" path="res://src/scenes/interactables/door/door.tscn" id="7_snhbp"]
 [ext_resource type="Script" uid="uid://bgsvgv0fx4i4k" path="res://src/scenes/areas/area_core/entity_spawn_container.gd" id="8_y56qc"]
-[ext_resource type="PackedScene" uid="uid://c0na3emjcg5w0" path="res://src/scenes/item_entity/item_entity.tscn" id="9_v13j1"]
 [ext_resource type="PackedScene" uid="uid://b38d5mkximieh" path="res://src/scenes/interactables/transport_pad/transport_pad.tscn" id="11_0pkb1"]
 [ext_resource type="Script" uid="uid://deiwhqeehxgm3" path="res://src/scenes/areas/area_core/enemy_spawner.gd" id="11_u3wlq"]
-[ext_resource type="Script" uid="uid://cf608vvuleil8" path="res://src/scenes/areas/area_core/item_spawner.gd" id="12_u3wlq"]
 [ext_resource type="PackedScene" uid="uid://bsuwq26dqy2iy" path="res://src/scenes/instance_manager/instance_manager.tscn" id="13_u3wlq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wa4ib"]
@@ -44,9 +42,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -6)
 [node name="Door" parent="Map/Objects/Room1" unique_id=1441993751 instance=ExtResource("7_snhbp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 
-[node name="Item" parent="Map/Objects/Room1" unique_id=166414530 instance=ExtResource("9_v13j1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6858473, 1.7481375, -4.7866845)
-
 [node name="Room2" type="Node3D" parent="Map/Objects" unique_id=1141251293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.638817)
 
@@ -69,12 +64,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5118923, -0.5, 7.450426)
 script = ExtResource("11_u3wlq")
 enemy_type = 1
 metadata/_custom_type_script = "uid://deiwhqeehxgm3"
-
-[node name="ItemSpawner" type="Marker3D" parent="Map/Objects/Room2/EnemySpawnContainer" unique_id=820170435]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.226646, 1.9962692)
-script = ExtResource("12_u3wlq")
-item_count = 1000
-metadata/_custom_type_script = "uid://cf608vvuleil8"
 
 [node name="Room3" type="Node3D" parent="Map/Objects" unique_id=852922295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.89683)

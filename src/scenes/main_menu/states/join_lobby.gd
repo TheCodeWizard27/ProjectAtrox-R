@@ -58,7 +58,7 @@ func _on_lobby_clicked(lobby: LobbyListEntry, password: String = "") -> void:
 		return
 	
 	# Step 3 Start WebSocket Connection
-	var connection_response = client.connect_to_websocket(join_response.connection_id)
+	var connection_response = await client.connect_to_websocket(join_response.connection_id)
 	if (connection_response.was_unsuccessful):
 		# TODO Handle error
 		client.queue_free()

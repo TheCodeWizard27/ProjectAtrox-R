@@ -13,6 +13,8 @@ class_name PlayerController
 		_configure_new_player(new_player)
 	get: return _target_player
 
+var other_players: Dictionary[int, Player]
+
 signal action_pressed(action: StringName, is_pressed: bool)
 
 var _target_player: Player = null

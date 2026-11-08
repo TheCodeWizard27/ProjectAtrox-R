@@ -52,6 +52,7 @@ func _on_peer_connected(_id: int) -> void:
 
 func _on_peer_disconnected(id: int) -> void:
 	_initialized_players.erase(id)
+	_processor.update_lobby_state(_initialized_players.size() + 1, true)
 
 func _on_packet_received(id: int, type: ClientPacket.Event, payload: Dictionary) -> void:
 	match(type):
@@ -77,3 +78,4 @@ func _on_init_player(id: int, payload: Dictionary) -> void:
 	var name = payload.get('name')
 	_initialized_players.set(id, name)
 	player_connected.emit(id, name)
+	_processor.update_lobby_state(_initialized_players.size() + 1, true) # TODO Joinable

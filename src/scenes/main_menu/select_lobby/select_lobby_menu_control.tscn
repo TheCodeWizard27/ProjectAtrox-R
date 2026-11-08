@@ -45,20 +45,6 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="LobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1991326865]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="CardControlComponent2" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1726423550 instance=ExtResource("5_0itd6")]
-layout_mode = 2
-
-[node name="CardControlComponent" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1001507372 instance=ExtResource("5_0itd6")]
-layout_mode = 2
-
-[node name="Placeholder" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/LobbyContainer" unique_id=1976714059]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="TempLobbyContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer" unique_id=1153774859]
 layout_mode = 2
 theme_override_constants/separation = 8
