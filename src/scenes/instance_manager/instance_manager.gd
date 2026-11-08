@@ -18,6 +18,8 @@ func init(instance: LobbyInstance) -> void:
 		_init_for_host(instance)
 	elif (instance is ClientLobbyInstance):
 		_init_for_client(instance)
+	elif (instance is OfflineLobbyInstance):
+		_init_for_offline()
 	
 	Events.entity.entity_spawn_requested.connect(_on_spawn_entity_request)
 	Events.enemy.died.connect(_on_enemy_death)
@@ -43,6 +45,9 @@ func _init_for_host(instance: HostLobbyInstance) -> void:
 	timer.one_shot = false
 	timer.timeout.connect(_on_update_clients_tick.bind(instance))
 	timer.start(1.0 / 30.0)
+
+func _init_for_offline() -> void:
+	Events.area.area_change_requested.connect(_on_area_change_request)
 
 func _init_for_client(instance: ClientLobbyInstance) -> void:
 	instance.disconnected.connect(_on_disconnected.bind(instance))
