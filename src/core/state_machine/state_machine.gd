@@ -23,7 +23,7 @@ func sync(snapshot: Dictionary) -> void:
 	_is_synced = true
 	var state_path = NodePath(snapshot.get('state'))
 	
-	if (state_path != get_path_to(current_state)):
+	if (state_path != get_path_to(current_state) || !current_state.is_synced):
 		transition_to(state_path, {})
 	
 	current_state.sync(snapshot)

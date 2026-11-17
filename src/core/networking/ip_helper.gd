@@ -2,6 +2,7 @@ class_name IpHelper
 
 static func get_local_ip() -> String:
 	var local_addresses = IP.get_local_addresses()
+	local_addresses.reverse() # Reverse to prioritize later addresses if there are cached old ones.
 	
 	for address in local_addresses:
 		if (address.begins_with('192.168.') || address.begins_with('10.0.') || address.begins_with('172.16.')):

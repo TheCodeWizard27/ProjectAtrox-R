@@ -121,6 +121,7 @@ func _process_packet(packet: PackedByteArray) -> void:
 	_punch_hole(target_ip, target_port)
 	
 func _punch_hole(ip: String, port: int) -> void:
+	print('Hole punching ', ip, ':', port)
 	var connection = _enet_peer.host
 	var hole_punch_message = _configuration.hole_punch_message
 	
