@@ -119,7 +119,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=1248356236]
 layout_mode = 2
-text = "Lobby Passwort"
+text = "Lobby Password"
 
 [node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/LobbyConfigContainer/PasswordContainer" unique_id=1132473211]
 layout_mode = 2
@@ -129,6 +129,42 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="PasswordValidationContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=2082308723]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer" unique_id=2057862122]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer" unique_id=973058211]
+layout_mode = 2
+texture = ExtResource("3_dajey")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer" unique_id=18941017]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordValidationContainer/PanelContainer/MarginContainer" unique_id=1646377224]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7058824, 0.043137256, 0.043137256, 1)
+text = "Lobby Name or Password Empty or missing!"
 
 [node name="FooterButtonComponent" parent="MenuBackground" unique_id=1974797460 instance=ExtResource("4_08miq")]
 layout_mode = 0

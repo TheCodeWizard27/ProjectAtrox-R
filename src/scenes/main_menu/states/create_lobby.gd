@@ -8,6 +8,7 @@ func _ready():
 func enter(msg: Dictionary = {}) -> void:
 	super.enter(msg)
 	
+	menu_control.reset()
 	menu_control.lobby_create_requested.connect(_on_lobby_create_requested)
 	Events.networking.lobby_server_started.connect(_on_server_started)
 	#Events.networking.lobby_server_start_failed.connect TODO
