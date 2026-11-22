@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dbmo63at5nuur" path="res://src/scenes/main_menu/select_lobby/select_lobby_menu_control.tscn" id="5_q2ttg"]
 [ext_resource type="PackedScene" uid="uid://wliy5rvr2mq0" path="res://src/scenes/main_menu/configure_hub/configure_hub_control.tscn" id="6_v38du"]
 [ext_resource type="Script" uid="uid://brf10fbscg178" path="res://src/core/state_machine/state_machine.gd" id="7_mbmwu"]
+[ext_resource type="PackedScene" uid="uid://c6e20yok1cpgi" path="res://src/scenes/main_menu/presentation/presentation_control.tscn" id="7_qct50"]
 [ext_resource type="Script" uid="uid://co2b862rflitr" path="res://src/scenes/main_menu/states/configure_hub.gd" id="8_4hf8t"]
 [ext_resource type="Script" uid="uid://bq8c3758aic6y" path="res://src/scenes/main_menu/states/create_lobby.gd" id="9_i7p0y"]
 [ext_resource type="Script" uid="uid://dl6c78jbcuv3w" path="res://src/scenes/main_menu/states/join_lobby.gd" id="10_jbdtg"]
 [ext_resource type="Script" uid="uid://cla8cbwa5hfq7" path="res://src/scenes/main_menu/states/main_menu.gd" id="11_qnn2u"]
+[ext_resource type="Script" uid="uid://ch2jcgdhkrvd5" path="res://src/scenes/main_menu/states/presentation.gd" id="12_qct50"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iill2"]
 viewport_path = NodePath("InputRelay/SubViewport")
@@ -60,6 +62,9 @@ visible = false
 [node name="ConfigureHubController" parent="InputRelay/SubViewport" unique_id=572103495 instance=ExtResource("6_v38du")]
 visible = false
 
+[node name="PresentationControl" parent="InputRelay/SubViewport" unique_id=821350458 instance=ExtResource("7_qct50")]
+visible = false
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="InputRelay" unique_id=632108678]
 mesh = SubResource("QuadMesh_2bx3b")
 
@@ -89,7 +94,12 @@ menu_control = NodePath("../../InputRelay/SubViewport/SelectLobbyMenuController"
 script = ExtResource("11_qnn2u")
 menu_control = NodePath("../../InputRelay/SubViewport/MainMenuController")
 
+[node name="Presentation" type="Node" parent="StateMachine" unique_id=14044731 node_paths=PackedStringArray("presentation_control")]
+script = ExtResource("12_qct50")
+presentation_control = NodePath("../../InputRelay/SubViewport/PresentationControl")
+
 [connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/CreateLobbyMenuController" to="." method="change_lobby_menu_screen"]
 [connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/MainMenuController" to="." method="change_lobby_menu_screen"]
 [connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/SelectLobbyMenuController" to="." method="change_lobby_menu_screen"]
 [connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/ConfigureHubController" to="." method="change_lobby_menu_screen"]
+[connection signal="lobby_menu_change_screen" from="InputRelay/SubViewport/PresentationControl" to="." method="change_lobby_menu_screen"]

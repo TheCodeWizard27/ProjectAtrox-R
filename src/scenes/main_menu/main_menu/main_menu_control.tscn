@@ -67,7 +67,12 @@ text = "Play Offline"
 layout_mode = 2
 text = "Hub Configuration"
 
+[node name="Presentation" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2" unique_id=716659148]
+layout_mode = 2
+text = "Presentation"
+
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/SelectLobbyButton" to="." method="navigation_action" binds= [1]]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/CreateLobbyButton" to="." method="navigation_action" binds= [2]]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/PlayOfflineButton" to="." method="navigation_action" binds= [3]]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/HubConfigurationButton" to="." method="navigation_action" binds= [4]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/MarginContainer/GridContainer/VBoxContainer2/Presentation" to="." method="navigation_action" binds= [5]]

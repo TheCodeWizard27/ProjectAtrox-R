@@ -43,8 +43,8 @@ func reset() -> void:
 	password_validation_container.hide()
 	password_container.hide()
 
-func toggle_error(show: bool) -> void:
-	if (show):
+func toggle_error(p_show: bool) -> void:
+	if (p_show):
 		password_validation_container.show()
 	else:
 		password_validation_container.hide()

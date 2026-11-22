@@ -1,0 +1,1585 @@
+[gd_scene format=3 uid="uid://c6e20yok1cpgi"]
+
+[ext_resource type="Script" uid="uid://bvtoqssmcwoq7" path="res://src/scenes/main_menu/presentation/presentation_control.gd" id="1_ii2ol"]
+[ext_resource type="PackedScene" uid="uid://d1h5rvtj5hxrr" path="res://src/assets/ui_components/MenuBackground.tscn" id="2_4pgbd"]
+[ext_resource type="PackedScene" uid="uid://dbvlyh2umgwu0" path="res://src/scenes/ui_components/header_component/header_component.tscn" id="3_6573k"]
+[ext_resource type="Texture2D" uid="uid://dk618wghh1p84" path="res://src/assets/textures/border.png" id="4_ae732"]
+[ext_resource type="Texture2D" uid="uid://yxws4p2gwdjx" path="res://src/assets/presentation/net_1.drawio.png" id="5_0cwca"]
+[ext_resource type="Texture2D" uid="uid://oeugvt1odq1h" path="res://src/assets/presentation/net_2.drawio.png" id="6_op7qu"]
+[ext_resource type="Texture2D" uid="uid://dm7jesmjkpltc" path="res://src/assets/presentation/net_3.drawio.png" id="7_giele"]
+[ext_resource type="Texture2D" uid="uid://wmpiatgn1v3" path="res://src/assets/presentation/net_4.drawio.png" id="8_s1pll"]
+[ext_resource type="Texture2D" uid="uid://dsi4frwddw2aq" path="res://src/assets/presentation/net_5.drawio.png" id="9_uh1er"]
+[ext_resource type="Texture2D" uid="uid://bqqhjc46ul7me" path="res://src/assets/presentation/udp.drawio.png" id="10_uh1er"]
+[ext_resource type="Texture2D" uid="uid://dmnusd12cu6we" path="res://src/assets/presentation/sync_1.drawio.png" id="11_aqhmj"]
+[ext_resource type="Texture2D" uid="uid://cho3i7kg55r7d" path="res://src/assets/presentation/sync_2.drawio.png" id="12_1pymu"]
+[ext_resource type="Texture2D" uid="uid://bx3thevexrgnd" path="res://src/assets/presentation/sync_3.drawio.png" id="13_abnsy"]
+[ext_resource type="Texture2D" uid="uid://bos5wovxgd37f" path="res://src/assets/presentation/sync_4.drawio.png" id="14_jmhpp"]
+[ext_resource type="Texture2D" uid="uid://bg3h0m7t4gyhv" path="res://src/assets/presentation/arch_1.drawio.png" id="15_qrmrv"]
+[ext_resource type="Texture2D" uid="uid://baxjh1hdyfpyq" path="res://src/assets/presentation/arch_2.drawio.png" id="16_hnuhh"]
+[ext_resource type="Texture2D" uid="uid://c5ob577ymqiiv" path="res://src/assets/presentation/arch_3.drawio.png" id="17_yisdt"]
+
+[node name="PresentationControl" type="Control" unique_id=357762632]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ii2ol")
+
+[node name="MenuBackground" parent="." unique_id=748186360 instance=ExtResource("2_4pgbd")]
+layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground" unique_id=1865383552]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer" unique_id=1835301897]
+layout_mode = 2
+
+[node name="HeaderComponent" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=7175755 instance=ExtResource("3_6573k")]
+layout_mode = 2
+current_menu_string = "Presentation"
+
+[node name="Start" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1981587567]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Start" unique_id=377740814]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer" unique_id=2069823269]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer" unique_id=845999223]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/PanelContainer" unique_id=1765749011]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/PanelContainer" unique_id=671107371]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=540198634]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "Project Atrox+R"
+
+[node name="StartButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer" unique_id=1930014696]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "start"
+
+[node name="TableOfContents" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=52060434]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents" unique_id=498652761]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer" unique_id=1490779005]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer/PanelContainer" unique_id=701276719]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer/PanelContainer" unique_id=1710713628]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer/PanelContainer/MarginContainer" unique_id=1002387228]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Inhaltsverzeichnis"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents" unique_id=1482134006]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2" unique_id=1821871816]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer" unique_id=364924424]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer" unique_id=145859414]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer" unique_id=746309110]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1325502006]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=967362910]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "1 Projektübersicht"
+
+[node name="Label2" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=229685723]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "2 Demo"
+
+[node name="Label3" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=682530413]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="Label4" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=475935290]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="Label5" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1208722048]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "5 Retrospektive"
+
+[node name="Label6" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1323555520]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "6 Abschluss Präsentation"
+
+[node name="Label7" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=945716428]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "7 Q & A"
+
+[node name="TableOfContentsButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer" unique_id=1214247496]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Overview" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1204488161]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview" unique_id=172195664]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer" unique_id=1235521663]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer/PanelContainer" unique_id=1725875623]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer/PanelContainer" unique_id=1868871671]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer/PanelContainer/MarginContainer" unique_id=1906462447]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "1 Projektübersicht"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview" unique_id=331581732]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2" unique_id=515620883]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer" unique_id=1382730326]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1153269848]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/PanelContainer" unique_id=777858260]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=140613362]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=976889838]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "1 Lorem Ipsum"
+
+[node name="Label2" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1163978490]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "2 Dolor Sit Amet"
+
+[node name="OverviewButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer" unique_id=1596408690]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Demo" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=181419887]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Demo" unique_id=2100082261]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer" unique_id=18725340]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer" unique_id=2085642832]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/PanelContainer" unique_id=1167815246]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/PanelContainer" unique_id=284044626]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=997101750]
+layout_mode = 2
+theme_override_font_sizes/font_size = 86
+text = "2 Demo"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer" unique_id=1371503845]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="StartDemoButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1944461965]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Demo starten"
+
+[node name="SkipDemoButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2122338199]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Network" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=2026991830]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network" unique_id=1621464997]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer" unique_id=2018960590]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer/PanelContainer" unique_id=371911207]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer/PanelContainer" unique_id=1940834562]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer/PanelContainer/MarginContainer" unique_id=434576079]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network" unique_id=938096974]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2" unique_id=205362264]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2/VBoxContainer" unique_id=696476053]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2/VBoxContainer/PanelContainer" unique_id=395979188]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1961377496]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1934652616]
+custom_minimum_size = Vector2(0, 284)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("5_0cwca")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NetworkButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2/VBoxContainer" unique_id=1899420508]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Network2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=580011669]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2" unique_id=1359578393]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer" unique_id=1696965241]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer/PanelContainer" unique_id=1213897772]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer/PanelContainer" unique_id=526381412]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer/PanelContainer/MarginContainer" unique_id=1355650099]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2" unique_id=289692680]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2" unique_id=265251402]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2/VBoxContainer" unique_id=255760175]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1033481102]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1053461016]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=2021222529]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 84)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("6_op7qu")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NetworkButton2" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2/VBoxContainer" unique_id=351570892]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Network3" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=279789869]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3" unique_id=1062342321]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer" unique_id=1594285088]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer/PanelContainer" unique_id=103640992]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer/PanelContainer" unique_id=1213590117]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer/PanelContainer/MarginContainer" unique_id=159027805]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3" unique_id=519267065]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2" unique_id=332918790]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2/VBoxContainer" unique_id=460314972]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2/VBoxContainer/PanelContainer" unique_id=955285823]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2/VBoxContainer/PanelContainer" unique_id=138083386]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1244441459]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 284)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("7_giele")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NetworkButton3" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2/VBoxContainer" unique_id=1763368363]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Network4" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1966175639]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4" unique_id=1136900806]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer" unique_id=1009258004]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer/PanelContainer" unique_id=841227948]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer/PanelContainer" unique_id=555998444]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer/PanelContainer/MarginContainer" unique_id=276414947]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4" unique_id=1316237473]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2" unique_id=1961438934]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2/VBoxContainer" unique_id=1141355631]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1640615518]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1786633581]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=955176919]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 284)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("8_s1pll")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NetworkButton4" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2/VBoxContainer" unique_id=498303804]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Network5" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1428276577]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5" unique_id=304507183]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer" unique_id=671791618]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer/PanelContainer" unique_id=1650706137]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer/PanelContainer" unique_id=106505752]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer/PanelContainer/MarginContainer" unique_id=1565362240]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5" unique_id=2026605930]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2" unique_id=1212995868]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2/VBoxContainer" unique_id=821197369]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1030957908]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1349750452]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1436474366]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 284)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("9_uh1er")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NetworkButton5" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2/VBoxContainer" unique_id=302016997]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Network6" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=591972585]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6" unique_id=571978391]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer" unique_id=234236545]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer/PanelContainer" unique_id=1091119009]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer/PanelContainer" unique_id=618867880]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer/PanelContainer/MarginContainer" unique_id=229713904]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "3 Netzwerklösung"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6" unique_id=1785278744]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2" unique_id=439532415]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2/VBoxContainer" unique_id=414344707]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2/VBoxContainer/PanelContainer" unique_id=868855670]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2/VBoxContainer/PanelContainer" unique_id=683176802]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1703482828]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 383)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("10_uh1er")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NetworkButton6" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2/VBoxContainer" unique_id=1787612597]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Sync" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1762888738]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync" unique_id=186693404]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer" unique_id=1468168054]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer/PanelContainer" unique_id=2053070509]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer/PanelContainer" unique_id=614318905]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer/PanelContainer/MarginContainer" unique_id=1924578654]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync" unique_id=1755389231]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2" unique_id=2002320826]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2/VBoxContainer" unique_id=981454453]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1514534817]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2/VBoxContainer/PanelContainer" unique_id=119941873]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1992294052]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 164)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("11_aqhmj")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SyncButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2/VBoxContainer" unique_id=1058967086]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Sync2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1043349035]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2" unique_id=119717903]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer" unique_id=1787169665]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer/PanelContainer" unique_id=284558274]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer/PanelContainer" unique_id=1242089779]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer/PanelContainer/MarginContainer" unique_id=640077460]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2" unique_id=1270547903]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2" unique_id=1786317707]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2/VBoxContainer" unique_id=538197433]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=799943140]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1860705957]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=318260918]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 242)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("12_1pymu")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SyncButton2" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2/VBoxContainer" unique_id=910358521]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Sync3" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1552987663]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3" unique_id=631707004]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer" unique_id=1555359861]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer/PanelContainer" unique_id=1020250170]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer/PanelContainer" unique_id=1009288547]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer/PanelContainer/MarginContainer" unique_id=2081524680]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3" unique_id=711528236]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2" unique_id=2145336911]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2/VBoxContainer" unique_id=1880609334]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1301165773]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2/VBoxContainer/PanelContainer" unique_id=2022382139]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1133666826]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 242)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("13_abnsy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SyncButton3" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2/VBoxContainer" unique_id=1284914930]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Sync4" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=855827682]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4" unique_id=954471693]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer" unique_id=820770213]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer/PanelContainer" unique_id=746364567]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer/PanelContainer" unique_id=933424525]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer/PanelContainer/MarginContainer" unique_id=2078190023]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4" unique_id=432486485]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2" unique_id=561045056]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2/VBoxContainer" unique_id=680293255]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2/VBoxContainer/PanelContainer" unique_id=2129560901]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2/VBoxContainer/PanelContainer" unique_id=773960965]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1370770264]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 282)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("14_jmhpp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SyncButton4" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2/VBoxContainer" unique_id=868573717]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Arch" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1395436742]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch" unique_id=256721856]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer" unique_id=471582638]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer/PanelContainer" unique_id=186964738]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer/PanelContainer" unique_id=1591457265]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer/PanelContainer/MarginContainer" unique_id=84063206]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch" unique_id=316464532]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2" unique_id=678047326]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2/VBoxContainer" unique_id=1450305540]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2/VBoxContainer/PanelContainer" unique_id=2057228340]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1208591312]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=1842543640]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 292)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("15_qrmrv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ArchButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2/VBoxContainer" unique_id=1657804243]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Arch2" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1053229484]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2" unique_id=643063152]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer" unique_id=65512023]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer/PanelContainer" unique_id=73406627]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer/PanelContainer" unique_id=1784264717]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer/PanelContainer/MarginContainer" unique_id=1101666244]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2" unique_id=998648629]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2" unique_id=1346006416]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2/VBoxContainer" unique_id=1267245412]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1169219978]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=49609035]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=342719027]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 292)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("16_hnuhh")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ArchButton2" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2/VBoxContainer" unique_id=898344241]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Arch3" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=2122365594]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3" unique_id=1138415218]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer" unique_id=1436057546]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer/PanelContainer" unique_id=1464952344]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer/PanelContainer" unique_id=1395418489]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer/PanelContainer/MarginContainer" unique_id=242450328]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "4 Godot Multiplayer Architektur"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3" unique_id=1824120281]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2" unique_id=941539404]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2/VBoxContainer" unique_id=610713474]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2/VBoxContainer/PanelContainer" unique_id=172873432]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1222772798]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextureRect" type="TextureRect" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=721953967]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 383)
+propagate_maximum_size = true
+layout_mode = 2
+texture = ExtResource("17_yisdt")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ArchButton3" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2/VBoxContainer" unique_id=976872489]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "weiter"
+
+[node name="Footer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1002246804]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Footer" unique_id=1683976494]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer" unique_id=720059606]
+layout_mode = 2
+text = "zurück"
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer" unique_id=1188272289]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/PanelContainer" unique_id=103009052]
+layout_mode = 2
+texture = ExtResource("4_ae732")
+region_rect = Rect2(0, 0, 21, 20)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 14
+patch_margin_bottom = 13
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/PanelContainer" unique_id=1372626496]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/PanelContainer/MarginContainer" unique_id=1754441662]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1942340684]
+layout_mode = 2
+text = "Seite"
+
+[node name="CurrentPage" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=180197027]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2"
+
+[node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1498845086]
+layout_mode = 2
+text = "von 17"
+
+[connection signal="home_button_pressed" from="MenuBackground/MarginContainer/VBoxContainer/HeaderComponent" to="." method="navigation_action" binds= [0]]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/TableOfContentsButton" to="." method="_on_table_of_contents_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/OverviewButton" to="." method="_on_overview_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/HBoxContainer/StartDemoButton" to="." method="_on_start_demo_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Demo/MarginContainer/VBoxContainer/HBoxContainer/SkipDemoButton" to="." method="_on_skip_demo_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Network/MarginContainer2/VBoxContainer/NetworkButton" to="." method="_on_network_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Network2/MarginContainer2/VBoxContainer/NetworkButton2" to="." method="_on_network_button_2_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Network3/MarginContainer2/VBoxContainer/NetworkButton3" to="." method="_on_network_button_3_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Network4/MarginContainer2/VBoxContainer/NetworkButton4" to="." method="_on_network_button_4_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Network5/MarginContainer2/VBoxContainer/NetworkButton5" to="." method="_on_network_button_5_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Network6/MarginContainer2/VBoxContainer/NetworkButton6" to="." method="_on_network_button_6_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Sync/MarginContainer2/VBoxContainer/SyncButton" to="." method="_on_sync_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Sync2/MarginContainer2/VBoxContainer/SyncButton2" to="." method="_on_sync_button_2_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Sync3/MarginContainer2/VBoxContainer/SyncButton3" to="." method="_on_sync_button_3_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Sync4/MarginContainer2/VBoxContainer/SyncButton4" to="." method="_on_sync_button_4_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Arch/MarginContainer2/VBoxContainer/ArchButton" to="." method="_on_arch_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Arch2/MarginContainer2/VBoxContainer/ArchButton2" to="." method="_on_arch_button_2_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Arch3/MarginContainer2/VBoxContainer/ArchButton3" to="." method="_on_arch_button_3_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Footer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

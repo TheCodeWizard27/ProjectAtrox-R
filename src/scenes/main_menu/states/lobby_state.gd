@@ -5,12 +5,14 @@ const MAIN_MENU: NodePath = ^'MainMenu'
 const CREATE_LOBBY: NodePath = ^'CreateLobby'
 const SELECT_LOBBY: NodePath = ^'SelectLobby'
 const CONFIGURE_HUB: NodePath = ^'ConfigureHub'
+const PRESENTATION: NodePath = ^'Presentation'
 
 var menu_path_dictonary = {
 	Enums.LobbyMenuScreens.MAIN_MENU : MAIN_MENU,
 	Enums.LobbyMenuScreens.CREATE_LOBBY : CREATE_LOBBY,
 	Enums.LobbyMenuScreens.SELECT_LOBBY : SELECT_LOBBY,
-	Enums.LobbyMenuScreens.CONFIGURE_HUB : CONFIGURE_HUB
+	Enums.LobbyMenuScreens.CONFIGURE_HUB : CONFIGURE_HUB,
+	Enums.LobbyMenuScreens.PRESENTATION : PRESENTATION
 }
 
 var transition_state_result: StateResult = StateResult.continue_result
