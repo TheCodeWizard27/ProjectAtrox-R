@@ -5,7 +5,10 @@ class_name PresentationControl
 
 @onready var start: Control = %Start
 @onready var table_of_contents: Control = %TableOfContents
+
 @onready var overview: Control = %Overview
+@onready var overview2: Control = %Overview2
+
 @onready var demo: Control = %Demo
 
 @onready var network: Control = %Network
@@ -24,6 +27,10 @@ class_name PresentationControl
 @onready var arch2: Control = %Arch2
 @onready var arch3: Control = %Arch3
 
+@onready var retro: Control = %Retro
+@onready var end: Control = %End
+@onready var qna: Control = %QNA
+
 var _current_control: Control
 var _current_page = 1
 var _control_stack: Array[Control] = []
@@ -38,6 +45,7 @@ func hide_all() -> void:
 		start,
 		table_of_contents,
 		overview,
+		overview2,
 		demo,
 		network,
 		network2,
@@ -53,7 +61,11 @@ func hide_all() -> void:
 		
 		arch,
 		arch2,
-		arch3
+		arch3,
+		
+		retro,
+		end,
+		qna
 	]
 	
 	for control in all_controls:
@@ -92,6 +104,9 @@ func _on_table_of_contents_button_pressed() -> void:
 	_show_next(overview, _current_page + 1)
 
 func _on_overview_button_pressed() -> void:
+	_show_next(overview2, _current_page + 1)
+	
+func _on_overview_button_2_pressed() -> void:
 	_show_next(demo, _current_page + 1)
 
 func _on_start_demo_button_pressed() -> void:
@@ -137,4 +152,10 @@ func _on_arch_button_2_pressed() -> void:
 	_show_next(arch3, _current_page + 1)
 
 func _on_arch_button_3_pressed() -> void:
-	pass # _show_next(<TODO>, _current_page + 1)
+	_show_next(retro, _current_page + 1)
+
+func _on_retro_button_pressed() -> void:
+	_show_next(end, _current_page + 1)
+
+func _on_end_button_pressed() -> void:
+	_show_next(qna, _current_page + 1)
