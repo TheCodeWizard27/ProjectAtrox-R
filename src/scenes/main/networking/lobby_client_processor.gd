@@ -112,6 +112,7 @@ func _punch_hole(ip: String, port: int) -> void:
 			continue
 		
 		udp.close()
+		print('Hole accessible')
 		_join_lobby(ip, port)
 		return
 	

@@ -25,6 +25,8 @@ Events="*res://src/core/events/events.gd"
 
 [display]
 
+window/size/mode=4
+window/size/borderless=true
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
