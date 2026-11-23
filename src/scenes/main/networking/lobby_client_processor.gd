@@ -120,8 +120,11 @@ func _punch_hole(ip: String, port: int) -> void:
 
 func _join_lobby(ip: String, port: int) -> void:
 	_enet_peer = ENetMultiplayerPeer.new()
-	var result = _enet_peer.create_client(ip, port) if port == _configuration.multiplayer_port \
-		else _enet_peer.create_client(ip, port, 0, 0, 0, _configuration.multiplayer_port)
+	
+	var result = _enet_peer.create_client(ip, port, 0, 0, 0, _configuration.multiplayer_port)
+	# TODO figure out a better way to do this we cant always have different ports here.
+	# var result = _enet_peer.create_client(ip, port) if port == _configuration.multiplayer_port \
+		#else _enet_peer.create_client(ip, port, 0, 0, 0, _configuration.multiplayer_port)
 	if (result != OK):
 		push_error('Couldnt join lobby: ', result)
 		Events.networking.notify_lobby_join_failed()
