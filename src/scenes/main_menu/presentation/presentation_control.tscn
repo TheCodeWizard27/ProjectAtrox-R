@@ -97,7 +97,9 @@ theme_override_constants/margin_bottom = 24
 [node name="Label" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=540198634]
 layout_mode = 2
 theme_override_font_sizes/font_size = 86
-text = "Project Atrox+R"
+text = "Project Atrox+R 
+Multiplayer Architektur"
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer" unique_id=1930014696]
 layout_mode = 2
@@ -1692,12 +1694,7 @@ text = "Stress & Aufwand"
 [node name="Label2" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=708917155]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Fokusierungs Probleme"
-
-[node name="Label3" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1512546221]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Stolz auf die Arbeit"
+text = "Fokusierungsprobleme"
 
 [node name="Label4" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1284187245]
 layout_mode = 2
@@ -1707,12 +1704,17 @@ text = "Testing Erfolg"
 [node name="Label5" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1593096507]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Menu System robut genug für Präsentation!"
+text = "Menüsystem robust genug für Präsentation!"
 
 [node name="Label6" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=886288333]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Krank für zwei Wochen nach Abgabe!"
+
+[node name="Label3" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1512546221]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Stolz auf die Arbeit"
 
 [node name="RetroButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Retro/MarginContainer2/VBoxContainer" unique_id=657958541]
 layout_mode = 2
