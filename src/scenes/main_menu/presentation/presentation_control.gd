@@ -159,3 +159,9 @@ func _on_retro_button_pressed() -> void:
 
 func _on_end_button_pressed() -> void:
 	_show_next(qna, _current_page + 1)
+
+func _on_skip_to_demo_pressed() -> void:
+	_show_next(table_of_contents, _current_page + 1)
+	_show_next(overview, _current_page + 1)
+	_show_next(overview2, _current_page + 1)
+	_show_next(demo, _current_page + 1)

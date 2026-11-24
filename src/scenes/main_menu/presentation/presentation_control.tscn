@@ -57,7 +57,6 @@ current_menu_string = "Presentation"
 
 [node name="Start" type="VBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer" unique_id=1981587567]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -101,7 +100,16 @@ text = "Project Atrox+R
 Multiplayer Architektur"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer" unique_id=1930014696]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer" unique_id=2050764213]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="SkipToDemo" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/HBoxContainer" unique_id=477260990]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "zu demo springen"
+
+[node name="StartButton" type="Button" parent="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1930014696]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "start"
@@ -1876,7 +1884,8 @@ layout_mode = 2
 text = "von 21"
 
 [connection signal="home_button_pressed" from="MenuBackground/MarginContainer/VBoxContainer/HeaderComponent" to="." method="navigation_action" binds= [0]]
-[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/HBoxContainer/SkipToDemo" to="." method="_on_skip_to_demo_pressed"]
+[connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Start/MarginContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/TableOfContents/MarginContainer2/VBoxContainer/TableOfContentsButton" to="." method="_on_table_of_contents_button_pressed"]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Overview/MarginContainer2/VBoxContainer/OverviewButton" to="." method="_on_overview_button_pressed"]
 [connection signal="pressed" from="MenuBackground/MarginContainer/VBoxContainer/Overview2/MarginContainer2/VBoxContainer/OverviewButton2" to="." method="_on_overview_button_2_pressed"]

@@ -45,9 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
 [node name="Room2" type="Node3D" parent="Map/Objects" unique_id=1141251293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.638817)
 
-[node name="Door" parent="Map/Objects/Room2" unique_id=1436856498 instance=ExtResource("7_snhbp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -7.3641663)
-
 [node name="EnemySpawnContainer" type="Node3D" parent="Map/Objects/Room2" unique_id=173067137]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -7.3641663)
 script = ExtResource("8_y56qc")
@@ -190,5 +187,4 @@ material = ExtResource("2_tucw0")
 
 [connection signal="activated" from="Map/Objects/Room1/InteractionPad" to="Map/Objects/Room1/Door" method="open"]
 [connection signal="activated" from="Map/Objects/Room1/InteractionPad" to="Map/Objects/Room2/EnemySpawnContainer" method="spawn"]
-[connection signal="all_entities_dead" from="Map/Objects/Room2/EnemySpawnContainer" to="Map/Objects/Room2/Door" method="open"]
 [connection signal="all_entities_dead" from="Map/Objects/Room2/EnemySpawnContainer" to="Map/Objects/Room3/EntitySpawnContainer" method="spawn"]
