@@ -30,9 +30,10 @@ theme_override_constants/margin_bottom = 16
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=120007365]
 layout_mode = 2
-current_tab = 0
+current_tab = 2
 
 [node name="Status" type="Control" parent="MarginContainer/TabContainer" unique_id=106865999]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -407,7 +408,6 @@ text = "Test"
 layout_mode = 2
 
 [node name="QuestSelector" type="Control" parent="MarginContainer/TabContainer" unique_id=691660724]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -430,7 +430,7 @@ text = "No Quest Selected"
 
 [node name="SubwayQuestButton" type="Button" parent="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer" unique_id=1056827542]
 layout_mode = 2
-text = "Subway surf"
+text = "Subway Level"
 
 [node name="TestQuestButton" type="Button" parent="MarginContainer/TabContainer/QuestSelector/QuestMarginContainer/VBoxContainer" unique_id=1282218858]
 layout_mode = 2

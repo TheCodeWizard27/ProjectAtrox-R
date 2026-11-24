@@ -109,7 +109,7 @@ layout_mode = 2
 
 [node name="PasswordLable" type="Label" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordTitleContainer" unique_id=1734156647]
 layout_mode = 2
-text = "Lobby Name"
+text = "Enter Password"
 
 [node name="Spacer" type="Control" parent="MenuBackground/MarginContainer/VBoxContainer/PasswordContainer/MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/MarginContainer/PasswordContainer/PasswordTitleContainer" unique_id=1439801285]
 layout_mode = 2
